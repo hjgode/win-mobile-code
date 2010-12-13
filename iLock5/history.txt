@@ -1,0 +1,121 @@
+/*
+	version 1.0
+		initial release
+		UseFullScreen is not used!
+		we are always 'fullscreen' but let you view the taskbar
+	version 1.1
+		uncommented code for MaximizeTargetOnExit and KeepLockedAfterExit in WM_DESTROY
+		added AllKeys()
+		added #USEMENUBAR
+		if USELOCKDESKTOP is defined LockDesktop will also lock softkey menu! on exit
+	version 1.2
+		changed access to bmp file to use define ILOCKBMP. iLock5.bmp will now be now be 
+		used instead of iLock.bmp
+		added new settings:
+		UseDesktopLock
+		UseMenuBar
+	version 1.3
+		added "FreeDesktopOnExit" setting and code
+		added "WaitBeforeExit" setting and code
+		added text color registry setting and code
+		added bAdminExit and code
+
+	version 1.4
+		added two check against bAdminExit in WM_DESTROY
+
+	version 1.5 (5.1.5.0)
+		added code to read DBL_CLICK hot spot from registry
+		iHotSpotX and iHotSpotY
+	registry:
+		REGEDIT4
+
+		[HKEY_LOCAL_MACHINE\Software\Intermec\iLock]
+		;lock the desktop, default 0
+		"UseDesktopLock"="0"
+
+		;enable desktop on exit, default 1, will work only if UseDesktopLock="1"
+		"FreeDesktopOnExit"="1"
+
+		;define colors as RGB values 00BBGGRR, default black text on white
+		"TextBackColor"=dword:00FFFFFF
+		"TextListColor"=dword:00FFFFFF
+		"TextColor"=dword:002B1CE2
+		
+		;seconds to wait before exit
+		"WaitBeforeExit"=dword:00000003
+
+		;show a menubar, default 0
+		"UseMenuBar"="1"
+
+		;maximize the target window on exit, default 0
+		"MaximizeTargetOnExit"="0"
+		
+		;lock taskbar on exit, default 0
+		"KeepLockedAfterExit"="1"
+		
+		;use full screen, currently not used
+		"UseFullScreen"="1"
+		
+		;name of the process to wait for, default "", 
+		;This can be the executable with or without the extension!
+		;mobilecalculator is different from mobilecalculator.exe
+		;depends on how the target was started
+		"App2waitFor"="MobileCaculator.exe"
+		
+		;name of the window text to wait for
+		"Title2waitFor"="Calculator"
+		
+		;name of the window class name to wait for
+		"Class2waitFor"=""
+
+		;HotSpotX = 120, (DWORD: 10-230)
+		"HotSpotX"=dword:00000078
+		;HotSpotY = 160, (DWORD: 10-310)
+		"HotSpotY"=dword:000000A0
+	version 5.1.6:
+		Added timout code that shows a button to enable reboot if target does not start
+		;added to control showing a reboot button after a timeout
+		"ShowRebootTimeout"=60	; // 0 to 300, defaults to 60 seconds
+	version 5.1.7:
+		Added some logging and new registry key "UseLogging":DWORD[0|1] to disable/enable
+		logging
+		nclog.h and nclog.cpp have been extended with nclogEnable(BOOL bEnable) to control
+		logging
+
+		Added define LISTVIEWPAUSES to enable pausing timers for listView clicks
+	version 5.1.7.1:
+		after setting all code to enable logging, now the code also uses the logging facility
+		added TH32CS_SNAPNOHEAPS fix
+
+	version 5.1.8.0:
+		added watchdog thread
+
+	version 5.1.8.1:
+		changed break in MsgLoop to return 0; (see "//5.1.8.1 return messgage has been processed")
+
+*/
+
+
+============================================
+Sample reg file:
+
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Intermec\iLock]
+"FreeDesktopOnExit"="1"
+"TextBackColor"=dword:00FFFFFF
+"TextListColor"=dword:00FFFFFF
+"TextColor"=dword:002B1CE2
+"WaitBeforeExit"=dword:00000003
+"UseMenuBar"="1"
+"UseDesktopLock"="0"
+"MaximizeTargetOnExit"="0"
+"KeepLockedAfterExit"="1"
+"UseFullScreen"="1"
+"App2waitFor"="mobilecalculator.exe"
+"Title2waitFor"="Calculator"
+"Class2waitFor"=""
+"HotSpotX"=dword:00000078
+"HotSpotY"=dword:000000A0
+"ShowRebootTimeout"=dword:0000003C
+"UseLogging"=dword:00000001
