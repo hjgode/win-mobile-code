@@ -1,6 +1,8 @@
 // iLock5.cpp : Defines the entry point for the application.
 //
-
+/*
+	see history.txt
+*/
 //disable warnings
 //performance warning
 //#pragma warning( disable : 4800 ) // 4101 )

@@ -197,7 +197,6 @@ static int writefile(TCHAR *filetext){
 // format input, convert to 8-bit and send.
 void nclog (const wchar_t *fmt, ...)
 {
-	if(iUseLogging==1){
 		TCHAR StrW[1024];
         va_list vl;
         va_start(vl,fmt);
@@ -211,16 +210,16 @@ void nclog (const wchar_t *fmt, ...)
 		wsprintf(buf, L"%s", StrW);
 
         WideCharToMultiByte(CP_ACP,0,buf,-1,bufOut,400, NULL, NULL);
-
-		wsa_send(bufOut);
-
-		writefile(buf);
+	
+	if(iUseLogging==1){
 #ifdef DEBUG
+		wsa_send(bufOut);
 		DEBUGMSG(1, (buf));
 #else
 		RETAILMSG(1, (buf));
 #endif
 	}//iUseLogging
+	writefile(buf);
 }
 
 // finalize the socket on program termination.
