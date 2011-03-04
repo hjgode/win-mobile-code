@@ -294,18 +294,20 @@ int RunAppAtTime(TCHAR FileName[MAX_PATH+1])
 //read schedule interval from registry
 int getTimeInterval(){
 	HKEY hKey;
-	HRESULT hRes = RegOpenKeyEx(HKEY_LOCAL_MACHINE, szSubKey, 0, 0, &hKey);
-	if(TRUE){//hRes==ERROR_SUCCESS){
-		DWORD dwDisposition; // will get REG_CREATED_NEW_KEY if key is new
-		hRes = RegCreateKeyEx(HKEY_LOCAL_MACHINE, szSubKey, 0, NULL, REG_OPTION_NON_VOLATILE, 0, NULL, &hKey, &dwDisposition);
+	HRESULT hRes;// = RegOpenKeyEx(HKEY_LOCAL_MACHINE, szSubKey, 0, 0, &hKey);
+	DWORD dwDisposition; // will get REG_CREATED_NEW_KEY if key is new
+	hRes = RegCreateKeyEx(HKEY_LOCAL_MACHINE, szSubKey, 0, NULL, REG_OPTION_NON_VOLATILE, 0, NULL, &hKey, &dwDisposition);
+	if(hRes==ERROR_SUCCESS){
 		DWORD dwType = REG_DWORD;
 		DWORD dwVal = 15;
 		DWORD dwSize = sizeof(DWORD);
 		if(dwDisposition==REG_CREATED_NEW_KEY){
 			//if the key is new, create a new DWORD val fo TimeInterval
-			RegSetValueEx(hKey, L"TimeInterval", 0, dwType, (LPBYTE)&dwVal, dwSize);
+			hRes = RegSetValueEx(hKey, L"TimeInterval", 0, dwType, (LPBYTE)&dwVal, dwSize);
 		}
-		hRes = RegQueryValueEx(hKey, L"TimeInterval", 0, &dwType, (LPBYTE) &dwVal, &dwSize);
+		else{
+			hRes = RegQueryValueEx(hKey, L"TimeInterval", 0, &dwType, (LPBYTE) &dwVal, &dwSize);
+		}
 		if(hRes==ERROR_SUCCESS){
 			RegCloseKey(hKey);
 			return dwVal;

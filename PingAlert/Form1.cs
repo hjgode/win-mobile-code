@@ -287,8 +287,10 @@ namespace PingAlert
 
         private void btnPingAll_Click(object sender, EventArgs e)
         {
-            numberOfQueuedData = 0;
+            if (listBox1.Items.Count == 0)
+                return;
 #if DEBUG
+            numberOfQueuedData = 0;
             //addIp2Ping("127.0.0.1");
             //addIp2Ping("localhost");
             addHost2Ping("google.com");
@@ -296,10 +298,19 @@ namespace PingAlert
             addHost2Ping("smart");
 
 #endif
+            startHTML();
+            for (int j = 0; j < listBox1.Items.Count; j++)
+            {
+                addHost2Ping(listBox1.Items[j].ToString());
+            }
+            numberOfQueuedData = listBox1.Items.Count;
         }
 
         private void btnSchedule_Click(object sender, EventArgs e)
         {
+            //Save current Settings
+            paSettings.iTimeInterval = (int)numericUpDown1.Value;
+            paSettings.saveSettings();
             System.Diagnostics.ProcessStartInfo procInfo = new System.Diagnostics.ProcessStartInfo(@"\Windows\PingAlertScheduler.exe", "");
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo = procInfo;
@@ -333,9 +344,9 @@ namespace PingAlert
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo = procInfo;
             if (proc.Start())
-                addLog("PingAlertScheduler started");
+                addLog("PingAlertScheduler start cleared");
             else
-                addLog("PingAlertScheduler start failed");
+                addLog("PingAlertScheduler clearing failed");
             proc.Close();
 
         }
