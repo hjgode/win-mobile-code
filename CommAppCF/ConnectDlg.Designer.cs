@@ -42,6 +42,8 @@ namespace CommAppCF
             this.cmbStopBits = new System.Windows.Forms.ComboBox();
             this.lblDataBits = new System.Windows.Forms.Label();
             this.cmbDataBits = new System.Windows.Forms.ComboBox();
+            this.cmbHandshake = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -152,6 +154,23 @@ namespace CommAppCF
             this.cmbDataBits.Size = new System.Drawing.Size(68, 22);
             this.cmbDataBits.TabIndex = 25;
             // 
+            // cmbHandshake
+            // 
+            this.cmbHandshake.Items.Add("1");
+            this.cmbHandshake.Items.Add("2");
+            this.cmbHandshake.Items.Add("3");
+            this.cmbHandshake.Location = new System.Drawing.Point(111, 192);
+            this.cmbHandshake.Name = "cmbHandshake";
+            this.cmbHandshake.Size = new System.Drawing.Size(69, 22);
+            this.cmbHandshake.TabIndex = 26;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(26, 195);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.Text = "Handshake:";
+            // 
             // ConnectDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -159,7 +178,9 @@ namespace CommAppCF
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblStopBits);
+            this.Controls.Add(this.cmbHandshake);
             this.Controls.Add(this.cmbStopBits);
             this.Controls.Add(this.lblDataBits);
             this.Controls.Add(this.cmbDataBits);
@@ -191,5 +212,7 @@ namespace CommAppCF
         private System.Windows.Forms.ComboBox cmbStopBits;
         private System.Windows.Forms.Label lblDataBits;
         private System.Windows.Forms.ComboBox cmbDataBits;
+        private System.Windows.Forms.ComboBox cmbHandshake;
+        private System.Windows.Forms.Label label2;
     }
 }

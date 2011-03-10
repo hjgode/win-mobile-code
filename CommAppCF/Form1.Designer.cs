@@ -39,6 +39,7 @@ namespace CommAppCF
             this.btnSendFile = new System.Windows.Forms.Button();
             this.btnSendLine = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.chkUseHexEncoder = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -86,12 +87,12 @@ namespace CommAppCF
             // 
             this.txtReceive.AcceptsReturn = true;
             this.txtReceive.AcceptsTab = true;
-            this.txtReceive.Location = new System.Drawing.Point(3, 174);
+            this.txtReceive.Location = new System.Drawing.Point(3, 180);
             this.txtReceive.Multiline = true;
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
             this.txtReceive.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtReceive.Size = new System.Drawing.Size(234, 91);
+            this.txtReceive.Size = new System.Drawing.Size(234, 85);
             this.txtReceive.TabIndex = 0;
             // 
             // btnSendFile
@@ -121,6 +122,15 @@ namespace CommAppCF
             this.btnClear.Text = "Clear";
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // chkUseHexEncoder
+            // 
+            this.chkUseHexEncoder.Location = new System.Drawing.Point(3, 155);
+            this.chkUseHexEncoder.Name = "chkUseHexEncoder";
+            this.chkUseHexEncoder.Size = new System.Drawing.Size(234, 19);
+            this.chkUseHexEncoder.TabIndex = 4;
+            this.chkUseHexEncoder.Text = "use \\xAB en/decoding";
+            this.chkUseHexEncoder.CheckStateChanged += new System.EventHandler(this.chkUseHexEncoder_CheckStateChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -128,6 +138,7 @@ namespace CommAppCF
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
+            this.Controls.Add(this.chkUseHexEncoder);
             this.Controls.Add(this.btnSendFile);
             this.Controls.Add(this.btnSendLine);
             this.Controls.Add(this.btnClear);
@@ -154,6 +165,7 @@ namespace CommAppCF
         private System.Windows.Forms.Button btnSendFile;
         private System.Windows.Forms.Button btnSendLine;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.CheckBox chkUseHexEncoder;
     }
 }
 
