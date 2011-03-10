@@ -1,0 +1,115 @@
+Hello Readers
+
+it has been a long time since my last post, I was a little bit busy.
+
+This time I want to present some experimental code to visualize and analyze G-Sensor data. 
+The goal was to achieve a shake detection algorythm. Unfortunately the device under test 
+only provided 1 sample per second and that is not enough for a good shake detection. Beside that
+the code and classes developed may help you to find your way and they help you at last to determine
+the current orientation of the device.
+
+[image SensorScan5_01.gif]
+
+The development device was an Int*rm*c CN50. To be able to get the sensor data into a .NET app, first install
+the sensor wrapper DLLs (sensor.cab) of the Int*rm*c Device Resource Kit. For other devices you just have to 
+change the code that is used to register for sensor data changes.
+
+<code language="csharp" escaped="true">
+		mySensor.AccelerationEvent += new AccelerationEventHandler(mySensor_AccelerationEvent);
+...
+        void mySensor_AccelerationEvent(object sender, Sensor.AccelerationArgs AccelerationArgs)
+        {
+            ShakeDetection.GVector gv = new ShakeDetection.GVector(AccelerationArgs.GForceX,
+                AccelerationArgs.GForceY,
+                AccelerationArgs.GForceZ);
+            
+            processData(gv);
+        }
+</code>
+
+The class GVector implements some analysis on the vector data. The vector data is built of three acceleration values,
+the X, Y, and Z part of the acceleration. If the device is layed on a desk, the Z vector is about -9.81 m/s and the 
+X and Y vector will be at 0.0 m/s. If you move the device or turn it, the xyz values will change and you can calculate
+an orientation and if you collect and evaluate the datas over time, you can get the acceleration of the device. If it is 
+falling, the xyz values will all be zero.
+
+Here is a visualization of the vectors
+
+[image vectors.gif]
+The device is facing upwards (see y arrow) with the top facing to you (the z arrow). The left side of the device is pointing 
+to the right (the x arrow).
+The light green/blue and the yellow arrows demonstrate two different vectors which show the direction (the xyz angles) and the 
+force (the vectory lengths) to the device.
+
+One analysis done by GVector class is the segmented direction, which shows in which direction the top of the device is 
+pointing expressed in compass like directions.
+
+<code language="csharp" escaped="true">
+		#region segmented direction
+			// http://en.wikipedia.org/wiki/Boxing_the_compass
+            //attention: this here is based on +Y/+X (-1/0) equal 0 degree equal North
+			public enum Direction:int{
+                None=-1,
+			W=0,
+				WSW,
+				SW,
+				SSW,
+			S,
+				SSE,
+				SE,
+				ESE,
+			E,
+				ENE,
+				NE,
+				NNE,
+			N,
+				NNW,
+				NW,
+				WNW,
+			}
+            public Direction direction
+            { //http://stackoverflow.com/questions/1437790/how-to-snap-a-directional-2d-vector-to-a-compass-n-ne-e-se-s-sw-w-nw
+				get{
+					GVector gv=this;
+					int segmentCount=16;
+					int compassSegment = (((int) Math.Round(Math.Atan2(gv.Y, gv.X) / (2 * Math.PI / segmentCount))) + segmentCount) % segmentCount;
+                    return (Direction)compassSegment;
+				}
+			}
+		#endregion
+</code>
+
+Another simply analysis gives you the orientation of the device, that means where the display is facing to.
+
+<code language="csharp" escaped="true">
+            //changed to match CN50 XYZ directions
+            public ScreenOrientation ToScreenOrientation()
+            {
+                if (Math.Abs(X) > Math.Abs(Y))
+                {
+                    if (Math.Abs(X) > Math.Abs(Z))
+                    {
+                        if (X > 0)
+                            return ScreenOrientation.ReverseLandscape;     //changed from Landscape
+                        return ScreenOrientation.Landscape;                //changed from ReverseLandscape
+                    }
+                }
+                else if (Math.Abs(Y) > Math.Abs(Z))
+                {
+                    if (Y > 0)
+                        return ScreenOrientation.ReversePortrait;       //changed from Portrait
+                    return ScreenOrientation.Portrait;                  // changed from ReversePortrait
+                }
+
+                if (Z > 0)
+                    return ScreenOrientation.FaceUp;    //this is different to HTC
+                return ScreenOrientation.FaceDown;      //this is different to HTC
+            }
+        }
+</code>
+
+When you take a look at the vectors when you move the device slow and fast, you will see the xyz values changing and 
+if you add the absolute length over the time, you will get a cumulated 'force'.
+
+[image vectors-analysis.gif]
+
