@@ -41,6 +41,8 @@ Global
 		{22C42264-8C40-41AF-B512-C15FFF7E5C3E}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Build.0 = Release|Any CPU
 		{22C42264-8C40-41AF-B512-C15FFF7E5C3E}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Deploy.0 = Release|Any CPU
 		{22C42264-8C40-41AF-B512-C15FFF7E5C3E}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Any CPU
+		{22C42264-8C40-41AF-B512-C15FFF7E5C3E}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Any CPU
+		{22C42264-8C40-41AF-B512-C15FFF7E5C3E}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Any CPU
 		{2782623A-1220-48BD-B37D-569AC84F4F4D}.Debug|Any CPU.ActiveCfg = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
 		{2782623A-1220-48BD-B37D-569AC84F4F4D}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
 		{2782623A-1220-48BD-B37D-569AC84F4F4D}.Debug|Mixed Platforms.Build.0 = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
@@ -59,6 +61,8 @@ Global
 		{2782623A-1220-48BD-B37D-569AC84F4F4D}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Build.0 = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
 		{2782623A-1220-48BD-B37D-569AC84F4F4D}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
 		{2782623A-1220-48BD-B37D-569AC84F4F4D}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{2782623A-1220-48BD-B37D-569AC84F4F4D}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{2782623A-1220-48BD-B37D-569AC84F4F4D}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
 		{F0A396D5-AFC8-40EE-A375-C03B28EA38B8}.Debug|Any CPU.ActiveCfg = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
 		{F0A396D5-AFC8-40EE-A375-C03B28EA38B8}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
 		{F0A396D5-AFC8-40EE-A375-C03B28EA38B8}.Debug|Mixed Platforms.Build.0 = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
