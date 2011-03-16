@@ -73,7 +73,10 @@ namespace CommAppCF
                 txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += comport.PortName + " opened\r\n"; }));
             }
             else
+            {
                 mnuConnect.Text = "Connect";
+                txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += comport.PortName + " open FAILED\r\n"; }));
+            }
         }
 
         delegate void SetTextCallback(string text);
