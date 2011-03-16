@@ -20,6 +20,11 @@ namespace CommAppCF
         {
             InitializeComponent();
             
+            if(System.IO.File.Exists("\\windows\\ibt.dll"))
+                btnBTPrinter.Enabled=true;
+            else
+                btnBTPrinter.Enabled=false;
+
             //port list
             cmbPortName.Items.Clear();
             for (int i = 0; i < 10; i++)
@@ -148,6 +153,12 @@ namespace CommAppCF
                 }
             }
             this.Close();
+        }
+
+        private void btnBTPrinter_Click(object sender, EventArgs e)
+        {
+            BluetoothConnect dlg = new BluetoothConnect();
+            dlg.ShowDialog();
         }
     }
 }

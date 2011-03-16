@@ -44,6 +44,7 @@ namespace CommAppCF
             this.cmbDataBits = new System.Windows.Forms.ComboBox();
             this.cmbHandshake = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnBTPrinter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -171,6 +172,15 @@ namespace CommAppCF
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.Text = "Handshake:";
             // 
+            // btnBTPrinter
+            // 
+            this.btnBTPrinter.Location = new System.Drawing.Point(27, 230);
+            this.btnBTPrinter.Name = "btnBTPrinter";
+            this.btnBTPrinter.Size = new System.Drawing.Size(181, 22);
+            this.btnBTPrinter.TabIndex = 31;
+            this.btnBTPrinter.Text = "Bluetooth Printer";
+            this.btnBTPrinter.Click += new System.EventHandler(this.btnBTPrinter_Click);
+            // 
             // ConnectDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -178,6 +188,7 @@ namespace CommAppCF
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
+            this.Controls.Add(this.btnBTPrinter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblStopBits);
             this.Controls.Add(this.cmbHandshake);
@@ -214,5 +225,6 @@ namespace CommAppCF
         private System.Windows.Forms.ComboBox cmbDataBits;
         private System.Windows.Forms.ComboBox cmbHandshake;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnBTPrinter;
     }
 }
