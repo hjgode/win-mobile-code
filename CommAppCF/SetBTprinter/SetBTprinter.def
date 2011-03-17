@@ -1,0 +1,9 @@
+; SetBTprinter.def : Declares the module parameters for the DLL.
+
+LIBRARY      "SetBTprinter"
+
+EXPORTS
+    ; Explicit exports can go here
+	registerPrinter
+	doTestPrintFP
+	doTestPrintESCP	

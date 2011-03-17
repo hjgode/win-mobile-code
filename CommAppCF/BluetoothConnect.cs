@@ -12,12 +12,16 @@ namespace CommAppCF
 {
     public partial class BluetoothConnect : Form
     {
+        //using intermec bluetooth tool
         [DllImport("ibt.dll", SetLastError = true)]
         private static extern bool IBT_SetPrinter(StringBuilder AddrString, bool Register);
-        
         [DllImport("ibt.dll", SetLastError = true)]
         private static extern UInt32 IBT_On (); 
         
+        //using SetBtPrinter.DLL, needs pswdm0c.cab (pswdm0cDll.dll) installed on intermec!
+        [DllImport("SetBtPrinter.dll", SetLastError = true)]
+        private static extern int registerPrinter(StringBuilder AddrString);
+
         public BluetoothConnect()
         {
             InitializeComponent();
@@ -29,13 +33,28 @@ namespace CommAppCF
         private void mnuOK_Click(object sender, EventArgs e)
         {
             bool bSuccess=false;
+            int iRes = -1;
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
                 StringBuilder sb = new StringBuilder(txtBTAddress.Text);
-                bSuccess = IBT_SetPrinter(sb, true);
-                if (!bSuccess)
-                    System.Diagnostics.Debug.WriteLine("IBT_SetPrinter failed:" + Marshal.GetLastWin32Error().ToString("x"));
+                if (System.IO.File.Exists(@"\Windows\pswdm0cDLL.dll"))
+                {
+                    iRes = registerPrinter(sb); //this may take a while...
+                    if (iRes != 0)
+                    {
+                        System.Diagnostics.Debug.WriteLine("registerPrinter failed:" + Marshal.GetLastWin32Error().ToString("x"));
+                        bSuccess = false;
+                    }
+                    else
+                        bSuccess = true;
+                }
+                else if (System.IO.File.Exists(@"\Windows\ibt.dll"))
+                {
+                    bSuccess = IBT_SetPrinter(sb, true);
+                    if (!bSuccess)
+                        System.Diagnostics.Debug.WriteLine("IBT_SetPrinter failed:" + Marshal.GetLastWin32Error().ToString("x"));
+                }
             }
             catch (Exception)
             {

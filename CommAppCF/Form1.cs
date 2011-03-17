@@ -19,7 +19,7 @@ namespace CommAppCF
             InitializeComponent();
             comport.DataReceived += new SerialDataReceivedEventHandler(comport_DataReceived);
             comport.ErrorReceived += new SerialErrorReceivedEventHandler(comport_ErrorReceived);
-            
+            enableControls(false);
         }
 
         void comport_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
@@ -43,7 +43,7 @@ namespace CommAppCF
                     s = Utility.HexEncoding.ToMixedString(data);
                 else
                     s = data;
-                txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += s + "\r\n"; }));
+                txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += "<" + s + "\r\n"; })); //added < to mark incoming data
             }
             catch (Exception ex)
             {
@@ -69,16 +69,27 @@ namespace CommAppCF
             dlg.ShowDialog();
             if (comport.IsOpen)
             {
+                enableControls(true);
                 mnuConnect.Text = "Disconnect";
                 txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += comport.PortName + " opened\r\n"; }));
             }
             else
             {
+                enableControls(false);
                 mnuConnect.Text = "Connect";
                 txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += comport.PortName + " open FAILED\r\n"; }));
             }
         }
-
+        /// <summary>
+        /// enable controls based on active connection
+        /// </summary>
+        /// <param name="bEnable"></param>
+        private void enableControls(bool bEnable)
+        {
+            btnSend.Enabled = bEnable;
+            btnSendFile.Enabled = bEnable;
+            btnSendLine.Enabled = bEnable;
+        }
         delegate void SetTextCallback(string text);
         private void updateTxtRcv(string text)
         {
