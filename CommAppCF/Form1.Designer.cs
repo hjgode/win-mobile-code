@@ -31,7 +31,7 @@ namespace CommAppCF
         {
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.mnuExit = new System.Windows.Forms.MenuItem();
-            this.mnuConnect = new System.Windows.Forms.MenuItem();
+            this.mnuConnectMain = new System.Windows.Forms.MenuItem();
             this.txtSend = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSend = new System.Windows.Forms.Button();
@@ -40,22 +40,25 @@ namespace CommAppCF
             this.btnSendLine = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.chkUseHexEncoder = new System.Windows.Forms.CheckBox();
+            this.mnuSerialConnect = new System.Windows.Forms.MenuItem();
+            this.mnuSocketConnect = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.Add(this.mnuExit);
-            this.mainMenu1.MenuItems.Add(this.mnuConnect);
+            this.mainMenu1.MenuItems.Add(this.mnuConnectMain);
             // 
             // mnuExit
             // 
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
-            // mnuConnect
+            // mnuConnectMain
             // 
-            this.mnuConnect.Text = "Connect";
-            this.mnuConnect.Click += new System.EventHandler(this.mnuConnect_Click);
+            this.mnuConnectMain.MenuItems.Add(this.mnuSerialConnect);
+            this.mnuConnectMain.MenuItems.Add(this.mnuSocketConnect);
+            this.mnuConnectMain.Text = "Connect";
             // 
             // txtSend
             // 
@@ -131,6 +134,16 @@ namespace CommAppCF
             this.chkUseHexEncoder.Text = "use \\xAB en/decoding";
             this.chkUseHexEncoder.CheckStateChanged += new System.EventHandler(this.chkUseHexEncoder_CheckStateChanged);
             // 
+            // mnuSerialConnect
+            // 
+            this.mnuSerialConnect.Text = "Serial";
+            this.mnuSerialConnect.Click += new System.EventHandler(this.mnuConnect_Click);
+            // 
+            // mnuSocketConnect
+            // 
+            this.mnuSocketConnect.Text = "BT Connect";
+            this.mnuSocketConnect.Click += new System.EventHandler(this.mnuSocketConnect_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -157,7 +170,7 @@ namespace CommAppCF
         #endregion
 
         private System.Windows.Forms.MenuItem mnuExit;
-        private System.Windows.Forms.MenuItem mnuConnect;
+        private System.Windows.Forms.MenuItem mnuConnectMain;
         private System.Windows.Forms.TextBox txtSend;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSend;
@@ -166,6 +179,8 @@ namespace CommAppCF
         private System.Windows.Forms.Button btnSendLine;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.CheckBox chkUseHexEncoder;
+        private System.Windows.Forms.MenuItem mnuSerialConnect;
+        private System.Windows.Forms.MenuItem mnuSocketConnect;
     }
 }
 

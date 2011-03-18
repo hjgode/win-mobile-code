@@ -59,6 +59,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BluetoothCode\BluetoothAddress.cs" />
+    <Compile Include="BluetoothCode\BluetoothClient.cs" />
+    <Compile Include="BluetoothCode\BluetoothDeviceInfo.cs" />
+    <Compile Include="BluetoothCode\BluetoothEndPoint.cs" />
+    <Compile Include="BluetoothCode\BluetoothService.cs" />
+    <Compile Include="BluetoothCode\BluetoothSocket.cs" />
+    <Compile Include="BluetoothCode\BluetoothSocketAddress.cs" />
+    <Compile Include="BluetoothCode\ClassOfDevice.cs" />
+    <Compile Include="BluetoothCode\HardwareStatus.cs" />
+    <Compile Include="BluetoothCode\PortEmuParams.cs" />
+    <Compile Include="BluetoothCode\RadioMode.cs" />
+    <Compile Include="BluetoothCode\SdpError.cs" />
+    <Compile Include="BluetoothCode\SdpQueryUuidUnion.cs" />
     <Compile Include="BluetoothConnect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +91,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="HexEncoding.cs" />
+    <Compile Include="hexHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BluetoothConnect.resx">

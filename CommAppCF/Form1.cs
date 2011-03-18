@@ -57,28 +57,7 @@ namespace CommAppCF
 
         private void mnuConnect_Click(object sender, EventArgs e)
         {
-            if (mnuConnect.Text == "Disconnect")
-            {
-                comport.ReadExisting();
-                comport.Close();
-                mnuConnect.Text = "Connect";
-                return;
-            }
 
-            ConnectDlg dlg = new ConnectDlg(ref comport);
-            dlg.ShowDialog();
-            if (comport.IsOpen)
-            {
-                enableControls(true);
-                mnuConnect.Text = "Disconnect";
-                txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += comport.PortName + " opened\r\n"; }));
-            }
-            else
-            {
-                enableControls(false);
-                mnuConnect.Text = "Connect";
-                txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += comport.PortName + " open FAILED\r\n"; }));
-            }
         }
         /// <summary>
         /// enable controls based on active connection
@@ -248,6 +227,12 @@ namespace CommAppCF
         private void chkUseHexEncoder_CheckStateChanged(object sender, EventArgs e)
         {
             bUseHexDecode = chkUseHexEncoder.Checked;
+        }
+
+        private void mnuSocketConnect_Click(object sender, EventArgs e)
+        {
+            BluetoothConnect dlg = new BluetoothConnect();
+            dlg.ShowDialog();
         }
     }
 }
