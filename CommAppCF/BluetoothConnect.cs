@@ -26,9 +26,11 @@ namespace CommAppCF
 
         public bool bUseSocket = false;
         public byte[] bdAddress;
+        private Comm.BT.BTPort _btport;
 
-        public BluetoothConnect()
+        public BluetoothConnect(ref Comm.BT.BTPort btport)
         {
+            _btport = btport;
             InitializeComponent();
 #if DEBUG
             txtBTAddress.Text = "0006660309E8";
@@ -88,7 +90,13 @@ namespace CommAppCF
             if (!bUseSocket)
                 serialPortConnect();
             else
-                ;
+            {
+                string sBDA = txtBTAddress.Text;
+                int iDisc = 0;
+                byte[] bTemp = hexHelper.GetBytes(sBDA, out iDisc);
+                byte[] bRev = hexHelper.reverseBytes(bTemp);
+                _btport.Open(bRev);
+            }
             this.Close();
         }
 
@@ -113,7 +121,8 @@ namespace CommAppCF
             comboBox1.DisplayMember = "DeviceName";
             comboBox1.ValueMember = "DeviceID";
             comboBox1.DataSource = bdi;
-            comboBox1.SelectedIndex = 0;
+            if(comboBox1.Items.Count>0)
+                comboBox1.SelectedIndex = 0;
             bc.Close();
             Cursor.Current = Cursors.Default;
             this.Enabled = true;

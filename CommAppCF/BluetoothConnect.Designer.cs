@@ -35,13 +35,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtBTAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioSerialPort = new System.Windows.Forms.RadioButton();
-            this.radioSocketConnect = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.panel1.SuspendLayout();
+            this.radioSocketConnect = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -80,42 +76,6 @@
             this.label2.Size = new System.Drawing.Size(216, 21);
             this.label2.Text = "Example: \"0006660309E8\"";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.radioSocketConnect);
-            this.panel1.Controls.Add(this.radioSerialPort);
-            this.panel1.Location = new System.Drawing.Point(13, 181);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(214, 84);
-            // 
-            // radioSerialPort
-            // 
-            this.radioSerialPort.Checked = true;
-            this.radioSerialPort.Location = new System.Drawing.Point(8, 33);
-            this.radioSerialPort.Name = "radioSerialPort";
-            this.radioSerialPort.Size = new System.Drawing.Size(197, 21);
-            this.radioSerialPort.TabIndex = 0;
-            this.radioSerialPort.Text = "Virtual Serial Port (COM6?)";
-            this.radioSerialPort.CheckedChanged += new System.EventHandler(this.radioSerialPort_CheckedChanged);
-            // 
-            // radioSocketConnect
-            // 
-            this.radioSocketConnect.Location = new System.Drawing.Point(8, 57);
-            this.radioSocketConnect.Name = "radioSocketConnect";
-            this.radioSocketConnect.Size = new System.Drawing.Size(197, 21);
-            this.radioSocketConnect.TabIndex = 0;
-            this.radioSocketConnect.TabStop = false;
-            this.radioSocketConnect.Text = "Direct Socket Connection";
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(8, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(196, 21);
-            this.label3.Text = "Select Socket or Serial:";
-            // 
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(12, 87);
@@ -133,6 +93,15 @@
             this.comboBox1.TabIndex = 6;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // radioSocketConnect
+            // 
+            this.radioSocketConnect.Location = new System.Drawing.Point(11, 179);
+            this.radioSocketConnect.Name = "radioSocketConnect";
+            this.radioSocketConnect.Size = new System.Drawing.Size(215, 19);
+            this.radioSocketConnect.TabIndex = 9;
+            this.radioSocketConnect.Text = "direct Socket";
+            this.radioSocketConnect.CheckStateChanged += new System.EventHandler(this.radioSerialPort_CheckedChanged);
+            // 
             // BluetoothConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -140,16 +109,15 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
+            this.Controls.Add(this.radioSocketConnect);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtBTAddress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Menu = this.mainMenu1;
             this.Name = "BluetoothConnect";
             this.Text = "BluetoothConnect";
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -161,11 +129,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBTAddress;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton radioSocketConnect;
-        private System.Windows.Forms.RadioButton radioSerialPort;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox radioSocketConnect;
     }
 }

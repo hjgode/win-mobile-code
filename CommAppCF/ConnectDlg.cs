@@ -142,6 +142,7 @@ namespace CommAppCF
                 {
                     Cursor.Current = Cursors.WaitCursor;
                     _serialPort.Open();
+                    this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception x)
                 {
@@ -157,7 +158,8 @@ namespace CommAppCF
 
         private void btnBTPrinter_Click(object sender, EventArgs e)
         {
-            BluetoothConnect dlg = new BluetoothConnect();
+            Comm.BT.BTPort btPort = new Comm.BT.BTPort();
+            BluetoothConnect dlg = new BluetoothConnect(ref btPort);
             dlg.ShowDialog();
         }
     }

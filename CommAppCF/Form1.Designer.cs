@@ -32,6 +32,8 @@ namespace CommAppCF
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.mnuExit = new System.Windows.Forms.MenuItem();
             this.mnuConnectMain = new System.Windows.Forms.MenuItem();
+            this.mnuSerialConnect = new System.Windows.Forms.MenuItem();
+            this.mnuSocketConnect = new System.Windows.Forms.MenuItem();
             this.txtSend = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSend = new System.Windows.Forms.Button();
@@ -40,8 +42,6 @@ namespace CommAppCF
             this.btnSendLine = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.chkUseHexEncoder = new System.Windows.Forms.CheckBox();
-            this.mnuSerialConnect = new System.Windows.Forms.MenuItem();
-            this.mnuSocketConnect = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -59,6 +59,16 @@ namespace CommAppCF
             this.mnuConnectMain.MenuItems.Add(this.mnuSerialConnect);
             this.mnuConnectMain.MenuItems.Add(this.mnuSocketConnect);
             this.mnuConnectMain.Text = "Connect";
+            // 
+            // mnuSerialConnect
+            // 
+            this.mnuSerialConnect.Text = "Serial";
+            this.mnuSerialConnect.Click += new System.EventHandler(this.mnuSerialConnect_Click);
+            // 
+            // mnuSocketConnect
+            // 
+            this.mnuSocketConnect.Text = "BT Connect";
+            this.mnuSocketConnect.Click += new System.EventHandler(this.mnuSocketConnect_Click);
             // 
             // txtSend
             // 
@@ -133,16 +143,6 @@ namespace CommAppCF
             this.chkUseHexEncoder.TabIndex = 4;
             this.chkUseHexEncoder.Text = "use \\xAB en/decoding";
             this.chkUseHexEncoder.CheckStateChanged += new System.EventHandler(this.chkUseHexEncoder_CheckStateChanged);
-            // 
-            // mnuSerialConnect
-            // 
-            this.mnuSerialConnect.Text = "Serial";
-            this.mnuSerialConnect.Click += new System.EventHandler(this.mnuConnect_Click);
-            // 
-            // mnuSocketConnect
-            // 
-            this.mnuSocketConnect.Text = "BT Connect";
-            this.mnuSocketConnect.Click += new System.EventHandler(this.mnuSocketConnect_Click);
             // 
             // Form1
             // 

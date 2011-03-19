@@ -78,6 +78,7 @@
     <Compile Include="BluetoothConnect.Designer.cs">
       <DependentUpon>BluetoothConnect.cs</DependentUpon>
     </Compile>
+    <Compile Include="BTPort.cs" />
     <Compile Include="ConnectDlg.cs">
       <SubType>Form</SubType>
     </Compile>
