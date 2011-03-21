@@ -1,0 +1,33 @@
+w1G
+w!
+ROUTE# 227      11/08/01         08:35
+
+            Food City #3212
+            1500 E Lincoln Way
+            Hamilton OH
+            TAX ID#   A32102
+             
+ ITEM# DESCRIPTION                 NET
+   QTY   PRICE   DEPOS   ALLOW
+
+                  SALES
+
+  1001 Reg Cola 6pk 12cn         63.50
+     5   11.50    1.20     0.00
+
+  1002 Diet Cola 6pk 12cn        38.10
+     3   11.50    1.20     0.00
+
+                  CREDITS        SALES
+PRODUCT           0.00          101.60
+SUBTOTAL                        101.60
+5% State Tax                      5.08
+                         -------------
+BALANCE DUE: CHARGE             106.68
+                         =============
+
+     Thank You For Your Business
+
+
+
+

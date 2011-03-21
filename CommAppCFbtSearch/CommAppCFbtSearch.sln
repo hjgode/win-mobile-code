@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommAppCFbtSearch", "CommAppCFbtSearch.csproj", "{151322CC-139B-455B-8B84-1A21D3D81834}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SetBTprinter", "SetBTprinter\SetBTprinter.vcproj", "{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I) = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I) = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).ActiveCfg = Debug|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{151322CC-139B-455B-8B84-1A21D3D81834}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).ActiveCfg = Release|Any CPU
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Debug|Any CPU.ActiveCfg = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Build.0 = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Deploy.0 = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Release|Any CPU.ActiveCfg = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Release|Mixed Platforms.ActiveCfg = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Build.0 = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{D375ADCA-6C4E-4FB8-B2AD-C64CD423A15E}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
