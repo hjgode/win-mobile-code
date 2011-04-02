@@ -62,8 +62,8 @@ namespace CharMap
 			int iXstep=30, iYstep=30;
 			byte bHigh=0x04, bLow=0x00;
 			
-			for (iX=0; iX<16; iX++){
-				for(iY=0; iY<16; iY++){
+			for(iY=0; iY<16; iY++){
+				for (iX=0; iX<16; iX++){
 					Point p = new Point(iX*iXstep, iY*iYstep);
 					byte[] b=new byte[2];
 					b[0]=bLow++; b[1]=bHigh;
