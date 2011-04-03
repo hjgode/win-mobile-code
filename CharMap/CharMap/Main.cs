@@ -24,7 +24,14 @@ namespace CharMap
 		}
 		
 		DrawUniMap drawUni;
+		ComboBox lb;
 		
+		ComboBox lbFont;
+		Label lblFontName;
+		
+		byte bCurrCodepage=0x04;
+		int iOffsetTop = 30;
+				
 		private void InitializeComponent ()
 		{
 			this.Width = 480;
@@ -39,7 +46,8 @@ namespace CharMap
 			btnOK.Size = new System.Drawing.Size (80, 24);
 			this.Controls.Add (btnOK);
 			btnOK.Click += new EventHandler (btnOK_Click);
-			
+		
+			//combo to select 'codepage'
 			lb = new ComboBox();
 			lb.DropDownStyle=ComboBoxStyle.DropDownList;
 			lb.Items.Clear();
@@ -52,26 +60,46 @@ namespace CharMap
 			lb.SelectedIndexChanged+=new EventHandler(lb_SelectedIndexChanged);
 			this.Controls.Add(lb);
 
+			//combo to select font
+			lbFont = new ComboBox();
+			lbFont.DropDownStyle=ComboBoxStyle.DropDownList;
+			lbFont.Items.Clear();
+			lbFont.Items.Insert(0, "Arial");
+			lbFont.Items.Insert(1, "Arial Unicode MS");
+			lbFont.Items.Insert(2, "Times New Roman");
+			lbFont.Items.Insert(3, "Fanatasie");
+			lbFont.SelectedIndex=1;
+			lbFont.Location=new Point(190,4);
+			lbFont.Size=new Size(120,60);
+			lbFont.SelectedIndexChanged+=new EventHandler(lbFont_SelectedIndexChanged);
+			this.Controls.Add(lbFont);
+		
+			lblFontName = new Label();
+			lblFontName.Text=lbFont.SelectedItem.ToString();
+			lblFontName.Size = new Size(120, 24);
+			lblFontName.Location= new Point(330,4);
+			this.Controls.Add(lblFontName);
+			
 			drawUni= new DrawUniMap(this);
 			drawUni._bCurrCodepage=(byte)lb.SelectedIndex;
 			
 			this.Paint+=new PaintEventHandler(drawUni.PaintMap);
 			
 			//this.Paint+=new PaintEventHandler(Form_Paint);
-			
+		
+			this.FormBorderStyle=FormBorderStyle.Sizable;
 			this.ResumeLayout();
 		}
-		
-		ComboBox lb;
-		byte bCurrCodepage=0x04;
-		int iOffsetTop = 30;
 		
 		private void lb_SelectedIndexChanged(object sender, EventArgs e){
 			bCurrCodepage=(byte)lb.SelectedIndex;
 			drawUni._bCurrCodepage=bCurrCodepage;
 			this.Refresh();
 		}
-		
+		private void lbFont_SelectedIndexChanged(object sender, EventArgs e){
+			drawUni._mapFont=new Font(lbFont.SelectedItem.ToString(), 30, FontStyle.Regular);
+			lblFontName.Text=drawUni._mapFont.Name;
+		}
 		private void Form_Paint (object sender, PaintEventArgs e)
 		{
 			/*

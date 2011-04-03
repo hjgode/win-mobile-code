@@ -20,6 +20,14 @@ namespace CharMap
         private int iOffsetTop = 30;
         private int iXstep = 30, iYstep = 30;
 		private int uniFontSize=16;
+		private int uniFontSizeMap=16;
+		
+		private Font mapFont = new Font("Arial Unicode MS", 30, FontStyle.Regular);
+		public Font _mapFont{
+			get {return mapFont;}
+			set {mapFont=value;
+				_form.Refresh();}
+		}
 		
 		public DrawUniMap (Form f)
 		{
@@ -40,12 +48,21 @@ namespace CharMap
             byte bLow = 0x00;
 
 
-			//calc maximum font cell size
+			//calc maximum font cell size, for headers
 			uniFontSize = 
-				this.getFontCellRect(e.Graphics, 
+				this.getMaxFonzSize(e.Graphics, 
 				     new Font("Arial Unicode MS", 10, FontStyle.Regular),
-				                     iXstep);
-			
+				                     iXstep,
+				                     1);
+
+			//calc maximum font size for map chars
+			uniFontSizeMap = this.getMaxFonzSize(e.Graphics, 
+				     _mapFont,
+				                     iXstep,
+				                     1);
+
+
+			//headers font
             Font drawFont = new Font("Arial Unicode MS", uniFontSize, FontStyle.Regular);
 
 			SolidBrush drawBrush = new SolidBrush(Color.Black);
@@ -96,13 +113,16 @@ namespace CharMap
             char[] uChr = Encoding.Unicode.GetChars(bCode);
             String uStr = new string(uChr);
 
-            Font drawFont = new Font("Arial Unicode MS", uniFontSize, FontStyle.Regular);
+            //Font drawFont = new Font("Arial Unicode MS", uniFontSize, FontStyle.Regular);
+			mapFont = new Font(mapFont.Name, uniFontSizeMap, FontStyle.Regular);
+			
             SolidBrush drawBrush = new SolidBrush(Color.Black);
 
             // Draw string to screen.
 #if PocketPC
             e.Graphics.DrawString(uStr,
-                        drawFont, drawBrush,
+                        mapFont, 
+			            drawBrush,
                         new RectangleF(drawPoint.X, drawPoint.Y, iXstep, iYstep));
 #else
 
@@ -110,14 +130,19 @@ namespace CharMap
 #endif
         }
 
-		private int getFontCellRect(Graphics g, Font font, int iCellWidth){
+		private int getMaxFonzSize(Graphics g, Font font, int iCellWidth, int iNumChars){
 			int iRet = 10;
 			Font testFont; // = font.Clone();
 			
 			int iFSize = (int)font.Size;
 			testFont = new Font( font.Name, iFSize, FontStyle.Regular);
-			
-			while(g.MeasureString("00", testFont).Width>iCellWidth){
+			String sChars="";
+			for(int x=0; x<iNumChars; x++){
+				sChars+="W";
+			}
+
+			while(Math.Max( g.MeasureString(sChars, testFont).Width, 
+			               g.MeasureString(sChars, testFont).Height)>iCellWidth){
 				iFSize--;
 				testFont = new Font( font.Name, iFSize, FontStyle.Regular);
 			}
