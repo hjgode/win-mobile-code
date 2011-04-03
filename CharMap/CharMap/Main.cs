@@ -83,7 +83,7 @@ namespace CharMap
 			drawUni= new DrawUniMap(this);
 			drawUni._bCurrCodepage=(byte)lb.SelectedIndex;
 			
-			this.Paint+=new PaintEventHandler(drawUni.PaintMap);
+			//this.Paint+=new PaintEventHandler(drawUni.PaintMap);
 			
 			//this.Paint+=new PaintEventHandler(Form_Paint);
 		

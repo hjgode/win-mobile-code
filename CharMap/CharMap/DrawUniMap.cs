@@ -17,10 +17,12 @@ namespace CharMap
 			set{bCurrCodepage=value;}
 		}
         private byte bCurrCodepage = 0x04;
-        private int iOffsetTop = 30;
+        
+		private int iOffsetTop = 30;
+		
         private int iXstep = 30, iYstep = 30;
 		private int uniFontSize=16;
-		private int uniFontSizeMap=16;
+		private int uniFontSizeMap=32;
 		
 		private Font mapFont = new Font("Arial Unicode MS", 30, FontStyle.Regular);
 		public Font _mapFont{
@@ -32,11 +34,29 @@ namespace CharMap
 		public DrawUniMap (Form f)
 		{
 			_form=f;
+			
+			this._form.Paint+=new PaintEventHandler(this.PaintMap);
+			this._form.Resize+=new EventHandler(this.ResizeMap);
+		}
+		
+		public void ResizeMap(object sender, EventArgs e){
             //calculate cells, we want 16 columns and 16 rows
             //plus one column for the indexing
-            iXstep = _form.Width / 18;
-            iYstep = iXstep;
+            //iXstep = _form.Width / 18;
+            //iYstep = iXstep;
 
+			//iXstep
+			int iXCell = _form.ClientRectangle.Width / 18;
+            //iYstep 
+			int iYCell = (_form.ClientRectangle.Height - iOffsetTop) / 18;
+			iXstep = Math.Min(iXCell, iYCell);
+			iYstep = iXstep;
+			
+			//start with large font size
+			uniFontSizeMap=32;
+			uniFontSize=16;
+			
+			_form.Refresh();
 		}
 		//public delegate void PaintEventHandler();
 		
@@ -71,7 +91,10 @@ namespace CharMap
             {
 #if PocketPC
                 e.Graphics.DrawString(iX.ToString("x2"), drawFont, drawBrush,
-                    new RectangleF(iX * iXstep + iXstep, iYstep, iXstep, iYstep));
+                    new RectangleF(iX * iXstep  + iXstep, 
+				                   /*iYstep +*/ iOffsetTop, 
+				                   iXstep, 
+				                   iYstep));
 #else
                 e.Graphics.DrawString(iX.ToString("x2"),
                         drawFont, drawBrush,
@@ -85,7 +108,11 @@ namespace CharMap
 #if PocketPC
                 e.Graphics.DrawString(xx.ToString("x2"),
                         drawFont, drawBrush,
-                        new RectangleF(0, iY * iYstep + iOffsetTop + iYstep, iXstep, iYstep));
+                        new RectangleF(
+				              0, 								//always left
+				              iY * iYstep + iOffsetTop + iYstep, 
+				              iXstep, 
+				              iYstep));
 #else
                 e.Graphics.DrawString(xx.ToString("x2"),
                         drawFont, drawBrush,
@@ -97,7 +124,8 @@ namespace CharMap
             {
                 for (iX = 0; iX < 16; iX++)
                 {
-                    Point p = new Point(iX * iXstep + iXstep, iY * iYstep + iOffsetTop + iYstep);
+                    Point p = new Point(iX * iXstep + iXstep, 
+					                    iY * iYstep + iOffsetTop + iYstep);
                     byte[] b = new byte[2];
                     b[0] = bLow++; b[1] = bHigh;
 
