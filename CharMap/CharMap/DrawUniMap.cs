@@ -41,15 +41,19 @@ namespace CharMap
 
 
 			//calc maximum font cell size
-			uniFontSize = this.getFontCellRect(e.Graphics, new Font("Arial Unicode MS", 10, FontStyle.Regular));
+			uniFontSize = 
+				this.getFontCellRect(e.Graphics, 
+				     new Font("Arial Unicode MS", 10, FontStyle.Regular),
+				                     iXstep);
 			
             Font drawFont = new Font("Arial Unicode MS", uniFontSize, FontStyle.Regular);
 
 			SolidBrush drawBrush = new SolidBrush(Color.Black);
+			//draw header row
             for (iX = 0; iX < 16; iX++)
             {
 #if PocketPC
-                e.Graphics.DrawString(iX.ToString(), drawFont, drawBrush,
+                e.Graphics.DrawString(iX.ToString("x2"), drawFont, drawBrush,
                     new RectangleF(iX * iXstep + iXstep, iYstep, iXstep, iYstep));
 #else
                 e.Graphics.DrawString(iX.ToString("x2"),
@@ -60,6 +64,7 @@ namespace CharMap
             for (iY = 0; iY < 16; iY++)
             {
                 int xx = (iY * 0x10);
+				//draw header column
 #if PocketPC
                 e.Graphics.DrawString(xx.ToString("x2"),
                         drawFont, drawBrush,
@@ -105,11 +110,20 @@ namespace CharMap
 #endif
         }
 
-		private int getFontCellRect(Graphics g, Font font){
+		private int getFontCellRect(Graphics g, Font font, int iCellWidth){
 			int iRet = 10;
-			SizeF sizeF = g.MeasureString("00", font);
-			iRet = (int)sizeF.Width;
-			Console.WriteLine("Cell max="+iRet.ToString());
+			Font testFont; // = font.Clone();
+			
+			int iFSize = (int)font.Size;
+			testFont = new Font( font.Name, iFSize, FontStyle.Regular);
+			
+			while(g.MeasureString("00", testFont).Width>iCellWidth){
+				iFSize--;
+				testFont = new Font( font.Name, iFSize, FontStyle.Regular);
+			}
+			//SizeF sizeF = g.MeasureString("00", font);
+			iRet = iFSize;
+			System.Diagnostics.Debug.WriteLine("Cell max="+iRet.ToString());
 			return iRet;
 		}
 	}
