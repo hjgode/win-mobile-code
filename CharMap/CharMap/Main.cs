@@ -22,12 +22,15 @@ namespace CharMap
 		{
 			InitializeComponent ();
 		}
-
+		
+		DrawUniMap drawUni;
+		
 		private void InitializeComponent ()
 		{
 			this.Width = 480;
 			this.Height = 640;
 			this.Text = "My Dialog";
+
 			
 			this.SuspendLayout();
 			Button btnOK = new Button ();
@@ -48,8 +51,13 @@ namespace CharMap
 			lb.Size = new System.Drawing.Size (80, 60);
 			lb.SelectedIndexChanged+=new EventHandler(lb_SelectedIndexChanged);
 			this.Controls.Add(lb);
-				
-			this.Paint+=new PaintEventHandler(Form_Paint);
+
+			drawUni= new DrawUniMap(this);
+			drawUni._bCurrCodepage=(byte)lb.SelectedIndex;
+			
+			this.Paint+=new PaintEventHandler(drawUni.PaintMap);
+			
+			//this.Paint+=new PaintEventHandler(Form_Paint);
 			
 			this.ResumeLayout();
 		}
@@ -60,6 +68,7 @@ namespace CharMap
 		
 		private void lb_SelectedIndexChanged(object sender, EventArgs e){
 			bCurrCodepage=(byte)lb.SelectedIndex;
+			drawUni._bCurrCodepage=bCurrCodepage;
 			this.Refresh();
 		}
 		
