@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="CharMap/DrawUniMap.cs" ctype="Workbench">
     <Files>
       <File FileName="CharMap/Main.cs" Line="90" Column="1" />
-      <File FileName="CharMap/DrawUniMap.cs" Line="179" Column="1" />
+      <File FileName="CharMap/DrawUniMap.cs" Line="53" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

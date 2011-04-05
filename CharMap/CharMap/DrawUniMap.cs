@@ -37,8 +37,24 @@ namespace CharMap
 			
 			this._form.Paint+=new PaintEventHandler(this.PaintMap);
 			this._form.Resize+=new EventHandler(this.ResizeMap);
+			this._form.MouseClick+=new MouseEventHandler(this.Mouse_Click);
 		}
-		
+		public void Mouse_Click(object sender, MouseEventArgs e){
+			if(e.Button==MouseButtons.Right)
+				return;
+			int x = e.X;
+			int y = e.Y;
+			if(x<iXstep)
+				return;
+			if(y<iYstep+iOffsetTop)
+				return;
+			int locX=(int)((x-iXstep) / iXstep);
+			int locY=(int)(((y-iYstep-iOffsetTop) / iYstep)) * 0x10;
+			int uCodePoint = locX+locY;
+			MessageBox.Show("You clicked: 0x" + locX.ToString("x02")+
+			                "/0x" + locY.ToString("x02") + " = " +
+			                uCodePoint.ToString("x02"));
+		}
 		public void ResizeMap(object sender, EventArgs e){
             //calculate cells, we want 16 columns and 16 rows
             //plus one column for the indexing
