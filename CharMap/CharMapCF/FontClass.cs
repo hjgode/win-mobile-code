@@ -57,7 +57,7 @@ namespace CharMapCF
             VARIABLE_PITCH = 2
         };
 
-        enum lfCharsetType{
+        enum lfCharsetType : byte{
             ANSI_CHARSET = 0,
             DEFAULT_CHARSET = 1,
             SYMBOL_CHARSET = 2,

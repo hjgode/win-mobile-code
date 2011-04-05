@@ -21,33 +21,124 @@ namespace CharMapTool
 		private int iOffsetTop = 30;
         private int iOffsetLeft = 4;
 
+        private int iWidth = 240;
+        public int _iWidth
+        {
+            get { return iWidth; }
+            set
+            {
+                iWidth = value;
+                this._form.Refresh();
+            }
+        }
+        private int iHeight = 320;
+        public int _iHeight
+        {
+            get { return iHeight; }
+            set
+            {
+                iHeight = value;
+                this._form.Refresh();
+            }
+        }
         private int iXstep = 30, iYstep = 30;
 		private int uniFontSize=16;
 		private int uniFontSizeMap=32;
-		
+
+        private Label lblVersion;
+        //private Panel panel;
+
 		private Font mapFont = new Font("Arial Unicode MS", 30, FontStyle.Regular);
 		public Font _mapFont{
 			get {return mapFont;}
 			set {mapFont=value;
 				_form.Refresh();}
 		}
+
+        private void initDrawUni()
+        {
+            iWidth = _form.ClientRectangle.Width-iOffsetLeft;
+            iHeight = _form.ClientRectangle.Height-iOffsetTop;
+
+            this._form.Paint += new PaintEventHandler(this.PaintMap);
+            this._form.Resize += new EventHandler(this.ResizeMap);
+
+            //could assign click handler here, is done outside
+            //this._form.MouseUp += new MouseEventHandler(_form_MouseUp);
+
+            //add a dummy control to enable scrolling
+            
+            lblVersion = new Label();
+            lblVersion.Size = new Size(20, 20);
+            lblVersion.Location = new Point(iWidth, iHeight);
+            _form.Controls.Add(lblVersion);
+            _form.AutoScroll = true;
+
+            _form.Refresh();
+        }
+        public DrawUniMap(Form f, int iOffsetY)
+        {
+            _form = f;
+            iOffsetTop = iOffsetY;
+            initDrawUni();
+        }
 		
 		public DrawUniMap (Form f)
 		{
 			_form=f;
-			
-			this._form.Paint+=new PaintEventHandler(this.PaintMap);
-			this._form.Resize+=new EventHandler(this.ResizeMap);
+
+            initDrawUni();
+
 		}
-		public DrawUniMap (Form f, int iOffsetY)
-		{
-			_form=f;
-            iOffsetTop = iOffsetY;
-			this._form.Paint+=new PaintEventHandler(this.PaintMap);
-			this._form.Resize+=new EventHandler(this.ResizeMap);
+
+        public class MessageEventArgs : EventArgs
+        {
+            private string _message;
+            public MessageEventArgs(string msg)
+            {
+                this._message = msg;
+            }
+            public string NewMessage
+            {
+                get
+                {
+                    return _message;
+                }
+            }
+        }
+        public delegate void KlickedEventHandler(object sender, MessageEventArgs e);
+        public event KlickedEventHandler NewMessageHandler;
+        protected virtual void OnMessage(MessageEventArgs e)
+        {
+            if (NewMessageHandler != null)
+            {
+                NewMessageHandler(this, e);//Raise the event
+            }
+        }
+
+        public void _form_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+                return;
+            int x = e.X;
+            int y = e.Y;
+            if (x < iXstep)
+                return;
+            if (y < iYstep + iOffsetTop)
+                return;
+            int locX = (int)((x - iXstep) / iXstep);
+            int locY = (int)(((y - iYstep - iOffsetTop) / iYstep)) * 0x10;
+            int uCodePoint = locX + locY;
             
-		}
-		
+            //MessageBox.Show("You clicked: 0x" + locX.ToString("x02") + "/0x" + locY.ToString("x02") + " = " + uCodePoint.ToString("x02"));
+            
+            byte[] bytes = new byte[2];
+            bytes[1] = bCurrCodepage;
+            bytes[0] = (byte)uCodePoint;
+            string s = Encoding.Unicode.GetString(bytes, 0, 2);
+            this.OnMessage(new MessageEventArgs(s));
+        }
+
 		public void ResizeMap(object sender, EventArgs e){
             //calculate cells, we want 16 columns and 16 rows
             //plus one column for the indexing
@@ -55,9 +146,9 @@ namespace CharMapTool
             //iYstep = iXstep;
 
 			//iXstep
-			int iXCell = (_form.ClientRectangle.Width - iOffsetLeft) / 18;
+			int iXCell = (iWidth - iOffsetLeft) / 18;
             //iYstep 
-			int iYCell = (_form.ClientRectangle.Height - iOffsetTop) / 18;
+			int iYCell = (iHeight - iOffsetTop) / 18;
 			iXstep = Math.Min(iXCell, iYCell);
 			iYstep = iXstep;
 			

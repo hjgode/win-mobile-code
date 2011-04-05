@@ -35,6 +35,8 @@
             this.cboFont = new System.Windows.Forms.ComboBox();
             this.lblFont = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtUniChar = new System.Windows.Forms.TextBox();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -64,6 +66,7 @@
             // 
             // lblFont
             // 
+            this.lblFont.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblFont.Location = new System.Drawing.Point(100, 28);
             this.lblFont.Name = "lblFont";
             this.lblFont.Size = new System.Drawing.Size(102, 22);
@@ -75,18 +78,39 @@
             this.label1.Size = new System.Drawing.Size(90, 22);
             this.label1.Text = "Unicode Plane:";
             // 
+            // txtUniChar
+            // 
+            this.txtUniChar.Location = new System.Drawing.Point(179, 3);
+            this.txtUniChar.Name = "txtUniChar";
+            this.txtUniChar.ReadOnly = true;
+            this.txtUniChar.Size = new System.Drawing.Size(23, 21);
+            this.txtUniChar.TabIndex = 2;
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Location = new System.Drawing.Point(208, 3);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(22, 21);
+            this.btnCopy.TabIndex = 3;
+            this.btnCopy.Text = "C";
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(10, 10);
             this.ClientSize = new System.Drawing.Size(240, 268);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCopy);
+            this.Controls.Add(this.txtUniChar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblFont);
             this.Controls.Add(this.cboFont);
             this.Controls.Add(this.cboUnicodePlane);
             this.Menu = this.mainMenu1;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -100,6 +124,8 @@
         private System.Windows.Forms.ComboBox cboFont;
         private System.Windows.Forms.Label lblFont;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtUniChar;
+        private System.Windows.Forms.Button btnCopy;
     }
 }
 

@@ -53,7 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawUniMap.cs" />
+    <Compile Include="DrawUniMap.cs">
+    </Compile>
     <Compile Include="FontClass.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

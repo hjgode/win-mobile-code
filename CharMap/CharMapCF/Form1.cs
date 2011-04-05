@@ -53,7 +53,19 @@ namespace CharMapCF
             drawUni._bCurrCodepage = (byte)cboUnicodePlane.SelectedIndex;
 
             this.FormBorderStyle = FormBorderStyle.Sizable;
+            drawUni.NewMessageHandler += new DrawUniMap.KlickedEventHandler(drawUni_NewMessageHandler);
+
+            this.MouseUp += new MouseEventHandler(drawUni._form_MouseUp);
+            drawUni._iWidth = 320;
+            drawUni._iHeight = 320;
+
             this.ResumeLayout();
+        }
+
+        void drawUni_NewMessageHandler(object sender, DrawUniMap.MessageEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Message: " + e.NewMessage);
+            txtUniChar.Text = e.NewMessage;
         }
 
         private void cboFont_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,6 +90,11 @@ namespace CharMapCF
             drawUni._bCurrCodepage = bCurrCodepage;
             this.Refresh();
 
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetDataObject(txtUniChar.Text);
         }
 
     }
