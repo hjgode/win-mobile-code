@@ -9,16 +9,15 @@ using System.Windows.Forms;
 
 namespace CharMapTool
 {
-	public class DrawUniMap
+	public class DrawUniMap:Panel
 	{
-		private Form _form;
 		public byte _bCurrCodepage{
 			get{return bCurrCodepage;}
 			set{bCurrCodepage=value;}
 		}
         private byte bCurrCodepage = 0x04;
         
-		private int iOffsetTop = 30;
+		private int iOffsetTop = 4;
         private int iOffsetLeft = 4;
 
         private int iWidth = 240;
@@ -28,7 +27,7 @@ namespace CharMapTool
             set
             {
                 iWidth = value;
-                this._form.Refresh();
+                //this.Refresh();
             }
         }
         private int iHeight = 320;
@@ -38,57 +37,37 @@ namespace CharMapTool
             set
             {
                 iHeight = value;
-                this._form.Refresh();
+                //this.Refresh();
             }
         }
         private int iXstep = 30, iYstep = 30;
 		private int uniFontSize=16;
 		private int uniFontSizeMap=32;
 
-        private Label lblVersion;
-        //private Panel panel;
-
 		private Font mapFont = new Font("Arial Unicode MS", 30, FontStyle.Regular);
 		public Font _mapFont{
 			get {return mapFont;}
 			set {mapFont=value;
-				_form.Refresh();}
+				this.Refresh();}
 		}
 
         private void initDrawUni()
-        {
-            iWidth = _form.ClientRectangle.Width-iOffsetLeft;
-            iHeight = _form.ClientRectangle.Height-iOffsetTop;
+        {            
+            iWidth = this.Width-iOffsetLeft;
+            iHeight = this.Height - iOffsetTop;
 
-            this._form.Paint += new PaintEventHandler(this.PaintMap);
-            this._form.Resize += new EventHandler(this.ResizeMap);
+            this.Paint += new PaintEventHandler(this.PaintMap);
+            this.Resize += new EventHandler(this.ResizeMap);
 
             //could assign click handler here, is done outside
-            //this._form.MouseUp += new MouseEventHandler(_form_MouseUp);
+            this.MouseUp += new MouseEventHandler(_form_MouseUp);
 
-            //add a dummy control to enable scrolling
-            
-            lblVersion = new Label();
-            lblVersion.Size = new Size(20, 20);
-            lblVersion.Location = new Point(iWidth, iHeight);
-            _form.Controls.Add(lblVersion);
-            _form.AutoScroll = true;
-
-            _form.Refresh();
-        }
-        public DrawUniMap(Form f, int iOffsetY)
-        {
-            _form = f;
-            iOffsetTop = iOffsetY;
-            initDrawUni();
+            this.Refresh();
         }
 		
-		public DrawUniMap (Form f)
+        public DrawUniMap ()
 		{
-			_form=f;
-
             initDrawUni();
-
 		}
 
         public class MessageEventArgs : EventArgs
@@ -110,6 +89,7 @@ namespace CharMapTool
         public event KlickedEventHandler NewMessageHandler;
         protected virtual void OnMessage(MessageEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("OnMessage");
             if (NewMessageHandler != null)
             {
                 NewMessageHandler(this, e);//Raise the event
@@ -118,6 +98,7 @@ namespace CharMapTool
 
         public void _form_MouseUp(object sender, MouseEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("_form_MouseUp");
             if (e.Button == MouseButtons.Right)
                 return;
             int x = e.X;
@@ -140,6 +121,9 @@ namespace CharMapTool
         }
 
 		public void ResizeMap(object sender, EventArgs e){
+            System.Diagnostics.Debug.WriteLine("ResizeMap");
+            iWidth = this.Width;
+            iHeight = this.Height;
             //calculate cells, we want 16 columns and 16 rows
             //plus one column for the indexing
             //iXstep = _form.Width / 18;
@@ -156,13 +140,13 @@ namespace CharMapTool
 			uniFontSizeMap=32;
 			uniFontSize=16;
 			
-			_form.Refresh();
+			this.Refresh();
 		}
 		//public delegate void PaintEventHandler();
 		
         public void PaintMap(object sender, PaintEventArgs e)
         {
-			
+            System.Diagnostics.Debug.WriteLine("PaintMap");
             int iX = 0, iY = 0;
             byte bHigh = bCurrCodepage;// 0x04;
             byte bLow = 0x00;
@@ -261,8 +245,9 @@ namespace CharMapTool
 		private int getMaxFonzSize(Graphics g, Font font, int iCellWidth, int iNumChars){
 			int iRet = 10;
 			Font testFont; // = font.Clone();
-			
-			int iFSize = (int)font.Size;
+
+            //start with a large font size
+            int iFSize = 72; // (int)font.Size;
 			testFont = new Font( font.Name, iFSize, FontStyle.Regular);
 			String sChars="";
 			for(int x=0; x<iNumChars; x++){

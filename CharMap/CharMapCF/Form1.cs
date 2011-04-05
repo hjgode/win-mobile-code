@@ -13,15 +13,19 @@ namespace CharMapCF
 {
     public partial class Form1 : Form
     {
-        DrawUniMap drawUni;
+        DrawUniMap drawUniPanel;
         byte bCurrCodepage = 0x04;
         //int iOffsetTop = 30;
 
         public Form1()
         {
-            drawUni = new DrawUniMap(this, 50);
 
             InitializeComponent();
+
+            drawUniPanel = new DrawUniMap();
+            drawUniPanel.Location = new Point(0, 50);
+            drawUniPanel.Size = new Size(this.Width, this.Height - 50);
+            this.Controls.Add(drawUniPanel);
 
             //combo to select 'codepage'
             cboUnicodePlane.Items.Clear();
@@ -40,9 +44,6 @@ namespace CharMapCF
             {
                 cboFont.Items.Insert(0, sFonts[iF]);
             }
-            //cboFont.Items.Insert(0, "Arial");
-            //cboFont.Items.Insert(1, "Arial Unicode MS");
-            //cboFont.Items.Insert(2, "Times New Roman");
 
             //add a fantasy font name to show what happens for non-existing fonts: 
             //windows replaces the font request with a 'matching' existing font
@@ -50,14 +51,10 @@ namespace CharMapCF
 
             cboFont.SelectedIndex = 1;
 
-            drawUni._bCurrCodepage = (byte)cboUnicodePlane.SelectedIndex;
+            drawUniPanel._bCurrCodepage = (byte)cboUnicodePlane.SelectedIndex;
 
             this.FormBorderStyle = FormBorderStyle.Sizable;
-            drawUni.NewMessageHandler += new DrawUniMap.KlickedEventHandler(drawUni_NewMessageHandler);
-
-            this.MouseUp += new MouseEventHandler(drawUni._form_MouseUp);
-            drawUni._iWidth = 320;
-            drawUni._iHeight = 320;
+            drawUniPanel.NewMessageHandler += new DrawUniMap.KlickedEventHandler(drawUni_NewMessageHandler);
 
             this.ResumeLayout();
         }
@@ -70,10 +67,10 @@ namespace CharMapCF
 
         private void cboFont_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (drawUni == null)
+            if (drawUniPanel == null)
                 return;
-            drawUni._mapFont = new Font(cboFont.SelectedItem.ToString(), 30, FontStyle.Regular);
-            lblFont.Text = drawUni._mapFont.Name;
+            drawUniPanel._mapFont = new Font(cboFont.SelectedItem.ToString(), 30, FontStyle.Regular);
+            lblFont.Text = drawUniPanel._mapFont.Name;
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
@@ -84,10 +81,10 @@ namespace CharMapCF
 
         private void cboUnicodePlane_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (drawUni == null)
+            if (drawUniPanel == null)
                 return;
             bCurrCodepage = (byte)cboUnicodePlane.SelectedIndex;
-            drawUni._bCurrCodepage = bCurrCodepage;
+            drawUniPanel._bCurrCodepage = bCurrCodepage;
             this.Refresh();
 
         }
@@ -95,6 +92,28 @@ namespace CharMapCF
         private void btnCopy_Click(object sender, EventArgs e)
         {
             Clipboard.SetDataObject(txtUniChar.Text);
+        }
+
+        private void mnuZoomIn_Click(object sender, EventArgs e)
+        {
+            if (drawUniPanel.Width > 2 * Screen.PrimaryScreen.Bounds.Width)
+                return;
+            drawUniPanel.Width = (int)(drawUniPanel.Width * 1.2);
+            drawUniPanel.Height = (int)(drawUniPanel.Height * 1.2);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            txtUniChar.Font = new Font("Arial Unicode MS", 9, FontStyle.Bold);
+        }
+
+        private void mnuZoomOut_Click(object sender, EventArgs e)
+        {
+            if (drawUniPanel.Width < 120)
+                return;
+            drawUniPanel.Width = (int)(drawUniPanel.Width * 0.8);
+            drawUniPanel.Height = (int)(drawUniPanel.Height * 0.8);
+
         }
 
     }

@@ -37,11 +37,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtUniChar = new System.Windows.Forms.TextBox();
             this.btnCopy = new System.Windows.Forms.Button();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.mnuZoomIn = new System.Windows.Forms.MenuItem();
+            this.mnuZoomOut = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu1
             // 
             this.mainMenu1.MenuItems.Add(this.mnuExit);
+            this.mainMenu1.MenuItems.Add(this.menuItem1);
             // 
             // mnuExit
             // 
@@ -95,6 +99,22 @@
             this.btnCopy.Text = "C";
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
+            // menuItem1
+            // 
+            this.menuItem1.MenuItems.Add(this.mnuZoomIn);
+            this.menuItem1.MenuItems.Add(this.mnuZoomOut);
+            this.menuItem1.Text = "Options";
+            // 
+            // mnuZoomIn
+            // 
+            this.mnuZoomIn.Text = "Zoom In";
+            this.mnuZoomIn.Click += new System.EventHandler(this.mnuZoomIn_Click);
+            // 
+            // mnuZoomOut
+            // 
+            this.mnuZoomOut.Text = "Zoom Out";
+            this.mnuZoomOut.Click += new System.EventHandler(this.mnuZoomOut_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -113,6 +133,7 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
@@ -126,6 +147,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUniChar;
         private System.Windows.Forms.Button btnCopy;
+        private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.MenuItem mnuZoomIn;
+        private System.Windows.Forms.MenuItem mnuZoomOut;
     }
 }
 
