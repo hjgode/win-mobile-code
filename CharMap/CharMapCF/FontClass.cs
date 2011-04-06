@@ -10,6 +10,24 @@ using System.Runtime.InteropServices;
 
 namespace CharMapCF
 {
+    static class winhelper
+    {
+        //disable redraw
+        [DllImport("coredll")]
+        public static extern int SendMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
+        private const Int32 WM_SETREDRAW = 0x0B;
+        /*
+        SendMessage( .Handle, WM_SETREDRAW, IntPtr(CInt(False)), IntPtr.Zero)
+        */
+        public static void enableRedraw(System.Windows.Forms.Control control, bool bEnable)
+        {
+            IntPtr hwnd = control.Handle;
+            SendMessage(hwnd, WM_SETREDRAW, Convert.ToInt32(bEnable), 0);
+            if (bEnable)
+                control.Refresh();
+        }
+
+    }
     class FontClass
     {
         delegate int EnumFontDelegate(IntPtr lpelfe, IntPtr lpntme, EnumFontsType FontType, int lParam);
@@ -29,6 +47,7 @@ namespace CharMapCF
 
         [DllImport("coredll.dll")]
         private static extern IntPtr ReleaseDC(IntPtr hdc);
+
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         class LOGFONT

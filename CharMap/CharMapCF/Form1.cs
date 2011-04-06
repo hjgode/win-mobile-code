@@ -63,6 +63,8 @@ namespace CharMapCF
         {
             System.Diagnostics.Debug.WriteLine("Message: " + e.NewMessage);
             txtUniChar.Text = e.NewMessage;
+
+            this.Text = e.getBytesString;
         }
 
         private void cboFont_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,10 +98,7 @@ namespace CharMapCF
 
         private void mnuZoomIn_Click(object sender, EventArgs e)
         {
-            if (drawUniPanel.Width > 2 * Screen.PrimaryScreen.Bounds.Width)
-                return;
-            drawUniPanel.Width = (int)(drawUniPanel.Width * 1.2);
-            drawUniPanel.Height = (int)(drawUniPanel.Height * 1.2);
+            drawUniPanel.zoomInOut(1.2);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -109,11 +108,7 @@ namespace CharMapCF
 
         private void mnuZoomOut_Click(object sender, EventArgs e)
         {
-            if (drawUniPanel.Width < 120)
-                return;
-            drawUniPanel.Width = (int)(drawUniPanel.Width * 0.8);
-            drawUniPanel.Height = (int)(drawUniPanel.Height * 0.8);
-
+            drawUniPanel.zoomInOut(0.8);
         }
 
     }
