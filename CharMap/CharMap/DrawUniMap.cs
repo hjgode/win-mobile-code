@@ -7,64 +7,132 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CharMap
+namespace CharMapTool
 {
-	public class DrawUniMap
+	public class DrawUniMap:Panel
 	{
-		private Form _form;
 		public byte _bCurrCodepage{
 			get{return bCurrCodepage;}
 			set{bCurrCodepage=value;}
 		}
         private byte bCurrCodepage = 0x04;
         
-		private int iOffsetTop = 30;
-		
+		private int iOffsetTop = 4;
+        private int iOffsetLeft = 4;
+
+        private int iWidth = 240;
+        public int _iWidth
+        {
+            get { return iWidth; }
+            set
+            {
+                iWidth = value;
+                //this.Refresh();
+            }
+        }
+        private int iHeight = 320;
+        public int _iHeight
+        {
+            get { return iHeight; }
+            set
+            {
+                iHeight = value;
+                //this.Refresh();
+            }
+        }
         private int iXstep = 30, iYstep = 30;
 		private int uniFontSize=16;
 		private int uniFontSizeMap=32;
-		
+
 		private Font mapFont = new Font("Arial Unicode MS", 30, FontStyle.Regular);
 		public Font _mapFont{
 			get {return mapFont;}
 			set {mapFont=value;
-				_form.Refresh();}
+				this.Refresh();}
 		}
+
+        private void initDrawUni()
+        {            
+            iWidth = this.Width-iOffsetLeft;
+            iHeight = this.Height - iOffsetTop;
+
+            this.Paint += new PaintEventHandler(this.PaintMap);
+            this.Resize += new EventHandler(this.ResizeMap);
+
+            //could assign click handler here, is done outside
+            this.MouseUp += new MouseEventHandler(_form_MouseUp);
+
+            this.Refresh();
+        }
 		
-		public DrawUniMap (Form f)
+        public DrawUniMap ()
 		{
-			_form=f;
-			
-			this._form.Paint+=new PaintEventHandler(this.PaintMap);
-			this._form.Resize+=new EventHandler(this.ResizeMap);
-			this._form.MouseClick+=new MouseEventHandler(this.Mouse_Click);
+            initDrawUni();
 		}
-		public void Mouse_Click(object sender, MouseEventArgs e){
-			if(e.Button==MouseButtons.Right)
-				return;
-			int x = e.X;
-			int y = e.Y;
-			if(x<iXstep)
-				return;
-			if(y<iYstep+iOffsetTop)
-				return;
-			int locX=(int)((x-iXstep) / iXstep);
-			int locY=(int)(((y-iYstep-iOffsetTop) / iYstep)) * 0x10;
-			int uCodePoint = locX+locY;
-			MessageBox.Show("You clicked: 0x" + locX.ToString("x02")+
-			                "/0x" + locY.ToString("x02") + " = " +
-			                uCodePoint.ToString("x02"));
-		}
+
+        public class MessageEventArgs : EventArgs
+        {
+            private string _message;
+            public MessageEventArgs(string msg)
+            {
+                this._message = msg;
+            }
+            public string NewMessage
+            {
+                get
+                {
+                    return _message;
+                }
+            }
+        }
+        public delegate void KlickedEventHandler(object sender, MessageEventArgs e);
+        public event KlickedEventHandler NewMessageHandler;
+        protected virtual void OnMessage(MessageEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("OnMessage");
+            if (NewMessageHandler != null)
+            {
+                NewMessageHandler(this, e);//Raise the event
+            }
+        }
+
+        public void _form_MouseUp(object sender, MouseEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("_form_MouseUp");
+            if (e.Button == MouseButtons.Right)
+                return;
+            int x = e.X;
+            int y = e.Y;
+            if (x < iXstep)
+                return;
+            if (y < iYstep + iOffsetTop)
+                return;
+            int locX = (int)((x - iXstep) / iXstep);
+            int locY = (int)(((y - iYstep - iOffsetTop) / iYstep)) * 0x10;
+            int uCodePoint = locX + locY;
+            
+            //MessageBox.Show("You clicked: 0x" + locX.ToString("x02") + "/0x" + locY.ToString("x02") + " = " + uCodePoint.ToString("x02"));
+            
+            byte[] bytes = new byte[2];
+            bytes[1] = bCurrCodepage;
+            bytes[0] = (byte)uCodePoint;
+            string s = Encoding.Unicode.GetString(bytes, 0, 2);
+            this.OnMessage(new MessageEventArgs(s));
+        }
+
 		public void ResizeMap(object sender, EventArgs e){
+            System.Diagnostics.Debug.WriteLine("ResizeMap");
+            iWidth = this.Width;
+            iHeight = this.Height;
             //calculate cells, we want 16 columns and 16 rows
             //plus one column for the indexing
             //iXstep = _form.Width / 18;
             //iYstep = iXstep;
 
 			//iXstep
-			int iXCell = _form.ClientRectangle.Width / 18;
+			int iXCell = (iWidth - iOffsetLeft) / 18;
             //iYstep 
-			int iYCell = (_form.ClientRectangle.Height - iOffsetTop) / 18;
+			int iYCell = (iHeight - iOffsetTop) / 18;
 			iXstep = Math.Min(iXCell, iYCell);
 			iYstep = iXstep;
 			
@@ -72,13 +140,13 @@ namespace CharMap
 			uniFontSizeMap=32;
 			uniFontSize=16;
 			
-			_form.Refresh();
+			this.Refresh();
 		}
 		//public delegate void PaintEventHandler();
 		
         public void PaintMap(object sender, PaintEventArgs e)
         {
-			
+            System.Diagnostics.Debug.WriteLine("PaintMap");
             int iX = 0, iY = 0;
             byte bHigh = bCurrCodepage;// 0x04;
             byte bLow = 0x00;
@@ -107,7 +175,7 @@ namespace CharMap
             {
 #if PocketPC
                 e.Graphics.DrawString(iX.ToString("x2"), drawFont, drawBrush,
-                    new RectangleF(iX * iXstep  + iXstep, 
+                    new RectangleF(iX * iXstep  + iXstep + iOffsetLeft, 
 				                   /*iYstep +*/ iOffsetTop, 
 				                   iXstep, 
 				                   iYstep));
@@ -125,7 +193,7 @@ namespace CharMap
                 e.Graphics.DrawString(xx.ToString("x2"),
                         drawFont, drawBrush,
                         new RectangleF(
-				              0, 								//always left
+				              0 + iOffsetLeft, 								//always left
 				              iY * iYstep + iOffsetTop + iYstep, 
 				              iXstep, 
 				              iYstep));
@@ -140,7 +208,7 @@ namespace CharMap
             {
                 for (iX = 0; iX < 16; iX++)
                 {
-                    Point p = new Point(iX * iXstep + iXstep, 
+                    Point p = new Point(iX * iXstep + iXstep + iOffsetLeft, 
 					                    iY * iYstep + iOffsetTop + iYstep);
                     byte[] b = new byte[2];
                     b[0] = bLow++; b[1] = bHigh;
@@ -177,8 +245,9 @@ namespace CharMap
 		private int getMaxFonzSize(Graphics g, Font font, int iCellWidth, int iNumChars){
 			int iRet = 10;
 			Font testFont; // = font.Clone();
-			
-			int iFSize = (int)font.Size;
+
+            //start with a large font size
+            int iFSize = 72; // (int)font.Size;
 			testFont = new Font( font.Name, iFSize, FontStyle.Regular);
 			String sChars="";
 			for(int x=0; x<iNumChars; x++){
