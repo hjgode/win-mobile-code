@@ -1,0 +1,56 @@
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        /// &lt;param name="lpelfe"&gt;IntPtr LOGFONT structure that contains information about the logical attributes of the font&lt;/param&gt;
+        /// &lt;param name="lpntme"&gt;structure that contains information about the physical attributes of the font, if the font is a TrueType font. If the font is not a TrueType font, this parameter points to a TEXTMETRIC structure&lt;/param&gt;
+        /// &lt;param name="FontType"&gt;[in] DWORD that specifies the type of the font:
+        /// DEVICE_FONTTYPE
+        /// RASTER_FONTTYPE
+        /// TRUETYPE_FONTTYPE&lt;/param&gt;
+        /// &lt;param name="lParam"&gt;Pointer to the application-defined data passed by the EnumFontFamilies function&lt;/param&gt;
+        /// &lt;returns&gt;Nonzero continues enumeration. Zero stops enumeration&lt;/returns&gt;
+        private int EnumFontFamiliesExProc(IntPtr lpelfe, IntPtr lpntme, EnumFontsType FontType, int lParam)
+        {
+            LOGFONT logFont = (LOGFONT)Marshal.PtrToStructure(lpelfe, typeof(LOGFONT));
+
+            if (logFont.lfWeight == lfWeightType.FW_REGULAR &amp;&amp; logFont.lfItalic==0)
+            {
+                //we dont like duplicate names
+                if(!fontNames.Contains(logFont.lfFaceName))
+                    fontNames.Add(logFont.lfFaceName);
+
+                System.Diagnostics.Debug.WriteLine(logFont.lfFaceName);
+            }
+            // Non-zero return continues enumerating
+            return 1;
+        }
+        private void buildList(){
+            // Need an HDC to pass to EnumFontFamilies
+            IntPtr hwnd = GetDesktopWindow();
+            IntPtr hdc = GetDC(hwnd);
+
+            LOGFONT logFont = new LOGFONT();
+
+            enumFontDelegate = new EnumFontDelegate(EnumFontFamiliesExProc);
+            fpEnumProc = Marshal.GetFunctionPointerForDelegate(enumFontDelegate);
+
+            EnumFontFamilies(hdc, null, fpEnumProc, IntPtr.Zero);
+
+            // We got a list of the major families.  Copy the list,
+            // then clear it so we can go back and grab all the individual fonts.
+            List&lt;string&gt; fontFamilies = new List&lt;string&gt;();
+            fontFamilies.AddRange(fontNames);
+            fontNames.Clear();
+
+            foreach(string fontFamily in fontFamilies)
+            {
+                EnumFontFamilies(hdc, fontFamily, fpEnumProc, IntPtr.Zero);
+            }
+
+            ReleaseDC(hdc);
+
+            foreach(string s in fontNames)
+            {
+                //listBox1.Items.Add(s);
+            }
+        }
