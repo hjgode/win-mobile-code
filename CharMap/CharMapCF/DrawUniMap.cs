@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+//Test with a copy of C:\Windows\Fonts\ARIALUNI.TTF on device!
+
 namespace CharMapTool
 {
     /// <summary>

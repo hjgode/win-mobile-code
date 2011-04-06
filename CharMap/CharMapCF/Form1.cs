@@ -23,7 +23,11 @@ namespace CharMapCF
             InitializeComponent();
 
             drawUniPanel = new DrawUniMap();
-            drawUniPanel.Location = new Point(0, 50);
+            //is this a VGA screen? HI_RES_AWARE
+            if(Screen.PrimaryScreen.WorkingArea.Width>240)
+                drawUniPanel.Location = new Point(0, 100);
+            else
+                drawUniPanel.Location = new Point(0, 50);
             drawUniPanel.Size = new Size(this.Width, this.Height - 50);
             this.Controls.Add(drawUniPanel);
 
