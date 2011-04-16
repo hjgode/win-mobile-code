@@ -3,16 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitImageTest", "BitImageTest\BitImageTest.csproj", "{0D314DB1-B142-49C4-A37F-F74D9087FA64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitImageTestCF", "BitImageTestCF\BitImageTestCF.csproj", "{94B436A4-89D4-452E-8622-F24EF33FA12F}"
+EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0D314DB1-B142-49C4-A37F-F74D9087FA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D314DB1-B142-49C4-A37F-F74D9087FA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D314DB1-B142-49C4-A37F-F74D9087FA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D314DB1-B142-49C4-A37F-F74D9087FA64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B436A4-89D4-452E-8622-F24EF33FA12F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B436A4-89D4-452E-8622-F24EF33FA12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B436A4-89D4-452E-8622-F24EF33FA12F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{94B436A4-89D4-452E-8622-F24EF33FA12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B436A4-89D4-452E-8622-F24EF33FA12F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B436A4-89D4-452E-8622-F24EF33FA12F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
