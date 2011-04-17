@@ -5,10 +5,26 @@ using System.Text;
 using System.Collections;
 using System.IO;
 using System.Drawing;
-
-namespace BitImageTestCF
+/*
+USAGE:
+			if(System.IO.File.Exists("RM-Logo.bmp")){
+				BitImage.BitimageClass.dumpBands("RM-Logo.bmp");
+				bitmap = BitImage.BitimageClass.getRawBitmap("RM-Logo.bmp");
+			}
+			else
+				MessageBox.Show("Missing file: " + "RM-Logo.bmp");
+...
+		private System.Drawing.Bitmap bitmap = null;
+		private void Form1_Paint(object sender, PaintEventArgs e){
+			//e.Graphics.Dr
+			if(bitmap!=null){
+				e.Graphics.DrawImage(bitmap,new System.Drawing.Point(0,100));
+			}
+		}
+*/
+namespace BitImage
 {
-    public class BitmapData
+    public class BitmapDotData
     {
         public BitArray Dots
         {
@@ -31,7 +47,14 @@ namespace BitImageTestCF
 
     class BitimageClass
     {
-        private static BitmapData GetBitmapData(string bmpFileName)
+		/// <summary>
+		/// get the B&W 1BPP bitmap for a bmp file 
+		/// </summary>
+		/// <param name="bmpFileName">
+		/// </param>
+		/// <returns>
+		/// </returns>
+        private static BitmapDotData GetBitmapData(string bmpFileName)
         {
             Image img = new Bitmap(bmpFileName); 
             using (var bitmap = new Bitmap(img))// (Bitmap)Bitmap.FromFile(bmpFileName))
@@ -52,7 +75,7 @@ namespace BitImageTestCF
                     }
                 }
 
-                return new BitmapData()
+                return new BitmapDotData()
                     {
                         Dots = dots,
                         Height = bitmap.Height,
@@ -66,18 +89,18 @@ namespace BitImageTestCF
             using (var bw = new BinaryWriter(ms))
             {
                 // Reset the printer bws (NV images are not cleared)
-                bw.Write(ASCIIhelper.AsciiControlChars.Escape);
+/*                bw.Write(ASCIIhelper.AsciiControlChars.Escape);
                 bw.Write('@');
-
+*/
                 // Render the logo
                 RenderBands(sBitmapFile, bw);
 
                 // Feed 3 vertical motion units and cut the paper with a 1 point cut
-                bw.Write(ASCIIhelper.AsciiControlChars.GroupSeparator);
+/*                bw.Write(ASCIIhelper.AsciiControlChars.GroupSeparator);
                 bw.Write('V');
                 bw.Write((byte)66);
                 bw.Write((byte)3);
-
+*/
                 bw.Flush();
 
                 return ms.ToArray();
@@ -92,7 +115,7 @@ namespace BitImageTestCF
             var width = BitConverter.GetBytes(data.Width);
 
             //write header
-            bw.Write(ASCIIhelper.AsciiControlChars.Escape);
+/*            bw.Write(ASCIIhelper.AsciiControlChars.Escape);
             bw.Write('*');         // bit-image mode
             bw.Write((byte)0);     // 8-dot single-density
             bw.Write((byte)5);     // width low byte
@@ -102,7 +125,7 @@ namespace BitImageTestCF
             bw.Write((byte)4);
             bw.Write((byte)8);
             bw.Write((byte)16);
-
+*/
             // So we have our bitmap data sitting in a bit array called "dots."
             // This is one long array of 1s (black) and 0s (white) pixels arranged
             // as if we had scanned the bitmap from top to bottom, left to right.
@@ -114,22 +137,22 @@ namespace BitImageTestCF
 
             // Set the line spacing to 24 dots, the height of each "stripe" of the
             // image that we're drawing.
-            bw.Write(ASCIIhelper.AsciiControlChars.Escape);
+/*            bw.Write(ASCIIhelper.AsciiControlChars.Escape);
             bw.Write('3');
             bw.Write((byte)24);
-
+*/
             // OK. So, starting from x = 0, read 24 bits down and send that data
             // to the printer.
             int offset = 0;
 
             while (offset < data.Height)
             {
-                bw.Write(ASCIIhelper.AsciiControlChars.Escape);
+/*                bw.Write(ASCIIhelper.AsciiControlChars.Escape);
                 bw.Write('*');         // bit-image mode
                 bw.Write((byte)33);    // 24-dot double-density
                 bw.Write(width[0]);  // width low byte
                 bw.Write(width[1]);  // width high byte
-
+*/
                 for (int x = 0; x < data.Width; ++x)
                 {
                     for (int k = 0; k < 3; ++k)
@@ -175,20 +198,67 @@ namespace BitImageTestCF
                 }
 
                 offset += 24;
-                bw.Write(ASCIIhelper.AsciiControlChars.Newline);
-            }
+/*                bw.Write(ASCIIhelper.AsciiControlChars.Newline);
+*/            }
 
             // Restore the line spacing to the default of 30 dots.
-            bw.Write(ASCIIhelper.AsciiControlChars.Escape);
+/*            bw.Write(ASCIIhelper.AsciiControlChars.Escape);
             bw.Write('3');
             bw.Write((byte)30);
-        }
+*/        }
         public static void dumpBands(string sBitmapFile, byte[] bytes)
         {
             byte[] bs = GetDocument("RM-Logo.bmp");
             Console.WriteLine(tools.tools.ByteAr2HexStr(bs));
             Console.WriteLine(tools.tools.ByteAr2BinStr(bs));
         }
-
+        public static void dumpBands(string sBitmapFile)
+        {
+            byte[] bs = GetDocument(sBitmapFile);//"RM-Logo.bmp");
+//            Console.WriteLine(tools.tools.ByteAr2HexStr(bs));
+            Console.WriteLine(tools.tools.ByteAr2BinStr(bs));
+        }
+		public static Bitmap getRawBitmap(string sBitmapFile){
+			//byte[] bs = GetDocument(sBitmapFile);//"RM-Logo.bmp");
+			BitmapDotData data = GetBitmapData(sBitmapFile);
+			Bitmap bmp = new Bitmap(data.Width,data.Height,System.Drawing.Imaging.PixelFormat.Format1bppIndexed);
+			int width = bmp.Width;
+			int height = bmp.Height;
+			System.Drawing.Imaging.BitmapData bits = 
+				bmp.LockBits(new Rectangle(0,0,bmp.Width,bmp.Height),
+			    System.Drawing.Imaging.ImageLockMode.ReadWrite, 
+			    System.Drawing.Imaging.PixelFormat.Format1bppIndexed);
+			
+	        unsafe
+	        {
+/*
+ http://www.bobpowell.net/lockingbits.htm
+ Format1BppIndexed Given the X and Y coordinates, the byte containing the pixel is calculated
+ by Scan0+(y*Stride)+(x/8). The byte contains 8 bits, each bit is one pixel with the leftmost
+ pixel in bit 8 and the rightmost pixel in bit 0. The bits select from the two entry colour
+ palette.
+*/
+				for (int y = 0; y < height; y++)
+	            {
+	                //int* row = (int*)((byte*)bits.Scan0 + (y * bits.Stride));
+					for (int x = 0; x < width; x++)
+	                {
+						//int* row = (int*)((byte*)bits.Scan0 + (y * bits.Stride)+(x/8));
+						byte* p=(byte*)bits.Scan0.ToPointer();
+						int index=y*bits.Stride+(x>>3);
+						byte mask=(byte)(0x80>>(x&0x7));
+						bool pixel = !(data.Dots[y * width + x]);
+						if(pixel)
+							p[index]|=mask;
+						else
+							p[index]&=(byte)(mask^0xff); 
+					
+	                    //row[x] = data.Dots[y * width + x];
+	                }
+	            }
+	        }
+	        bmp.UnlockBits(bits);
+		return bmp;
+		}
     }
 }
