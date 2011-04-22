@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BitImageTest/Program.cs" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BitImageTest/tools.cs" ctype="Workbench">
     <Files>
       <File FileName="BitImageTest/Program.cs" Line="224" Column="1" />
+      <File FileName="BitImageTest/tools.cs" Line="21" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
