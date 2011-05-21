@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="zxing-sample/Main.cs" ctype="Workbench">
+    <Files>
+      <File FileName="MultiFormatReader.cs" Line="164" Column="22" />
+      <File FileName="Reader.cs" Line="48" Column="3" />
+      <File FileName="zxing-sample/Main.cs" Line="46" Column="1" />
+      <File FileName="BinaryBitmap.cs" Line="147" Column="21" />
+      <File FileName="RGBLuminanceSource.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches ctype="PinnedWatchStore" />
+</Properties>
