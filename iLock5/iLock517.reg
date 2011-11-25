@@ -1,0 +1,20 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Intermec\iLock]
+"FreeDesktopOnExit"="1"
+"TextBackColor"=dword:00FFFFFF
+"TextListColor"=dword:00FFFFFF
+"TextColor"=dword:002B1CE2
+"WaitBeforeExit"=dword:00000003
+"UseMenuBar"="1"
+"UseDesktopLock"="0"
+"MaximizeTargetOnExit"="0"
+"KeepLockedAfterExit"="1"
+"UseFullScreen"="1"
+"App2waitFor"="ccelad.exe"
+"Title2waitFor"="000 - Hauptmenü"
+"Class2waitFor"=""
+"HotSpotX"=dword:00000078
+"HotSpotY"=dword:000000A0
+"ShowRebootTimeout"=dword:0000003C
+"UseLogging"=dword:00000000

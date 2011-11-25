@@ -1,0 +1,1830 @@
+06.01.1980 02:07:08: iLock5: WinMain
+06.01.1980 02:07:08: iLock5: ShowRebootTimeout='90'
+06.01.1980 02:07:08: iLock5: InitInstance
+06.01.1980 02:07:08: iLock5: Inside MsgLoop
+06.01.1980 02:07:08: iLock5: Inside MsgLoop
+06.01.1980 02:07:08: iLock5: Inside MsgLoop
+06.01.1980 02:07:08: iLock5: Inside MsgLoop
+06.01.1980 02:07:08: iLock5: WM_PAINT. Leaving
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: WM_PAINT. Leaving
+06.01.1980 02:07:09: iLock5: WM_CREATE. Starting timers 1 and 2.
+06.01.1980 02:07:09: iLock5: WM_CREATE. Starting timer 4 (RebootButton).
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: Watchdog thread created
+06.01.1980 02:07:09: iLock5: InitInstance: USEMENUBAR...
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: Watchdog Thread started
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: WM_PAINT. Leaving
+06.01.1980 02:07:09: iLock5: Inside MsgLoop
+06.01.1980 02:07:09: iLock5: WM_PAINT. Leaving
+06.01.1980 02:07:10: iLock5: Inside MsgLoop
+06.01.1980 02:07:10: iLock5: end of InitInstance
+06.01.1980 02:07:10: iLock5: SignalStarted(102)
+06.01.1980 02:07:10: iLock5: Entering msg loop
+06.01.1980 02:07:10: iLock5: Inside MsgLoop
+06.01.1980 02:07:10: Watchdog message: 1
+06.01.1980 02:07:10: iLock5: Inside MsgLoop
+06.01.1980 02:07:10: iLock5: Inside MsgLoop
+06.01.1980 02:07:10: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:10: iLock5: Inside MsgLoop
+06.01.1980 02:07:10: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:10: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:10: Watchdog live sign
+06.01.1980 02:07:10: iLock5: Inside MsgLoop
+06.01.1980 02:07:11: iLock5: Inside MsgLoop
+06.01.1980 02:07:11: Watchdog live sign
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: Watchdog message: 2
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: Watchdog message: 3
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: iLock5: WM_PAINT. Leaving
+06.01.1980 02:07:12: iLock5: Inside MsgLoop
+06.01.1980 02:07:12: Watchdog live sign
+06.01.1980 02:07:12: iLock5: WM_PAINT. Leaving
+06.01.1980 02:07:13: iLock5: Inside MsgLoop
+06.01.1980 02:07:13: Watchdog message: 4
+06.01.1980 02:07:13: iLock5: Inside MsgLoop
+06.01.1980 02:07:13: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:13: iLock5: Inside MsgLoop
+06.01.1980 02:07:13: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:13: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:13: iLock5: Inside MsgLoop
+06.01.1980 02:07:13: iLock5: Inside MsgLoop
+06.01.1980 02:07:14: Watchdog live sign
+06.01.1980 02:07:14: iLock5: Inside MsgLoop
+06.01.1980 02:07:15: iLock5: Inside MsgLoop
+06.01.1980 02:07:15: iLock5: Inside MsgLoop
+06.01.1980 02:07:15: iLock5: Inside MsgLoop
+06.01.1980 02:07:15: iLock5: Inside MsgLoop
+06.01.1980 02:07:15: iLock5: Inside MsgLoop
+06.01.1980 02:07:15: Watchdog message: 5
+06.01.1980 02:07:15: iLock5: Inside MsgLoop
+06.01.1980 02:07:16: Watchdog live sign
+06.01.1980 02:07:16: iLock5: Inside MsgLoop
+06.01.1980 02:07:16: iLock5: Inside MsgLoop
+06.01.1980 02:07:16: Watchdog message: 6
+06.01.1980 02:07:16: iLock5: Inside MsgLoop
+06.01.1980 02:07:16: iLock5: Inside MsgLoop
+06.01.1980 02:07:16: iLock5: WM_PAINT. Leaving
+06.01.1980 02:07:16: iLock5: Inside MsgLoop
+06.01.1980 02:07:16: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:16: iLock5: Inside MsgLoop
+06.01.1980 02:07:16: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:16: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:16: iLock5: Processlist
+06.01.1980 02:07:16: iLock5: 	Process
+06.01.1980 02:07:16: iLock5: 	NK.EXE
+06.01.1980 02:07:16: iLock5: 	filesys.exe
+06.01.1980 02:07:17: iLock5: 	device.exe
+06.01.1980 02:07:17: iLock5: 	uptimesqm.exe
+06.01.1980 02:07:17: iLock5: 	iConnect.exe
+06.01.1980 02:07:17: iLock5: 	gwes.exe
+06.01.1980 02:07:17: iLock5: 	shell32.exe
+06.01.1980 02:07:17: iLock5: 	services.exe
+06.01.1980 02:07:17: iLock5: 	connmgr.exe
+06.01.1980 02:07:17: iLock5: 	SSClient.exe
+06.01.1980 02:07:17: iLock5: 	runautorun.exe
+06.01.1980 02:07:17: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:17: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:17: iLock5: 	iLock5.exe
+06.01.1980 02:07:17: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:17: iLock5: 	IQueue.exe
+06.01.1980 02:07:17: iLock5: 	DataServer.exe
+06.01.1980 02:07:17: iLock5: Inside MsgLoop
+06.01.1980 02:07:17: Watchdog live sign
+06.01.1980 02:07:17: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:17: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:17: iLock5: Inside MsgLoop
+06.01.1980 02:07:19: Watchdog live sign
+06.01.1980 02:07:19: iLock5: Inside MsgLoop
+06.01.1980 02:07:19: iLock5: Inside MsgLoop
+06.01.1980 02:07:19: iLock5: Inside MsgLoop
+06.01.1980 02:07:19: iLock5: Inside MsgLoop
+06.01.1980 02:07:19: Watchdog message: 7
+06.01.1980 02:07:19: iLock5: Inside MsgLoop
+06.01.1980 02:07:19: Watchdog message: 8
+06.01.1980 02:07:19: iLock5: Inside MsgLoop
+06.01.1980 02:07:19: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:19: iLock5: Inside MsgLoop
+06.01.1980 02:07:19: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:19: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:19: iLock5: Processlist
+06.01.1980 02:07:19: iLock5: 	Process
+06.01.1980 02:07:19: iLock5: 	NK.EXE
+06.01.1980 02:07:19: iLock5: 	filesys.exe
+06.01.1980 02:07:19: iLock5: 	device.exe
+06.01.1980 02:07:19: iLock5: 	uptimesqm.exe
+06.01.1980 02:07:19: iLock5: 	iConnect.exe
+06.01.1980 02:07:19: iLock5: 	gwes.exe
+06.01.1980 02:07:19: iLock5: 	shell32.exe
+06.01.1980 02:07:19: iLock5: 	services.exe
+06.01.1980 02:07:19: iLock5: 	connmgr.exe
+06.01.1980 02:07:19: iLock5: 	SSClient.exe
+06.01.1980 02:07:19: iLock5: 	autocab.exe
+06.01.1980 02:07:19: iLock5: 	autorun.exe
+06.01.1980 02:07:20: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:20: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:20: iLock5: 	iLock5.exe
+06.01.1980 02:07:20: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:20: iLock5: 	IQueue.exe
+06.01.1980 02:07:20: iLock5: 	DataServer.exe
+06.01.1980 02:07:20: Watchdog live sign
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:20: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: Watchdog message: 9
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:20: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:20: iLock5: Inside MsgLoop
+06.01.1980 02:07:21: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:21: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:21: iLock5: Inside MsgLoop
+06.01.1980 02:07:21: Watchdog live sign
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: Watchdog message: 10
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:22: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:22: Watchdog live sign
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: Watchdog message: 11
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:22: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:22: iLock5: Inside MsgLoop
+06.01.1980 02:07:23: iLock5: Inside MsgLoop
+06.01.1980 02:07:23: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:23: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:23: iLock5: Inside MsgLoop
+06.01.1980 02:07:23: iLock5: Inside MsgLoop
+06.01.1980 02:07:23: iLock5: Inside MsgLoop
+06.01.1980 02:07:23: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:23: Watchdog live sign
+06.01.1980 02:07:23: iLock5: Inside MsgLoop
+06.01.1980 02:07:23: Watchdog message: 12
+06.01.1980 02:07:23: iLock5: Inside MsgLoop
+06.01.1980 02:07:23: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:23: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:23: iLock5: Inside MsgLoop
+06.01.1980 02:07:23: iLock5: Inside MsgLoop
+06.01.1980 02:07:24: iLock5: Inside MsgLoop
+06.01.1980 02:07:24: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:24: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:24: iLock5: Inside MsgLoop
+06.01.1980 02:07:24: iLock5: Inside MsgLoop
+06.01.1980 02:07:24: iLock5: Inside MsgLoop
+06.01.1980 02:07:24: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:24: iLock5: Inside MsgLoop
+06.01.1980 02:07:24: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:24: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:24: iLock5: Processlist
+06.01.1980 02:07:24: iLock5: 	Process
+06.01.1980 02:07:24: iLock5: 	NK.EXE
+06.01.1980 02:07:24: iLock5: 	filesys.exe
+06.01.1980 02:07:24: iLock5: 	device.exe
+06.01.1980 02:07:24: iLock5: 	VSTS.exe
+06.01.1980 02:07:24: iLock5: 	iConnect.exe
+06.01.1980 02:07:24: Watchdog live sign
+06.01.1980 02:07:24: iLock5: 	gwes.exe
+06.01.1980 02:07:24: iLock5: 	shell32.exe
+06.01.1980 02:07:24: iLock5: 	services.exe
+06.01.1980 02:07:24: iLock5: 	connmgr.exe
+06.01.1980 02:07:24: iLock5: 	SSClient.exe
+06.01.1980 02:07:24: iLock5: 	calupd.exe
+06.01.1980 02:07:24: iLock5: 	autorun.exe
+06.01.1980 02:07:24: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:24: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:24: iLock5: 	iLock5.exe
+06.01.1980 02:07:24: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:24: iLock5: 	IQueue.exe
+06.01.1980 02:07:24: iLock5: 	DataServer.exe
+06.01.1980 02:07:24: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: Watchdog message: 13
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:25: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:25: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:25: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:25: Watchdog live sign
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: iLock5: Inside MsgLoop
+06.01.1980 02:07:25: Watchdog message: 14
+06.01.1980 02:07:26: iLock5: Inside MsgLoop
+06.01.1980 02:07:26: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:26: iLock5: Inside MsgLoop
+06.01.1980 02:07:26: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:26: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:26: iLock5: Inside MsgLoop
+06.01.1980 02:07:26: iLock5: Inside MsgLoop
+06.01.1980 02:07:26: iLock5: Inside MsgLoop
+06.01.1980 02:07:26: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:26: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:26: iLock5: Inside MsgLoop
+06.01.1980 02:07:26: Watchdog live sign
+06.01.1980 02:07:26: iLock5: Inside MsgLoop
+06.01.1980 02:07:26: iLock5: Inside MsgLoop
+06.01.1980 02:07:26: Watchdog message: 15
+06.01.1980 02:07:27: iLock5: Inside MsgLoop
+06.01.1980 02:07:27: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:27: iLock5: Inside MsgLoop
+06.01.1980 02:07:27: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:27: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:27: iLock5: Inside MsgLoop
+06.01.1980 02:07:27: iLock5: Inside MsgLoop
+06.01.1980 02:07:27: iLock5: Inside MsgLoop
+06.01.1980 02:07:27: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:27: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:27: iLock5: Inside MsgLoop
+06.01.1980 02:07:27: Watchdog live sign
+06.01.1980 02:07:27: iLock5: Inside MsgLoop
+06.01.1980 02:07:27: iLock5: Inside MsgLoop
+06.01.1980 02:07:27: Watchdog message: 16
+06.01.1980 02:07:28: iLock5: Inside MsgLoop
+06.01.1980 02:07:28: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:28: iLock5: Inside MsgLoop
+06.01.1980 02:07:28: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:28: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:28: iLock5: Inside MsgLoop
+06.01.1980 02:07:28: iLock5: Inside MsgLoop
+06.01.1980 02:07:28: iLock5: Inside MsgLoop
+06.01.1980 02:07:28: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:28: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:28: Watchdog live sign
+06.01.1980 02:07:28: iLock5: Inside MsgLoop
+06.01.1980 02:07:28: iLock5: Inside MsgLoop
+06.01.1980 02:07:28: iLock5: Inside MsgLoop
+06.01.1980 02:07:28: Watchdog message: 17
+06.01.1980 02:07:29: iLock5: Inside MsgLoop
+06.01.1980 02:07:29: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:29: iLock5: Inside MsgLoop
+06.01.1980 02:07:29: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:29: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:29: iLock5: Inside MsgLoop
+06.01.1980 02:07:29: iLock5: Inside MsgLoop
+06.01.1980 02:07:29: iLock5: Inside MsgLoop
+06.01.1980 02:07:29: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:29: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:29: iLock5: Processlist
+06.01.1980 02:07:29: iLock5: 	Process
+06.01.1980 02:07:29: iLock5: 	NK.EXE
+06.01.1980 02:07:29: iLock5: 	filesys.exe
+06.01.1980 02:07:29: iLock5: 	device.exe
+06.01.1980 02:07:29: iLock5: 	VSTS.exe
+06.01.1980 02:07:29: iLock5: 	iConnect.exe
+06.01.1980 02:07:29: iLock5: 	gwes.exe
+06.01.1980 02:07:29: iLock5: 	shell32.exe
+06.01.1980 02:07:29: iLock5: 	services.exe
+06.01.1980 02:07:29: iLock5: 	connmgr.exe
+06.01.1980 02:07:29: iLock5: 	SSClient.exe
+06.01.1980 02:07:29: iLock5: 	autorun.exe
+06.01.1980 02:07:29: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:29: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:29: iLock5: 	iLock5.exe
+06.01.1980 02:07:29: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:29: iLock5: 	IQueue.exe
+06.01.1980 02:07:29: Watchdog live sign
+06.01.1980 02:07:29: iLock5: 	DataServer.exe
+06.01.1980 02:07:29: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: Watchdog message: 18
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:30: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:30: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:30: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:30: iLock5: Inside MsgLoop
+06.01.1980 02:07:30: Watchdog live sign
+06.01.1980 02:07:31: iLock5: Inside MsgLoop
+06.01.1980 02:07:31: iLock5: Inside MsgLoop
+06.01.1980 02:07:31: Watchdog message: 19
+06.01.1980 02:07:31: iLock5: Inside MsgLoop
+06.01.1980 02:07:31: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:31: iLock5: Inside MsgLoop
+06.01.1980 02:07:31: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:31: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:31: iLock5: Inside MsgLoop
+06.01.1980 02:07:31: iLock5: Inside MsgLoop
+06.01.1980 02:07:31: iLock5: Inside MsgLoop
+06.01.1980 02:07:31: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:31: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:31: iLock5: Inside MsgLoop
+06.01.1980 02:07:31: Watchdog live sign
+06.01.1980 02:07:32: iLock5: Inside MsgLoop
+06.01.1980 02:07:32: iLock5: Inside MsgLoop
+06.01.1980 02:07:32: Watchdog message: 20
+06.01.1980 02:07:32: iLock5: Inside MsgLoop
+06.01.1980 02:07:32: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:32: iLock5: Inside MsgLoop
+06.01.1980 02:07:32: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:32: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:32: iLock5: Inside MsgLoop
+06.01.1980 02:07:32: iLock5: Inside MsgLoop
+06.01.1980 02:07:32: iLock5: Inside MsgLoop
+06.01.1980 02:07:32: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:33: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:33: Watchdog live sign
+06.01.1980 02:07:33: iLock5: Inside MsgLoop
+06.01.1980 02:07:33: iLock5: Inside MsgLoop
+06.01.1980 02:07:33: iLock5: Inside MsgLoop
+06.01.1980 02:07:33: Watchdog message: 21
+06.01.1980 02:07:33: iLock5: Inside MsgLoop
+06.01.1980 02:07:33: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:33: iLock5: Inside MsgLoop
+06.01.1980 02:07:33: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:33: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:33: iLock5: Inside MsgLoop
+06.01.1980 02:07:33: iLock5: Inside MsgLoop
+06.01.1980 02:07:33: iLock5: Inside MsgLoop
+06.01.1980 02:07:34: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:34: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:34: Watchdog live sign
+06.01.1980 02:07:34: iLock5: Inside MsgLoop
+06.01.1980 02:07:34: iLock5: Inside MsgLoop
+06.01.1980 02:07:34: iLock5: Inside MsgLoop
+06.01.1980 02:07:34: Watchdog message: 22
+06.01.1980 02:07:34: iLock5: Inside MsgLoop
+06.01.1980 02:07:34: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:34: iLock5: Inside MsgLoop
+06.01.1980 02:07:34: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:34: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:34: iLock5: Processlist
+06.01.1980 02:07:34: iLock5: 	Process
+06.01.1980 02:07:34: iLock5: 	NK.EXE
+06.01.1980 02:07:34: iLock5: 	filesys.exe
+06.01.1980 02:07:34: iLock5: 	device.exe
+06.01.1980 02:07:34: iLock5: 	VSTS.exe
+06.01.1980 02:07:34: iLock5: 	iConnect.exe
+06.01.1980 02:07:34: iLock5: 	gwes.exe
+06.01.1980 02:07:34: iLock5: 	shell32.exe
+06.01.1980 02:07:34: iLock5: 	services.exe
+06.01.1980 02:07:34: iLock5: 	connmgr.exe
+06.01.1980 02:07:34: iLock5: 	SSClient.exe
+06.01.1980 02:07:34: iLock5: 	autorun.exe
+06.01.1980 02:07:34: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:34: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:34: iLock5: 	iLock5.exe
+06.01.1980 02:07:34: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:34: iLock5: 	IQueue.exe
+06.01.1980 02:07:34: iLock5: 	DataServer.exe
+06.01.1980 02:07:34: iLock5: Inside MsgLoop
+06.01.1980 02:07:34: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:34: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:34: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: Watchdog live sign
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: Watchdog message: 23
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:35: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:35: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:35: iLock5: Inside MsgLoop
+06.01.1980 02:07:36: Watchdog live sign
+06.01.1980 02:07:36: iLock5: Inside MsgLoop
+06.01.1980 02:07:36: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:36: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:36: iLock5: Inside MsgLoop
+06.01.1980 02:07:36: iLock5: Inside MsgLoop
+06.01.1980 02:07:36: iLock5: Inside MsgLoop
+06.01.1980 02:07:36: Watchdog message: 24
+06.01.1980 02:07:36: iLock5: Inside MsgLoop
+06.01.1980 02:07:36: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:36: iLock5: Inside MsgLoop
+06.01.1980 02:07:36: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:36: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:36: iLock5: Inside MsgLoop
+06.01.1980 02:07:36: iLock5: Inside MsgLoop
+06.01.1980 02:07:37: iLock5: Inside MsgLoop
+06.01.1980 02:07:37: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:37: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:37: Watchdog live sign
+06.01.1980 02:07:37: iLock5: Inside MsgLoop
+06.01.1980 02:07:37: iLock5: Inside MsgLoop
+06.01.1980 02:07:37: iLock5: Inside MsgLoop
+06.01.1980 02:07:37: Watchdog message: 25
+06.01.1980 02:07:37: iLock5: Inside MsgLoop
+06.01.1980 02:07:37: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:37: iLock5: Inside MsgLoop
+06.01.1980 02:07:37: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:37: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:37: iLock5: Inside MsgLoop
+06.01.1980 02:07:37: iLock5: Inside MsgLoop
+06.01.1980 02:07:38: iLock5: Inside MsgLoop
+06.01.1980 02:07:38: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:38: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:38: Watchdog live sign
+06.01.1980 02:07:38: iLock5: Inside MsgLoop
+06.01.1980 02:07:38: iLock5: Inside MsgLoop
+06.01.1980 02:07:38: iLock5: Inside MsgLoop
+06.01.1980 02:07:38: Watchdog message: 26
+06.01.1980 02:07:38: iLock5: Inside MsgLoop
+06.01.1980 02:07:38: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:38: iLock5: Inside MsgLoop
+06.01.1980 02:07:38: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:38: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:38: iLock5: Inside MsgLoop
+06.01.1980 02:07:38: iLock5: Inside MsgLoop
+06.01.1980 02:07:39: iLock5: Inside MsgLoop
+06.01.1980 02:07:39: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:39: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:39: Watchdog live sign
+06.01.1980 02:07:39: iLock5: Inside MsgLoop
+06.01.1980 02:07:39: iLock5: Inside MsgLoop
+06.01.1980 02:07:39: iLock5: Inside MsgLoop
+06.01.1980 02:07:39: Watchdog message: 27
+06.01.1980 02:07:39: iLock5: Inside MsgLoop
+06.01.1980 02:07:39: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:39: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:39: iLock5: Processlist
+06.01.1980 02:07:39: iLock5: 	Process
+06.01.1980 02:07:39: iLock5: 	NK.EXE
+06.01.1980 02:07:39: iLock5: 	filesys.exe
+06.01.1980 02:07:39: iLock5: 	device.exe
+06.01.1980 02:07:39: iLock5: 	VSTS.exe
+06.01.1980 02:07:39: iLock5: 	iConnect.exe
+06.01.1980 02:07:39: iLock5: 	gwes.exe
+06.01.1980 02:07:39: iLock5: 	shell32.exe
+06.01.1980 02:07:39: iLock5: 	services.exe
+06.01.1980 02:07:39: iLock5: 	connmgr.exe
+06.01.1980 02:07:39: iLock5: 	SSClient.exe
+06.01.1980 02:07:39: iLock5: 	autorun.exe
+06.01.1980 02:07:39: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:39: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:39: iLock5: 	iLock5.exe
+06.01.1980 02:07:40: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:40: iLock5: 	IQueue.exe
+06.01.1980 02:07:40: iLock5: 	DataServer.exe
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:40: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:40: Watchdog live sign
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: Watchdog message: 28
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:40: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:40: iLock5: Inside MsgLoop
+06.01.1980 02:07:40: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:41: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:41: iLock5: Inside MsgLoop
+06.01.1980 02:07:41: iLock5: Inside MsgLoop
+06.01.1980 02:07:41: Watchdog live sign
+06.01.1980 02:07:41: iLock5: Inside MsgLoop
+06.01.1980 02:07:41: Watchdog message: 29
+06.01.1980 02:07:41: iLock5: Inside MsgLoop
+06.01.1980 02:07:41: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:41: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:41: iLock5: Inside MsgLoop
+06.01.1980 02:07:41: iLock5: Inside MsgLoop
+06.01.1980 02:07:41: iLock5: Inside MsgLoop
+06.01.1980 02:07:41: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:41: iLock5: Inside MsgLoop
+06.01.1980 02:07:42: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:42: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:42: iLock5: Inside MsgLoop
+06.01.1980 02:07:42: iLock5: Inside MsgLoop
+06.01.1980 02:07:42: Watchdog live sign
+06.01.1980 02:07:42: iLock5: Inside MsgLoop
+06.01.1980 02:07:42: Watchdog message: 30
+06.01.1980 02:07:42: iLock5: Inside MsgLoop
+06.01.1980 02:07:42: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:42: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:42: iLock5: Inside MsgLoop
+06.01.1980 02:07:42: iLock5: Inside MsgLoop
+06.01.1980 02:07:42: iLock5: Inside MsgLoop
+06.01.1980 02:07:42: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:43: iLock5: Inside MsgLoop
+06.01.1980 02:07:43: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:43: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:43: iLock5: Inside MsgLoop
+06.01.1980 02:07:43: iLock5: Inside MsgLoop
+06.01.1980 02:07:43: Watchdog live sign
+06.01.1980 02:07:43: iLock5: Inside MsgLoop
+06.01.1980 02:07:43: Watchdog message: 31
+06.01.1980 02:07:43: iLock5: Inside MsgLoop
+06.01.1980 02:07:43: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:43: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:43: iLock5: Inside MsgLoop
+06.01.1980 02:07:43: iLock5: Inside MsgLoop
+06.01.1980 02:07:43: iLock5: Inside MsgLoop
+06.01.1980 02:07:43: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:44: iLock5: Inside MsgLoop
+06.01.1980 02:07:44: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:44: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:44: iLock5: Inside MsgLoop
+06.01.1980 02:07:44: iLock5: Inside MsgLoop
+06.01.1980 02:07:44: Watchdog live sign
+06.01.1980 02:07:44: iLock5: Inside MsgLoop
+06.01.1980 02:07:44: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:44: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:44: iLock5: Processlist
+06.01.1980 02:07:44: iLock5: 	Process
+06.01.1980 02:07:44: iLock5: 	NK.EXE
+06.01.1980 02:07:44: iLock5: 	filesys.exe
+06.01.1980 02:07:44: iLock5: 	device.exe
+06.01.1980 02:07:44: iLock5: 	VSTS.exe
+06.01.1980 02:07:44: iLock5: 	iConnect.exe
+06.01.1980 02:07:44: iLock5: 	gwes.exe
+06.01.1980 02:07:44: iLock5: 	shell32.exe
+06.01.1980 02:07:44: iLock5: 	services.exe
+06.01.1980 02:07:44: iLock5: 	connmgr.exe
+06.01.1980 02:07:44: iLock5: 	SSClient.exe
+06.01.1980 02:07:44: iLock5: 	autorun.exe
+06.01.1980 02:07:44: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:44: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:44: iLock5: 	iLock5.exe
+06.01.1980 02:07:44: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:44: iLock5: 	IQueue.exe
+06.01.1980 02:07:44: iLock5: 	DataServer.exe
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: Watchdog message: 32
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:45: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:45: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: Watchdog live sign
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: Watchdog message: 33
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:45: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: Inside MsgLoop
+06.01.1980 02:07:45: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:46: iLock5: Inside MsgLoop
+06.01.1980 02:07:46: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:46: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:46: iLock5: Inside MsgLoop
+06.01.1980 02:07:46: iLock5: Inside MsgLoop
+06.01.1980 02:07:46: Watchdog live sign
+06.01.1980 02:07:46: iLock5: Inside MsgLoop
+06.01.1980 02:07:46: Watchdog message: 34
+06.01.1980 02:07:46: iLock5: Inside MsgLoop
+06.01.1980 02:07:46: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:46: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:46: iLock5: Inside MsgLoop
+06.01.1980 02:07:46: iLock5: Inside MsgLoop
+06.01.1980 02:07:46: iLock5: Inside MsgLoop
+06.01.1980 02:07:46: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:47: iLock5: Inside MsgLoop
+06.01.1980 02:07:47: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:47: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:47: iLock5: Inside MsgLoop
+06.01.1980 02:07:47: iLock5: Inside MsgLoop
+06.01.1980 02:07:47: Watchdog live sign
+06.01.1980 02:07:47: iLock5: Inside MsgLoop
+06.01.1980 02:07:47: Watchdog message: 35
+06.01.1980 02:07:47: iLock5: Inside MsgLoop
+06.01.1980 02:07:47: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:47: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:47: iLock5: Inside MsgLoop
+06.01.1980 02:07:47: iLock5: Inside MsgLoop
+06.01.1980 02:07:47: iLock5: Inside MsgLoop
+06.01.1980 02:07:47: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:48: iLock5: Inside MsgLoop
+06.01.1980 02:07:48: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:48: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:48: iLock5: Inside MsgLoop
+06.01.1980 02:07:48: iLock5: Inside MsgLoop
+06.01.1980 02:07:48: Watchdog live sign
+06.01.1980 02:07:48: iLock5: Inside MsgLoop
+06.01.1980 02:07:48: Watchdog message: 36
+06.01.1980 02:07:48: iLock5: Inside MsgLoop
+06.01.1980 02:07:48: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:48: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:48: iLock5: Inside MsgLoop
+06.01.1980 02:07:48: iLock5: Inside MsgLoop
+06.01.1980 02:07:49: iLock5: Inside MsgLoop
+06.01.1980 02:07:49: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:49: iLock5: Inside MsgLoop
+06.01.1980 02:07:49: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:49: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:49: iLock5: Inside MsgLoop
+06.01.1980 02:07:49: iLock5: Inside MsgLoop
+06.01.1980 02:07:49: iLock5: Inside MsgLoop
+06.01.1980 02:07:49: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:49: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:49: iLock5: Processlist
+06.01.1980 02:07:49: iLock5: 	Process
+06.01.1980 02:07:49: iLock5: 	NK.EXE
+06.01.1980 02:07:49: iLock5: 	filesys.exe
+06.01.1980 02:07:49: iLock5: 	device.exe
+06.01.1980 02:07:49: iLock5: 	VSTS.exe
+06.01.1980 02:07:49: iLock5: 	iConnect.exe
+06.01.1980 02:07:49: Watchdog live sign
+06.01.1980 02:07:49: iLock5: 	gwes.exe
+06.01.1980 02:07:49: iLock5: 	shell32.exe
+06.01.1980 02:07:49: iLock5: 	services.exe
+06.01.1980 02:07:49: iLock5: 	connmgr.exe
+06.01.1980 02:07:49: iLock5: 	SSClient.exe
+06.01.1980 02:07:49: iLock5: 	autorun.exe
+06.01.1980 02:07:49: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:49: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:49: iLock5: 	iLock5.exe
+06.01.1980 02:07:49: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:50: iLock5: 	IQueue.exe
+06.01.1980 02:07:50: iLock5: 	DataServer.exe
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: Watchdog message: 37
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:50: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:50: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: Watchdog live sign
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: Watchdog message: 38
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:50: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:50: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:50: iLock5: Inside MsgLoop
+06.01.1980 02:07:51: iLock5: Inside MsgLoop
+06.01.1980 02:07:51: iLock5: Inside MsgLoop
+06.01.1980 02:07:51: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:51: iLock5: Inside MsgLoop
+06.01.1980 02:07:51: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:51: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:51: iLock5: Inside MsgLoop
+06.01.1980 02:07:51: iLock5: Inside MsgLoop
+06.01.1980 02:07:51: Watchdog live sign
+06.01.1980 02:07:51: iLock5: Inside MsgLoop
+06.01.1980 02:07:51: Watchdog message: 39
+06.01.1980 02:07:51: iLock5: Inside MsgLoop
+06.01.1980 02:07:51: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:51: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:52: iLock5: Inside MsgLoop
+06.01.1980 02:07:52: iLock5: Inside MsgLoop
+06.01.1980 02:07:52: iLock5: Inside MsgLoop
+06.01.1980 02:07:52: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:52: iLock5: Inside MsgLoop
+06.01.1980 02:07:52: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:52: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:52: iLock5: Inside MsgLoop
+06.01.1980 02:07:52: iLock5: Inside MsgLoop
+06.01.1980 02:07:52: Watchdog live sign
+06.01.1980 02:07:52: iLock5: Inside MsgLoop
+06.01.1980 02:07:52: Watchdog message: 40
+06.01.1980 02:07:52: iLock5: Inside MsgLoop
+06.01.1980 02:07:52: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:53: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:53: iLock5: Inside MsgLoop
+06.01.1980 02:07:53: iLock5: Inside MsgLoop
+06.01.1980 02:07:53: iLock5: Inside MsgLoop
+06.01.1980 02:07:53: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:53: iLock5: Inside MsgLoop
+06.01.1980 02:07:53: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:53: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:53: iLock5: Inside MsgLoop
+06.01.1980 02:07:53: iLock5: Inside MsgLoop
+06.01.1980 02:07:53: Watchdog live sign
+06.01.1980 02:07:53: iLock5: Inside MsgLoop
+06.01.1980 02:07:53: Watchdog message: 41
+06.01.1980 02:07:54: iLock5: Inside MsgLoop
+06.01.1980 02:07:54: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:54: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:54: iLock5: Inside MsgLoop
+06.01.1980 02:07:54: iLock5: Inside MsgLoop
+06.01.1980 02:07:54: iLock5: Inside MsgLoop
+06.01.1980 02:07:54: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:54: iLock5: Inside MsgLoop
+06.01.1980 02:07:54: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:54: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:07:54: iLock5: Processlist
+06.01.1980 02:07:54: iLock5: 	Process
+06.01.1980 02:07:54: iLock5: 	NK.EXE
+06.01.1980 02:07:54: iLock5: 	filesys.exe
+06.01.1980 02:07:54: iLock5: 	device.exe
+06.01.1980 02:07:54: iLock5: 	VSTS.exe
+06.01.1980 02:07:54: iLock5: 	iConnect.exe
+06.01.1980 02:07:54: iLock5: 	gwes.exe
+06.01.1980 02:07:54: iLock5: 	shell32.exe
+06.01.1980 02:07:54: iLock5: 	services.exe
+06.01.1980 02:07:54: iLock5: 	connmgr.exe
+06.01.1980 02:07:54: iLock5: 	SSClient.exe
+06.01.1980 02:07:54: iLock5: 	autorun.exe
+06.01.1980 02:07:54: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:07:54: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:07:54: iLock5: 	iLock5.exe
+06.01.1980 02:07:54: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:07:55: iLock5: 	IQueue.exe
+06.01.1980 02:07:55: iLock5: 	DataServer.exe
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:55: Watchdog live sign
+06.01.1980 02:07:55: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: Watchdog message: 42
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:55: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:55: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:55: iLock5: Inside MsgLoop
+06.01.1980 02:07:56: iLock5: Inside MsgLoop
+06.01.1980 02:07:56: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:56: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:56: Watchdog live sign
+06.01.1980 02:07:56: iLock5: Inside MsgLoop
+06.01.1980 02:07:56: iLock5: Inside MsgLoop
+06.01.1980 02:07:56: iLock5: Inside MsgLoop
+06.01.1980 02:07:56: Watchdog message: 43
+06.01.1980 02:07:56: iLock5: Inside MsgLoop
+06.01.1980 02:07:56: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:56: iLock5: Inside MsgLoop
+06.01.1980 02:07:56: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:56: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:56: iLock5: Inside MsgLoop
+06.01.1980 02:07:56: iLock5: Inside MsgLoop
+06.01.1980 02:07:57: iLock5: Inside MsgLoop
+06.01.1980 02:07:57: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:57: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:57: iLock5: Inside MsgLoop
+06.01.1980 02:07:57: Watchdog live sign
+06.01.1980 02:07:57: iLock5: Inside MsgLoop
+06.01.1980 02:07:57: iLock5: Inside MsgLoop
+06.01.1980 02:07:57: Watchdog message: 44
+06.01.1980 02:07:57: iLock5: Inside MsgLoop
+06.01.1980 02:07:57: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:57: iLock5: Inside MsgLoop
+06.01.1980 02:07:57: iLock5: WM_TIMER. Entering...
+06.01.1980 02:07:57: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:07:57: iLock5: Inside MsgLoop
+06.01.1980 02:07:58: Watchdog live sign
+06.01.1980 02:07:59: Watchdog live sign
+06.01.1980 02:07:59: iLock5: Inside MsgLoop
+06.01.1980 02:07:59: iLock5: Inside MsgLoop
+06.01.1980 02:07:59: Watchdog message: 45
+06.01.1980 02:07:59: iLock5: Inside MsgLoop
+06.01.1980 02:07:59: Watchdog message: 46
+06.01.1980 02:07:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:00: iLock5: Inside MsgLoop
+06.01.1980 02:08:00: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:00: iLock5: Inside MsgLoop
+06.01.1980 02:08:00: Watchdog live sign
+06.01.1980 02:08:00: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:00: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:00: iLock5: Processlist
+06.01.1980 02:08:00: iLock5: 	Process
+06.01.1980 02:08:00: iLock5: 	NK.EXE
+06.01.1980 02:08:00: iLock5: 	filesys.exe
+06.01.1980 02:08:00: iLock5: 	device.exe
+06.01.1980 02:08:00: iLock5: 	VSTS.exe
+06.01.1980 02:08:00: iLock5: 	iConnect.exe
+06.01.1980 02:08:00: iLock5: 	gwes.exe
+06.01.1980 02:08:00: iLock5: 	shell32.exe
+06.01.1980 02:08:00: iLock5: 	services.exe
+06.01.1980 02:08:00: iLock5: 	connmgr.exe
+06.01.1980 02:08:00: iLock5: 	SSClient.exe
+06.01.1980 02:08:00: iLock5: 	autorun.exe
+06.01.1980 02:08:00: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:08:00: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:08:00: iLock5: 	iLock5.exe
+06.01.1980 02:08:00: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:08:00: iLock5: 	IQueue.exe
+06.01.1980 02:08:00: iLock5: 	DataServer.exe
+06.01.1980 02:08:00: iLock5: Inside MsgLoop
+06.01.1980 02:08:00: Watchdog message: 47
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:01: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:01: Watchdog live sign
+06.01.1980 02:08:01: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: Watchdog message: 48
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:01: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:01: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:01: iLock5: Inside MsgLoop
+06.01.1980 02:08:02: iLock5: Inside MsgLoop
+06.01.1980 02:08:02: iLock5: Inside MsgLoop
+06.01.1980 02:08:02: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:02: iLock5: Inside MsgLoop
+06.01.1980 02:08:02: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:02: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:02: iLock5: Inside MsgLoop
+06.01.1980 02:08:02: Watchdog live sign
+06.01.1980 02:08:02: iLock5: Inside MsgLoop
+06.01.1980 02:08:02: iLock5: Inside MsgLoop
+06.01.1980 02:08:02: Watchdog message: 49
+06.01.1980 02:08:02: iLock5: Inside MsgLoop
+06.01.1980 02:08:02: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:03: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:03: iLock5: Inside MsgLoop
+06.01.1980 02:08:03: iLock5: Inside MsgLoop
+06.01.1980 02:08:03: iLock5: Inside MsgLoop
+06.01.1980 02:08:03: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:03: iLock5: Inside MsgLoop
+06.01.1980 02:08:03: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:03: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:03: iLock5: Inside MsgLoop
+06.01.1980 02:08:03: Watchdog live sign
+06.01.1980 02:08:03: iLock5: Inside MsgLoop
+06.01.1980 02:08:03: iLock5: Inside MsgLoop
+06.01.1980 02:08:03: Watchdog message: 50
+06.01.1980 02:08:03: iLock5: Inside MsgLoop
+06.01.1980 02:08:04: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:04: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:04: iLock5: Inside MsgLoop
+06.01.1980 02:08:04: iLock5: Inside MsgLoop
+06.01.1980 02:08:04: iLock5: Inside MsgLoop
+06.01.1980 02:08:04: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:04: iLock5: Inside MsgLoop
+06.01.1980 02:08:04: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:04: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:04: iLock5: Inside MsgLoop
+06.01.1980 02:08:04: iLock5: Inside MsgLoop
+06.01.1980 02:08:04: iLock5: Inside MsgLoop
+06.01.1980 02:08:04: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:04: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:04: Watchdog live sign
+06.01.1980 02:08:04: iLock5: Processlist
+06.01.1980 02:08:04: iLock5: 	Process
+06.01.1980 02:08:04: iLock5: 	NK.EXE
+06.01.1980 02:08:04: iLock5: 	filesys.exe
+06.01.1980 02:08:04: iLock5: 	device.exe
+06.01.1980 02:08:04: iLock5: 	VSTS.exe
+06.01.1980 02:08:04: iLock5: 	iConnect.exe
+06.01.1980 02:08:04: iLock5: 	gwes.exe
+06.01.1980 02:08:04: iLock5: 	shell32.exe
+06.01.1980 02:08:04: iLock5: 	services.exe
+06.01.1980 02:08:04: iLock5: 	connmgr.exe
+06.01.1980 02:08:04: iLock5: 	SSClient.exe
+06.01.1980 02:08:04: iLock5: 	autorun.exe
+06.01.1980 02:08:05: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:08:05: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:08:05: iLock5: 	iLock5.exe
+06.01.1980 02:08:05: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:08:05: iLock5: 	IQueue.exe
+06.01.1980 02:08:05: iLock5: 	DataServer.exe
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: Watchdog message: 51
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:05: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:05: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: Watchdog live sign
+06.01.1980 02:08:05: iLock5: Inside MsgLoop
+06.01.1980 02:08:05: Watchdog message: 52
+06.01.1980 02:08:06: iLock5: Inside MsgLoop
+06.01.1980 02:08:06: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:06: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:06: iLock5: Inside MsgLoop
+06.01.1980 02:08:06: iLock5: Inside MsgLoop
+06.01.1980 02:08:06: iLock5: Inside MsgLoop
+06.01.1980 02:08:06: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:06: iLock5: Inside MsgLoop
+06.01.1980 02:08:06: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:06: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:06: iLock5: Inside MsgLoop
+06.01.1980 02:08:06: iLock5: Inside MsgLoop
+06.01.1980 02:08:06: Watchdog live sign
+06.01.1980 02:08:06: iLock5: Inside MsgLoop
+06.01.1980 02:08:06: Watchdog message: 53
+06.01.1980 02:08:07: iLock5: Inside MsgLoop
+06.01.1980 02:08:07: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:07: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:07: iLock5: Inside MsgLoop
+06.01.1980 02:08:07: iLock5: Inside MsgLoop
+06.01.1980 02:08:07: iLock5: Inside MsgLoop
+06.01.1980 02:08:07: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:07: iLock5: Inside MsgLoop
+06.01.1980 02:08:07: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:07: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:07: iLock5: Inside MsgLoop
+06.01.1980 02:08:07: iLock5: Inside MsgLoop
+06.01.1980 02:08:07: Watchdog live sign
+06.01.1980 02:08:07: iLock5: Inside MsgLoop
+06.01.1980 02:08:07: Watchdog message: 54
+06.01.1980 02:08:08: iLock5: Inside MsgLoop
+06.01.1980 02:08:08: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:08: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:08: iLock5: Inside MsgLoop
+06.01.1980 02:08:08: iLock5: Inside MsgLoop
+06.01.1980 02:08:08: iLock5: Inside MsgLoop
+06.01.1980 02:08:08: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:08: iLock5: Inside MsgLoop
+06.01.1980 02:08:08: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:08: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:08: iLock5: Inside MsgLoop
+06.01.1980 02:08:08: iLock5: Inside MsgLoop
+06.01.1980 02:08:08: Watchdog live sign
+06.01.1980 02:08:08: iLock5: Inside MsgLoop
+06.01.1980 02:08:08: Watchdog message: 55
+06.01.1980 02:08:09: iLock5: Inside MsgLoop
+06.01.1980 02:08:09: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:09: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:09: iLock5: Inside MsgLoop
+06.01.1980 02:08:09: iLock5: Inside MsgLoop
+06.01.1980 02:08:09: iLock5: Inside MsgLoop
+06.01.1980 02:08:09: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:09: iLock5: Inside MsgLoop
+06.01.1980 02:08:09: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:09: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:09: iLock5: Processlist
+06.01.1980 02:08:09: iLock5: 	Process
+06.01.1980 02:08:09: iLock5: 	NK.EXE
+06.01.1980 02:08:09: iLock5: 	filesys.exe
+06.01.1980 02:08:09: iLock5: 	device.exe
+06.01.1980 02:08:09: iLock5: 	VSTS.exe
+06.01.1980 02:08:09: iLock5: 	iConnect.exe
+06.01.1980 02:08:09: iLock5: 	gwes.exe
+06.01.1980 02:08:09: iLock5: 	shell32.exe
+06.01.1980 02:08:09: iLock5: 	services.exe
+06.01.1980 02:08:09: iLock5: 	connmgr.exe
+06.01.1980 02:08:09: iLock5: 	SSClient.exe
+06.01.1980 02:08:09: Watchdog live sign
+06.01.1980 02:08:09: iLock5: 	autorun.exe
+06.01.1980 02:08:10: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:08:10: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:08:10: iLock5: 	iLock5.exe
+06.01.1980 02:08:10: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:08:10: iLock5: 	IQueue.exe
+06.01.1980 02:08:10: iLock5: 	DataServer.exe
+06.01.1980 02:08:10: iLock5: Inside MsgLoop
+06.01.1980 02:08:10: Watchdog message: 56
+06.01.1980 02:08:10: iLock5: Inside MsgLoop
+06.01.1980 02:08:10: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:10: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:10: iLock5: Inside MsgLoop
+06.01.1980 02:08:10: iLock5: Inside MsgLoop
+06.01.1980 02:08:10: iLock5: Inside MsgLoop
+06.01.1980 02:08:10: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:10: iLock5: Inside MsgLoop
+06.01.1980 02:08:10: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:10: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:10: iLock5: Inside MsgLoop
+06.01.1980 02:08:10: iLock5: Inside MsgLoop
+06.01.1980 02:08:10: Watchdog live sign
+06.01.1980 02:08:11: iLock5: Inside MsgLoop
+06.01.1980 02:08:11: Watchdog message: 57
+06.01.1980 02:08:11: iLock5: Inside MsgLoop
+06.01.1980 02:08:11: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:11: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:11: iLock5: Inside MsgLoop
+06.01.1980 02:08:11: iLock5: Inside MsgLoop
+06.01.1980 02:08:11: iLock5: Inside MsgLoop
+06.01.1980 02:08:11: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:11: iLock5: Inside MsgLoop
+06.01.1980 02:08:11: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:11: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:11: iLock5: Inside MsgLoop
+06.01.1980 02:08:11: iLock5: Inside MsgLoop
+06.01.1980 02:08:12: Watchdog live sign
+06.01.1980 02:08:12: iLock5: Inside MsgLoop
+06.01.1980 02:08:12: Watchdog message: 58
+06.01.1980 02:08:12: iLock5: Inside MsgLoop
+06.01.1980 02:08:12: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:12: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:12: iLock5: Inside MsgLoop
+06.01.1980 02:08:12: iLock5: Inside MsgLoop
+06.01.1980 02:08:12: iLock5: Inside MsgLoop
+06.01.1980 02:08:12: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:12: iLock5: Inside MsgLoop
+06.01.1980 02:08:12: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:12: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:12: iLock5: Inside MsgLoop
+06.01.1980 02:08:12: iLock5: Inside MsgLoop
+06.01.1980 02:08:13: Watchdog live sign
+06.01.1980 02:08:13: iLock5: Inside MsgLoop
+06.01.1980 02:08:13: Watchdog message: 59
+06.01.1980 02:08:13: iLock5: Inside MsgLoop
+06.01.1980 02:08:13: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:13: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:13: iLock5: Inside MsgLoop
+06.01.1980 02:08:13: iLock5: Inside MsgLoop
+06.01.1980 02:08:13: iLock5: Inside MsgLoop
+06.01.1980 02:08:13: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:13: iLock5: Inside MsgLoop
+06.01.1980 02:08:13: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:13: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:13: iLock5: Inside MsgLoop
+06.01.1980 02:08:13: iLock5: Inside MsgLoop
+06.01.1980 02:08:14: Watchdog live sign
+06.01.1980 02:08:14: iLock5: Inside MsgLoop
+06.01.1980 02:08:14: Watchdog message: 60
+06.01.1980 02:08:14: iLock5: Inside MsgLoop
+06.01.1980 02:08:14: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:14: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:14: iLock5: Inside MsgLoop
+06.01.1980 02:08:14: iLock5: Inside MsgLoop
+06.01.1980 02:08:14: iLock5: Inside MsgLoop
+06.01.1980 02:08:14: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:14: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:14: iLock5: Processlist
+06.01.1980 02:08:14: iLock5: 	Process
+06.01.1980 02:08:14: iLock5: 	NK.EXE
+06.01.1980 02:08:14: iLock5: 	filesys.exe
+06.01.1980 02:08:14: iLock5: 	device.exe
+06.01.1980 02:08:14: iLock5: 	VSTS.exe
+06.01.1980 02:08:14: iLock5: 	iConnect.exe
+06.01.1980 02:08:14: iLock5: 	gwes.exe
+06.01.1980 02:08:14: iLock5: 	shell32.exe
+06.01.1980 02:08:14: iLock5: 	services.exe
+06.01.1980 02:08:14: iLock5: 	connmgr.exe
+06.01.1980 02:08:14: iLock5: 	SSClient.exe
+06.01.1980 02:08:14: iLock5: 	autorun.exe
+06.01.1980 02:08:15: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:08:15: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:08:15: iLock5: 	iLock5.exe
+06.01.1980 02:08:15: Watchdog live sign
+06.01.1980 02:08:15: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:08:15: iLock5: 	IQueue.exe
+06.01.1980 02:08:15: iLock5: 	DataServer.exe
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: Watchdog message: 61
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:15: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:15: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:15: iLock5: Inside MsgLoop
+06.01.1980 02:08:15: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:16: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:16: iLock5: Inside MsgLoop
+06.01.1980 02:08:16: iLock5: Inside MsgLoop
+06.01.1980 02:08:16: Watchdog live sign
+06.01.1980 02:08:16: iLock5: Inside MsgLoop
+06.01.1980 02:08:16: Watchdog message: 62
+06.01.1980 02:08:16: iLock5: Inside MsgLoop
+06.01.1980 02:08:16: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:16: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:16: iLock5: Inside MsgLoop
+06.01.1980 02:08:16: iLock5: Inside MsgLoop
+06.01.1980 02:08:16: iLock5: Inside MsgLoop
+06.01.1980 02:08:16: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:17: iLock5: Inside MsgLoop
+06.01.1980 02:08:17: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:17: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:17: Watchdog live sign
+06.01.1980 02:08:17: iLock5: Inside MsgLoop
+06.01.1980 02:08:17: iLock5: Inside MsgLoop
+06.01.1980 02:08:17: iLock5: Inside MsgLoop
+06.01.1980 02:08:17: Watchdog message: 63
+06.01.1980 02:08:17: iLock5: Inside MsgLoop
+06.01.1980 02:08:17: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:17: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:17: iLock5: Inside MsgLoop
+06.01.1980 02:08:17: iLock5: Inside MsgLoop
+06.01.1980 02:08:17: iLock5: Inside MsgLoop
+06.01.1980 02:08:17: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:18: iLock5: Inside MsgLoop
+06.01.1980 02:08:18: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:18: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:18: iLock5: Inside MsgLoop
+06.01.1980 02:08:18: iLock5: Inside MsgLoop
+06.01.1980 02:08:18: Watchdog live sign
+06.01.1980 02:08:18: iLock5: Inside MsgLoop
+06.01.1980 02:08:18: Watchdog message: 64
+06.01.1980 02:08:18: iLock5: Inside MsgLoop
+06.01.1980 02:08:18: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:18: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:18: iLock5: Inside MsgLoop
+06.01.1980 02:08:18: iLock5: Inside MsgLoop
+06.01.1980 02:08:18: iLock5: Inside MsgLoop
+06.01.1980 02:08:18: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:19: iLock5: Inside MsgLoop
+06.01.1980 02:08:19: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:19: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:19: iLock5: Inside MsgLoop
+06.01.1980 02:08:19: iLock5: Inside MsgLoop
+06.01.1980 02:08:19: Watchdog live sign
+06.01.1980 02:08:19: iLock5: Inside MsgLoop
+06.01.1980 02:08:19: Watchdog message: 65
+06.01.1980 02:08:19: iLock5: Inside MsgLoop
+06.01.1980 02:08:19: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:19: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:19: iLock5: Inside MsgLoop
+06.01.1980 02:08:19: iLock5: Inside MsgLoop
+06.01.1980 02:08:19: iLock5: Inside MsgLoop
+06.01.1980 02:08:19: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:19: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:19: iLock5: Processlist
+06.01.1980 02:08:19: iLock5: 	Process
+06.01.1980 02:08:19: iLock5: 	NK.EXE
+06.01.1980 02:08:19: iLock5: 	filesys.exe
+06.01.1980 02:08:19: iLock5: 	device.exe
+06.01.1980 02:08:19: iLock5: 	VSTS.exe
+06.01.1980 02:08:19: iLock5: 	iConnect.exe
+06.01.1980 02:08:19: iLock5: 	gwes.exe
+06.01.1980 02:08:19: iLock5: 	shell32.exe
+06.01.1980 02:08:19: iLock5: 	services.exe
+06.01.1980 02:08:20: iLock5: 	connmgr.exe
+06.01.1980 02:08:20: iLock5: 	SSClient.exe
+06.01.1980 02:08:20: iLock5: 	autorun.exe
+06.01.1980 02:08:20: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:08:20: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:08:20: iLock5: 	iLock5.exe
+06.01.1980 02:08:20: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:08:20: iLock5: 	IQueue.exe
+06.01.1980 02:08:20: iLock5: 	DataServer.exe
+06.01.1980 02:08:20: iLock5: Inside MsgLoop
+06.01.1980 02:08:20: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:20: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:20: Watchdog live sign
+06.01.1980 02:08:20: iLock5: Inside MsgLoop
+06.01.1980 02:08:20: iLock5: Inside MsgLoop
+06.01.1980 02:08:20: iLock5: Inside MsgLoop
+06.01.1980 02:08:20: Watchdog message: 66
+06.01.1980 02:08:20: iLock5: Inside MsgLoop
+06.01.1980 02:08:20: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:20: iLock5: Inside MsgLoop
+06.01.1980 02:08:20: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:20: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:20: iLock5: Inside MsgLoop
+06.01.1980 02:08:20: iLock5: Inside MsgLoop
+06.01.1980 02:08:21: iLock5: Inside MsgLoop
+06.01.1980 02:08:21: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:21: iLock5: Inside MsgLoop
+06.01.1980 02:08:21: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:21: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:21: iLock5: Inside MsgLoop
+06.01.1980 02:08:21: iLock5: Inside MsgLoop
+06.01.1980 02:08:21: Watchdog live sign
+06.01.1980 02:08:21: iLock5: Inside MsgLoop
+06.01.1980 02:08:21: Watchdog message: 67
+06.01.1980 02:08:21: iLock5: Inside MsgLoop
+06.01.1980 02:08:21: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:21: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:21: iLock5: Inside MsgLoop
+06.01.1980 02:08:22: Watchdog live sign
+06.01.1980 02:08:22: iLock5: Inside MsgLoop
+06.01.1980 02:08:22: iLock5: Inside MsgLoop
+06.01.1980 02:08:22: iLock5: Inside MsgLoop
+06.01.1980 02:08:22: Watchdog message: 68
+06.01.1980 02:08:22: iLock5: Inside MsgLoop
+06.01.1980 02:08:22: iLock5: Inside MsgLoop
+06.01.1980 02:08:22: iLock5: Inside MsgLoop
+06.01.1980 02:08:22: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:22: iLock5: Inside MsgLoop
+06.01.1980 02:08:22: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:22: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:22: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:23: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: Watchdog live sign
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: Watchdog message: 69
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:23: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:23: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:23: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:24: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:24: Watchdog live sign
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: Watchdog message: 70
+06.01.1980 02:08:24: iLock5: Inside MsgLoop
+06.01.1980 02:08:24: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:24: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:24: iLock5: Processlist
+06.01.1980 02:08:24: iLock5: 	Process
+06.01.1980 02:08:24: iLock5: 	NK.EXE
+06.01.1980 02:08:24: iLock5: 	filesys.exe
+06.01.1980 02:08:24: iLock5: 	device.exe
+06.01.1980 02:08:24: iLock5: 	VSTS.exe
+06.01.1980 02:08:25: iLock5: 	iConnect.exe
+06.01.1980 02:08:25: iLock5: 	gwes.exe
+06.01.1980 02:08:25: iLock5: 	shell32.exe
+06.01.1980 02:08:25: iLock5: 	services.exe
+06.01.1980 02:08:25: iLock5: 	connmgr.exe
+06.01.1980 02:08:25: iLock5: 	SSClient.exe
+06.01.1980 02:08:25: iLock5: 	ftpdce.exe
+06.01.1980 02:08:25: iLock5: 	TaskbarAddon4.exe
+06.01.1980 02:08:25: iLock5: 	iTimedReboot.exe
+06.01.1980 02:08:25: iLock5: 	TaskbarAddon6.exe
+06.01.1980 02:08:25: iLock5: 	iLock5.exe
+06.01.1980 02:08:25: iLock5: 	KeyToggleBoot.exe
+06.01.1980 02:08:25: iLock5: 	IQueue.exe
+06.01.1980 02:08:25: iLock5: 	DataServer.exe
+06.01.1980 02:08:25: iLock5: 	j9w.exe
+06.01.1980 02:08:25: iLock5: Inside MsgLoop
+06.01.1980 02:08:25: iLock5: WM_PAINT. Leaving
+06.01.1980 02:08:25: iLock5: Inside MsgLoop
+06.01.1980 02:08:25: Watchdog live sign
+06.01.1980 02:08:25: iLock5: Inside MsgLoop
+06.01.1980 02:08:25: Watchdog message: 71
+06.01.1980 02:08:25: iLock5: Inside MsgLoop
+06.01.1980 02:08:25: iLock5: WM_PAINT. Leaving
+06.01.1980 02:08:25: iLock5: Inside MsgLoop
+06.01.1980 02:08:25: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:25: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:25: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:26: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: Watchdog live sign
+06.01.1980 02:08:26: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:26: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: iLock5: Inside MsgLoop
+06.01.1980 02:08:26: Watchdog message: 72
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:27: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:27: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: Watchdog live sign
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: iLock5: Inside MsgLoop
+06.01.1980 02:08:27: Watchdog message: 73
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:28: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:28: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: Watchdog live sign
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: iLock5: Inside MsgLoop
+06.01.1980 02:08:28: Watchdog message: 74
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:29: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:29: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: Watchdog live sign
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:29: Watchdog message: 75
+06.01.1980 02:08:29: iLock5: Inside MsgLoop
+06.01.1980 02:08:30: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:30: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:30: iLock5: Inside MsgLoop
+06.01.1980 02:08:30: iLock5: Inside MsgLoop
+06.01.1980 02:08:30: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:30: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:30: iLock5: Inside MsgLoop
+06.01.1980 02:08:30: iLock5: Inside MsgLoop
+06.01.1980 02:08:30: iLock5: Inside MsgLoop
+06.01.1980 02:08:30: iLock5: Inside MsgLoop
+06.01.1980 02:08:30: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:30: iLock5: Inside MsgLoop
+06.01.1980 02:08:30: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:30: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:30: Watchdog live sign
+06.01.1980 02:08:30: iLock5: Inside MsgLoop
+06.01.1980 02:08:31: iLock5: Inside MsgLoop
+06.01.1980 02:08:31: iLock5: Inside MsgLoop
+06.01.1980 02:08:31: iLock5: Inside MsgLoop
+06.01.1980 02:08:31: Watchdog message: 76
+06.01.1980 02:08:31: iLock5: Inside MsgLoop
+06.01.1980 02:08:31: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:31: iLock5: Inside MsgLoop
+06.01.1980 02:08:31: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:31: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:31: iLock5: Inside MsgLoop
+06.01.1980 02:08:31: Watchdog live sign
+06.01.1980 02:08:31: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: Watchdog message: 77
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:32: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:32: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:32: iLock5: Inside MsgLoop
+06.01.1980 02:08:32: Watchdog live sign
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: Watchdog message: 78
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:33: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:33: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:33: iLock5: Inside MsgLoop
+06.01.1980 02:08:33: Watchdog live sign
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: Watchdog message: 79
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:34: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:34: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:34: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:34: iLock5: Inside MsgLoop
+06.01.1980 02:08:35: Watchdog live sign
+06.01.1980 02:08:35: iLock5: Inside MsgLoop
+06.01.1980 02:08:35: iLock5: Inside MsgLoop
+06.01.1980 02:08:35: iLock5: Inside MsgLoop
+06.01.1980 02:08:35: Watchdog message: 80
+06.01.1980 02:08:35: iLock5: Inside MsgLoop
+06.01.1980 02:08:35: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:35: iLock5: Inside MsgLoop
+06.01.1980 02:08:35: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:35: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:35: iLock5: Inside MsgLoop
+06.01.1980 02:08:36: Watchdog live sign
+06.01.1980 02:08:36: iLock5: Inside MsgLoop
+06.01.1980 02:08:36: Watchdog message: 81
+06.01.1980 02:08:36: iLock5: Inside MsgLoop
+06.01.1980 02:08:36: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:36: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:36: iLock5: Inside MsgLoop
+06.01.1980 02:08:36: iLock5: Inside MsgLoop
+06.01.1980 02:08:36: iLock5: Inside MsgLoop
+06.01.1980 02:08:36: iLock5: Inside MsgLoop
+06.01.1980 02:08:36: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:36: iLock5: Inside MsgLoop
+06.01.1980 02:08:36: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:36: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: Watchdog live sign
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: Watchdog message: 82
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:37: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:37: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:37: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: Watchdog live sign
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: Watchdog message: 83
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:38: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:38: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:38: iLock5: Inside MsgLoop
+06.01.1980 02:08:39: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:39: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:39: iLock5: Inside MsgLoop
+06.01.1980 02:08:39: Watchdog live sign
+06.01.1980 02:08:39: iLock5: Inside MsgLoop
+06.01.1980 02:08:39: iLock5: Inside MsgLoop
+06.01.1980 02:08:39: Watchdog message: 84
+06.01.1980 02:08:39: iLock5: Inside MsgLoop
+06.01.1980 02:08:39: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:39: iLock5: Inside MsgLoop
+06.01.1980 02:08:39: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:39: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:40: iLock5: Inside MsgLoop
+06.01.1980 02:08:40: Watchdog live sign
+06.01.1980 02:08:41: Watchdog live sign
+06.01.1980 02:08:41: iLock5: Inside MsgLoop
+06.01.1980 02:08:41: iLock5: Inside MsgLoop
+06.01.1980 02:08:42: Watchdog message: 85
+06.01.1980 02:08:42: iLock5: Inside MsgLoop
+06.01.1980 02:08:42: Watchdog message: 86
+06.01.1980 02:08:42: iLock5: Inside MsgLoop
+06.01.1980 02:08:42: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:42: iLock5: Inside MsgLoop
+06.01.1980 02:08:42: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:42: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:42: iLock5: Inside MsgLoop
+06.01.1980 02:08:42: Watchdog live sign
+06.01.1980 02:08:43: iLock5: Inside MsgLoop
+06.01.1980 02:08:43: Watchdog message: 87
+06.01.1980 02:08:43: iLock5: Inside MsgLoop
+06.01.1980 02:08:43: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:43: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:43: iLock5: Inside MsgLoop
+06.01.1980 02:08:43: Watchdog live sign
+06.01.1980 02:08:44: Watchdog live sign
+06.01.1980 02:08:44: iLock5: Inside MsgLoop
+06.01.1980 02:08:45: iLock5: Inside MsgLoop
+06.01.1980 02:08:45: Watchdog message: 88
+06.01.1980 02:08:45: iLock5: Inside MsgLoop
+06.01.1980 02:08:45: Watchdog message: 89
+06.01.1980 02:08:45: iLock5: Inside MsgLoop
+06.01.1980 02:08:45: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:45: iLock5: Inside MsgLoop
+06.01.1980 02:08:45: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:45: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:45: iLock5: Inside MsgLoop
+06.01.1980 02:08:45: Watchdog live sign
+06.01.1980 02:08:45: iLock5: Inside MsgLoop
+06.01.1980 02:08:45: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:45: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:45: iLock5: Inside MsgLoop
+06.01.1980 02:08:46: iLock5: Inside MsgLoop
+06.01.1980 02:08:46: iLock5: Inside MsgLoop
+06.01.1980 02:08:46: Watchdog message: 90
+06.01.1980 02:08:46: iLock5: Inside MsgLoop
+06.01.1980 02:08:46: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:46: iLock5: Inside MsgLoop
+06.01.1980 02:08:46: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:46: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:46: iLock5: Inside MsgLoop
+06.01.1980 02:08:46: Watchdog live sign
+06.01.1980 02:08:47: iLock5: Inside MsgLoop
+06.01.1980 02:08:47: iLock5: Inside MsgLoop
+06.01.1980 02:08:47: Watchdog message: 91
+06.01.1980 02:08:47: iLock5: Inside MsgLoop
+06.01.1980 02:08:47: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:47: iLock5: Inside MsgLoop
+06.01.1980 02:08:47: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:47: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:47: iLock5: Inside MsgLoop
+06.01.1980 02:08:47: Watchdog live sign
+06.01.1980 02:08:48: iLock5: Inside MsgLoop
+06.01.1980 02:08:48: iLock5: Inside MsgLoop
+06.01.1980 02:08:48: Watchdog message: 92
+06.01.1980 02:08:48: iLock5: Inside MsgLoop
+06.01.1980 02:08:48: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:48: iLock5: Inside MsgLoop
+06.01.1980 02:08:48: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:48: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:48: iLock5: Inside MsgLoop
+06.01.1980 02:08:49: Watchdog live sign
+06.01.1980 02:08:49: iLock5: Inside MsgLoop
+06.01.1980 02:08:49: iLock5: Inside MsgLoop
+06.01.1980 02:08:49: Watchdog message: 93
+06.01.1980 02:08:49: iLock5: Inside MsgLoop
+06.01.1980 02:08:50: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:50: Watchdog live sign
+06.01.1980 02:08:50: iLock5: Inside MsgLoop
+06.01.1980 02:08:50: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:50: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:50: iLock5: Inside MsgLoop
+06.01.1980 02:08:50: iLock5: Inside MsgLoop
+06.01.1980 02:08:50: Watchdog message: 94
+06.01.1980 02:08:50: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:51: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: Watchdog live sign
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: Watchdog message: 95
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:51: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:51: iLock5: Inside MsgLoop
+06.01.1980 02:08:51: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:52: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:52: iLock5: Inside MsgLoop
+06.01.1980 02:08:52: Watchdog live sign
+06.01.1980 02:08:52: iLock5: Inside MsgLoop
+06.01.1980 02:08:52: iLock5: Inside MsgLoop
+06.01.1980 02:08:52: Watchdog message: 96
+06.01.1980 02:08:52: iLock5: Inside MsgLoop
+06.01.1980 02:08:52: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:52: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:52: iLock5: Inside MsgLoop
+06.01.1980 02:08:52: iLock5: Inside MsgLoop
+06.01.1980 02:08:52: iLock5: Inside MsgLoop
+06.01.1980 02:08:52: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:53: iLock5: Inside MsgLoop
+06.01.1980 02:08:53: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:53: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:53: iLock5: Inside MsgLoop
+06.01.1980 02:08:53: iLock5: Inside MsgLoop
+06.01.1980 02:08:53: Watchdog live sign
+06.01.1980 02:08:53: iLock5: Inside MsgLoop
+06.01.1980 02:08:53: Watchdog message: 97
+06.01.1980 02:08:53: iLock5: Inside MsgLoop
+06.01.1980 02:08:53: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:53: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:53: iLock5: Inside MsgLoop
+06.01.1980 02:08:53: iLock5: Inside MsgLoop
+06.01.1980 02:08:53: iLock5: Inside MsgLoop
+06.01.1980 02:08:53: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:54: iLock5: Inside MsgLoop
+06.01.1980 02:08:54: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:54: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:54: iLock5: Inside MsgLoop
+06.01.1980 02:08:54: iLock5: Inside MsgLoop
+06.01.1980 02:08:54: Watchdog live sign
+06.01.1980 02:08:54: iLock5: Inside MsgLoop
+06.01.1980 02:08:54: Watchdog message: 98
+06.01.1980 02:08:54: iLock5: Inside MsgLoop
+06.01.1980 02:08:54: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:54: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:54: iLock5: Inside MsgLoop
+06.01.1980 02:08:54: iLock5: Inside MsgLoop
+06.01.1980 02:08:54: iLock5: Inside MsgLoop
+06.01.1980 02:08:54: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:55: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:55: iLock5: WM_TIMER. Timer2 proc...
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: Watchdog live sign
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: WM_PAINT. Leaving
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: Watchdog message: 99
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: WM_PAINT. Leaving
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:55: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:55: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:56: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: Watchdog live sign
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: Watchdog message: 100
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:56: iLock5: WM_TIMER. Timer3 proc...
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:56: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:56: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:57: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: Watchdog live sign
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: Watchdog message: 101
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:57: iLock5: WM_TIMER. Timer3 proc...
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:57: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:57: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:58: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: Watchdog live sign
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: Watchdog message: 102
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:58: iLock5: WM_TIMER. Timer3 proc...
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:58: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:58: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:59: iLock5: WM_TIMER. Timer1 proc...
+06.01.1980 02:08:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: Watchdog live sign
+06.01.1980 02:08:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: Watchdog message: 103
+06.01.1980 02:08:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: iLock5: WM_TIMER. Entering...
+06.01.1980 02:08:59: iLock5: WM_TIMER. Timer3 proc...
+06.01.1980 02:08:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: iLock5: Inside MsgLoop
+06.01.1980 02:08:59: iLock5: WM_DESTROY. Killing timers 1, 2 and 4.
+06.01.1980 02:08:59: iLock5: WM_DESTROY. Stopping Watchdog...
+06.01.1980 02:09:00: Watchdog live sign
+06.01.1980 02:09:00: Watchdog Thread ended
+06.01.1980 02:09:00: iLock5: WM_DESTROY. END
+06.01.1980 02:09:00: iLock5: Inside MsgLoop
+06.01.1980 02:09:00: iLock5: WM_PAINT. Leaving
+06.01.1980 02:09:01: iLock5: Inside MsgLoop
+06.01.1980 02:09:01: iLock5: WM_PAINT. Leaving
+06.01.1980 02:09:01: iLock5: Inside MsgLoop
+06.01.1980 02:09:01: iLock5: WM_PAINT. Leaving
+06.01.1980 02:09:01: iLock5: Inside MsgLoop
+06.01.1980 02:09:01: iLock5: WM_PAINT. Leaving
+06.01.1980 02:09:01: iLock5: Inside MsgLoop
+06.01.1980 02:09:01: iLock5: WM_PAINT. Leaving
+06.01.1980 02:09:01: nclog goes down
