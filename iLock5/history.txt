@@ -95,6 +95,16 @@
 
 	version 5.1.8.2:
 		changed logging, logging to file is now always in place!
+
+	version 5.1.9.0
+		activated UseFullScreen setting
+			;use full screen, currently not used
+			"UseFullScreen"="1"
+			if 1, taskbar will be hidden
+			if 0, taskbar is visible
+		added global g_hWnd
+		changed HideTaskBar() to resize window
+		
 */
 
 

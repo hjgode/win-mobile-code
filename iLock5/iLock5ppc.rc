@@ -184,7 +184,7 @@ BEGIN
     IDS_APP_TITLE           "iLock5"
     IDC_ILOCK5              "ILOCK5"
     IDS_HELLO               "iLock started! - \nPlease wait..."
-    IDS_VERSION             "5.1.8.2"
+    IDS_VERSION             "5.1.9.0"
 END
 
 STRINGTABLE 

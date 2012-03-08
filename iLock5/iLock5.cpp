@@ -116,6 +116,7 @@ static bool			bAppIsRunning=false;
 // Global Variables:
 HINSTANCE			hInst;			// current instance
 HWND				g_hWndMenuBar;		// menu bar handle
+HWND				g_hWnd = NULL;	//global main window handle
 
 #ifdef USEMENU
 HWND				hwndCB;			// The command bar handle
@@ -196,10 +197,10 @@ void ReadRegistry(void)
 		nclog(L"iLock5: Class2waitFor='%s'\r\n", Class2waitFor);
 
 	TCHAR tstr[255];
-	////RegReadStr(L"UseFullScreen", tstr);
-	////if (wcscmp(tstr, L"1")==0)
-	////	UseFullScreen=1;
-	////else
+	RegReadStr(L"UseFullScreen", tstr);
+	if (wcscmp(tstr, L"1")==0)
+		UseFullScreen=1;
+	else
 		UseFullScreen=0;
 	
 	RegReadStr(L"KeepLockedAfterExit", tstr);
@@ -500,6 +501,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		nclog(L"iLock5: InitInstance: CreateWindow failed. END!\r\n");
         return FALSE;
     }
+	g_hWnd=hWnd;
 
 	//start watchdog
 	if (CreateThread(NULL, 0, watchdogThread, (LPVOID) hWnd, 0, &pWatchdog))
@@ -535,10 +537,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	}
 #endif
 
-    ShowWindow(hWnd, SW_SHOWNORMAL);
-    UpdateWindow(hWnd);
+	LockTaskbar(true);
+
 
 #ifdef USESHFULLSCREEN
+	if(UseFullScreen==1)
+	{
 	nclog(L"iLock5: InitInstance: USESHFULLSCREEN defined...\r\n");
 	//remove some elements from default window
 	SHFullScreen(hWnd, SHFS_HIDETASKBAR | SHFS_HIDESIPBUTTON | SHFS_HIDESTARTICON);
@@ -548,9 +552,44 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	RECT rc;
 	SetRect(&rc, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
     MoveWindow(hWnd, rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, TRUE);
+	}
+#else
+	if(UseFullScreen==1)
+	{
+		//hide the taskbar, resize main window and move
+		nclog(L"iLock5: InitInstance: Moving/Resizing window because of UseFullScreen\r\n");
+		RECT rc;
+		RECT rcMenuBar;
+		RECT rcTaskbar;
+
+		HWND hWndTaskbar = FindWindow(L"HHTaskbar", NULL);
+		GetWindowRect(hWndTaskbar, &rcTaskbar);			// {top=0 bottom=26 left=0 right=240}
+		HideTaskbar(TRUE);
+
+		GetWindowRect(hWnd, &rc);						// {top=0 bottom=294 left=0 right=240}
+		if(UseMenuBar==1){
+			GetWindowRect(g_hWndMenuBar, &rcMenuBar);	// {top=294 bottom=320 left=0 right=240}
+		}
+		HideTaskbar(TRUE);
+		SetWindowPos(hWnd, HWND_TOPMOST, rc.left, rc.top, rc.right, rc.bottom, SWP_SHOWWINDOW);
+		//MoveWindow(hWnd, rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, FALSE);
+	}
+	else{
+		RECT rc;
+		RECT rcMenuBar;
+		RECT rcTaskbar;
+		HWND hWndTaskbar = FindWindow(L"HHTaskbar", NULL);
+		GetWindowRect(hWndTaskbar, &rcTaskbar);			// {top=294 bottom=320 left=0 right=240}
+		GetWindowRect(hWnd, &rc);						// {top=0 bottom=294 left=0 right=240}
+		if(UseMenuBar==1){
+			GetWindowRect(g_hWndMenuBar, &rcMenuBar);	// {top=294 bottom=320 left=0 right=240}
+		}
+		HideTaskbar(FALSE);
+		
+		SetWindowPos(hWnd, HWND_TOPMOST, rc.left, rc.top, rc.right, rc.bottom, SWP_SHOWWINDOW);
+	}
 #endif
-	LockTaskbar(true);
-	
+
 	////show above all windows?
 	//DWORD dwexstyle = ::GetWindowLong(hWnd, GWL_EXSTYLE);
 	//dwexstyle |= WS_EX_ABOVESTARTUP;
@@ -559,6 +598,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	//hide the sip
 	ShowSIP(false);
 	nclog(L"iLock5: end of InitInstance\r\n");
+
+    ShowWindow(hWnd, SW_SHOWNORMAL);
+    UpdateWindow(hWnd);
+
     return TRUE;
 }
 
@@ -1019,7 +1062,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			GetObject(hbm,sizeof(bm),&bm);
 
 			//BitBlt(hdc,0,0,bm.bmWidth,bm.bmHeight,hdcMem,0,0,SRCCOPY);
-			BitBlt(hdc,0,26,240,320-26,hdcMem,0,0,SRCCOPY);
+			RECT rect;
+			GetWindowRect(hWnd, &rect);
+			//GetClientRect(hWnd, &rect);
+			BitBlt(hdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, hdcMem, 0, 0, SRCCOPY);
 
 			// Now, clean up. A memory DC always has a drawing
 			// surface in it. It is created with a 1X1 monochrome
@@ -1109,12 +1155,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				LockDesktop(false);
 				LockTaskbar(false);
 				MaximizeTargetOnExit=0;
+				HideTaskbar(false);
 			}
 
 			if ( (MaximizeTargetOnExit==1) && (wcslen(Title2waitFor)>0) )
 				MaximizeWindow(Title2waitFor); //Maximize window
 
 			AllKeys(false);
+			if(UseFullScreen)
+				HideTaskbar(false);
             PostQuitMessage(0);
 			nclog(L"iLock5: WM_DESTROY. END\r\n");
             return 0;	//5.1.8.1 return messgage has been processed
