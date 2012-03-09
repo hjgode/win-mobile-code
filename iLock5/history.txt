@@ -104,7 +104,13 @@
 			if 0, taskbar is visible
 		added global g_hWnd
 		changed HideTaskBar() to resize window
-		
+
+	version 5.1.9.1
+		added KeepUseFullScreenOnExit controlling
+			"KeepUseFullScreenOnExit"="1"
+			if 1, the Taskbar will not be restored
+			if 0, the taskbar will be restored
+			depends on UseFullScreen, which switches HHTaskbar/TitleBar visible	or not
 */
 
 
@@ -131,3 +137,5 @@ REGEDIT4
 "HotSpotY"=dword:000000A0
 "ShowRebootTimeout"=dword:0000003C
 "UseLogging"=dword:00000001
+
+"KeepUseFullScreenOnExit"="1"

@@ -15,6 +15,8 @@
 #include "registry.h"
 #include "nclog.h"
 
+#pragma comment (exestr , "version 5.1.9.1")
+
 //fix memory problem on WM5 and later, see http://social.msdn.microsoft.com/forums/en-US/vssmartdevicesnative/thread/e91d845d-d51e-45ad-8acf-737e832c20d0/
 #ifndef TH32CS_SNAPNOHEAPS
 #define TH32CS_SNAPNOHEAPS = 0x40000000
@@ -125,7 +127,8 @@ HWND				hwndCB;			// The command bar handle
 TCHAR App2waitFor[255];				// the exe name of the app we wait for
 TCHAR Title2waitFor[255];			// the title of the window we wait for
 TCHAR Class2waitFor[255];			// the class of the window we wait for
-int UseFullScreen=0;					// do we have to run in fullscreen mode?
+int UseFullScreen=0;				// do we have to run in fullscreen mode? HHTaskbar/Title visible or not
+int KeepUseFullScreenOnExit=0;		// restore HHTaskbar on exit?
 int KeepLockedAfterExit=0;			// shall we leave and keep device locked?
 int MaximizeTargetOnExit=0;			// shall we maximize the target window
 int UseMenuBar=0;					// shall we show a menu?
@@ -202,6 +205,13 @@ void ReadRegistry(void)
 		UseFullScreen=1;
 	else
 		UseFullScreen=0;
+	
+	KeepUseFullScreenOnExit=0;
+	RegReadStr(L"KeepUseFullScreenOnExit", tstr);
+	if (wcscmp(tstr, L"1")==0)
+		KeepUseFullScreenOnExit=1;
+	else
+		KeepUseFullScreenOnExit=0;
 	
 	RegReadStr(L"KeepLockedAfterExit", tstr);
 	if (wcscmp(tstr, L"1")==0)
@@ -1162,8 +1172,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				MaximizeWindow(Title2waitFor); //Maximize window
 
 			AllKeys(false);
-			if(UseFullScreen)
-				HideTaskbar(false);
+			if(KeepUseFullScreenOnExit==0){
+				if(UseFullScreen)
+					HideTaskbar(false);
+			}
             PostQuitMessage(0);
 			nclog(L"iLock5: WM_DESTROY. END\r\n");
             return 0;	//5.1.8.1 return messgage has been processed
