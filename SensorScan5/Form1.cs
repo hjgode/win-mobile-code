@@ -57,7 +57,7 @@ namespace SensorScan5
             }
             catch (Exception)
             {
-                MessageBox.Show("No sensor available. Exit");
+                MessageBox.Show("No sensor available. Did you install SensorCab runtime? Exit");
                 Application.Exit();
             }
             //call mySensor_AccelerationEvent for Acceleration events from sensor

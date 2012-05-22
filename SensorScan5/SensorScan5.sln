@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorScan5", "SensorScan5.csproj", "{5A36EAD3-115B-4707-8FDE-704B16E08CA9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "perfChartClass", "perfChartClass\perfChartClass.csproj", "{31045968-12E1-457C-AD26-F540F4F1822B}"
@@ -19,7 +19,6 @@ Global
 		{5A36EAD3-115B-4707-8FDE-704B16E08CA9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{31045968-12E1-457C-AD26-F540F4F1822B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31045968-12E1-457C-AD26-F540F4F1822B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31045968-12E1-457C-AD26-F540F4F1822B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{31045968-12E1-457C-AD26-F540F4F1822B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31045968-12E1-457C-AD26-F540F4F1822B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31045968-12E1-457C-AD26-F540F4F1822B}.Release|Any CPU.Deploy.0 = Release|Any CPU
