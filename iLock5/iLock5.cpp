@@ -151,6 +151,9 @@ HWND hSetupWindow = NULL;
 
 HINSTANCE g_hInstance=NULL;
 int lvNextItem=1;
+//new with 5.2.0.0
+int g_iScreenWidth=240;
+int g_iScreenHeight=320;
 
 // Our DDB handle is a global variable.
 HBITMAP hbm;
@@ -389,6 +392,14 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	}
 	g_hInstance=hInstance;
 
+	HWND hwndDesktop = GetDesktopWindow();
+	if(hwndDesktop!=INVALID_HANDLE_VALUE){
+		RECT deskRect;
+		GetWindowRect(hwndDesktop, &deskRect);
+		g_iScreenWidth = deskRect.right - deskRect.left;
+		g_iScreenHeight=deskRect.bottom - deskRect.top;
+	}
+
 	HACCEL hAccelTable;
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_ILOCK5));
 	nclog(L"iLock5: SignalStarted(%i)\r\n", _ttoi(lpCmdLine));
@@ -481,7 +492,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	theRect.bottom = GetSystemMetrics(SM_CYSCREEN);
 	theRect.top=0;
 	theRect.left=0;
-
+	
     hWnd = CreateWindow(szWindowClass, szTitle, WS_VISIBLE,
         0, 
 		0, 
@@ -837,8 +848,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static int iCount3=0;
 	static int Timer4Count=0; //to track timer4 events
 
-	int screenXmax=240;
-	int screenYmax=320;
+	int screenXmax=GetSystemMetrics(SM_CXSCREEN); //240;
+	int screenYmax=GetSystemMetrics(SM_CYSCREEN); //320;
+
 	RECT rectScreen;
 	DWORD dwC=0;
 
@@ -897,10 +909,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             break;
         case WM_CREATE:
-			getScreenSize(&rectScreen);
+//			getScreenSize(&rectScreen);
+			//GetClientRect(hWnd, &rectScreen);
+			GetWindowRect(hWnd, &rectScreen);
 			screenXmax=rectScreen.right;
 			screenYmax=rectScreen.bottom;
-
+			RETAILMSG(1, (L"xMax, yMax = %i, %i\r\n", screenXmax, screenYmax));
 			AllKeys(true);
 #ifdef USEMENUBAR
 			if(UseMenuBar==1){
@@ -937,8 +951,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			//create progressbar
 			hProgress = CreateWindowEx(0, PROGRESS_CLASS, NULL,
 						   WS_CHILD | WS_VISIBLE | PBS_SMOOTH,
-					  20, 40,	//x, y 
-					  screenXmax-40, 20, //200, 20,	//width, height
+					  20*(screenXmax/240),  //x
+					  40*(screenYmax/320),	//y 
+					  screenXmax-40*(screenXmax/240),	//g_iScreenWidth,//-40, //200, screenXmax-40, //width, 
+					  20*(screenYmax/320), //height
 					  hWnd, NULL, hInst, NULL);
 			if (hProgress != NULL)
 			{
@@ -949,8 +965,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			hProcList = CreateWindowEx(0, WC_LISTVIEW, NULL,
 							WS_CHILD | WS_VISIBLE | LVS_REPORT | LVS_SINGLESEL | 
 							LVS_NOCOLUMNHEADER, // | LVS_SORTDESCENDING,
-							20, 235, 
-							200, 60,
+							20*(screenXmax/240),	//x pos
+							200*(screenYmax/320),// 235,  //y pos
+							screenXmax - (screenXmax/240)*40,// 200, //width
+							(screenYmax/320)*320/5,// 60,		//height
 							hWnd, 
 							//NULL, //hMenu or child window identifier zB 
 							(HMENU)IDC_LVIEW, //hMenu or child window identifier
@@ -1075,7 +1093,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			RECT rect;
 			GetWindowRect(hWnd, &rect);
 			//GetClientRect(hWnd, &rect);
-			BitBlt(hdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, hdcMem, 0, 0, SRCCOPY);
+			StretchBlt(hdc, 
+				rect.left, rect.top, rect.right, rect.bottom,	//target rectangle pos and width/height
+				hdcMem,
+				0,
+				0,
+				bm.bmWidth,
+				bm.bmHeight,
+				SRCCOPY);
+			//BitBlt(hdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, hdcMem, 0, 0, SRCCOPY);
 
 			// Now, clean up. A memory DC always has a drawing
 			// surface in it. It is created with a 1X1 monochrome
