@@ -300,29 +300,33 @@ void ReadRegistry(void)
 		TextListColor=0x00FFFFFF;
 	nclog(L"iLock5: TextListColor='%08x'\r\n", TextListColor);
 
+	int screenXmax=GetSystemMetrics(SM_CXSCREEN); //240;
+	int screenYmax=GetSystemMetrics(SM_CYSCREEN); //320;
+	nclog(L"iLock5: ScreenMetrics='%ix%i'\r\n", screenXmax, screenYmax);
+
 	//hotspot location
 	dwVal=120;
 	if(RegReadDword(L"HotSpotX", &dwVal)==ERROR_SUCCESS)
 	{
-		if(dwVal>10 && dwVal<230)
+		if(dwVal>10 && dwVal<screenXmax)
 			iHotSpotX=dwVal;
 		else
-			iHotSpotX=120;
+			iHotSpotX=screenXmax/2;
 	}
 	else
-		iHotSpotX=120;
+		iHotSpotX=screenXmax/2;
 	nclog(L"iLock5: iHotSpotX='%i'\r\n", iHotSpotX);
 	
 	dwVal=160;
 	if(RegReadDword(L"HotSpotY", &dwVal)==ERROR_SUCCESS)
 	{
-		if(dwVal>10 && dwVal<310)
+		if(dwVal>10 && dwVal<screenYmax)
 			iHotSpotY=dwVal;
 		else
-			iHotSpotY=160;
+			iHotSpotY=screenYmax/2;
 	}
 	else
-		iHotSpotY=160;
+		iHotSpotY=screenYmax;
 	nclog(L"iLock5: iHotSpotY='%i'\r\n", iHotSpotY);
 
 	//ShowRebootTimeout
@@ -991,7 +995,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				LVCOLUMN LvCol; // Make Coluom struct for ListView
                 memset(&LvCol,0,sizeof(LvCol)); // Reset Coluom
 				LvCol.mask=LVCF_TEXT|LVCF_WIDTH|LVCF_SUBITEM; // Type of mask
-				LvCol.cx=200;                                // width between each coloum
+				LvCol.cx=screenXmax - (screenXmax/240)*40;//200;                                // width between each coloum
 				LvCol.pszText=L"Item";                     // First Header
 				SendMessage(hProcList,LVM_INSERTCOLUMN,0,(LPARAM)&LvCol); // Insert/Show the coloum
 			
