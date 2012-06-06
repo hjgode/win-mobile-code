@@ -1,3 +1,4 @@
+
 /*
 	version 1.0
 		initial release
@@ -111,6 +112,10 @@
 			if 1, the Taskbar will not be restored
 			if 0, the taskbar will be restored
 			depends on UseFullScreen, which switches HHTaskbar/TitleBar visible	or not
+
+	version 5.2.0.0
+		imported project into VS2008
+		changed code to be HIRES_AWARE (positions and sizes)
 */
 
 
