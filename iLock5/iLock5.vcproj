@@ -285,6 +285,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\iLock.reg"
+			>
+		</File>
+		<File
 			RelativePath=".\ReadMe.txt"
 			>
 		</File>

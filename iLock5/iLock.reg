@@ -1,0 +1,44 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Intermec\iLock]
+"KeepUseFullScreenOnExit"="1"
+;			if 1, the Taskbar will not be restored
+;			if 0, the taskbar will be restored
+"FreeDesktopOnExit"="1"
+;			enable desktop on exit, default 1, will work only if UseDesktopLock="1"
+"TextBackColor"=dword:00FFFFFF
+"TextListColor"=dword:00FFFFFF
+"TextColor"=dword:002B1CE2
+;			define colors as RGB values 00BBGGRR, default black text on white
+"WaitBeforeExit"=dword:000000F0
+;			seconds to wait before exit
+"UseMenuBar"="0"
+;			show a menubar, default 0
+"UseDesktopLock"="0"
+;			lock the desktop, default 0
+"MaximizeTargetOnExit"="0"
+;			maximize the target window on exit, default 0
+"KeepLockedAfterExit"="1"
+;			lock taskbar on exit, default 0
+"UseFullScreen"="1"
+;			use full screen. 1 = taskbar will be hidden, 0 = taskbar is visible
+"App2waitFor"="eflash.exe"
+;			name of the process to wait for, default "", 
+;			This can be the executable with or without the extension!
+;			mobilecalculator is different from mobilecalculator.exe
+;			depends on how the target was started
+"Title2waitFor"="EFlash_A3"
+;			name of the window text to wait for
+"Class2waitFor"=""
+;			name of the window class name to wait for
+;			either specify at least Class2waitFor or Title2waitFor or both
+"HotSpotX"=dword:00000078
+;			HotSpotX = 120, (DWORD: 10-230
+"HotSpotY"=dword:000000A0
+;			HotSpotY = 160, (DWORD: 10-310)
+;			tapping near hotspot enables exit with password
+"ShowRebootTimeout"=dword:000000F0
+;		shows a button to enable reboot if target does not start
+;		"ShowRebootTimeout"=60	; // 0 to 300, defaults to 60 seconds
+"UseLogging"=dword:00000000
+;		disable/enable logging
