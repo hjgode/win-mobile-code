@@ -15,7 +15,7 @@
 #include "registry.h"
 #include "nclog.h"
 
-#pragma comment (exestr , "version 5.1.9.1")
+#pragma comment (user , "version 5.2.0.1")
 
 //fix memory problem on WM5 and later, see http://social.msdn.microsoft.com/forums/en-US/vssmartdevicesnative/thread/e91d845d-d51e-45ad-8acf-737e832c20d0/
 #ifndef TH32CS_SNAPNOHEAPS
@@ -352,6 +352,18 @@ void ReadRegistry(void)
 	}
 	else
 		iUseLogging = 0;
+
+	//enable Logging
+	dwVal=0;
+	if(RegReadDword(L"UseSocket", &dwVal)==ERROR_SUCCESS)
+	{
+		if(dwVal==0)
+			nclogDisableSocket(TRUE);
+		else
+			nclogDisableSocket(FALSE);
+	}
+	else
+		nclogDisableSocket(TRUE);
 
 #ifdef DEBUG
 	TIMER4COUNT=3;

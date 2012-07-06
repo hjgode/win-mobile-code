@@ -116,6 +116,11 @@
 	version 5.2.0.0
 		imported project into VS2008
 		changed code to be HIRES_AWARE (positions and sizes)
+	
+	version 5.2.0.1
+		added UseSocket var (registry), default=1 (disables socket logging)
+		"UseSocket"=dword:00000000
+;		disable/enable logging via a socket broadcast
 */
 
 

@@ -5,7 +5,7 @@ extern void nclog (const wchar_t *fmt, ...);
 //extern bool set_nclog_port(unsigned short x) { return wsa_bind(x); }
 extern TCHAR* logDateTime();
 extern void nclogEnable(BOOL bEnable);
-
+extern void nclogDisableSocket(BOOL bDisable);
 /*
 usage:
 	nclog(L"The Window Handle is: %x\n",hwnd); 

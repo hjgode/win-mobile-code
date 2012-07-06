@@ -18,6 +18,7 @@ static char	logFileName[MAX_PATH];
 static TCHAR	logFileNameW[MAX_PATH];
 static BOOL bFirstFileCall = true;
 static int iUseLogging=0;
+static BOOL bUseSocket=FALSE;
 
 //max log file size ~250KByte
 #define MAX_LOG_SIZE 0x0002FFFF
@@ -28,6 +29,10 @@ void nclogEnable(BOOL bEnable){
 		iUseLogging=1;
 	else
 		iUseLogging=0;
+}
+
+extern void nclogDisableSocket(BOOL bDisable){
+	bUseSocket = !bDisable;
 }
 
 // bind the log socket to a specific port.
@@ -202,7 +207,9 @@ void nclog (const wchar_t *fmt, ...)
         va_start(vl,fmt);
         wchar_t buf[1024]; // to bad CE hasn't got wvnsprintf
         wvsprintf(buf,fmt,vl);
-        wsa_init();
+
+		if(bUseSocket)
+			wsa_init();
         char bufOut[512];
 		
 		//insert data/time
@@ -216,10 +223,13 @@ void nclog (const wchar_t *fmt, ...)
 		wsa_send(bufOut);
 		DEBUGMSG(1, (buf));
 #else
+		if(bUseSocket)
+			wsa_send(bufOut);
+
 		RETAILMSG(1, (buf));
 #endif
+		writefile(buf);
 	}//iUseLogging
-	writefile(buf);
 }
 
 // finalize the socket on program termination.
