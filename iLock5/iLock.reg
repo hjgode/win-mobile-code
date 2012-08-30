@@ -1,6 +1,9 @@
 REGEDIT4
 
 [HKEY_LOCAL_MACHINE\Software\Intermec\iLock]
+"DebugMode"=dword:00000000
+;			if 1, SetTopWindow without function
+;			if 0, SetTopWindow peridically brings iLock to Top (default)
 "KeepUseFullScreenOnExit"="1"
 ;			if 1, the Taskbar will not be restored
 ;			if 0, the taskbar will be restored
