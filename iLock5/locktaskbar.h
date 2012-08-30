@@ -133,12 +133,19 @@ int MaximizeWindow(TCHAR *wText)
 	SetWindowLong(hWnd, GWL_STYLE, dwStyle);
 	ShowWindow(hWnd, SW_MAXIMIZE);
 	// UseFullScreen?
-	if (UseFullScreen==1)
-		SetWindowPos(hWnd, HWND_TOPMOST, 0,0,240,320,SWP_SHOWWINDOW);
+	if (UseFullScreen==1){
+		int iW = GetSystemMetrics(SM_CXSCREEN);
+		int iH = GetSystemMetrics(SM_CYSCREEN);
+		SetWindowPos(hWnd, HWND_TOPMOST, 0,0,iW,iH,SWP_SHOWWINDOW);
+	}
 	else
 	{
 #ifdef PPC
-		SetWindowPos(hWnd, HWND_TOPMOST, 0,0+26,240,320-26-26,SWP_SHOWWINDOW);
+		RECT rectWork;
+		SystemParametersInfo(SPI_GETWORKAREA, 0, &rectWork, 0);
+		int iW = GetSystemMetrics(SM_CXSCREEN);
+		int iH = GetSystemMetrics(SM_CYSCREEN);
+		SetWindowPos(hWnd, HWND_TOPMOST, 0, rectWork.top, iW, iH, SWP_SHOWWINDOW);// 0+26,240,320-26-26,SWP_SHOWWINDOW);
 #else
 		SetWindowPos(hWnd, HWND_TOPMOST, 0,0,240,320-26,SWP_SHOWWINDOW);
 #endif
@@ -321,12 +328,18 @@ long SetTopWindow(HWND hwnd)
 {
 	if(bDebugMode)
 		return 0;
+
+	if(bDebugMode)
+		return 0;
 	EnableWindow(hwnd, TRUE);
 	return (SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW));
 }
 
 long LockDesktop(bool lockIt)
 {
+	if(bDebugMode)
+		return 0;
+
 	//return 0; //for test
 	HWND hWndDesk;
 	HRESULT hr;
@@ -355,6 +368,8 @@ long LockDesktop(bool lockIt)
 
 long LockTaskbar(bool lockIt)
 {
+	if(bDebugMode)
+		return 0;
 	HWND hWndTb;
 	HRESULT hr;
 	bool enable;

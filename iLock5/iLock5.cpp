@@ -375,6 +375,7 @@ void ReadRegistry(void)
 		else{
 			bDebugMode = TRUE;
 			UseMenuBar=1;
+			UseFullScreen=0;
 		}
 	}
 	else
@@ -837,10 +838,12 @@ RECT * getScreenSize(RECT * rect){
 		rect->bottom=cy;
 	}
 	else{
+		int iW = GetSystemMetrics(SM_CXSCREEN);
+		int iH = GetSystemMetrics(SM_CYSCREEN);
 		rect->top=0;
 		rect->left=0;
-		rect->right=240;
-		rect->bottom=320;
+		rect->right=iW;
+		rect->bottom=iH;
 	}
 	return rect;
 }
