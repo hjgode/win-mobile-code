@@ -13,6 +13,11 @@
 #endif
 
 //==========================================================================================
+// external var
+//==========================================================================================
+extern BOOL bDebugMode;
+
+//==========================================================================================
 // function definitions
 //==========================================================================================
 long LockTaskbar(bool lockIt);			//lock/unlock the taskbar
@@ -340,6 +345,8 @@ bool KillExeWindow(TCHAR* exefile)
 
 long SetTopWindow(HWND hwnd)
 {
+	if(bDebugMode)
+		return 0;
 	EnableWindow(hwnd, TRUE);
 	return (SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_SHOWWINDOW));
 }
@@ -399,6 +406,13 @@ long HideTaskbar(bool hideIt)
 	hWndTb = FindWindow(L"HHTASKBAR", NULL);
 	if (hWndTb != NULL)
 	{
+		//code to move taskbar out/in of screen
+		//RECT rect;
+		//GetWindowRect(hWndTb, &rect);
+		//if(hideIt)
+		//	SetWindowPos(hWndTb, HWND_BOTTOM, rect.left, -rect.bottom, rect.left, rect.bottom, SWP_HIDEWINDOW);
+		//else
+		//	SetWindowPos(hWndTb, HWND_BOTTOM, 0, 0, rect.left, rect.bottom, SWP_HIDEWINDOW);
 		
 		hr = ShowWindow(hWndTb, enable);
 		UpdateWindow(hWndTb);
