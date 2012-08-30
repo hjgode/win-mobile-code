@@ -15,7 +15,7 @@
 #include "registry.h"
 #include "nclog.h"
 
-#pragma comment (user , "version 5.2.0.1")
+#pragma comment (user , "version 5.2.0.2")	//see also iLock5ppc.rc !
 
 //fix memory problem on WM5 and later, see http://social.msdn.microsoft.com/forums/en-US/vssmartdevicesnative/thread/e91d845d-d51e-45ad-8acf-737e832c20d0/
 #ifndef TH32CS_SNAPNOHEAPS
@@ -143,6 +143,7 @@ int iHotSpotX=120;					// x-pos of hotspot on screen for doubleclick exit
 int iHotSpotY=160;					// y-pos of hotspot on screen for doubleclick exit
 									//hotspot DBL_CLICK is recognized within 10 pixels around hotspot
 int iUseLogging=0;					// enable logging to file and socket
+BOOL bDebugMode=FALSE;				// disable SetTopWindow, enables you to view background
 
 RECT theRect; //store screen size
 
@@ -361,6 +362,18 @@ void ReadRegistry(void)
 			nclogDisableSocket(TRUE);
 		else
 			nclogDisableSocket(FALSE);
+	}
+	else
+		nclogDisableSocket(TRUE);
+
+	//enable DebugMode
+	dwVal=0;
+	if(RegReadDword(L"DebugMode", &dwVal)==ERROR_SUCCESS)
+	{
+		if(dwVal==0)
+			bDebugMode = FALSE;
+		else
+			bDebugMode = TRUE;
 	}
 	else
 		nclogDisableSocket(TRUE);
@@ -1307,7 +1320,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					case timer3:
 						nclog(L"iLock5: WM_TIMER. Timer3 proc...\r\n");
 						//static int iCount3=0;
-						if(iCount3==WaitBeforeExit){
+						if(iCount3>=WaitBeforeExit){
 							KillTimer(hWnd, timer3);
 							DestroyWindow(hWnd);
 						}
@@ -1316,7 +1329,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 						SendMessage(hProgress, PBM_STEPIT, 0, 0);
 						return 0;	//5.1.8.1 return messgage has been processed
 					case timer4:
-						DEBUGMSG(1, (L"WM_TIMER. Timer4 proc...\r\n"));
+						nclog(L"WM_TIMER. Timer4 proc...\r\n");
 						Timer4Count++;
 						if(Timer4Count>TIMER4COUNT){
 							ShowWindow(hBtnReboot, SW_SHOWNORMAL);
