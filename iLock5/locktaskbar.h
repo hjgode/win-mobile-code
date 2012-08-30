@@ -148,32 +148,6 @@ int MaximizeWindow(TCHAR *wText)
 	return 0;
 }
 
-//======================================================================
-int MaximizeWindow(TCHAR *cText, TCHAR *wText)
-{
-	TCHAR txt[MAX_PATH];
-	TCHAR ctxt[MAX_PATH];
-	wcscpy(txt, wText);
-	wcscpy(ctxt, cText);
-	HWND hWnd = FindWindow(ctxt, txt);
-	if (hWnd == NULL)
-		return -1;
-	DWORD dwStyle = GetWindowLong(hWnd, GWL_STYLE);
-	//remove caption style
-	dwStyle &= ~(WS_CAPTION);
-
-	SetWindowLong(hWnd, GWL_STYLE, dwStyle);
-	ShowWindow(hWnd, SW_MAXIMIZE);
-	// UseFullScreen?
-	if (UseFullScreen==1)
-		SetWindowPos(hWnd, HWND_TOPMOST, 0,0,240,320,SWP_SHOWWINDOW);
-	else
-		SetWindowPos(hWnd, HWND_TOPMOST, 0,0+26,240,320-26-26,SWP_SHOWWINDOW);
-
-
-	return 0;
-}
-
 //==========================================================================================
 // function implementations
 //==========================================================================================
@@ -399,6 +373,9 @@ long LockTaskbar(bool lockIt)
 
 long HideTaskbar(bool hideIt)
 {
+	if(bDebugMode)
+		return 0;
+
 	HWND hWndTb;
 	HRESULT hr;
 	bool enable;

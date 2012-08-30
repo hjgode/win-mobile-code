@@ -372,11 +372,13 @@ void ReadRegistry(void)
 	{
 		if(dwVal==0)
 			bDebugMode = FALSE;
-		else
+		else{
 			bDebugMode = TRUE;
+			UseMenuBar=1;
+		}
 	}
 	else
-		nclogDisableSocket(TRUE);
+		bDebugMode = FALSE;
 
 #ifdef DEBUG
 	TIMER4COUNT=3;
@@ -621,7 +623,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 			GetWindowRect(g_hWndMenuBar, &rcMenuBar);	// {top=294 bottom=320 left=0 right=240}
 		}
 		HideTaskbar(TRUE);
-		SetWindowPos(hWnd, HWND_TOPMOST, rc.left, rc.top, rc.right, rc.bottom, SWP_SHOWWINDOW);
+		if(!bDebugMode)
+			SetWindowPos(hWnd, HWND_TOPMOST, rc.left, rc.top, rc.right, rc.bottom, SWP_SHOWWINDOW);
 		//MoveWindow(hWnd, rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, FALSE);
 	}
 	else{
@@ -636,7 +639,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		}
 		HideTaskbar(FALSE);
 		
-		SetWindowPos(hWnd, HWND_TOPMOST, rc.left, rc.top, rc.right, rc.bottom, SWP_SHOWWINDOW);
+		if(!bDebugMode)
+			SetWindowPos(hWnd, HWND_TOPMOST, rc.left, rc.top, rc.right, rc.bottom, SWP_SHOWWINDOW);
 	}
 #endif
 

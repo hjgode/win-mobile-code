@@ -237,6 +237,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\locktaskbar.h"
+				>
+			</File>
+			<File
 				RelativePath=".\nclog.h"
 				>
 			</File>
