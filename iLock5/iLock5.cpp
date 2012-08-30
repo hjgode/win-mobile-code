@@ -886,6 +886,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	int screenXmax=GetSystemMetrics(SM_CXSCREEN); //240;
 	int screenYmax=GetSystemMetrics(SM_CYSCREEN); //320;
+	int xButton;
+	int yButton;
 
 	RECT rectScreen;
 	DWORD dwC=0;
@@ -987,7 +989,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			//create progressbar
 			hProgress = CreateWindowEx(0, PROGRESS_CLASS, NULL,
 						   WS_CHILD | WS_VISIBLE | PBS_SMOOTH,
-					  20*(screenXmax/240),  //x
+					  20*(screenXmax/240),  //x with some scaling
 					  40*(screenYmax/320),	//y 
 					  screenXmax-40*(screenXmax/240),	//g_iScreenWidth,//-40, //200, screenXmax-40, //width, 
 					  20*(screenYmax/320), //height
@@ -1049,14 +1051,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			SetTimer (hWnd, timer1, timer1intervall, NULL) ;  //relock screen all .5 seconds
 			SetTimer (hWnd, timer2, timer2intervall, NULL) ; //refresh process list all 5 seconds
 
+			xButton = (screenXmax/2)-(100/2);
+			yButton = 40*(screenYmax/320) + (screenYmax/320)*320/5 + 26;//based on progressbar pos and height
 			hBtnReboot = CreateWindow(
 				L"BUTTON", /* this makes a "button" */
 				L"Reboot", /* this is the text which will appear in the button */
 				WS_CHILD, // WS_VISIBLE | WS_CHILD,
-				screenXmax/2-100/2,//	5,		// x /* these four lines are the position and dimensions of the button */
-				65,		// y
+				xButton, // screenXmax/2-100/2,//	5,		// x /* these four lines are the position and dimensions of the button */
+				yButton, // screenYmax/320*65,		// y
 				100,	// width
-				20,		// height
+				screenYmax/320*26,		// height
 				hWnd, /* this is the buttons parent window */
 				NULL, //(HMENU)IDB_CLASS_OPTIONS, /* these next two lines pretty much tell windows what to do when the button is pressed */
 				NULL, //(HINSTANCE)GetWindowLong(insert, GWL_HINSTANCE),
