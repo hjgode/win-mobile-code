@@ -70,7 +70,7 @@
 				AdditionalOptions=" /subsystem:windowsce,5.02"
 				OutputFile="$(OutDir)/disableTouchDLLSimple.dll"
 				LinkIncremental="2"
-				ModuleDefinitionFile="touc1.def"
+				ModuleDefinitionFile="disableTouchDLLsimple.def"
 				DelayLoadDLLs="$(NOINHERIT)"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/touc1.pdb"
