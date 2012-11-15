@@ -1,0 +1,6 @@
+LIBRARY	"disableTouchDLLsimple"
+
+EXPORTS
+	TouchRegisterWindow
+	TouchUnregisterWindow
+	

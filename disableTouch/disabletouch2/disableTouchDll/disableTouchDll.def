@@ -1,0 +1,4 @@
+LIBRARY	"disableTouchDll"
+
+EXPORTS
+	disableTouch
