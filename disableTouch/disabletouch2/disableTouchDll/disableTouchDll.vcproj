@@ -5,6 +5,10 @@
 	Name="disableTouchDll"
 	ProjectGUID="{D0F31D5A-FA10-4983-BDCC-CF167F22DC83}"
 	RootNamespace="disableTouchDll"
+	SccProjectName="Svn"
+	SccAuxPath="Svn"
+	SccLocalPath="Svn"
+	SccProvider="SubversionScc"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="131072"
 	>

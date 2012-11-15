@@ -14,6 +14,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "disableTouchDll", "disableTouchDll\disableTouchDll.vcproj", "{D0F31D5A-FA10-4983-BDCC-CF167F22DC83}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I) = Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
