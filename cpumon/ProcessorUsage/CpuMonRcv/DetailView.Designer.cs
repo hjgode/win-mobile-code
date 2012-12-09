@@ -33,10 +33,15 @@
             this.masterDataGridView = new System.Windows.Forms.DataGridView();
             this.detailsDataGridView = new System.Windows.Forms.DataGridView();
             this.PushGraph1 = new CustomUIControls.Graphing.C2DPushGraph();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuExport2CSV = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuClose = new System.Windows.Forms.ToolStripMenuItem();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.detailsDataGridView)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -105,6 +110,39 @@
             this.PushGraph1.Text = "c2DPushGraph1";
             this.PushGraph1.TextColor = System.Drawing.Color.Yellow;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(775, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExport2CSV,
+            this.mnuClose});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // mnuExport2CSV
+            // 
+            this.mnuExport2CSV.Name = "mnuExport2CSV";
+            this.mnuExport2CSV.Size = new System.Drawing.Size(152, 22);
+            this.mnuExport2CSV.Text = "Export to CSV";
+            this.mnuExport2CSV.Click += new System.EventHandler(this.mnuExport2CSV_Click);
+            // 
+            // mnuClose
+            // 
+            this.mnuClose.Name = "mnuClose";
+            this.mnuClose.Size = new System.Drawing.Size(152, 22);
+            this.mnuClose.Text = "Close";
+            this.mnuClose.Click += new System.EventHandler(this.mnuClose_Click);
+            // 
             // DetailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,10 +153,14 @@
             this.Controls.Add(label1);
             this.Controls.Add(this.detailsDataGridView);
             this.Controls.Add(this.masterDataGridView);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "DetailView";
             this.Text = "DetailView";
             ((System.ComponentModel.ISupportInitialize)(this.masterDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.detailsDataGridView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,5 +171,9 @@
         private System.Windows.Forms.DataGridView masterDataGridView;
         private System.Windows.Forms.DataGridView detailsDataGridView;
         private CustomUIControls.Graphing.C2DPushGraph PushGraph1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuExport2CSV;
+        private System.Windows.Forms.ToolStripMenuItem mnuClose;
     }
 }

@@ -57,7 +57,7 @@ namespace CpuMonRcv
 
         private SQLiteConnection sql_con;
         private SQLiteCommand sql_cmd;
-        private SQLiteDataAdapter DB;
+        private SQLiteDataAdapter sql_dap;
 
         BindingSource bsProcesses;
         DataSet dsProcesses;
@@ -70,6 +70,10 @@ namespace CpuMonRcv
         Thread myDataThread;
 
         public EventWaitHandle waitHandle;
+
+        public DataAccess()
+        {
+        }
 
         public DataAccess(DataGridView dg, ref Queue<System.Process.ProcessStatistics.process_statistics> dQueue)
         {
@@ -176,6 +180,35 @@ namespace CpuMonRcv
                 System.Diagnostics.Debug.WriteLine("addData Exception: " + ex.Message);
             }
             return bRet;
+        }
+        
+        public int Export2CSV(string sFileCSV)
+        {
+            //pause data read thread (socksrv)?
+            connectDB();
+            sql_con.Open();
+            sql_cmd = sql_con.CreateCommand();
+            string CommandText = "select * from processes";
+            int iCnt = 0;
+            SQLiteDataReader rdr = null;
+            try
+            {
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(sFileCSV);
+                rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (rdr.Read())
+                {
+                    iCnt++;
+                    //Console.WriteLine(rdr["ProcID"] + " " + rdr["User"]);
+                    sw.Write(rdr["ProcID"] + ";" + rdr["User"]);
+                }
+            }
+            finally
+            {
+                rdr.Close();
+            }
+            
+            sql_con.Close();
+            return iCnt;
         }
 
         private void createTablesSQL()
@@ -421,10 +454,10 @@ namespace CpuMonRcv
             connectDB();
             sql_con.Open();
             sql_cmd = sql_con.CreateCommand();
-            string CommandText = "select id, desc from mains";
-            DB = new SQLiteDataAdapter(CommandText, sql_con);
+            string CommandText = "select * from processes";
+            sql_dap = new SQLiteDataAdapter(CommandText, sql_con);
             dsProcesses.Reset();
-            DB.Fill(dsProcesses);
+            sql_dap.Fill(dsProcesses);
             dtProcesses = dsProcesses.Tables[0];
             this._dataGrid.DataSource = dtProcesses;
             sql_con.Close();

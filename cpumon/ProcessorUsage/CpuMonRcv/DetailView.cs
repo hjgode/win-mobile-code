@@ -142,5 +142,20 @@ namespace CpuMonRcv
             updateGraph = true;
 
         }
+
+        private void mnuClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void mnuExport2CSV_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog ofd = new SaveFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                DataAccess da = new DataAccess();
+                da.Export2CSV(ofd.FileName);
+            }
+        }
     }
 }
