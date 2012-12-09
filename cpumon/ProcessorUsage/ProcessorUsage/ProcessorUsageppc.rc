@@ -1,0 +1,233 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resourceppc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "C:\WTL80\include\atlresce.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resourceppc.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""atlresce.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""ProcessorUsageppc.rc2""\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\ProcessorUsage.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINDLG DIALOG  0, 0, 156, 166
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "ProcessorUsage"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_PROCESS_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,142,139
+    RTEXT           "CPU Usage:",IDC_STATIC,79,150,41,8
+    RTEXT           "Processes:",IDC_STATIC,7,150,36,8
+    LTEXT           "0",IDC_PROCESS_COUNT_STATIC,45,150,33,8
+    LTEXT           "0%",IDC_CPU_USAGE_STATIC,123,150,26,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MAINDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 149
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 158
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "Q",            ID_APP_EXIT,            VIRTKEY, CONTROL
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "FileDescription", "ProcessorUsage Module"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "ProcessorUsage"
+            VALUE "LegalCopyright", "Copyright 2011"
+            VALUE "OriginalFilename", "ProcessorUsage.exe"
+            VALUE "ProductName", "ProcessorUsage Module"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "ProcessorUsage"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "New"
+    ID_FILE_OPEN            "Open"
+    ID_FILE_CLOSE           "Close"
+    ID_FILE_SAVE            "Save"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Program information"
+    ID_APP_EXIT             "Quit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Next Pane"
+    ID_PREV_PANE            "Previous Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split to panes"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase"
+    ID_EDIT_CLEAR_ALL       "Erase All"
+    ID_EDIT_COPY            "Copy"
+    ID_EDIT_CUT             "Cut"
+    ID_EDIT_FIND            "Find"
+    ID_EDIT_PASTE           "Paste"
+    ID_EDIT_REPEAT          "Repeat"
+    ID_EDIT_REPLACE         "Replace"
+    ID_EDIT_SELECT_ALL      "Select All"
+    ID_EDIT_UNDO            "Undo"
+    ID_EDIT_REDO            "Redo"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MENU_OK              "Done"
+    ID_MENU_CANCEL          "Cancel"
+    ID_MENU                 "Menu"
+    ID_ACTION               "Action"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_FULLSCREEN      "Full screen"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "ProcessorUsageppc.rc2"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
