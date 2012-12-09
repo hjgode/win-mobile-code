@@ -164,5 +164,11 @@ namespace CpuMonRcv
             myDispose();
             Application.Exit();
         }
+
+        private void mnuTestForm_Click(object sender, EventArgs e)
+        {
+            TestForm tf = new TestForm();
+            tf.Show();
+        }
     }
 }

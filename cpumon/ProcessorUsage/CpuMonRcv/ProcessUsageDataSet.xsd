@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProcessUsageDataSet" targetNamespace="http://tempuri.org/ProcessUsageDataSet.xsd" xmlns:mstns="http://tempuri.org/ProcessUsageDataSet.xsd" xmlns="http://tempuri.org/ProcessUsageDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ProcessUsageConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ProcessUsageConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CpuMonRcv.Properties.Settings.GlobalReference.Default.ProcessUsageConnectionString" Provider="System.Data.SQLite" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProcessViewTableAdapter" GeneratorDataComponentClassName="ProcessViewTableAdapter" Name="ProcessView" UserDataComponentName="ProcessViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ProcessUsageConnectionString (Settings)" DbObjectName="main.ProcessView" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT [ProcID], [Process], [Usage], [Duration], [theTime] FROM [ProcessView]</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="[ProcID]" DataSetColumn="[ProcID]" />
+              <Mapping SourceColumn="[Process]" DataSetColumn="[Process]" />
+              <Mapping SourceColumn="[Usage]" DataSetColumn="[Usage]" />
+              <Mapping SourceColumn="[Duration]" DataSetColumn="[Duration]" />
+              <Mapping SourceColumn="[theTime]" DataSetColumn="[theTime]" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProcessUsageDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="ProcessUsageDataSet" msprop:Generator_UserDSName="ProcessUsageDataSet" msprop:EnableTableAdapterManager="True">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProcessView" msprop:Generator_UserTableName="ProcessView" msprop:Generator_RowDeletedName="ProcessViewRowDeleted" msprop:Generator_TableClassName="ProcessViewDataTable" msprop:Generator_RowChangedName="ProcessViewRowChanged" msprop:Generator_RowClassName="ProcessViewRow" msprop:Generator_RowChangingName="ProcessViewRowChanging" msprop:Generator_RowEvArgName="ProcessViewRowChangeEvent" msprop:Generator_RowEvHandlerName="ProcessViewRowChangeEventHandler" msprop:Generator_TablePropName="ProcessView" msprop:Generator_TableVarName="tableProcessView" msprop:Generator_RowDeletingName="ProcessViewRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="_x005B_ProcID_x005D_" msprop:Generator_UserColumnName="[ProcID]" msprop:Generator_ColumnPropNameInRow="__ProcID_" msprop:Generator_ColumnVarNameInTable="_column_ProcID_" msprop:Generator_ColumnPropNameInTable="__ProcID_Column" type="xs:long" />
+              <xs:element name="_x005B_Process_x005D_" msprop:Generator_UserColumnName="[Process]" msprop:Generator_ColumnPropNameInRow="__Process_" msprop:Generator_ColumnVarNameInTable="_column_Process_" msprop:Generator_ColumnPropNameInTable="__Process_Column">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x005B_Usage_x005D_" msdata:DataType="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="[Usage]" msprop:Generator_ColumnPropNameInRow="__Usage_" msprop:Generator_ColumnVarNameInTable="_column_Usage_" msprop:Generator_ColumnPropNameInTable="__Usage_Column" type="xs:anyType" minOccurs="0" />
+              <xs:element name="_x005B_Duration_x005D_" msprop:Generator_UserColumnName="[Duration]" msprop:Generator_ColumnPropNameInRow="__Duration_" msprop:Generator_ColumnVarNameInTable="_column_Duration_" msprop:Generator_ColumnPropNameInTable="__Duration_Column" type="xs:long" />
+              <xs:element name="_x005B_theTime_x005D_" msdata:DataType="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="[theTime]" msprop:Generator_ColumnPropNameInRow="__theTime_" msprop:Generator_ColumnVarNameInTable="_column_theTime_" msprop:Generator_ColumnPropNameInTable="__theTime_Column" type="xs:anyType" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

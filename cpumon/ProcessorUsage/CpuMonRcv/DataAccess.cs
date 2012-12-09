@@ -208,6 +208,17 @@ namespace CpuMonRcv
             SqlIndex = "CREATE INDEX [ThreadID] on Threads (ThreadID ASC);";
             executeNonQuery(SqlIndex);
 
+            //a view
+            string createView = "CREATE VIEW IF NOT EXISTS ProcessView AS " +
+                "SELECT " +
+                "Processes.ProcID, Processes.Process, Processes.[User] * 1.0 / Processes.[Time] * 1.0 * 100.0 AS Usage, Processes.Duration, strftime('%H:%M:%f', " +
+                "datetime(Processes.[Time] / 10000000 - 62135596800, 'unixepoch')) AS theTime " +
+                "FROM " +
+                "Processes INNER JOIN " +
+                "Threads ON Processes.idx = Threads.idx " +
+                "ORDER BY theTime";
+            executeNonQuery(createView);
+
         }
 
         static StringBuilder FieldsProcessTable = new StringBuilder();
@@ -215,6 +226,8 @@ namespace CpuMonRcv
         //see also http://www.techcoil.com/blog/my-experience-with-system-data-sqlite-in-c/
         public void addSqlData(System.Process.ProcessStatistics.process_statistics procStats)
         {
+            //System.Diagnostics.Debug.WriteLine(procStats.dumpStatistics());
+
             long rowID = 0; //last inserted row
             #region Process_data
             //build a list of field names of process table
