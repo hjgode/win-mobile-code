@@ -1,0 +1,247 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "newres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_KEYWEDGE            ICON                    "KeyWedge.ICO"
+IWEDGE_STARTED          ICON                    "iwedge_s.ico"
+IDI_COMMERROR           ICON                    "icon1.ico"
+IDI_ICON1               ICON                    "scan_off.ico"
+IDI_ICON2               ICON                    "scan_ok.ico"
+IDI_ICON3               ICON                    "scanwarn.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""newres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_MENU MENU 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Exit",                        IDM_FILE_EXIT
+        MENUITEM "Options",                     IDM_OPTIONS
+        MENUITEM "Hide",                        IDM_HIDE
+    END
+    POPUP "Help"
+    BEGIN
+        MENUITEM "About",                       IDM_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG  0, 0, 125, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "About KeyWedge"
+FONT 8, "System"
+BEGIN
+    ICON            IDI_KEYWEDGE,IDC_STATIC,11,17,20,20
+    LTEXT           "KeyWedge Version 1.4",IDC_STATIC,38,10,80,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2010",IDC_STATIC,38,25,70,8
+END
+
+IDD_OPTIONSBOX DIALOG  0, 0, 124, 140
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Options"
+FONT 7, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,70,124,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,0,124,50,14
+    COMBOBOX        IDC_BAUD,50,17,48,44,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Baudrate:",IDC_STATIC_1,5,18,43,12
+    RTEXT           "Datenbits:",IDC_STATIC_2,5,33,43,12
+    RTEXT           "Pariät:",IDC_STATIC_3,5,48,43,12
+    RTEXT           "Stopbits:",IDC_STATIC_4,6,62,43,12
+    RTEXT           "Handshake:",IDC_STATIC_5,6,77,43,12
+    COMBOBOX        IDC_DATABITS,50,32,37,43,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PARITY,50,47,65,43,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_STOPBITS,50,62,72,46,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_HANDSHAKE,50,77,72,48,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT1,91,33,31,12,ES_AUTOHSCROLL
+    RTEXT           "COM port:",IDC_STATIC_6,5,3,43,12
+    EDITTEXT        IDC_COMPORT,50,3,45,12,ES_AUTOHSCROLL
+    CONTROL         "Chars",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,1,95,36,10
+    CONTROL         "Beep",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,1,107,34,10
+    EDITTEXT        IDC_Pre,70,92,52,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Post,70,106,52,12,ES_AUTOHSCROLL
+    RTEXT           "Pre:",IDC_STATIC_7,47,95,22,10
+    RTEXT           "Post:",IDC_STATIC_8,46,107,22,10
+END
+
+IDD_OPTIONSBOX_WIDE DIALOG  0, 0, 186, 103
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Options"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,128,85,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,128,67,50,14
+    COMBOBOX        IDC_BAUD,131,2,48,44,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Baudrate:",IDC_STATIC_1,90,4,38,12
+    RTEXT           "Datenbits:",IDC_STATIC_2,0,17,43,12
+    RTEXT           "Pariät:",IDC_STATIC_3,0,33,43,12
+    RTEXT           "Stopbits:",IDC_STATIC_4,1,47,43,12
+    RTEXT           "Handshake:",IDC_STATIC_5,1,62,43,12
+    COMBOBOX        IDC_DATABITS,45,17,37,43,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PARITY,45,32,65,43,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_STOPBITS,45,47,72,46,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_HANDSHAKE,45,62,72,48,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT1,86,17,31,12,ES_AUTOHSCROLL
+    RTEXT           "COM port:",IDC_STATIC_6,0,3,43,12
+    EDITTEXT        IDC_COMPORT,45,3,45,12,ES_AUTOHSCROLL
+    CONTROL         "Chars",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,90,38,10
+    CONTROL         "Beep",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,79,29,9
+    EDITTEXT        IDC_Pre,73,78,43,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Post,73,90,43,12,ES_AUTOHSCROLL
+    RTEXT           "Pre:",IDC_STATIC_7,51,79,19,9
+    RTEXT           "Post:",IDC_STATIC_8,52,90,19,9
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 118
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_OPTIONSBOX, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 124
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_KEYWEDGE ACCELERATORS 
+BEGIN
+    "/",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
+    VK_F4,          IDM_FILE_EXIT,          VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "bitmap1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "KeyWedge"
+    IDS_HELLO               "Use File-Hide to resume WedgeMode"
+    IDC_KEYWEDGE            "KEYWEDGE"
+END
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IWEDGE_WAITING          ICON                    "iwedge_w.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
