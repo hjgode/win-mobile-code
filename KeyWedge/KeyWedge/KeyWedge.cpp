@@ -622,8 +622,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			BITMAP bm;
 			GetObject(hbm,sizeof(bm),&bm);
 
-			BitBlt(hdc,0,0,bm.bmWidth,bm.bmHeight,hdcMem,0,0,SRCCOPY);
-
+			//BitBlt(hdc,0,0,bm.bmWidth,bm.bmHeight,hdcMem,0,0,SRCCOPY);
+			StretchBlt(hdc, rt.left, rt.top, rt.right-rt.left, rt.bottom-rt.top, hdcMem, 0, 0, bm.bmWidth, bm.bmHeight, SRCCOPY);
+			
 			LoadString(hInst, IDS_HELLO, szHello, MAX_LOADSTRING);
 			DrawText(hdc, szHello, _tcslen(szHello), &rt, 
 				DT_SINGLELINE | DT_VCENTER | DT_CENTER);
@@ -1083,7 +1084,8 @@ void showRedIcon()
 //
 void OpenCOMM(TCHAR *szPort)
 {
-	g_hCommPort = CreateFile (szPort, // Port Name (Unicode compatible)
+	g_hCommPort = CreateFile (
+		    szPort,			// Port Name (Unicode compatible)
 			GENERIC_READ | GENERIC_WRITE, // Open for Read-Write
             0,             // COM port cannot be shared
             NULL,          // Always NULL for Windows CE
@@ -1092,6 +1094,7 @@ void OpenCOMM(TCHAR *szPort)
             NULL);         // Always NULL for Windows CE
 	if(g_hCommPort == INVALID_HANDLE_VALUE)
 	{
+		nclog(L"OpenCOMM error: %i\r\n", GetLastError());
 		ReportCommError(_T("Opening Comms Port."));
 		showRedIcon();
 		return;
