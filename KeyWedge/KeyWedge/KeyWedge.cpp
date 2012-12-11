@@ -921,9 +921,17 @@ LRESULT CALLBACK OptionsDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lPa
 					//read the Preamble
 					if (GetDlgItemText(hDlg, IDC_Pre, szTxt, dim(szTxt)) != 0)
 						wsprintf(g_szPreamble, szTxt);
+					else{
+						g_szPreamble=NULL;
+						g_szPreambleDecoded=NULL;
+					}
 					//read the Postamble
 					if (GetDlgItemText(hDlg, IDC_Post, szTxt, dim(szTxt)) != 0)
 						wsprintf(g_szPostamble, szTxt);
+					else{
+						g_szPostamble=NULL;
+						g_szPostambleDecoded=NULL;
+					}
 
 					//BeepAfterRead setting
 					g_dwBeepAfterRead=oBeepAfterRead;
@@ -1261,7 +1269,7 @@ DWORD WINAPI CommReadThreadFunc(LPVOID lpParam)
 				}
 				if(!bsendcharbychar)
 				{
-					if( (c == '\n') || nc==MAX_BUFSIZE-1 ) // LF marks end of sentence
+					if( (c == 0x0A /*'\n'*/) || nc==MAX_BUFSIZE-2 ) // LF marks end of sentence
 					{
 						//add the return char
 						szSentence[nc++] = c; //sprintf(szSentence, "%s", c); //
@@ -1517,6 +1525,26 @@ static TCHAR* stringDecoded(TCHAR * szSringIn){
 }
 */
 
+void myReplace(std::string& str, const std::string& oldStr, const std::string& newStr)
+{
+  size_t pos = 0;
+  while((pos = str.find(oldStr, pos)) != std::string::npos)
+  {
+     str.replace(pos, oldStr.length(), newStr);
+     pos += newStr.length();
+  }
+}
+void replaceCrLf(char* szIN){
+	string csIN(szIN);
+	size_t pos=0;
+	while(pos = csIN.find("\n\r") != string::npos){
+		csIN.replace(pos, 4, "\n");
+		pos+=1;
+	}
+	sprintf(szIN, csIN.c_str());
+	return;
+}
+
 //
 // SendKeys (szTxt)
 //
@@ -1555,6 +1583,7 @@ void SendKeys(char * szTxt)
 	//using a temp copy of what to send
 	strcpy(sTempA, szTxt);
 	mbstowcs(szwTxt, sTempA, MAX_BUFSIZE);
+	DEBUGMSG(1, (L"processing '%s'\n", szwTxt));
 
 	if(!bsendcharbychar){
 		//add the Postamble if set
@@ -1574,9 +1603,9 @@ void SendKeys(char * szTxt)
 	}
 	else
 		sprintf(sTempA, "%s", szTxt);
-
+	
 	mbstowcs(szwTxt, sTempA, MAX_BUFSIZE);
-	DEBUGMSG(1, (L"processing '%s'\n", szwTxt));
+	DEBUGMSG(1, (L"After Pre/Postamble '%s'\n", szwTxt));
 
 	for (uint i=0; i < strlen(sTempA); i++)
 	{
@@ -1587,12 +1616,17 @@ void SendKeys(char * szTxt)
 		//ASCII '$' to VK_SHIFT + VK_4 !!!!!!!!
 		//lookup for the VK code to send
 		bCode=(char)sTempA[i];
+
+		//do not send VK_RETURN for 0x0d AND 0x0a
+		if(bCode==0x0d)
+			continue;
+
 		vCode=vkTable[bCode].kVKval;
 		bShift=vkTable[bCode].kShift;
 		if ((char)sTempA[i] < KTAB_SIZE)  // ( ((char)szTxt[i] >= 0x30) && ((char)szTxt[i] <= 0x7F) )
 		{
 			DEBUGMSG(1, (L"Char=(0x%2x)\tbCode=%2x\tvCode=%2x\tShift=%2x\r\n", (char)sTempA[i], bCode, vCode, bShift));
-#ifndef DEBUG1
+#ifndef DEBUG1			
 			if (bShift) //has to be shifted?
 				keybd_event(VK_SHIFT, 0, KEYEVENTF_KEYDOWN | KEYEVENTF_SILENT, 0); 
 
@@ -1607,7 +1641,7 @@ void SendKeys(char * szTxt)
 #else
 			DEBUGMSG(1, (L"keybd_event: %c\r\n", vCode));
 #endif
-			Sleep(10);
+			Sleep(1);
 		}
 	}
 	if(!bsendcharbychar){

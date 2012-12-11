@@ -138,18 +138,34 @@ int ReadReg()
 		//Read postamble
 		if ( regMyReg[L"Postamble"].Exists() ) {
 			wsprintf(g_szPostamble, regMyReg[L"Postamble"]);
-			wsprintf(g_szPostambleDecoded, L"%s", stringDecoded(g_szPostamble, 32));
+			if(wcslen(g_szPostamble)>0){
+				wsprintf(g_szPostambleDecoded, L"%s", stringDecoded(g_szPostamble, 32));
+			}
+			else
+			{
+				g_szPostamble=NULL;
+				g_szPostambleDecoded=NULL;
+			}
 		}
-		else
+		else{
 			g_szPostamble=NULL;
+			g_szPostambleDecoded=NULL;
+		}
 		//Read preamble
 		if ( regMyReg[L"Preamble"].Exists() ) {
 			wsprintf(g_szPreamble, regMyReg[L"Preamble"]);
-			wsprintf(g_szPreambleDecoded, L"%s", stringDecoded(g_szPreamble, 32));
+			if(wcslen(g_szPreamble)>0){
+				wsprintf(g_szPreambleDecoded, L"%s", stringDecoded(g_szPreamble, 32));
+			}
+			else{
+				g_szPreamble=NULL;
+				g_szPreambleDecoded=NULL;
+			}
 		}
-		else
+		else{
 			g_szPreamble=NULL;
-
+			g_szPreambleDecoded=NULL;
+		}
 		//Read BeepAfterRead
 		if ( regMyReg[L"BeepAfterRead"].Exists() ) 
 			g_dwBeepAfterRead = (unsigned short)(DWORD)regMyReg[L"BeepAfterRead"];
