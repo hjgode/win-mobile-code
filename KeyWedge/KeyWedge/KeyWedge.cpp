@@ -5,6 +5,7 @@
 #define USE_SSAPI
 #undef USE_SSAPI
 
+#define MAX_BUFSIZE 1000
 //
 /*
 	REGEDIT4
@@ -191,8 +192,12 @@ unsigned char
 	nHandshake = 3;
 
 TCHAR g_szCOM[32]=L"COM1:";
-TCHAR g_szPostamble[32]=L"\\r\\n"; //internally we will use printable control codes
-TCHAR g_szPreamble[32]=L"";
+
+TCHAR* g_szPostamble=NULL;	//internally we will use printable control codes
+TCHAR* g_szPreamble=NULL;
+TCHAR* g_szPostambleDecoded=NULL;
+TCHAR* g_szPreambleDecoded=NULL;
+
 DWORD g_dwBeepAfterRead=0;
 
 //BOOL bPAmblesConverted=false;
@@ -365,6 +370,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	// Save program instance handle in global variable.
     hInst = hInstance;
 
+	//init some internal vars
+	g_szPostamble=(TCHAR*)malloc(32);
+	g_szPreamble=(TCHAR*)malloc(32);
+	g_szPostambleDecoded=(TCHAR*)malloc(32);
+	g_szPreambleDecoded=(TCHAR*)malloc(32);
+
+
 	//Read the registry
 	ReadReg();
 
@@ -511,6 +523,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					else
 						DialogBoxParam(hInst, (LPCTSTR)IDD_OPTIONSBOX, hWnd, (DLGPROC)OptionsDlgProc, 0);
 					WriteReg();
+					ReadReg();
 					break;
 				case IDM_HIDE:
 					resumeCOMM(); //suspend is called in MYMSG_TASKBARNOTIFY
@@ -1222,11 +1235,11 @@ void ReportCommError(LPTSTR lpszMessage)
 DWORD WINAPI CommReadThreadFunc(LPVOID lpParam)
 {
 	DWORD dwBytesRead;
-	char szSentence[1000], c;
-	TCHAR szwcsSentence[1000];
+	char szSentence[MAX_BUFSIZE], c;
+	memset(&szSentence, 0, MAX_BUFSIZE);
+	TCHAR szwcsSentence[MAX_BUFSIZE];
 	BYTE nc = 0;
-	SetThreadPriority(GetCurrentThread(),
-	THREAD_PRIORITY_BELOW_NORMAL);
+	SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_BELOW_NORMAL);
 
 	while(g_hCommPort != INVALID_HANDLE_VALUE)
 	{
@@ -1237,7 +1250,7 @@ DWORD WINAPI CommReadThreadFunc(LPVOID lpParam)
 		WaitCommEvent (g_hCommPort, &dwCommModemStatus, 0);		//blocks until event state changes
 
 		// Re-specify the set of events to be monitored for the port.
-		SetCommMask (g_hCommPort, EV_RXCHAR | EV_CTS | EV_DSR | EV_RING);
+		SetCommMask (g_hCommPort, dwCommModemStatus);
 
 		if (dwCommModemStatus & EV_RXCHAR) {
 			do{
@@ -1248,18 +1261,20 @@ DWORD WINAPI CommReadThreadFunc(LPVOID lpParam)
 				}
 				if(!bsendcharbychar)
 				{
-					if( (c == '\n') || nc==1000 ) // LF marks end of sentence
+					if( (c == '\n') || nc==MAX_BUFSIZE-1 ) // LF marks end of sentence
 					{
 						//add the return char
 						szSentence[nc++] = c; //sprintf(szSentence, "%s", c); //
 						// add term char
 						szSentence[nc] = '\0';
 						//send the keys
+						mbstowcs(szwcsSentence, szSentence, MAX_BUFSIZE);
+						DEBUGMSG(1, (L"received: '%s'\r\n", szwcsSentence));
 						SendKeys(szSentence);
-						mbstowcs(szwcsSentence, szSentence, 1000);
-						DEBUGMSG(1, (L"received: %s\r\n", szwcsSentence));
+						//reset buffer
 						nc = 0;
-						sprintf(szSentence,"");
+						memset(&szSentence,0,MAX_BUFSIZE);
+						//sprintf(szSentence,"");
 					}
 					else
 						szSentence[nc++] = c;
@@ -1454,35 +1469,34 @@ void SendKeysToWnd(char * szTxt)
 	DEBUGMSG(1, (L"\r\n"));
 }
 
-//	convert a input string with control codes
-//	to a string with \r, \n\, \t encoding
-TCHAR* stringEncoded(TCHAR * szSringIn){
 
-	static TCHAR* sRet = new TCHAR[1000];
-	wsprintf(sRet, L"");
-	int i=0;
-	while(szSringIn[i] != L'\0'){
-		if(szSringIn[i] == L'\r')
-			wcscat(sRet, L"\\r");
-		else if(szSringIn[i] == L'\n')
-			wcscat(sRet, L"\\n");
-		else if(szSringIn[i] == L'\t')
-			wcscat(sRet, L"\\t");
-		else
-		{
-			sRet[i] = szSringIn[i];
-			//wcsncat(sRet, szSringIn[i], 1);
-		}
+static wstring stringDecoded(wstring csIN){
+	if(csIN.length()==0)
+		return csIN;
+
+	while (csIN.find(L"\\r")!=string::npos){
+		csIN.replace(csIN.find(L"\\r"), 2,  L"\r");
 	}
-	sRet[i] = L'\0';
-	return sRet; 
+	while(csIN.find(L"\\n")!=string::npos)
+		csIN.replace(csIN.find(L"\\n"), 2,  L"\n");
+
+	while(csIN.find(L"\\t")!=string::npos)
+		csIN.replace(csIN.find(L"\\t"), 2,  L"\t");
+
+	//wsprintf(sRet, L"%s", csIN.c_str());
+	return csIN;
 }
 
+/*
 //	convert a input string with \r, \n\, \t encoding
 //	to a string with these vals decoded
-TCHAR* stringDecoded(TCHAR * szSringIn){
+static TCHAR* stringDecoded(TCHAR * szSringIn){
 
-	static TCHAR* sRet = new TCHAR[1000];
+	if(szSringIn==NULL || wcslen(szSringIn)==0)
+		return L"";
+
+	static TCHAR* sRet = new TCHAR[MAX_BUFSIZE];
+	memset(sRet, 0, MAX_BUFSIZE);
 	wsprintf(sRet, L"");
 	int i=0;
 
@@ -1501,6 +1515,7 @@ TCHAR* stringDecoded(TCHAR * szSringIn){
 
 	return sRet; 
 }
+*/
 
 //
 // SendKeys (szTxt)
@@ -1514,48 +1529,53 @@ void SendKeys(char * szTxt)
 	/* VK_0 thru VK_9 are the same as ASCII '0' thru '9' (0x30 - 0x39) */
 	/* VK_A thru VK_Z are the same as ASCII 'A' thru 'Z' (0x41 - 0x5A) */
 	/* small ASCII letters are 'a' thru 'z', 0x61 - 0x7A */
-	DEBUGMSG(1, (L"\r\nSendKeys: Sending Key...\r\n"));
 	byte bCode;
 	byte vCode;
 	bool bShift;
-	TCHAR szwTxt[1000];
-	char  sTempA[1000];
-	TCHAR sTempW[1000];
+	TCHAR szwTxt[MAX_BUFSIZE];
+	char  sTempA[MAX_BUFSIZE];
+	TCHAR sTempW[MAX_BUFSIZE];
+
+	mbstowcs(szwTxt, szTxt, MAX_BUFSIZE);
+	DEBUGMSG(1, (L"\r\nSendKeys: called with '%s'\r\n", szwTxt));
 
 	//to remember, only convert once
 	//g_szPreamble and g_szPostamble are the untranslated strings
 	//get the decoded string
-	TCHAR *szPostamble = new TCHAR[1000];
-	TCHAR *szPreamble = new TCHAR[1000];
-	szPreamble = stringDecoded(g_szPreamble);
-	szPostamble = stringDecoded(g_szPostamble);
-	DEBUGMSG(1, (L"Preamble:  g_szPreamble ='%s', decoded='%s'\r\n", g_szPreamble, szPreamble));
-	DEBUGMSG(1, (L"Postamble: g_szPostamble='%s', decoded='%s'\r\n", g_szPostamble, szPostamble));
+	//TCHAR* szPostamble; szPostamble = (TCHAR*)malloc(MAX_BUFSIZE * sizeof(TCHAR));
+	//wstring sPostamble= stringDecoded(wstring(g_szPostamble));
+
+	//TCHAR* szPreamble; szPreamble = (TCHAR*)malloc(MAX_BUFSIZE*sizeof(TCHAR));
+	//szPreamble = stringDecoded(g_szPreamble);
+	//szPostamble = stringDecoded(g_szPostamble);
+
+	DEBUGMSG(1, (L"Preamble:  g_szPreamble ='%s', decoded='%s'\r\n", g_szPreamble, g_szPreambleDecoded));
+	DEBUGMSG(1, (L"Postamble: g_szPostamble='%s', decoded='%s'\r\n", g_szPostamble, g_szPostambleDecoded));
 
 	//using a temp copy of what to send
 	strcpy(sTempA, szTxt);
-	mbstowcs(szwTxt, sTempA, 1000);
+	mbstowcs(szwTxt, sTempA, MAX_BUFSIZE);
 
 	if(!bsendcharbychar){
-		//add the Postamble if any
-		if(wcslen(szPostamble)>0 && wcslen(szPostamble)==0)
-			wsprintf(sTempW, L"%s%s", szwTxt, szPostamble);
-		//add the Preamble if any
-		if(wcslen(szPreamble)>0 && wcslen(szPreamble)==0)
-			wsprintf(sTempW, L"%s%s", szPreamble, szwTxt);
+		//add the Postamble if set
+		if(		g_szPreambleDecoded==NULL	&&	g_szPostambleDecoded!=NULL)
+			wsprintf(sTempW, L"%s%s", szwTxt, g_szPostambleDecoded);
+		//add the Preamble if set only
+		else if(g_szPreambleDecoded!=NULL	&&	g_szPostambleDecoded==NULL)
+			wsprintf(sTempW, L"%s%s", g_szPreambleDecoded, szwTxt);
 		//add post and preamble
-		if(wcslen(szPostamble)>0 && wcslen(szPreamble)>0)
-			wsprintf(sTempW, L"%s%s%s", szPreamble, szwTxt, szPostamble);
+		else if(g_szPreambleDecoded!=NULL	&&	g_szPostambleDecoded!=NULL)
+			wsprintf(sTempW, L"%s%s%s", g_szPreambleDecoded, szwTxt, g_szPostambleDecoded);
 		//no Pre and Postamble
-		if(wcslen(szPostamble)==0 && wcslen(szPostamble)==0)
+		else if(g_szPreambleDecoded==NULL	&&	g_szPostambleDecoded==NULL)
 			wsprintf(sTempW, L"%s", szwTxt);
 			
-		wcstombs(sTempA, sTempW, 1000);
+		wcstombs(sTempA, sTempW, MAX_BUFSIZE);
 	}
 	else
 		sprintf(sTempA, "%s", szTxt);
 
-	mbstowcs(szwTxt, sTempA, 1000);
+	mbstowcs(szwTxt, sTempA, MAX_BUFSIZE);
 	DEBUGMSG(1, (L"processing '%s'\n", szwTxt));
 
 	for (uint i=0; i < strlen(sTempA); i++)
@@ -1595,8 +1615,6 @@ void SendKeys(char * szTxt)
 			MessageBeep(MB_OK);
 	}
 
-	delete(szPostamble);
-	delete(szPreamble);
 	DEBUGMSG(1, (L"\r\n"));
 }
 

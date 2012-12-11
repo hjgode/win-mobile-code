@@ -8,11 +8,69 @@ extern unsigned char nDatabits; // = 8,
 extern unsigned char nHandshake;
 extern TCHAR g_szCOM[32];
 extern bool bsendcharbychar;
-extern TCHAR g_szPostamble[32];
-extern TCHAR g_szPreamble[32];
+
+extern TCHAR* g_szPostamble;
+extern TCHAR* g_szPreamble;
+extern TCHAR* g_szPostambleDecoded;
+extern TCHAR* g_szPreambleDecoded;
+
 extern DWORD g_dwBeepAfterRead;
 
 extern const LPCWSTR pSubKey; // = L"SOFTWARE\\Intermec\\SSKeyWedge";
+
+//	convert a input string with \r, \n\, \t encoding
+//	to a string with these vals decoded
+static TCHAR* stringDecoded(TCHAR* szSringIn, int maxlen){
+
+	if(szSringIn==NULL || wcslen(szSringIn)==0)
+		return L"";
+
+	static TCHAR* sRet = new TCHAR[MAX_BUFSIZE];
+	memset(sRet, 0, MAX_BUFSIZE);
+	wsprintf(sRet, L"");
+	int i=0;
+
+	tstring cString(szSringIn);
+
+	while (cString.find(L"\\r")!=string::npos){
+		cString.replace(cString.find(L"\\r"), 2,  L"\r");
+	}
+	while(cString.find(L"\\n")!=string::npos)
+		cString.replace(cString.find(L"\\n"), 2,  L"\n");
+
+	while(cString.find(L"\\t")!=string::npos)
+		cString.replace(cString.find(L"\\t"), 2,  L"\t");
+
+	wsprintf(sRet, L"%s", cString.c_str());
+
+	return sRet; 
+}
+
+//	convert a input string with control codes
+//	to a string with \r, \n\, \t encoding
+TCHAR* stringEncoded(TCHAR * szSringIn, int maxLen){
+
+	static TCHAR* sRet = new TCHAR[maxLen];
+	wsprintf(sRet, L"");
+	int i=0;
+	while(szSringIn[i] != L'\0')
+	{
+		if(szSringIn[i] == L'\r')
+			wcscat(sRet, L"\\r");
+		else if(szSringIn[i] == L'\n')
+			wcscat(sRet, L"\\n");
+		else if(szSringIn[i] == L'\t')
+			wcscat(sRet, L"\\t");
+		else
+		{
+			sRet[i] = szSringIn[i];
+			//wcsncat(sRet, szSringIn[i], 1);
+		}
+		i++;
+	}
+	sRet[i] = L'\0';
+	return sRet; 
+}
 
 int ReadReg()
 {
@@ -78,15 +136,19 @@ int ReadReg()
 		//regMyReg[L"keytab"].GetBinary((VOID *) vkTable, sizeof(KTABLE)*128);
 
 		//Read postamble
-		if ( regMyReg[L"Postamble"].Exists() ) 
+		if ( regMyReg[L"Postamble"].Exists() ) {
 			wsprintf(g_szPostamble, regMyReg[L"Postamble"]);
+			wsprintf(g_szPostambleDecoded, L"%s", stringDecoded(g_szPostamble, 32));
+		}
 		else
-			wsprintf(g_szPostamble, L"");
+			g_szPostamble=NULL;
 		//Read preamble
-		if ( regMyReg[L"Preamble"].Exists() ) 
+		if ( regMyReg[L"Preamble"].Exists() ) {
 			wsprintf(g_szPreamble, regMyReg[L"Preamble"]);
+			wsprintf(g_szPreambleDecoded, L"%s", stringDecoded(g_szPreamble, 32));
+		}
 		else
-			wsprintf(g_szPreamble, L"");
+			g_szPreamble=NULL;
 
 		//Read BeepAfterRead
 		if ( regMyReg[L"BeepAfterRead"].Exists() ) 
@@ -122,7 +184,9 @@ void WriteReg()
 
 		regMyReg[L"comport"]=g_szCOM;
 
+		wsprintf(g_szPreamble, stringEncoded(g_szPreambleDecoded, 32));
 		regMyReg[L"Postamble"]=g_szPostamble;
+		wsprintf(g_szPostamble, stringEncoded(g_szPostambleDecoded, 32));
 		regMyReg[L"Preamble"]=g_szPreamble;
 
 		dw=g_dwBeepAfterRead;
