@@ -48,6 +48,7 @@
     "postamble"="\r\n"
 	"preamble"=""
 	"BeepAfterRead"=dword:00000001
+	"usecharsend"=dword:00000000
 */
 
 #ifdef USE_SSAPI
