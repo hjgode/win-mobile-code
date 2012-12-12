@@ -120,6 +120,9 @@ HANDLE g_hCommReadThread=NULL;				//	global handle to thread
 DWORD WINAPI CommWatchdog(LPVOID );			//	thread to retry OpenCOMM
 HANDLE g_hThreadWatchdog=NULL;				//	global handle to CommWatchDog
 
+BOOL g_bUseCharSend = FALSE;					//	use SendChars or SendKeys?
+void SendChars(char* szTxt);				//  send data as char messages
+
 void WriteCOM(TCHAR *txt);					//	function to write txt to COMM port
 void CloseCOMM();							//	function to Close COMM port
 void OpenCOMM(TCHAR *szPort);				//	function to open COMM port
@@ -137,7 +140,7 @@ void resumeCOMM();							//	function which resumes threads
 void suspendCOMM();							//	function to resume threads
 
 extern int ReadReg();						//	function to read values from reg to global vars
-bool bsendcharbychar = false;				//	global to store if receive will be done char by char
+BOOL bsendcharbychar = false;				//	global to store if receive will be done char by char
 
 bool LaunchNotes(HWND hNotes);				//	function launches notes.exe for testing purpose
 
@@ -730,7 +733,7 @@ LRESULT CALLBACK OptionsDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lPa
 	oStopbits	=	nStopbits;
 	oDatabits	=	nDatabits;
 	oHandshake	=	nHandshake;
-	bool obsendcharbychar = bsendcharbychar;
+	BOOL obsendcharbychar = bsendcharbychar;
 	SHINITDLGINFO shidi;
 	BOOL bSuccessInit;
 //	TCHAR oPostamble[32];
@@ -1278,7 +1281,10 @@ DWORD WINAPI CommReadThreadFunc(LPVOID lpParam)
 						//send the keys
 						mbstowcs(szwcsSentence, szSentence, MAX_BUFSIZE);
 						DEBUGMSG(1, (L"received: '%s'\r\n", szwcsSentence));
-						SendKeys(szSentence);
+						if(g_bUseCharSend)
+							SendChars(szSentence);
+						else
+							SendKeys(szSentence);
 						//reset buffer
 						nc = 0;
 						memset(&szSentence,0,MAX_BUFSIZE);
@@ -1289,7 +1295,10 @@ DWORD WINAPI CommReadThreadFunc(LPVOID lpParam)
 				}
 				else
 				{
-					SendKeys(&c);
+					if(g_bUseCharSend)
+						SendChars(&c);
+					else
+						SendKeys(&c);
 				}//bsendcharbychar
 			}while (dwBytesRead==1);
 		}//dwCommModemStatus
@@ -1384,6 +1393,64 @@ void showError(LONG er)
 #endif
 	// Free the buffer.
 	LocalFree( lpMsgBuf );
+}
+
+// for future use
+// simulate keystrokes by synthesizing the real world :-)
+// send input data as char messages
+void SendChars(char* szTxt){
+	HWND hTarget = GetForegroundWindow();
+	if (hTarget == INVALID_HANDLE_VALUE)
+	{
+		DEBUGMSG(1, (L"SendChars: No Foreground Window found.\r\n"));
+		return;
+	}
+	TCHAR txt[MAX_PATH];
+	if(GetWindowText(hTarget, txt, MAX_PATH))
+		DEBUGMSG(1, (L"SendChars: Foreground Window is '%s'.\r\n", txt));
+
+	TCHAR* szTxtW = (TCHAR*)malloc(strlen(szTxt)*2);
+	memset(szTxtW,0,strlen(szTxt)*2);
+	mbstowcs(szTxtW, szTxt, strlen(szTxt));
+
+	KEYBDINPUT _keyinputDown;
+	//_keyinputDown.wVk=vkTable[szTxt[i]];
+	_keyinputDown.wScan=0;
+	_keyinputDown.dwExtraInfo=0x00;
+	_keyinputDown.time=0x00;
+	_keyinputDown.dwFlags=KEYEVENTF_KEYDOWN;
+
+	KEYBDINPUT _keyinputUp;
+	//_keyinputUp.wVk=vkTable[szTxt[i]];
+	_keyinputUp.wScan=0;
+	_keyinputUp.dwExtraInfo=0x00;
+	_keyinputUp.time=0x00;
+	_keyinputUp.dwFlags=KEYEVENTF_KEYUP;
+
+	INPUT _input[2];
+
+	for (uint i=0; i < strlen(szTxt); i++)
+	{
+		if (	(szTxt[i] >= 0x20) || (szTxt[i] == 0x09) || (szTxt[i] == 0x0A) || (szTxt[i] == 0x0D) && 
+				(szTxt[i] < 255)
+				)
+		{
+			//DEBUGMSG(1, (L"SendChars: 0x%2x '%s'\r\n", szTxt[i], szTxtW[i]));
+			DEBUGMSG(1, (L"SendChars: 0x%2x \r\n", szTxt[i]));
+			//PostMessage(hTarget, WM_KEYDOWN, (WPARAM)szTxt[i], (LPARAM)0x01);
+			//PostMessage(hTarget, WM_CHAR, (WPARAM)szTxtW[i], (LPARAM)0x01);
+			//PostMessage(hTarget, WM_KEYUP, (WPARAM)szTxt[i], (LPARAM)0xc0000001);
+			
+			_input[0].type=INPUT_KEYBOARD;
+			_input[0].ki=_keyinputDown;
+			_input[1].type=INPUT_KEYBOARD;
+			_input[1].ki=_keyinputUp;
+			_keyinputDown.wVk=vkTable[szTxt[i]].kVKval;
+			_keyinputUp.wVk=vkTable[szTxt[i]].kVKval;
+			SendInput(2, _input, sizeof(INPUT));
+		}
+	}
+	free(szTxtW);
 }
 
 // for future use

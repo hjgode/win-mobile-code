@@ -7,7 +7,9 @@ extern unsigned char nStopbits;// = ONESTOPBIT,
 extern unsigned char nDatabits; // = 8,
 extern unsigned char nHandshake;
 extern TCHAR g_szCOM[32];
-extern bool bsendcharbychar;
+
+extern BOOL g_bUseCharSend;
+extern BOOL bsendcharbychar;
 
 extern TCHAR* g_szPostamble;
 extern TCHAR* g_szPreamble;
@@ -94,6 +96,20 @@ int ReadReg()
 		else
 		{
 			bsendcharbychar=true;
+		}
+		
+		//Read if send via SendChars()
+		if ( regMyReg[L"usecharsend"].Exists() )
+		{
+			dw = regMyReg[L"usecharsend"];
+			if (dw==0)
+				g_bUseCharSend=FALSE;
+			else if (dw==1)
+				g_bUseCharSend=TRUE;
+		}
+		else
+		{
+			g_bUseCharSend=FALSE;
 		}
 
 		//Read COM port
@@ -197,6 +213,8 @@ void WriteReg()
 			dw=0;
 
 		regMyReg[L"sendcharbychar"]=dw;
+
+		regMyReg[L"UseCharSend"]=g_bUseCharSend;
 
 		regMyReg[L"comport"]=g_szCOM;
 

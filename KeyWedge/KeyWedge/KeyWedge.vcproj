@@ -1893,6 +1893,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Data_1.bin"
+				>
+			</File>
+			<File
 				RelativePath="icon1.ico"
 				>
 			</File>
