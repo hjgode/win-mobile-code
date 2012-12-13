@@ -15,15 +15,12 @@ namespace CpuMonRcv
 {
     public partial class DetailView : Form
     {
-        string sDataFile = "ProcessUsage.sdb";
+        //string sDataFile = "ProcessUsage.sqlite";
         string sDataFileFull
         {
             get
             {
-                string sAppPath = System.Environment.CurrentDirectory;
-                if (!sAppPath.EndsWith(@"\"))
-                    sAppPath += @"\";
-                return sAppPath + sDataFile;
+                return DataAccess.sDataFileFull;
             }
         }
         //private DataGridView masterDataGridView = new DataGridView();
@@ -150,12 +147,63 @@ namespace CpuMonRcv
 
         private void mnuExport2CSV_Click(object sender, EventArgs e)
         {
-            SaveFileDialog ofd = new SaveFileDialog();
-            if (ofd.ShowDialog() == DialogResult.OK)
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.CheckPathExists = true;
+            sfd.DefaultExt = "csv";
+            sfd.AddExtension = true;
+            sfd.Filter = "CSV|*.csv|All|*.*";
+            sfd.FilterIndex = 0;
+            sfd.InitialDirectory = Environment.CurrentDirectory;
+            sfd.OverwritePrompt = true;
+            sfd.RestoreDirectory = true;
+            sfd.ValidateNames = true;
+
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
                 DataAccess da = new DataAccess();
-                da.Export2CSV(ofd.FileName);
+                da.ExportProcess2CSV(sfd.FileName);
             }
+        }
+
+        private void mnuExportCSVThreads_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.CheckPathExists = true;
+            sfd.DefaultExt = "csv";
+            sfd.AddExtension = true;
+            sfd.Filter = "CSV|*.csv|All|*.*";
+            sfd.FilterIndex = 0;
+            sfd.InitialDirectory = Environment.CurrentDirectory;
+            sfd.OverwritePrompt = true;
+            sfd.RestoreDirectory = true;
+            sfd.ValidateNames = true;
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                DataAccess da = new DataAccess();
+                da.ExportThreads2CSV(sfd.FileName);
+            }
+
+        }
+
+        private void exportListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.CheckPathExists = true;
+            sfd.DefaultExt = "csv";
+            sfd.AddExtension = true;
+            sfd.Filter = "CSV|*.csv|All|*.*";
+            sfd.FilterIndex = 0;
+            sfd.InitialDirectory = Environment.CurrentDirectory;
+            sfd.OverwritePrompt = true;
+            sfd.RestoreDirectory = true;
+            sfd.ValidateNames = true;
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                DataAccess da = new DataAccess();
+                da.export2CSV(sfd.FileName);
+            }            
         }
     }
 }

@@ -45,8 +45,8 @@ namespace CpuMonRcv
         public float lastUserValue = 0;
         public DateTime lastUserMeasure;
 
-        string sDataFile = "ProcessUsage.sdb";
-        string sDataFileFull{
+        static string sDataFile = "ProcessUsage.sqlite";
+        public static string sDataFileFull{
             get{            
                 string sAppPath = System.Environment.CurrentDirectory;
                 if(!sAppPath.EndsWith(@"\"))
@@ -73,6 +73,7 @@ namespace CpuMonRcv
 
         public DataAccess()
         {
+
         }
 
         public DataAccess(DataGridView dg, ref Queue<System.Process.ProcessStatistics.process_statistics> dQueue)
@@ -182,24 +183,48 @@ namespace CpuMonRcv
             return bRet;
         }
         
-        public int Export2CSV(string sFileCSV)
+        public int ExportProcess2CSV(string sFileCSV)
         {
             //pause data read thread (socksrv)?
+            sql_cmd = new SQLiteCommand();
+            sql_con = new SQLiteConnection();
             connectDB();
-            sql_con.Open();
+            if (sql_con.State != ConnectionState.Open)
+            {
+                sql_con.Close();
+                sql_con.Open();
+            }
             sql_cmd = sql_con.CreateCommand();
-            string CommandText = "select * from processes";
             int iCnt = 0;
+            sql_cmd.CommandText="select * from processes";
             SQLiteDataReader rdr = null;
             try
             {
                 System.IO.StreamWriter sw = new System.IO.StreamWriter(sFileCSV);
                 rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                sw.Write(
+                        "Process" + ";" +
+                        "ProcID" + ";" +
+                        "User" + ";" +
+                        "Time" + ";" +
+                        "Duration" + ";" +
+                        "Idx" +
+                        "\r\n"
+                        );
+
                 while (rdr.Read())
                 {
                     iCnt++;
                     //Console.WriteLine(rdr["ProcID"] + " " + rdr["User"]);
-                    sw.Write(rdr["ProcID"] + ";" + rdr["User"]);
+                    sw.Write(
+                        "\"" + rdr["Process"] + "\";" + 
+                        rdr["ProcID"] + ";" +
+                        rdr["User"] + ";" +
+                        DateTime.FromBinary((long)rdr["Time"]).ToString("hh:mm:ss.fff") + ";" +
+                        rdr["Duration"] + ";" +
+                        rdr["Idx"] +
+                        "\r\n"
+                        );
                 }
             }
             finally
@@ -207,6 +232,161 @@ namespace CpuMonRcv
                 rdr.Close();
             }
             
+            sql_con.Close();
+            return iCnt;
+        }
+
+        public int ExportThreads2CSV(string sFileCSV)
+        {
+            //pause data read thread (socksrv)?
+            sql_cmd = new SQLiteCommand();
+            sql_con = new SQLiteConnection();
+            connectDB();
+            if (sql_con.State != ConnectionState.Open)
+            {
+                sql_con.Close();
+                sql_con.Open();
+            }
+            sql_cmd = sql_con.CreateCommand();
+            int iCnt = 0;
+            sql_cmd.CommandText = "select * from threads";
+            SQLiteDataReader rdr = null;
+            try
+            {
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(sFileCSV);
+                rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                string sFields = "";
+                foreach (_fieldsDefine ft in _fieldsThread)
+                {
+                    sFields+=(ft.FieldName+ ";");
+                }
+                sFields.TrimEnd(new char[] { ';' });                
+                sw.Write(sFields +"\r\n");
+
+                while (rdr.Read())
+                {
+                    iCnt++;
+                    sFields = "";
+                    //Console.WriteLine(rdr["ProcID"] + " " + rdr["User"]);
+                    foreach (_fieldsDefine fd in _fieldsThread)
+                    {
+                        if (fd.FieldType == "System.String")
+                            sFields += "\"" + rdr[fd.FieldName] + "\";";
+                        else if (fd.FieldType == "System.DateTime")
+                            sFields += DateTime.FromBinary((long)rdr[fd.FieldName]).ToString("hh:mm:ss.fff") + ";";
+                        else
+                            sFields += rdr[fd.FieldName] + ";";
+                    }
+                    sFields.TrimEnd(new char[] { ';' });
+                    sw.Write(sFields);
+                    sw.Write(sFields + "\r\n");
+                }
+            }
+            finally
+            {
+                rdr.Close();
+            }
+
+            sql_con.Close();
+            return iCnt;
+        }
+
+        public int export2CSV(string sFileCSV)
+        {
+            //export in transformed way
+            /*  time    duration    processX    ...     processY    ProcessCount
+             *                      durationX1          durationY1  xy
+            */
+            sql_cmd = new SQLiteCommand();
+            sql_con = new SQLiteConnection();
+            connectDB();
+            if (sql_con.State != ConnectionState.Open)
+            {
+                sql_con.Close();
+                sql_con.Open();
+            }
+            sql_cmd = sql_con.CreateCommand();
+            int iCnt = 0;
+            
+            //order by time, no duplicate times
+            //select * from processes where time in (select DISTINCT Time from processes order by time) order by  Process
+            sql_cmd.CommandText = "select DISTINCT Time from processes order by time";
+            DataTable dtTimes = new DataTable();
+            sql_dap = new SQLiteDataAdapter(sql_cmd);
+            sql_dap.Fill(dtTimes);
+
+            //we now know all times, now query the user times for every process
+            sql_cmd.CommandText = "Select DISTINCT Process from processes order by Process";
+            //get all processes
+            DataTable dtProcs = new DataTable();
+            sql_dap.Fill(dtProcs);
+
+            sql_cmd.CommandText = "Select Process,User,Time from processes order by Time";
+            DataTable dtProcesses = new DataTable();
+            sql_dap.Fill(dtProcesses);
+            
+            List<string> slProc = new List<string>();
+            
+            //SQLiteDataReader dataReader=null;
+            foreach (DataRow drTimes in dtTimes.Rows)
+            {
+                foreach (DataRow drProc in dtProcs.Rows)
+                {
+                    //Process
+                    String sFilter = "Process='" + drProc.ItemArray[0].ToString() +
+                        "' AND Time=" + drTimes.ItemArray[0].ToString();
+                    DataRow[] pList = dtProcesses.Select(sFilter, "Process");
+                    foreach(DataRow drX in pList)
+                    {
+                        //add the process name
+                        //System.Diagnostics.Debug.WriteLine(drX.ItemArray[0]);
+                        string sPName=drX.ItemArray[0].ToString();
+                        if(!slProc.Contains(sPName))
+                            slProc.Add(sPName);
+                        //find the durations
+                        sFilter = "Process='" + sPName + "'";
+                    }
+                }
+            }
+
+            SQLiteDataReader rdr = null;
+            try
+            {
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(sFileCSV);
+                rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                string sFields = "";
+                foreach (_fieldsDefine ft in _fieldsThread)
+                {
+                    sFields += (ft.FieldName + ";");
+                }
+                sFields.TrimEnd(new char[] { ';' });
+                sw.Write(sFields + "\r\n");
+
+                while (rdr.Read())
+                {
+                    iCnt++;
+                    sFields = "";
+                    //Console.WriteLine(rdr["ProcID"] + " " + rdr["User"]);
+                    foreach (_fieldsDefine fd in _fieldsThread)
+                    {
+                        if (fd.FieldType == "System.String")
+                            sFields += "\"" + rdr[fd.FieldName] + "\";";
+                        else if (fd.FieldType == "System.DateTime")
+                            sFields += DateTime.FromBinary((long)rdr[fd.FieldName]).ToString("hh:mm:ss.fff") + ";";
+                        else
+                            sFields += rdr[fd.FieldName] + ";";
+                    }
+                    sFields.TrimEnd(new char[] { ';' });
+                    sw.Write(sFields);
+                    sw.Write(sFields + "\r\n");
+                }
+            }
+            catch (Exception) { }
+            finally
+            {
+                rdr.Close();
+            }
+
             sql_con.Close();
             return iCnt;
         }

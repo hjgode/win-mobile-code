@@ -34,9 +34,11 @@
             this.detailsDataGridView = new System.Windows.Forms.DataGridView();
             this.PushGraph1 = new CustomUIControls.Graphing.C2DPushGraph();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuExport2CSV = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuExportList = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuExport2CSVprocesses = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuExportCSVThreads = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataGridView)).BeginInit();
@@ -113,35 +115,51 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.mnuExportList});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(775, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // mnuExportList
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuExport2CSV,
+            this.mnuExportList.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExport2CSVprocesses,
+            this.mnuExportCSVThreads,
+            this.exportListToolStripMenuItem,
             this.mnuClose});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.mnuExportList.Name = "mnuExportList";
+            this.mnuExportList.Size = new System.Drawing.Size(37, 20);
+            this.mnuExportList.Text = "File";
             // 
-            // mnuExport2CSV
+            // mnuExport2CSVprocesses
             // 
-            this.mnuExport2CSV.Name = "mnuExport2CSV";
-            this.mnuExport2CSV.Size = new System.Drawing.Size(152, 22);
-            this.mnuExport2CSV.Text = "Export to CSV";
-            this.mnuExport2CSV.Click += new System.EventHandler(this.mnuExport2CSV_Click);
+            this.mnuExport2CSVprocesses.Name = "mnuExport2CSVprocesses";
+            this.mnuExport2CSVprocesses.Size = new System.Drawing.Size(207, 22);
+            this.mnuExport2CSVprocesses.Text = "Export to CSV (processes)";
+            this.mnuExport2CSVprocesses.Click += new System.EventHandler(this.mnuExport2CSV_Click);
+            // 
+            // mnuExportCSVThreads
+            // 
+            this.mnuExportCSVThreads.Name = "mnuExportCSVThreads";
+            this.mnuExportCSVThreads.Size = new System.Drawing.Size(207, 22);
+            this.mnuExportCSVThreads.Text = "Export to CSV (threads)";
+            this.mnuExportCSVThreads.Click += new System.EventHandler(this.mnuExportCSVThreads_Click);
             // 
             // mnuClose
             // 
             this.mnuClose.Name = "mnuClose";
-            this.mnuClose.Size = new System.Drawing.Size(152, 22);
+            this.mnuClose.Size = new System.Drawing.Size(207, 22);
             this.mnuClose.Text = "Close";
             this.mnuClose.Click += new System.EventHandler(this.mnuClose_Click);
+            // 
+            // exportListToolStripMenuItem
+            // 
+            this.exportListToolStripMenuItem.Name = "exportListToolStripMenuItem";
+            this.exportListToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.exportListToolStripMenuItem.Text = "Export List";
+            this.exportListToolStripMenuItem.Click += new System.EventHandler(this.exportListToolStripMenuItem_Click);
             // 
             // DetailView
             // 
@@ -172,8 +190,10 @@
         private System.Windows.Forms.DataGridView detailsDataGridView;
         private CustomUIControls.Graphing.C2DPushGraph PushGraph1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuExport2CSV;
+        private System.Windows.Forms.ToolStripMenuItem mnuExportList;
+        private System.Windows.Forms.ToolStripMenuItem mnuExport2CSVprocesses;
         private System.Windows.Forms.ToolStripMenuItem mnuClose;
+        private System.Windows.Forms.ToolStripMenuItem mnuExportCSVThreads;
+        private System.Windows.Forms.ToolStripMenuItem exportListToolStripMenuItem;
     }
 }
