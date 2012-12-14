@@ -42,11 +42,12 @@
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewDetails = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTestForm = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.c2DPushGraph1 = new CustomUIControls.Graphing.C2DPushGraph();
-            this.mnuTestForm = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUsage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -81,15 +82,16 @@
             // menuFile
             // 
             this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuExit});
+            this.menuExit,
+            this.mnuUsage});
             this.menuFile.Name = "menuFile";
-            this.menuFile.Size = new System.Drawing.Size(35, 20);
+            this.menuFile.Size = new System.Drawing.Size(37, 20);
             this.menuFile.Text = "File";
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(103, 22);
+            this.menuExit.Size = new System.Drawing.Size(152, 22);
             this.menuExit.Text = "Exit";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
@@ -99,15 +101,22 @@
             this.mnuViewDetails,
             this.mnuTestForm});
             this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(41, 20);
+            this.mnuView.Size = new System.Drawing.Size(44, 20);
             this.mnuView.Text = "View";
             // 
             // mnuViewDetails
             // 
             this.mnuViewDetails.Name = "mnuViewDetails";
-            this.mnuViewDetails.Size = new System.Drawing.Size(152, 22);
+            this.mnuViewDetails.Size = new System.Drawing.Size(124, 22);
             this.mnuViewDetails.Text = "Details";
             this.mnuViewDetails.Click += new System.EventHandler(this.mnuViewDetails_Click);
+            // 
+            // mnuTestForm
+            // 
+            this.mnuTestForm.Name = "mnuTestForm";
+            this.mnuTestForm.Size = new System.Drawing.Size(124, 22);
+            this.mnuTestForm.Text = "TestForm";
+            this.mnuTestForm.Click += new System.EventHandler(this.mnuTestForm_Click);
             // 
             // statusStrip1
             // 
@@ -166,12 +175,12 @@
             this.c2DPushGraph1.Text = "c2DPushGraph1";
             this.c2DPushGraph1.TextColor = System.Drawing.Color.Yellow;
             // 
-            // mnuTestForm
+            // mnuUsage
             // 
-            this.mnuTestForm.Name = "mnuTestForm";
-            this.mnuTestForm.Size = new System.Drawing.Size(152, 22);
-            this.mnuTestForm.Text = "TestForm";
-            this.mnuTestForm.Click += new System.EventHandler(this.mnuTestForm_Click);
+            this.mnuUsage.Name = "mnuUsage";
+            this.mnuUsage.Size = new System.Drawing.Size(152, 22);
+            this.mnuUsage.Text = "Export Usage";
+            this.mnuUsage.Click += new System.EventHandler(this.mnuUsage_Click);
             // 
             // cpuMonRcvForm
             // 
@@ -209,6 +218,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private CustomUIControls.Graphing.C2DPushGraph c2DPushGraph1;
         private System.Windows.Forms.ToolStripMenuItem mnuTestForm;
+        private System.Windows.Forms.ToolStripMenuItem mnuUsage;
     }
 }
 

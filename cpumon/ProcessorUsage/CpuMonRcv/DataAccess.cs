@@ -291,14 +291,13 @@ namespace CpuMonRcv
             return iCnt;
         }
 
-        public int export2CSV(string sFileCSV)
+        public DataRow[] executeQuery(string sSQL)
         {
-            //export in transformed way
-            /*  time    duration    processX    ...     processY    ProcessCount
-             *                      durationX1          durationY1  xy
-            */
+            //setup
+            List<DataRow> dataRows = new List<DataRow>();
             sql_cmd = new SQLiteCommand();
             sql_con = new SQLiteConnection();
+            SQLiteDataReader sql_rdr= null;
             connectDB();
             if (sql_con.State != ConnectionState.Open)
             {
@@ -306,90 +305,180 @@ namespace CpuMonRcv
                 sql_con.Open();
             }
             sql_cmd = sql_con.CreateCommand();
-            int iCnt = 0;
-            
-            //order by time, no duplicate times
-            //select * from processes where time in (select DISTINCT Time from processes order by time) order by  Process
-            sql_cmd.CommandText = "select DISTINCT Time from processes order by time";
-            DataTable dtTimes = new DataTable();
-            sql_dap = new SQLiteDataAdapter(sql_cmd);
-            sql_dap.Fill(dtTimes);
-
-            //we now know all times, now query the user times for every process
-            sql_cmd.CommandText = "Select DISTINCT Process from processes order by Process";
-            //get all processes
-            DataTable dtProcs = new DataTable();
-            sql_dap.Fill(dtProcs);
-
-            sql_cmd.CommandText = "Select Process,User,Time from processes order by Time";
-            DataTable dtProcesses = new DataTable();
-            sql_dap.Fill(dtProcesses);
-            
-            List<string> slProc = new List<string>();
-            
-            //SQLiteDataReader dataReader=null;
-            foreach (DataRow drTimes in dtTimes.Rows)
+            sql_cmd.CommandText = sSQL;
+            sql_rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            List<string> sColList = new List<string>();
+            DataColumn dc;
+            while (sql_rdr.Read())
             {
-                foreach (DataRow drProc in dtProcs.Rows)
+                for (int i = 0; i < sql_rdr.FieldCount; i++)
                 {
-                    //Process
-                    String sFilter = "Process='" + drProc.ItemArray[0].ToString() +
-                        "' AND Time=" + drTimes.ItemArray[0].ToString();
-                    DataRow[] pList = dtProcesses.Select(sFilter, "Process");
-                    foreach(DataRow drX in pList)
+                    sColList.Add(sql_rdr.GetName(i));
+                    dc = new DataColumn(sql_rdr.GetName(i));
+                    //dc = sql_rdr.GetValue(i);
+                }
+
+            }
+            return dataRows.ToArray();
+        }
+
+        #region Transform
+        class PROCESS_USAGE
+        {
+            public string procname;
+            public int user;
+            public UInt64 timestamp;
+            public PROCESS_USAGE(string sProcessName, int iUserTime, UInt64 iTimeStamp)
+            {
+                procname = sProcessName;
+                user = iUserTime;
+                timestamp = iTimeStamp;
+            }
+
+        }
+
+        public int export2CSV2(string sFileCSV)
+        {
+            //### setup
+            sql_cmd = new SQLiteCommand();
+            sql_con = new SQLiteConnection();
+            SQLiteDataReader sql_rdr;
+            connectDB();
+            if (sql_con.State != ConnectionState.Open)
+            {
+                sql_con.Close();
+                sql_con.Open();
+            }
+            sql_cmd = sql_con.CreateCommand();
+            long lCnt = 0;
+
+            //### Build a List of known processes
+            sql_cmd.CommandText = "Select DISTINCT Process from processes order by Process";
+            List<string> lProcesses= new List<string>();
+            sql_rdr = sql_cmd.ExecuteReader();
+            while (sql_rdr.Read())
+            {
+                lProcesses.Add((string)sql_rdr["Process"]);
+            }
+            sql_rdr.Close();
+            sql_rdr.Dispose();
+
+            //create a new table with the process names as fields
+            string sProcField = "";
+            foreach (string sProc in lProcesses)
+            {
+                sProcField += "[" + sProc + "] INTEGER,";
+            }
+            sProcField = sProcField.TrimEnd(new char[] { ',' });
+            sProcField = "[Time] INTEGER, " + sProcField;
+            //delete existing table            
+            lCnt = executeNonQuery("DROP Table IF EXISTS [ProcUsage] ;");
+            //create new one
+            lCnt = executeNonQuery("Create Table [ProcUsage] (" + sProcField + ");");
+            
+            //### get all process,user,time data
+            List<PROCESS_USAGE> lProcessUsages = new List<PROCESS_USAGE>();
+            sql_cmd.CommandText = "Select Process,User,Time from processes order by Time";
+            sql_rdr = sql_cmd.ExecuteReader();
+            while (sql_rdr.Read())
+            {
+                string sP = (string)sql_rdr["Process"];
+                int iUT = Convert.ToInt32(sql_rdr["User"]);
+                ulong uTI = Convert.ToUInt64(sql_rdr["Time"]);
+                lProcessUsages.Add(new PROCESS_USAGE(sP, iUT, uTI));
+            }
+            sql_rdr.Close();
+
+            //### get all distinct times
+            List<ulong> lTimes = new List<ulong>();
+            sql_cmd.CommandText = "Select DISTINCT Time from processes order by Time";
+            sql_rdr = sql_cmd.ExecuteReader();
+            while (sql_rdr.Read())
+            {
+                lTimes.Add(Convert.ToUInt64(sql_rdr["Time"]));
+            }
+            sql_rdr.Close();
+
+            string sUpdateCommand = "";
+            //### file the new ProcUsage table
+            SQLiteTransaction tr = sql_con.BeginTransaction();
+            //sql_cmd.CommandText = "insert into [ProcUsage]  (Time, [device.exe]) SELECT Time, User from [Processes] WHERE Time=631771077815940000 AND Process='device.exe';";
+            //lCnt = sql_cmd.ExecuteNonQuery();
+            foreach (ulong uTime in lTimes)
+            {
+                System.Diagnostics.Debug.WriteLine("Updating for Time=" + uTime.ToString());
+                //insert an empty row
+                sql_cmd.CommandText = "Insert Into ProcUsage (Time) VALUES(" + uTime.ToString() + ");";
+                lCnt = sql_cmd.ExecuteNonQuery();
+                foreach (string sPro in lProcesses)
+                {
+                    //is there already a line?
+                    //lCnt = executeNonQuery("Select Time " + "From ProcUsage Where Time="+uTime.ToString());
+
+                    // http://stackoverflow.com/questions/4495698/c-sharp-using-listt-find-with-custom-objects
+                    PROCESS_USAGE pu = lProcessUsages.Find(x => x.procname == sPro && x.timestamp == uTime);
+                    if (pu != null)
                     {
-                        //add the process name
-                        //System.Diagnostics.Debug.WriteLine(drX.ItemArray[0]);
-                        string sPName=drX.ItemArray[0].ToString();
-                        if(!slProc.Contains(sPName))
-                            slProc.Add(sPName);
-                        //find the durations
-                        sFilter = "Process='" + sPName + "'";
+                        System.Diagnostics.Debug.WriteLine("\tUpdating User="+ pu.user +" for Process=" + sPro);
+                        //update values
+                        sUpdateCommand = "Update [ProcUsage] SET " +
+                            "[" + sPro + "]=" + pu.user +
+                            //"(SELECT User from [Processes]
+                            " WHERE Time=" + uTime.ToString() + //" AND Process=" + "'" + sPro + "'"+
+                            ";";
+                        sql_cmd.CommandText = sUpdateCommand;
+                        //System.Diagnostics.Debug.WriteLine(sUpdateCommand);
+                        lCnt = sql_cmd.ExecuteNonQuery();
+                        //lCnt = executeNonQuery(sInsertCommand);
+                        //"insert into [ProcUsage]  (Time, [device.exe]) SELECT Time, User from [Processes] WHERE Time=631771077815940000 AND Process='device.exe';"
                     }
                 }
             }
+            tr.Commit();
 
+            lCnt = 0;
             SQLiteDataReader rdr = null;
+            System.IO.StreamWriter sw = null;
             try
             {
-                System.IO.StreamWriter sw = new System.IO.StreamWriter(sFileCSV);
-                rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                sw = new System.IO.StreamWriter(sFileCSV);
                 string sFields = "";
-                foreach (_fieldsDefine ft in _fieldsThread)
+                List<string> lFields = new List<string>();
+                lFields.Add("Time");
+                lFields.AddRange(lProcesses);
+                foreach (string ft in lFields)
                 {
-                    sFields += (ft.FieldName + ";");
+                    sFields += ("'" + ft + "'" + ";");
                 }
                 sFields.TrimEnd(new char[] { ';' });
                 sw.Write(sFields + "\r\n");
 
+                sql_cmd.CommandText = "Select * from ProcUsage;";
+                rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 while (rdr.Read())
                 {
-                    iCnt++;
+                    lCnt++;
                     sFields = "";
                     //Console.WriteLine(rdr["ProcID"] + " " + rdr["User"]);
-                    foreach (_fieldsDefine fd in _fieldsThread)
+                    foreach (string ft in lFields)
                     {
-                        if (fd.FieldType == "System.String")
-                            sFields += "\"" + rdr[fd.FieldName] + "\";";
-                        else if (fd.FieldType == "System.DateTime")
-                            sFields += DateTime.FromBinary((long)rdr[fd.FieldName]).ToString("hh:mm:ss.fff") + ";";
-                        else
-                            sFields += rdr[fd.FieldName] + ";";
+                        sFields += rdr[ft] + ";";
                     }
                     sFields.TrimEnd(new char[] { ';' });
-                    sw.Write(sFields);
                     sw.Write(sFields + "\r\n");
+                    sw.Flush();
                 }
             }
             catch (Exception) { }
             finally
             {
+                sw.Close();
                 rdr.Close();
             }
 
-            sql_con.Close();
-            return iCnt;
+            return 0;
         }
+        #endregion
 
         private void createTablesSQL()
         {
@@ -517,6 +606,11 @@ namespace CpuMonRcv
             long rowId = 0;
             try
             {
+                if (sql_con.State != ConnectionState.Open)
+                {
+                    sql_con.Close();
+                    sql_con.Open();
+                }
                 using (SQLiteTransaction sqlTransaction = sql_con.BeginTransaction())
                 {
                     sql_cmd.CommandText = sSQL;

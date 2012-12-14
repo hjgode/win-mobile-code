@@ -170,5 +170,25 @@ namespace CpuMonRcv
             TestForm tf = new TestForm();
             tf.Show();
         }
+
+        private void mnuUsage_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.CheckPathExists = true;
+            sfd.DefaultExt = "csv";
+            sfd.AddExtension = true;
+            sfd.Filter = "CSV|*.csv|All|*.*";
+            sfd.FilterIndex = 0;
+            sfd.InitialDirectory = Environment.CurrentDirectory;
+            sfd.OverwritePrompt = true;
+            sfd.RestoreDirectory = true;
+            sfd.ValidateNames = true;
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                DataAccess da = new DataAccess();
+                da.export2CSV2(sfd.FileName);
+            } 
+        }
     }
 }

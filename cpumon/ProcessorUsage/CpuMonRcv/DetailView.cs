@@ -202,7 +202,7 @@ namespace CpuMonRcv
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 DataAccess da = new DataAccess();
-                da.export2CSV(sfd.FileName);
+                da.export2CSV2(sfd.FileName);
             }            
         }
     }
