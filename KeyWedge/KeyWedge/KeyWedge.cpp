@@ -1255,14 +1255,15 @@ DWORD WINAPI CommReadThreadFunc(LPVOID lpParam)
 
 	while(g_hCommPort != INVALID_HANDLE_VALUE)
 	{
-		DWORD dwCommModemStatus = EV_BREAK | EV_CTS | EV_DSR  | EV_ERR | EV_RLSD | EV_RXCHAR | EV_RXFLAG;
+		//DWORD dwCommModemStatus = EV_BREAK | EV_CTS | EV_DSR  | EV_ERR | EV_RLSD | EV_RXCHAR | EV_RXFLAG;
+		DWORD dwCommModemStatus = EV_RXCHAR;
 		//setup comm wait events
 		SetCommMask(g_hCommPort, dwCommModemStatus);
 		// Wait for an event to occur for the port.
 		WaitCommEvent (g_hCommPort, &dwCommModemStatus, 0);		//blocks until event state changes
 
-		// Re-specify the set of events to be monitored for the port.
-		SetCommMask (g_hCommPort, dwCommModemStatus);
+		//// Re-specify the set of events to be monitored for the port.
+		//SetCommMask (g_hCommPort, dwCommModemStatus);
 
 		if (dwCommModemStatus & EV_RXCHAR) {
 			do{
@@ -1270,6 +1271,10 @@ DWORD WINAPI CommReadThreadFunc(LPVOID lpParam)
 				{
 					ReportCommError(_T("Reading comms port."));
 					return 0;
+				}
+				if(dwBytesRead==0){
+					DEBUGMSG(1, (L"no more chars\r\n"));
+					continue;
 				}
 				if(!bsendcharbychar)
 				{
