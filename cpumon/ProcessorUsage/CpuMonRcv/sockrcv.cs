@@ -56,10 +56,18 @@ class RecvBroadcst:IDisposable
     void MessageReceivedCallback(IAsyncResult result)
     {
         EndPoint remoteEndPoint = new IPEndPoint(0, 0);
+
+        //IPEndPoint LocalIPEndPoint = new IPEndPoint(IPAddress.Any, 3001);
+        //EndPoint LocalEndPoint = (EndPoint)LocalIPEndPoint;
+        //IPEndPoint remoteEP = (IPEndPoint)LocalEndPoint;
+        //System.Diagnostics.Debug.WriteLine("Remote IP: " + remoteEP.Address.ToString());
+
         try
         {
             //all data should fit in one package!
             int bytesRead = receiveSocket.EndReceiveFrom(result, ref remoteEndPoint);
+            System.Diagnostics.Debug.WriteLine("Remote IP: " + ((IPEndPoint)(remoteEndPoint)).Address.ToString());
+
             byte[] bData = new byte[bytesRead];
             Array.Copy(recBuffer, bData, bytesRead);
             if (ByteHelper.isEndOfTransfer(bData))
@@ -67,6 +75,7 @@ class RecvBroadcst:IDisposable
             else
             {
                 ProcessStatistics.process_statistics stats = new ProcessStatistics.process_statistics(bData);
+                stats.remoteIP = ((IPEndPoint)(remoteEndPoint)).Address.ToString();
                 //System.Diagnostics.Debug.WriteLine( stats.dumpStatistics() );
                 updateStatus(stats);
             }

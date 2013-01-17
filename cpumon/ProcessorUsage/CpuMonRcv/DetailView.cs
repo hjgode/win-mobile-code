@@ -80,7 +80,11 @@ namespace CpuMonRcv
             DataRelation relation = new DataRelation(
                 "ThreadsByProcess",
                 dsData.Tables["Processes"].Columns["idx"], dsData.Tables["Threads"].Columns["idx"]);
-            dsData.Relations.Add(relation);
+            try
+            {
+                dsData.Relations.Add(relation);
+            }
+            catch (Exception) { }
 
             masterBindingSource.DataSource = dsData;
             masterBindingSource.DataMember = "Processes";

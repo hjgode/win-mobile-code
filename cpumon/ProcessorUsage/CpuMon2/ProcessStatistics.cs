@@ -87,6 +87,8 @@ namespace System.Process
             public UInt32 processID;
             public List<threadStatistic> ThreadStatList = new List<threadStatistic>();
 
+            public string remoteIP = "0.0.0.0";
+
             //public process_statistics(uint uProcessID, string s, process_usage u, long dt, uint du)
             //{
             //    sName = s;
@@ -114,6 +116,17 @@ namespace System.Process
                 duration = du;
                 ThreadStatList = threadList;
             }
+            public process_statistics(uint uProcessID, string s, process_usage u, long dt, uint du, List<threadStatistic> threadList, string sRemoteIP)
+            {
+                sName = s;
+                processID = uProcessID;
+                procUsage = u;
+                dateTime = dt;
+                duration = du;
+                ThreadStatList = threadList;
+                remoteIP = sRemoteIP;
+            }
+
             public override string ToString()
             {
                 return dumpStatistics();
@@ -126,7 +139,8 @@ namespace System.Process
                             "packetsize: " + this.ToByte().Length.ToString() + ", " +
                             this.procUsage.kernel.ToString() + "/" +
                             this.procUsage.user.ToString() + ", " +
-                            this.duration.ToString() + "\r\n");
+                            this.duration.ToString() + 
+                            this.remoteIP + "\r\n");
                 foreach (threadStatistic th in this.ThreadStatList)
                 {
                     sb.Append("    0x" + th.dwThreadID.ToString("x") + ":" + th.thread_times.kernel.ToString() + "/" + th.thread_times.user.ToString() + "\r\n");
@@ -193,7 +207,7 @@ namespace System.Process
                     thList.Add(th);
                 }
                 this.ThreadStatList = thList;
-
+                this.remoteIP = "0.0.0.0";  //unknown
                 return this;
             }
         }
