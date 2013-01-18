@@ -18,10 +18,13 @@ namespace MoveableFormCF2
         int offsetX = 10;
         int widthX=200;
         int heightX = 32;
-
+        winapi.subclassForm subClassedForm;
         public Form1()
         {
             InitializeComponent();
+
+            subClassedForm = new winapi.subclassForm(this);
+            subClassedForm.wndProcEvent += new winapi.subclassForm.wndProcEventHandler(subClassedForm_wndProcEvent);
             widthX = this.Width - 2 * offsetX;
 
             uiCurrentStyle = winapi.getStyle(this);
@@ -30,6 +33,27 @@ namespace MoveableFormCF2
             System.Diagnostics.Debug.WriteLine("StyleEx=0x" + string.Format("{0:x}", uiCurrentStyleEx));
             buildOptions();
             buildOptionsEx();
+        }
+
+        /// <summary>
+        /// called by every wndproc message
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="wndProcArgs"></param>
+        void subClassedForm_wndProcEvent(object sender, winapi.subclassForm.wndprocEventArgs wndProcArgs)
+        {
+            //WM_MOVE xPos = (int)LOWORD(lParam);   yPos = (int)HIWORD(lParam);
+            if (wndProcArgs.msg == (uint)winapi.subclassForm.WNDMSGS.WM_MOVE)
+                addLog("WM_MOVE: X/Y = " + LoWord(wndProcArgs.lParam).ToString() + "/" + HiWord(wndProcArgs.lParam).ToString());
+        }
+        private int LoWord(IntPtr param)
+        {
+            return (ushort)(param.ToInt32() & ushort.MaxValue);
+        }
+
+        private int HiWord(IntPtr param)
+        {
+            return (ushort)(param.ToInt32() >> 16);
         }
         //build a list of chk options for WSYTLES
         void buildOptions()
@@ -82,6 +106,10 @@ namespace MoveableFormCF2
             else
                 winapi.unsetStyle(this, uStyle);
             uiCurrentStyle = winapi.getStyle(this);
+
+            addLog("Style  =0x" + string.Format("{0:x}", uiCurrentStyle));
+            addLog("StyleEx=0x" + string.Format("{0:x}", uiCurrentStyleEx));
+
             this.Refresh();
         }
         void chkBox_CheckStateChangedEx(object sender, EventArgs e)
@@ -93,6 +121,10 @@ namespace MoveableFormCF2
             else
                 winapi.unsetStyleEx(this, uStyle);
             uiCurrentStyleEx = winapi.getStyleEx(this);
+
+            addLog("Style  =0x" + string.Format("{0:x}", uiCurrentStyle));
+            addLog("StyleEx=0x" + string.Format("{0:x}", uiCurrentStyleEx));
+
             this.Refresh();
         }
 
@@ -116,6 +148,27 @@ namespace MoveableFormCF2
                 this.Menu = mainMenu1;
             else
                 this.Menu = null;
+        }
+        delegate void SetTextCallback(string text);
+        public void addLog(string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.txtLog.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(addLog);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                if (txtLog.Text.Length > 2000)
+                    txtLog.Text = "";
+                txtLog.Text += text + "\r\n";
+                txtLog.SelectionLength = 0;
+                txtLog.SelectionStart = txtLog.Text.Length - 1;
+                txtLog.ScrollToCaret();
+            }
         }
     }
 }

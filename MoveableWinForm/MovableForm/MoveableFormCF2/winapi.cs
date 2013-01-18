@@ -157,8 +157,20 @@ using System.Reflection;
 
         [DllImport("coredll.dll", SetLastError = true)]
         private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
         [DllImport("coredll.dll", SetLastError = true)]
         private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        #region WndPro
+        //[DllImport("coredll.dll", SetLastError = true)]
+        //static extern IntPtr GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("coredll.dll")]
+        static extern IntPtr CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        [DllImport("coredll.dll", SetLastError = true)]
+        static extern int SetWindowLong(IntPtr hWnd, int nIndex, WndProcDelegate newProc);
+        delegate IntPtr WndProcDelegate(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
+        const int GWL_WNDPROC = -4;
+        #endregion
 
         //non-fullscreen window (ex zDump) = WS_STYLE=0x90c9004, WS_EX_STYLE=0x00000008
         //WS_POPUP | WS_VISIBLE
@@ -240,4 +252,81 @@ using System.Reflection;
             HWND_TOPMOST = -1,
             HWND_NOTOPMOST = -2,
         }
+
+        #region subclassing
+        public class subclassForm:IDisposable
+        {
+            #region delegate_event_stuff
+            public class wndprocEventArgs : EventArgs
+            {
+                public IntPtr hWnd;
+                public uint msg;
+                public IntPtr lParam;
+                public IntPtr wParam;
+                public wndprocEventArgs(IntPtr lphWnd, uint iMsg, IntPtr lpLParam, IntPtr lpWParam)
+                {
+                    hWnd = lphWnd;
+                    msg = iMsg;
+                    lParam = lpLParam;
+                    wParam = lpWParam;
+                }
+            }
+
+            public delegate void wndProcEventHandler(object sender, wndprocEventArgs wndProcArgs);
+            public event wndProcEventHandler wndProcEvent;
+            void onWndProcEvent(wndprocEventArgs wa)
+            {
+                if (this.wndProcEvent == null)
+                    return;
+                wndProcEvent(this, wa);
+            }
+            #endregion
+
+            public enum WNDMSGS:uint{
+                WM_MOVE=0x0003,
+                WM_SIZE=0x0005,
+            }
+            public subclassForm(System.Windows.Forms.Form form)
+            {
+                _form = form;
+                lpPrevWndFunc = _subClassForm(_form);
+            }
+            public void Dispose()
+            {
+                unsubClassForm(_form);
+            }
+            IntPtr lpPrevWndFunc=IntPtr.Zero;
+            System.Windows.Forms.Form _form;
+
+            static WndProcDelegate persistentWndProc;
+            IntPtr _subClassForm(System.Windows.Forms.Form form)
+            {
+                //avoid multiple subclassing
+                if (lpPrevWndFunc != IntPtr.Zero)
+                    return IntPtr.Zero;
+                persistentWndProc = WndProc;
+                lpPrevWndFunc = (IntPtr)GetWindowLong(form.Handle, GWL_WNDPROC);
+                SetWindowLong(form.Handle, GWL_WNDPROC, persistentWndProc);
+                return lpPrevWndFunc;
+            }
+            IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam)
+            {
+                System.Diagnostics.Debug.WriteLine("HWND: " + hWnd + " MSG: " + msg + " WPARAM: " + wParam + " LPARAM: " + lParam);
+                onWndProcEvent(new wndprocEventArgs(hWnd, msg, lParam, wParam));
+                return CallWindowProc(lpPrevWndFunc, hWnd, msg, wParam, lParam);
+            }
+            bool unsubClassForm(System.Windows.Forms.Form form)
+            {
+                bool bRet = false;
+                if (lpPrevWndFunc == IntPtr.Zero)
+                    return bRet;
+                if (SetWindowLong(form.Handle, GWL_WNDPROC, lpPrevWndFunc.ToInt32()) != 0)
+                {
+                    bRet = true;
+                    lpPrevWndFunc = IntPtr.Zero;
+                }
+                return bRet;
+            }
+        }
+        #endregion
     }

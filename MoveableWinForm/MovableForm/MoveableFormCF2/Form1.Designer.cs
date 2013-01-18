@@ -34,10 +34,13 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabExtras = new System.Windows.Forms.TabPage();
-            this.chkMaximized = new System.Windows.Forms.CheckBox();
             this.chkMenu = new System.Windows.Forms.CheckBox();
+            this.chkMaximized = new System.Windows.Forms.CheckBox();
+            this.logTab = new System.Windows.Forms.TabPage();
+            this.txtLog = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabExtras.SuspendLayout();
+            this.logTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -45,6 +48,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabExtras);
+            this.tabControl1.Controls.Add(this.logTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -74,17 +78,8 @@
             this.tabExtras.Controls.Add(this.chkMaximized);
             this.tabExtras.Location = new System.Drawing.Point(0, 0);
             this.tabExtras.Name = "tabExtras";
-            this.tabExtras.Size = new System.Drawing.Size(226, 242);
+            this.tabExtras.Size = new System.Drawing.Size(218, 239);
             this.tabExtras.Text = "Extras";
-            // 
-            // chkMaximized
-            // 
-            this.chkMaximized.Location = new System.Drawing.Point(18, 28);
-            this.chkMaximized.Name = "chkMaximized";
-            this.chkMaximized.Size = new System.Drawing.Size(100, 22);
-            this.chkMaximized.TabIndex = 0;
-            this.chkMaximized.Text = "Maximized";
-            this.chkMaximized.CheckStateChanged += new System.EventHandler(this.chkMaximized_CheckStateChanged);
             // 
             // chkMenu
             // 
@@ -96,6 +91,34 @@
             this.chkMenu.TabIndex = 0;
             this.chkMenu.Text = "MainMenu";
             this.chkMenu.CheckStateChanged += new System.EventHandler(this.chkMenu_CheckStateChanged);
+            // 
+            // chkMaximized
+            // 
+            this.chkMaximized.Location = new System.Drawing.Point(18, 28);
+            this.chkMaximized.Name = "chkMaximized";
+            this.chkMaximized.Size = new System.Drawing.Size(100, 22);
+            this.chkMaximized.TabIndex = 0;
+            this.chkMaximized.Text = "Maximized";
+            this.chkMaximized.CheckStateChanged += new System.EventHandler(this.chkMaximized_CheckStateChanged);
+            // 
+            // logTab
+            // 
+            this.logTab.Controls.Add(this.txtLog);
+            this.logTab.Location = new System.Drawing.Point(0, 0);
+            this.logTab.Name = "logTab";
+            this.logTab.Size = new System.Drawing.Size(226, 242);
+            this.logTab.Text = "log";
+            // 
+            // txtLog
+            // 
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Location = new System.Drawing.Point(0, 0);
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtLog.Size = new System.Drawing.Size(226, 242);
+            this.txtLog.TabIndex = 1;
             // 
             // Form1
             // 
@@ -111,6 +134,7 @@
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabExtras.ResumeLayout(false);
+            this.logTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -123,6 +147,8 @@
         private System.Windows.Forms.TabPage tabExtras;
         private System.Windows.Forms.CheckBox chkMaximized;
         private System.Windows.Forms.CheckBox chkMenu;
+        private System.Windows.Forms.TabPage logTab;
+        private System.Windows.Forms.TextBox txtLog;
     }
 }
 
