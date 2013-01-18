@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{708980BB-37A8-40D9-89F4-3500053A5E0E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -73,6 +73,16 @@
     <Compile Include="DetailView.Designer.cs">
       <DependentUpon>DetailView.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSelectIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectIP.Designer.cs">
+      <DependentUpon>frmSelectIP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessUsageDataSet.cs">
+      <DependentUpon>ProcessUsageDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ProcessUsageDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,6 +97,9 @@
     <EmbeddedResource Include="DetailView.resx">
       <DependentUpon>DetailView.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectIP.resx">
+      <DependentUpon>frmSelectIP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

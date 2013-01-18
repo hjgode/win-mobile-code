@@ -173,6 +173,15 @@ namespace CpuMonRcv
 
         private void mnuUsage_Click(object sender, EventArgs e)
         {
+            frmSelectIP frmIP = new frmSelectIP();
+            string sIP = "";
+            if (frmIP.ShowDialog() == DialogResult.OK)
+            {
+                sIP = frmIP.sIP;
+            }
+            else
+                return;
+
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.CheckPathExists = true;
             sfd.DefaultExt = "csv";
@@ -187,7 +196,7 @@ namespace CpuMonRcv
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 DataAccess da = new DataAccess();
-                da.export2CSV2(sfd.FileName);
+                da.export2CSV2(sfd.FileName, sIP);
             } 
         }
     }

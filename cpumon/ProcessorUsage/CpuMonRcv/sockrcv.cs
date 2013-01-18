@@ -66,7 +66,7 @@ class RecvBroadcst:IDisposable
         {
             //all data should fit in one package!
             int bytesRead = receiveSocket.EndReceiveFrom(result, ref remoteEndPoint);
-            System.Diagnostics.Debug.WriteLine("Remote IP: " + ((IPEndPoint)(remoteEndPoint)).Address.ToString());
+            //System.Diagnostics.Debug.WriteLine("Remote IP: " + ((IPEndPoint)(remoteEndPoint)).Address.ToString());
 
             byte[] bData = new byte[bytesRead];
             Array.Copy(recBuffer, bData, bytesRead);

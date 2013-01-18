@@ -23,13 +23,14 @@ namespace CpuMonRcv
             }
         }
         _fieldsDefine[] _fieldsProcess = new _fieldsDefine[]{
+            new _fieldsDefine("RemoteIP", "System.String"),
             new _fieldsDefine("ProcID", "System.UInt32"),
             new _fieldsDefine("Process", "System.String"),
             new _fieldsDefine("User", "System.Int64"),
             new _fieldsDefine("Kernel", "System.Int64"),
             new _fieldsDefine("Time", "System.DateTime"),
             new _fieldsDefine("Duration", "System.UInt32"),
-            new _fieldsDefine("idx", "System.UInt64")
+            new _fieldsDefine("idx", "System.UInt64"),
         };
 
         _fieldsDefine[] _fieldsThread = new _fieldsDefine[]{
@@ -133,8 +134,23 @@ namespace CpuMonRcv
         {
             sql_con = new SQLiteConnection("Data Source=" + sDataFileFull + ";Version=3;New=False;Compress=True;Synchronous=Off");
             sql_con.Open();
-            
-            DataTable dtTest = sql_con.GetSchema("Tables",new string []{ null, null, "Processes", null});
+
+            try
+            {
+                DataTable dtTest = sql_con.GetSchema("Tables", new string[] { null, null, "Processes", null });
+            }
+            catch (SQLiteException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("SQLiteException in connectDB(): " + ex.Message);
+            }
+            catch (DataException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("DataException in connectDB(): " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in connectDB(): " + ex.Message);
+            }
             sql_cmd.Connection = sql_con;
         }
 
@@ -146,13 +162,14 @@ namespace CpuMonRcv
                 //string txtSQLQuery = "insert into  processes (desc) values ('" + txtDesc.Text + "')";
                 //ExecuteQuery(txtSQLQuery);
                 object[] o = new object[]{
+                    procStats.remoteIP,
                     procStats.processID,
                     procStats.sName,
                     procStats.procUsage.user,
                     procStats.procUsage.kernel,
                     new DateTime(procStats.dateTime),
                     procStats.duration,
-                    0
+                    0,
                 };
 
                 //some data for the live view
@@ -203,6 +220,7 @@ namespace CpuMonRcv
                 System.IO.StreamWriter sw = new System.IO.StreamWriter(sFileCSV);
                 rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 sw.Write(
+                        "RemoteIP" + ";" +
                         "Process" + ";" +
                         "ProcID" + ";" +
                         "User" + ";" +
@@ -217,7 +235,9 @@ namespace CpuMonRcv
                     iCnt++;
                     //Console.WriteLine(rdr["ProcID"] + " " + rdr["User"]);
                     sw.Write(
-                        "\"" + rdr["Process"] + "\";" + 
+                        "\"" +
+                        rdr["RemoteIP"] + "\";" + 
+                        rdr["Process"] + "\";" + 
                         rdr["ProcID"] + ";" +
                         rdr["User"] + ";" +
                         DateTime.FromBinary((long)rdr["Time"]).ToString("hh:mm:ss.fff") + ";" +
@@ -336,8 +356,35 @@ namespace CpuMonRcv
             }
 
         }
+        public string[] getKnownIPs()
+        {
+            //### setup
+            sql_cmd = new SQLiteCommand();
+            sql_con = new SQLiteConnection();
+            SQLiteDataReader sql_rdr; 
+            List<string> ipList = new List<string>();
+            connectDB();
+            if (sql_con.State != ConnectionState.Open)
+            {
+                sql_con.Close();
+                sql_con.Open();
+            }
+            sql_cmd = sql_con.CreateCommand();
+            //### Build a List of known IP adress's
+            sql_cmd.CommandText = "Select DISTINCT RemoteIP from processes order by RemoteIP";
+            List<string> lProcesses = new List<string>();
+            sql_rdr = sql_cmd.ExecuteReader();
+            while (sql_rdr.Read())
+            {
+                ipList.Add((string)sql_rdr["RemoteIP"]);
+            }
+            sql_rdr.Close();
+            sql_rdr.Dispose();
 
-        public int export2CSV2(string sFileCSV)
+            return ipList.ToArray();
+        }
+
+        public int export2CSV2(string sFileCSV, string strIP)
         {
             //### setup
             sql_cmd = new SQLiteCommand();
@@ -353,7 +400,10 @@ namespace CpuMonRcv
             long lCnt = 0;
 
             //### Build a List of known processes
-            sql_cmd.CommandText = "Select DISTINCT Process from processes order by Process";
+            if(strIP!="")
+                sql_cmd.CommandText = "Select DISTINCT Process from processes WHERE [RemoteIP]='"+strIP+"' order by Process";
+            else
+                sql_cmd.CommandText = "Select DISTINCT Process from processes order by Process";
             List<string> lProcesses= new List<string>();
             sql_rdr = sql_cmd.ExecuteReader();
             while (sql_rdr.Read())
@@ -378,10 +428,11 @@ namespace CpuMonRcv
             
             //### get all process,user,time data
             List<PROCESS_USAGE> lProcessUsages = new List<PROCESS_USAGE>();
-            sql_cmd.CommandText = "Select Process,User,Time from processes order by Time";
+            sql_cmd.CommandText = "Select RemoteIP,Process,User,Time from processes order by Time";
             sql_rdr = sql_cmd.ExecuteReader();
             while (sql_rdr.Read())
             {
+                string sIP = (string)sql_rdr["RemoteIP"];
                 string sP = (string)sql_rdr["Process"];
                 int iUT = Convert.ToInt32(sql_rdr["User"]);
                 ulong uTI = Convert.ToUInt64(sql_rdr["Time"]);
@@ -442,6 +493,7 @@ namespace CpuMonRcv
             try
             {
                 sw = new System.IO.StreamWriter(sFileCSV);
+                sw.WriteLine("RemoteIP;" + strIP);
                 string sFields = "";
                 List<string> lFields = new List<string>();
                 lFields.Add("Time");
@@ -480,10 +532,24 @@ namespace CpuMonRcv
         }
         #endregion
 
+        private void dropTables()
+        {
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine("DEBUG: dropTables()");
+            string dropTable = "DROP TABLE [Processes]";
+            executeNonQuery(dropTable);
+            dropTable = "DROP TABLE [Threads]";
+            executeNonQuery(dropTable);
+#else
+            System.Diagnostics.Debug.WriteLine("No DEBUG: no dropTables()");
+#endif
+        }
         private void createTablesSQL()
         {
+            dropTables();
             // Define the SQL Create table statement, IF NOT EXISTS 
             string createAppUserTableSQL = "CREATE TABLE IF NOT EXISTS [Processes] (" +
+                "[RemoteIP] TEXT NOT NULL, " +
                 "[ProcID] INTEGER NOT NULL, " +
                 "[Process] TEXT NOT NULL, " +
                 "[User] INTEGER NOT NULL, " +
@@ -513,6 +579,7 @@ namespace CpuMonRcv
             //a view
             string createView = "CREATE VIEW IF NOT EXISTS ProcessView AS " +
                 "SELECT " +
+                "Processes.RemoteIP, " +
                 "Processes.ProcID, Processes.Process, Processes.[User] * 1.0 / Processes.[Time] * 1.0 * 100.0 AS Usage, Processes.Duration, strftime('%H:%M:%f', " +
                 "datetime(Processes.[Time] / 10000000 - 62135596800, 'unixepoch')) AS theTime " +
                 "FROM " +
@@ -546,6 +613,7 @@ namespace CpuMonRcv
             }
 
             StringBuilder FieldsProcessValues = new StringBuilder();
+            FieldsProcessValues.Append("'" + procStats.remoteIP + "', ");
             FieldsProcessValues.Append(procStats.processID.ToString()+", ");
             FieldsProcessValues.Append("'" + procStats.sName + "', ");
             FieldsProcessValues.Append(procStats.procUsage.user.ToString() + ", ");
@@ -635,12 +703,14 @@ namespace CpuMonRcv
             }
             return rowId;
         }
+
         private void createTables()
         {
             dtProcesses = new DataTable("Processes");
             dsProcesses = new DataSet();
             bsProcesses = new BindingSource();
             #region proc_table
+            int iProcIDcolumn = -1;
             DataColumn[] dc = new DataColumn[_fieldsProcess.Length];
             //string[] _fieldNames = new string[6] { "procID", "Process", "User", "Kernel", "Time", "Duration" };
             //build the process table columns
@@ -657,10 +727,14 @@ namespace CpuMonRcv
                 if (dc[i].DataType == System.Type.GetType("System.String"))
                     dc[i].MaxLength = 256;
 
-                if (dc[i].Caption.Equals("ProcID",StringComparison.CurrentCultureIgnoreCase))
+                if (dc[i].Caption.Equals("ProcID", StringComparison.CurrentCultureIgnoreCase))
+                {
                     dc[i].Unique = true;
+                    iProcIDcolumn = i;
+                }
                 else
                     dc[i].Unique = false;
+
                 dc[i].AllowDBNull = false;
 
             }
@@ -668,7 +742,7 @@ namespace CpuMonRcv
             dtProcesses.Columns.AddRange(dc);
 
             DataColumn[] dcKey = new DataColumn[1];
-            dcKey[0] = dc[0];
+            dcKey[0] = dc[iProcIDcolumn];
             dtProcesses.PrimaryKey = dcKey;
 
             dsProcesses.Tables.Add(dtProcesses);
