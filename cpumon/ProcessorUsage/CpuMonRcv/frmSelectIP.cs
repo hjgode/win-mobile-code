@@ -22,6 +22,7 @@ namespace CpuMonRcv
             {
                 lbIP.Items.Add(s);
             }
+            lbIP.Items.Insert(0, "[ALL]");
             lbIP.SelectedIndex = 0;
         }
 
@@ -29,6 +30,8 @@ namespace CpuMonRcv
         {
             if (lbIP.SelectedIndex != -1)
                 sIP = lbIP.SelectedItem.ToString();
+            if (sIP == "[ALL]")
+                sIP = "";
             DialogResult = DialogResult.OK;
         }
 

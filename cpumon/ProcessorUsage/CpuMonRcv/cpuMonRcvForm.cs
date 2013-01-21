@@ -15,6 +15,18 @@ namespace CpuMonRcv
         RecvBroadcst recvr;
         DataAccess dataAccess;
         Queue<System.Process.ProcessStatistics.process_statistics> dataQueue;
+        bool _bAllowGUIupdate=true;
+        bool bAllowGUIupdate {
+            get { return _bAllowGUIupdate; }
+            set
+            {
+                _bAllowGUIupdate = value;
+                if (_bAllowGUIupdate)
+                    recvr.StartReceive();
+                else
+                    recvr.StopReceive();
+            }
+        }
 
         public cpuMonRcvForm()
         {
@@ -42,6 +54,8 @@ namespace CpuMonRcv
         void recvr_onEndOfTransfer(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("<EOT>");
+            if (!bAllowGUIupdate)
+                return;
             //get data
             float fUser = dataAccess.lastUserValue;
             dataAccess.lastUserValue = 0f;
@@ -99,24 +113,27 @@ namespace CpuMonRcv
             }
             else
             {
+                dataGridView1.SuspendLayout();
                 //enqueue data to be saved to sqlite
                 dataQueue.Enqueue(procStats);
 
-                //dataAccess.addSqlData(procStats);
+                if (bAllowGUIupdate)
+                {
+                    //dataAccess.addSqlData(procStats);
 
-                dataGridView1.SuspendLayout();
-                //dtProcesses.Rows.Clear();
+                    //dtProcesses.Rows.Clear();
 
-                dataAccess.addData(procStats);
-                
-                //dataGridView1.Refresh();
+                    dataAccess.addData(procStats);
+
+
+                    //release queue data
+                    dataAccess.waitHandle.Set();
+
+                    //object[] o = new object[7]{ procUsage.procStatistics. .procStatistics. [i].sApp, eventEntries[i].sArg, eventEntries[i].sEvent, 
+                    //        eventEntries[i].sStartTime, eventEntries[i].sEndTime, eventEntries[i].sType, eventEntries[i].sHandle };
+                }
+                dataGridView1.Refresh();
                 dataGridView1.ResumeLayout();
-
-                //release queue data
-                dataAccess.waitHandle.Set();
-
-                //object[] o = new object[7]{ procUsage.procStatistics. .procStatistics. [i].sApp, eventEntries[i].sArg, eventEntries[i].sEvent, 
-                //        eventEntries[i].sStartTime, eventEntries[i].sEndTime, eventEntries[i].sType, eventEntries[i].sHandle };
             }
         }
 
@@ -156,7 +173,9 @@ namespace CpuMonRcv
         private void mnuViewDetails_Click(object sender, EventArgs e)
         {
             DetailView dv = new DetailView();
+            bAllowGUIupdate = false;
             dv.ShowDialog();
+            bAllowGUIupdate = true;
         }
 
         private void menuExit_Click(object sender, EventArgs e)
@@ -182,6 +201,8 @@ namespace CpuMonRcv
             else
                 return;
 
+            bAllowGUIupdate = false;
+
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.CheckPathExists = true;
             sfd.DefaultExt = "csv";
@@ -197,7 +218,9 @@ namespace CpuMonRcv
             {
                 DataAccess da = new DataAccess();
                 da.export2CSV2(sfd.FileName, sIP);
-            } 
+            }
+            bAllowGUIupdate = true;
+
         }
     }
 }

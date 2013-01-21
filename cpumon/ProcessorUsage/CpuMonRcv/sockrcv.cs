@@ -44,8 +44,27 @@ class RecvBroadcst:IDisposable
     EndPoint bindEndPoint;
     const int maxBuffer = 32768;
 
+    public bool StopReceive()
+    {
+        bool bRet = false;
+        try
+        {
+            //receiveSocket.Disconnect(false);
+            receiveSocket.Close();
+            receiveSocket = null;
+            bRet = true;
+        }
+        catch(SocketException ex) {
+            System.Diagnostics.Debug.WriteLine("StopReceive(): SocketException=" + ex.Message);
+        }
+        catch (Exception ex) { System.Diagnostics.Debug.WriteLine("StopReceive(): Exception=" + ex.Message); }
+        return bRet;
+    }
+
     public void StartReceive()
     {
+        if (receiveSocket != null)
+            StopReceive();
         receiveSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         bindEndPoint = new IPEndPoint(IPAddress.Any, 3001);
         recBuffer = new byte[maxBuffer];

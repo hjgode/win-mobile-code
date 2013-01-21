@@ -354,7 +354,20 @@ namespace CpuMonRcv
                 user = iUserTime;
                 timestamp = iTimeStamp;
             }
-
+        }
+        class PROCESS_USAGE_IP
+        {
+            public string sRemoteIP;
+            public string procname;
+            public int user;
+            public UInt64 timestamp;
+            public PROCESS_USAGE_IP(string sIP, string sProcessName, int iUserTime, UInt64 iTimeStamp)
+            {
+                sRemoteIP = sIP;
+                procname = sProcessName;
+                user = iUserTime;
+                timestamp = iTimeStamp;
+            }
         }
         public string[] getKnownIPs()
         {
@@ -409,6 +422,7 @@ namespace CpuMonRcv
             while (sql_rdr.Read())
             {
                 lProcesses.Add((string)sql_rdr["Process"]);
+                Application.DoEvents();
             }
             sql_rdr.Close();
             sql_rdr.Dispose();
@@ -419,16 +433,24 @@ namespace CpuMonRcv
             {
                 sProcField += "[" + sProc + "] INTEGER,";
             }
+            //remove last comma of string
             sProcField = sProcField.TrimEnd(new char[] { ',' });
+            //insert time field
             sProcField = "[Time] INTEGER, " + sProcField;
+            //insert RemoteIP field for references
+            sProcField = "[RemoteIP] TEXT NOT NULL, "+ sProcField;
             //delete existing table            
             lCnt = executeNonQuery("DROP Table IF EXISTS [ProcUsage] ;");
             //create new one
             lCnt = executeNonQuery("Create Table [ProcUsage] (" + sProcField + ");");
             
             //### get all process,user,time data
-            List<PROCESS_USAGE> lProcessUsages = new List<PROCESS_USAGE>();
-            sql_cmd.CommandText = "Select RemoteIP,Process,User,Time from processes order by Time";
+            List<PROCESS_USAGE_IP> lProcessUsages = new List<PROCESS_USAGE_IP>();
+            if(strIP!="")
+                sql_cmd.CommandText = "Select RemoteIP,Process,User,Time from processes WHERE [RemoteIP]='" + strIP + "' order by Time";
+            else
+                sql_cmd.CommandText = "Select RemoteIP,Process,User,Time from processes order by Time";
+
             sql_rdr = sql_cmd.ExecuteReader();
             while (sql_rdr.Read())
             {
@@ -436,17 +458,23 @@ namespace CpuMonRcv
                 string sP = (string)sql_rdr["Process"];
                 int iUT = Convert.ToInt32(sql_rdr["User"]);
                 ulong uTI = Convert.ToUInt64(sql_rdr["Time"]);
-                lProcessUsages.Add(new PROCESS_USAGE(sP, iUT, uTI));
+                lProcessUsages.Add(new PROCESS_USAGE_IP(sIP, sP, iUT, uTI));
+                Application.DoEvents();
             }
             sql_rdr.Close();
 
             //### get all distinct times
             List<ulong> lTimes = new List<ulong>();
-            sql_cmd.CommandText = "Select DISTINCT Time from processes order by Time";
+            if(strIP!="")
+                sql_cmd.CommandText = "Select DISTINCT Time from processes WHERE [RemoteIP]='" + strIP + "' order by Time";
+            else
+                sql_cmd.CommandText = "Select DISTINCT Time from processes order by Time";
+
             sql_rdr = sql_cmd.ExecuteReader();
             while (sql_rdr.Read())
             {
                 lTimes.Add(Convert.ToUInt64(sql_rdr["Time"]));
+                Application.DoEvents();
             }
             sql_rdr.Close();
 
@@ -459,27 +487,39 @@ namespace CpuMonRcv
             {
                 System.Diagnostics.Debug.WriteLine("Updating for Time=" + uTime.ToString());
                 //insert an empty row
-                sql_cmd.CommandText = "Insert Into ProcUsage (Time) VALUES(" + uTime.ToString() + ");";
+                sql_cmd.CommandText = "Insert Into ProcUsage (RemoteIP, Time) VALUES('0.0.0.0', " + uTime.ToString() + ");";
                 lCnt = sql_cmd.ExecuteNonQuery();
                 foreach (string sPro in lProcesses)
                 {
+                    Application.DoEvents();
+
                     //is there already a line?
                     //lCnt = executeNonQuery("Select Time " + "From ProcUsage Where Time="+uTime.ToString());
 
                     // http://stackoverflow.com/questions/4495698/c-sharp-using-listt-find-with-custom-objects
-                    PROCESS_USAGE pu = lProcessUsages.Find(x => x.procname == sPro && x.timestamp == uTime);
+                    PROCESS_USAGE_IP pu = lProcessUsages.Find(x => x.procname == sPro && x.timestamp == uTime);
                     if (pu != null)
                     {
                         System.Diagnostics.Debug.WriteLine("\tUpdating User="+ pu.user +" for Process=" + sPro);
                         //update values
                         sUpdateCommand = "Update [ProcUsage] SET " +
                             "[" + sPro + "]=" + pu.user +
+                            ", [RemoteIP]='" + pu.sRemoteIP + "'" + 
                             //"(SELECT User from [Processes]
                             " WHERE Time=" + uTime.ToString() + //" AND Process=" + "'" + sPro + "'"+
                             ";";
                         sql_cmd.CommandText = sUpdateCommand;
                         //System.Diagnostics.Debug.WriteLine(sUpdateCommand);
-                        lCnt = sql_cmd.ExecuteNonQuery();
+                        try
+                        {
+                            lCnt = sql_cmd.ExecuteNonQuery();
+                        }
+                        catch (SQLiteException ex) {
+                            System.Diagnostics.Debug.WriteLine("export2CSV2()-SQLiteException: " + ex.Message + " for " + sUpdateCommand);
+                        }
+                        catch (Exception ex) { 
+                            System.Diagnostics.Debug.WriteLine("export2CSV2()-Exception: " + ex.Message + " for " + sUpdateCommand); 
+                        }
                         //lCnt = executeNonQuery(sInsertCommand);
                         //"insert into [ProcUsage]  (Time, [device.exe]) SELECT Time, User from [Processes] WHERE Time=631771077815940000 AND Process='device.exe';"
                     }
@@ -493,9 +533,10 @@ namespace CpuMonRcv
             try
             {
                 sw = new System.IO.StreamWriter(sFileCSV);
-                sw.WriteLine("RemoteIP;" + strIP);
+                //sw.WriteLine("RemoteIP;" + strIP);
                 string sFields = "";
                 List<string> lFields = new List<string>();
+                lFields.Add("RemoteIP");
                 lFields.Add("Time");
                 lFields.AddRange(lProcesses);
                 foreach (string ft in lFields)
@@ -509,6 +550,7 @@ namespace CpuMonRcv
                 rdr = sql_cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 while (rdr.Read())
                 {
+                    Application.DoEvents();
                     lCnt++;
                     sFields = "";
                     //Console.WriteLine(rdr["ProcID"] + " " + rdr["User"]);
@@ -534,7 +576,7 @@ namespace CpuMonRcv
 
         private void dropTables()
         {
-#if DEBUG
+#if DEBUG1
             System.Diagnostics.Debug.WriteLine("DEBUG: dropTables()");
             string dropTable = "DROP TABLE [Processes]";
             executeNonQuery(dropTable);
