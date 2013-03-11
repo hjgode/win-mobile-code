@@ -13,9 +13,12 @@ namespace NotificationsList
     public partial class NotificationsList : Form
     {
         PWRNOTIFICATIONS.PowerNotifications myPwrNot;
+        CeUserNotificationsClass clsNoti;
+
         public NotificationsList()
         {
             InitializeComponent();
+            clsNoti = new CeUserNotificationsClass();
             fillList();
             myPwrNot = new PWRNOTIFICATIONS.PowerNotifications();
             myPwrNot.OnMsg += new PWRNOTIFICATIONS.PowerNotifications.OnMsgHandler(myPwrNot_OnMsg);
@@ -50,11 +53,11 @@ namespace NotificationsList
         
         int fillList()
         {
-            CeUserNotificationsClass cls = new CeUserNotificationsClass();
-            string[] sList =cls.sAppList;
+            clsNoti = new CeUserNotificationsClass();
+            string[] sList = clsNoti.sAppList;
 
-            cls.applyTableStyle(dataGrid1);
-            dataGrid1.DataSource = cls.eventEntries;
+            clsNoti.applyTableStyle(dataGrid1);
+            dataGrid1.DataSource = clsNoti.eventEntries;
             //dataGrid1.DataSource = cls.EventDB;
 
             CeUserNotificationsClass cls2 = new CeUserNotificationsClass(this.treeView1);
@@ -84,8 +87,10 @@ namespace NotificationsList
         {
             if (tabControl1.SelectedIndex == 0)
             {
-                ;
+                mnuRemove.Enabled=true;
             }
+            else
+                mnuRemove.Enabled = false;
         }
 
         private void mnuSave_Click(object sender, EventArgs e)
@@ -153,6 +158,21 @@ namespace NotificationsList
             // Show Co-ordinates when CurrentCellChanged event is raised.
             System.Diagnostics.Debug.WriteLine(myString + "\nCurrent cell co-ordinates");
 
+        }
+
+        private void mnuRemove_Click(object sender, EventArgs e)
+        {
+            CeUserNotificationsClass.EventEntry cNot=new CeUserNotificationsClass.EventEntry();
+            if (dataGrid1.CurrentRowIndex != -1)
+            {
+                CeUserNotificationsClass.EventEntry[] _entry = (CeUserNotificationsClass.EventEntry[]) dataGrid1.DataSource;
+                cNot = _entry[dataGrid1.CurrentRowIndex];
+                if (MessageBox.Show("Are you sure to delete '" + cNot.sApp + "'?", "Remove Entry", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                    return;
+                int iCnt = clsNoti.deleteEntry(cNot);
+                MessageBox.Show("Number of deleted entries: " + iCnt.ToString());
+            }
+            
         }
     }
 }

@@ -42,6 +42,7 @@ namespace NotificationsList
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
+            this.mnuRemove = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -63,6 +64,7 @@ namespace NotificationsList
             this.mnuOptions.MenuItems.Add(this.mnuRefresh);
             this.mnuOptions.MenuItems.Add(this.mnuSave);
             this.mnuOptions.MenuItems.Add(this.menuItem2);
+            this.mnuOptions.MenuItems.Add(this.mnuRemove);
             this.mnuOptions.Text = "Options";
             // 
             // mnuRefresh
@@ -149,7 +151,12 @@ namespace NotificationsList
             this.txtLog.TabIndex = 0;
             this.txtLog.WordWrap = false;
             // 
-            // Form1
+            // mnuRemove
+            // 
+            this.mnuRemove.Text = "Remove";
+            this.mnuRemove.Click += new System.EventHandler(this.mnuRemove_Click);
+            // 
+            // NotificationsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -158,7 +165,7 @@ namespace NotificationsList
             this.ControlBox = false;
             this.Controls.Add(this.tabControl1);
             this.Menu = this.mainMenu1;
-            this.Name = "Form1";
+            this.Name = "NotificationsList";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -182,6 +189,7 @@ namespace NotificationsList
         private System.Windows.Forms.MenuItem menuItem2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.MenuItem mnuRemove;
     }
 }
 

@@ -10,7 +10,7 @@ using OpenNETCF.WindowsCE.Notification;
 
 namespace NotificationsList
 {
-    class CeUserNotificationsClass
+    public class CeUserNotificationsClass
     {
         public class EventEntry{
             private string _sApp;
@@ -22,6 +22,17 @@ namespace NotificationsList
             private string _sHandle;
 
             private System.Collections.ArrayList entries = new System.Collections.ArrayList();
+
+            public EventEntry()
+            {
+                    _sApp = "";
+                    _sArg = "";
+                    _sEvent = "";
+                    _sStartTime = "";
+                    _sEndTime = "";
+                    _sType = "";
+                    _sHandle = "0";
+            }
 
             public EventEntry(string s)
             {
@@ -82,6 +93,10 @@ namespace NotificationsList
             {
                 get { return _sHandle; }
                 set { _sHandle = value; }
+            }
+            public int iHandle
+            {
+                get { return Convert.ToInt32(_sHandle); }
             }
         }
 
@@ -191,6 +206,21 @@ namespace NotificationsList
                 dr.ItemArray = o;
                 EventDB.Rows.Add(dr);
             }
+        }
+        public int deleteEntry(EventEntry evnt)
+        {
+            int iRet = 0;
+            if (this.EventDB != null)
+            {
+                var dRows = EventDB.Select("handle='" + evnt.sHandle + "'");
+                foreach (var r in dRows)
+                {
+                    r.Delete();
+                    iRet++;
+                }
+                EventDB.AcceptChanges();
+            }
+            return iRet;
         }
         private int loadNotifications()
         {
