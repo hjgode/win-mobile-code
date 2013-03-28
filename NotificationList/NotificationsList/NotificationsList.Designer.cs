@@ -35,6 +35,7 @@ namespace NotificationsList
             this.mnuRefresh = new System.Windows.Forms.MenuItem();
             this.mnuSave = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.mnuRemove = new System.Windows.Forms.MenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGrid1 = new System.Windows.Forms.DataGrid();
@@ -42,7 +43,6 @@ namespace NotificationsList
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
-            this.mnuRemove = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -82,6 +82,11 @@ namespace NotificationsList
             this.menuItem2.Text = "Add";
             this.menuItem2.Click += new System.EventHandler(this.menuItem2_Click);
             // 
+            // mnuRemove
+            // 
+            this.mnuRemove.Text = "Remove";
+            this.mnuRemove.Click += new System.EventHandler(this.mnuRemove_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -118,7 +123,7 @@ namespace NotificationsList
             this.tabPage2.Controls.Add(this.treeView1);
             this.tabPage2.Location = new System.Drawing.Point(0, 0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(232, 242);
+            this.tabPage2.Size = new System.Drawing.Size(240, 245);
             this.tabPage2.Text = "Tree";
             // 
             // treeView1
@@ -126,7 +131,7 @@ namespace NotificationsList
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(232, 242);
+            this.treeView1.Size = new System.Drawing.Size(240, 245);
             this.treeView1.TabIndex = 5;
             // 
             // tabPage3
@@ -150,11 +155,6 @@ namespace NotificationsList
             this.txtLog.Size = new System.Drawing.Size(232, 242);
             this.txtLog.TabIndex = 0;
             this.txtLog.WordWrap = false;
-            // 
-            // mnuRemove
-            // 
-            this.mnuRemove.Text = "Remove";
-            this.mnuRemove.Click += new System.EventHandler(this.mnuRemove_Click);
             // 
             // NotificationsList
             // 

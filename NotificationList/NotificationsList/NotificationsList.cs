@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using System.IO;
+using OpenNETCF.WindowsCE.Notification;
 
 namespace NotificationsList
 {
@@ -23,6 +24,30 @@ namespace NotificationsList
             myPwrNot = new PWRNOTIFICATIONS.PowerNotifications();
             myPwrNot.OnMsg += new PWRNOTIFICATIONS.PowerNotifications.OnMsgHandler(myPwrNot_OnMsg);
             myPwrNot.Start();
+
+            this.treeView1.AfterSelect += new TreeViewEventHandler(treeView1_AfterSelect);
+        }
+
+        void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("TreeViewNode clicked: " + e.Node.ToString());
+            TreeNode treeNode = (TreeNode)e.Node;
+            if (treeNode.Tag.ToString() == "root")
+                return;
+
+            UserNotificationInfoHeader iHead=new UserNotificationInfoHeader();
+            iHead = (UserNotificationInfoHeader)treeNode.Tag;
+        }
+
+        UserNotificationInfoHeader getNotiHandleOfTreeView(TreeNode treeNode)
+        {
+            UserNotificationInfoHeader uNoti = new UserNotificationInfoHeader();
+            if (treeNode.Tag.ToString() == "root")
+                return null;
+
+            uNoti = (UserNotificationInfoHeader)treeNode.Tag;
+            
+            return uNoti;
         }
 
         void myPwrNot_OnMsg(object sender, PWRNOTIFICATIONS.PowerNotifications.PwrEventArgs e)
@@ -85,12 +110,12 @@ namespace NotificationsList
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 0)
-            {
-                mnuRemove.Enabled=true;
-            }
-            else
-                mnuRemove.Enabled = false;
+            //if (tabControl1.SelectedIndex == 0)
+            //{
+            //    mnuRemove.Enabled=true;
+            //}
+            //else
+            //    mnuRemove.Enabled = false;
         }
 
         private void mnuSave_Click(object sender, EventArgs e)
@@ -162,17 +187,46 @@ namespace NotificationsList
 
         private void mnuRemove_Click(object sender, EventArgs e)
         {
-            CeUserNotificationsClass.EventEntry cNot=new CeUserNotificationsClass.EventEntry();
-            if (dataGrid1.CurrentRowIndex != -1)
+            if (tabControl1.SelectedIndex == 0)//datagridView
             {
-                CeUserNotificationsClass.EventEntry[] _entry = (CeUserNotificationsClass.EventEntry[]) dataGrid1.DataSource;
-                cNot = _entry[dataGrid1.CurrentRowIndex];
-                if (MessageBox.Show("Are you sure to delete '" + cNot.sApp + "'?", "Remove Entry", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.No)
-                    return;
-                int iCnt = clsNoti.deleteEntry(cNot);
-                MessageBox.Show("Number of deleted entries: " + iCnt.ToString());
+                CeUserNotificationsClass.EventEntry cNot = new CeUserNotificationsClass.EventEntry();
+                if (dataGrid1.CurrentRowIndex != -1)
+                {
+                    CeUserNotificationsClass.EventEntry[] _entry = (CeUserNotificationsClass.EventEntry[])dataGrid1.DataSource;
+                    cNot = _entry[dataGrid1.CurrentRowIndex];
+                    if (MessageBox.Show("Are you sure to delete '" + cNot.sApp + "'?", "Remove Entry", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                        return;
+                    int iCnt = clsNoti.deleteEntry(cNot);
+                    if (iCnt > 0)
+                    {
+                        MessageBox.Show("Number of deleted entries: " + iCnt.ToString());
+                        fillList();
+                        //dataGrid1.Refresh();
+                    }
+                    else
+                        MessageBox.Show("Nothing deleted");
+                }
             }
-            
+            else if (tabControl1.SelectedIndex == 1)//treeView
+            { 
+                TreeNode tn = this.treeView1.SelectedNode;
+                if (tn == null)
+                    return;
+                UserNotificationInfoHeader userNotification = getNotiHandleOfTreeView(tn);
+                if (userNotification == null)
+                    return; //not found
+                if (MessageBox.Show("Are you sure to delete '" + userNotification.UserNotificationTrigger.Application + "'?", "Remove Entry", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                    return;
+                bool bRes = CEGETUSERNOTIFICATION.CeGetUserNotification.ClearUserNotification((IntPtr)userNotification.hNotification);
+                if (bRes)
+                {
+                    MessageBox.Show("Deleted entry: " + userNotification.UserNotificationTrigger.Application);
+                    fillList();
+                    //dataGrid1.Refresh();
+                }
+                else
+                    MessageBox.Show("Nothing deleted");
+            }
         }
     }
 }

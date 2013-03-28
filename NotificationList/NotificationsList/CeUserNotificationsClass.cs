@@ -140,6 +140,7 @@ namespace NotificationsList
             int iCnt = 0;
             tv.Nodes.Clear();
             TreeNode tnMain = tv.Nodes.Add("Notifications");
+            tnMain.Tag = "root";
 
             int[] iHandles = OpenNETCF.WindowsCE.Notification.Notify.GetUserNotificationHandles();
             _sList = new List<string>();
@@ -159,12 +160,19 @@ namespace NotificationsList
                 string[] strArray = new string[] { infoHeader.UserNotificationTrigger.Application, infoHeader.UserNotificationTrigger.Arguments };
                 TreeNode tn = new TreeNode(infoHeader.UserNotificationTrigger.Application);
                 tnMain.Nodes.Add(tn);
-                tn.Nodes.Add("Args: " + infoHeader.UserNotificationTrigger.Arguments);
-                tn.Nodes.Add("Event: " + infoHeader.UserNotificationTrigger.Event.ToString());
-                tn.Nodes.Add("Start: " + infoHeader.UserNotificationTrigger.StartTime.ToString("dd.MM.yyyy HH:mm"));
-                tn.Nodes.Add("End: " + infoHeader.UserNotificationTrigger.EndTime.ToString("dd.MM.yyyy HH:mm"));
-                tn.Nodes.Add("Type: " + infoHeader.UserNotificationTrigger.Type.ToString());
-                tn.Nodes.Add("Handle: " + iHandles[i].ToString());
+                tn.Tag = infoHeader;
+                TreeNode tnSub = tn.Nodes.Add("Args: " + infoHeader.UserNotificationTrigger.Arguments);
+                tnSub.Tag = infoHeader;
+                tnSub = tn.Nodes.Add("Event: " + infoHeader.UserNotificationTrigger.Event.ToString());
+                tnSub.Tag = infoHeader;
+                tnSub = tn.Nodes.Add("Start: " + infoHeader.UserNotificationTrigger.StartTime.ToString("dd.MM.yyyy HH:mm"));
+                tnSub.Tag = infoHeader;
+                tnSub = tn.Nodes.Add("End: " + infoHeader.UserNotificationTrigger.EndTime.ToString("dd.MM.yyyy HH:mm"));
+                tnSub.Tag = infoHeader;
+                tnSub = tn.Nodes.Add("Type: " + infoHeader.UserNotificationTrigger.Type.ToString());
+                tnSub.Tag = infoHeader;
+                tnSub = tn.Nodes.Add("Handle: " + iHandles[i].ToString());
+                tnSub.Tag = infoHeader;
 
                 //eventEntries[i].sApp = infoHeader.UserNotificationTrigger.Application;
                 //eventEntries[i].sEvent = infoHeader.UserNotificationTrigger.Event.ToString();
@@ -215,8 +223,13 @@ namespace NotificationsList
                 var dRows = EventDB.Select("handle='" + evnt.sHandle + "'");
                 foreach (var r in dRows)
                 {
-                    r.Delete();
-                    iRet++;
+                    if (CEGETUSERNOTIFICATION.CeGetUserNotification.ClearUserNotification((IntPtr)evnt.iHandle))
+                    {
+                        r.Delete();
+                        iRet++;
+                    }
+                    else
+                        System.Diagnostics.Debug.WriteLine("ClearUserNotification failed");
                 }
                 EventDB.AcceptChanges();
             }
