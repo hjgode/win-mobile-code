@@ -162,7 +162,10 @@ Flags: 12010000
 Length: 6
 trans.: ON|PASSWORD|BACKLIGHTON|
 */
-					if(ppb->Flags & 0x12010000)
+					//				 0x10000000				0x00010000		 0x02000000
+					if( ((ppb->Flags & POWER_STATE_PASSWORD) == POWER_STATE_PASSWORD) ||
+						((ppb->Flags & POWER_STATE_ON) == POWER_STATE_ON) ||
+						((ppb->Flags & POWER_STATE_BACKLIGHTON) == POWER_STATE_BACKLIGHTON) )
 					{
 						nclog(L"PwrMsgQueue: got 'ON|PASSWORD|BACKLIGHTON'...\n");
 						//send a message to main window
