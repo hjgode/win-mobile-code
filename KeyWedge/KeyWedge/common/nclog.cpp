@@ -214,21 +214,26 @@ int writefile (const wchar_t *fmt ...){
 // format input, convert to 8-bit and send.
 void nclog (const wchar_t *fmt, ...)
 {
-        va_list vl;
-        va_start(vl,fmt);
-        wchar_t buf[1024]; // to bad CE hasn't got wvnsprintf
-        wvsprintf(buf,fmt,vl);
-        wsa_init();
-        char bufOut[512];
-        WideCharToMultiByte(CP_ACP,0,buf,-1,bufOut,400, NULL, NULL);
-        wsa_send(bufOut);
+    va_list vl;
+    va_start(vl,fmt);
+    wchar_t buf[1024]; // to bad CE hasn't got wvnsprintf
+    wvsprintf(buf,fmt,vl);
 
-		writefile(buf);
 #ifdef DEBUG
-		DEBUGMSG(1, (buf));
+	DEBUGMSG(1, (buf));
 #else
-		RETAILMSG(1, (buf));
+	RETAILMSG(1, (buf));
 #endif
+	if(bUseFileLog==FALSE)
+		return;
+
+
+    wsa_init();
+    char bufOut[512];
+    WideCharToMultiByte(CP_ACP,0,buf,-1,bufOut,400, NULL, NULL);
+    wsa_send(bufOut);
+
+	writefile(buf);
 }
 
 // finalize the socket on program termination.

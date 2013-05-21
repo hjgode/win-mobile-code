@@ -1499,6 +1499,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\keymap.cpp"
+				>
+			</File>
+			<File
 				RelativePath="KeyWedge.cpp"
 				>
 				<FileConfiguration
@@ -1697,6 +1701,10 @@
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\RegRW.cpp"
+				>
 			</File>
 			<File
 				RelativePath="StdAfx.cpp"
@@ -1925,6 +1933,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\KeyWedge.reg"
+			>
+		</File>
 		<File
 			RelativePath="ReadMe.txt"
 			>

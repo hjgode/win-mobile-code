@@ -5,7 +5,6 @@
 #define USE_SSAPI
 #undef USE_SSAPI
 
-#define MAX_BUFSIZE 1000
 //
 /*
 	REGEDIT4
@@ -197,7 +196,8 @@ unsigned char
 
 TCHAR g_szCOM[32]=L"COM1:";
 
-TCHAR* g_szPostamble=NULL;	//internally we will use printable control codes
+//TCHAR* g_szPostamble=NULL;	//internally we will use printable control codes
+TCHAR g_szPostamble[32];
 TCHAR* g_szPreamble=NULL;
 TCHAR* g_szPostambleDecoded=NULL;
 TCHAR* g_szPreambleDecoded=NULL;
@@ -375,11 +375,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     hInst = hInstance;
 
 	//init some internal vars
-	g_szPostamble=(TCHAR*)malloc(32);
+//	g_szPostamble=(TCHAR*)malloc(32);
 	g_szPreamble=(TCHAR*)malloc(32);
 	g_szPostambleDecoded=(TCHAR*)malloc(32);
 	g_szPreambleDecoded=(TCHAR*)malloc(32);
 
+	wsprintf(g_szPostamble, L"");
+	wsprintf(g_szPostambleDecoded, L"");
+	wsprintf(g_szPreamble, L"");
+	wsprintf(g_szPreambleDecoded, L"");
 
 	//Read the registry
 	ReadReg();
@@ -926,15 +930,15 @@ LRESULT CALLBACK OptionsDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lPa
 					if (GetDlgItemText(hDlg, IDC_Pre, szTxt, dim(szTxt)) != 0)
 						wsprintf(g_szPreamble, szTxt);
 					else{
-						g_szPreamble=NULL;
-						g_szPreambleDecoded=NULL;
+						wsprintf(g_szPreamble, L"");//=NULL;
+						wsprintf(g_szPreambleDecoded, L"");//=NULL;
 					}
 					//read the Postamble
 					if (GetDlgItemText(hDlg, IDC_Post, szTxt, dim(szTxt)) != 0)
 						wsprintf(g_szPostamble, szTxt);
 					else{
-						g_szPostamble=NULL;
-						g_szPostambleDecoded=NULL;
+						wsprintf(g_szPostamble,L"");//=NULL;
+						wsprintf(g_szPostambleDecoded, L"");//=NULL;
 					}
 
 					//BeepAfterRead setting
