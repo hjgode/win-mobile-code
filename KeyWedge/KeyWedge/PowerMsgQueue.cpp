@@ -62,8 +62,10 @@ void dumpPowerFlags(POWER_BROADCAST* ppb, TCHAR* szPPB){
 		wcscat(szPPB, L"IDLE|");
 	if(ppb->Flags & POWER_STATE_PASSWORD)
 		wcscat(szPPB, L"PASSWORD|");
+#if _WIN32_WCE > 0x501
 	if(ppb->Flags & POWER_STATE_BACKLIGHTON)
 		wcscat(szPPB, L"BACKLIGHTON|");
+#endif
 	if(ppb->Flags & POWER_STATE_SUSPEND)
 		wcscat(szPPB, L"SUSPEND|");
 	if(ppb->Flags & POWER_STATE_UNATTENDED)
@@ -164,8 +166,12 @@ trans.: ON|PASSWORD|BACKLIGHTON|
 */
 					//				 0x10000000				0x00010000		 0x02000000
 					if( ((ppb->Flags & POWER_STATE_PASSWORD) == POWER_STATE_PASSWORD) ||
-						((ppb->Flags & POWER_STATE_ON) == POWER_STATE_ON) ||
-						((ppb->Flags & POWER_STATE_BACKLIGHTON) == POWER_STATE_BACKLIGHTON) )
+						((ppb->Flags & POWER_STATE_ON) == POWER_STATE_ON) 
+#if _WIN32_WCE > 0x501
+						||
+						((ppb->Flags & POWER_STATE_BACKLIGHTON) == POWER_STATE_BACKLIGHTON) 
+#endif
+						)
 					{
 						nclog(L"PwrMsgQueue: got 'ON|PASSWORD|BACKLIGHTON'...\n");
 						//send a message to main window
