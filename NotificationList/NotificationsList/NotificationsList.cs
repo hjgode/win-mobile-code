@@ -15,6 +15,8 @@ namespace NotificationsList
     {
         PWRNOTIFICATIONS.PowerNotifications myPwrNot;
         CeUserNotificationsClass clsNoti;
+        public bool bLogPowerChanges = false;
+        object lockObject = new object();
 
         public NotificationsList()
         {
@@ -67,12 +69,29 @@ namespace NotificationsList
             }
             else
             {
-                if (txtLog.Text.Length > 2000)
+                if (txtLog.Text.Length > 20000)
                     txtLog.Text = "";
                 txtLog.Text += text + "\r\n";
                 txtLog.SelectionLength = text.Length;
                 txtLog.SelectionStart = txtLog.Text.Length - text.Length;
                 txtLog.ScrollToCaret();
+                lock (lockObject)
+                {
+                    if (bLogPowerChanges)
+                    {
+                        try
+                        {
+                            using (StreamWriter sr = new StreamWriter(@"\powernotifications.log.txt"))
+                            {
+                                sr.WriteLine(text);
+                                sr.Flush();
+                            }
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                }
             }
         }
         
@@ -226,6 +245,15 @@ namespace NotificationsList
                 }
                 else
                     MessageBox.Show("Nothing deleted");
+            }
+        }
+
+        private void mnuLogPowerChanges_Click(object sender, EventArgs e)
+        {
+            mnuLogPowerChanges.Checked = !mnuLogPowerChanges.Checked;
+            lock (lockObject)
+            {
+                bLogPowerChanges = mnuLogPowerChanges.Checked;
             }
         }
     }

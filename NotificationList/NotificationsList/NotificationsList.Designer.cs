@@ -43,6 +43,7 @@ namespace NotificationsList
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
+            this.mnuLogPowerChanges = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -65,6 +66,7 @@ namespace NotificationsList
             this.mnuOptions.MenuItems.Add(this.mnuSave);
             this.mnuOptions.MenuItems.Add(this.menuItem2);
             this.mnuOptions.MenuItems.Add(this.mnuRemove);
+            this.mnuOptions.MenuItems.Add(this.mnuLogPowerChanges);
             this.mnuOptions.Text = "Options";
             // 
             // mnuRefresh
@@ -123,7 +125,7 @@ namespace NotificationsList
             this.tabPage2.Controls.Add(this.treeView1);
             this.tabPage2.Location = new System.Drawing.Point(0, 0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(240, 245);
+            this.tabPage2.Size = new System.Drawing.Size(232, 242);
             this.tabPage2.Text = "Tree";
             // 
             // treeView1
@@ -131,7 +133,7 @@ namespace NotificationsList
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(240, 245);
+            this.treeView1.Size = new System.Drawing.Size(232, 242);
             this.treeView1.TabIndex = 5;
             // 
             // tabPage3
@@ -139,7 +141,7 @@ namespace NotificationsList
             this.tabPage3.Controls.Add(this.txtLog);
             this.tabPage3.Location = new System.Drawing.Point(0, 0);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(232, 242);
+            this.tabPage3.Size = new System.Drawing.Size(240, 245);
             this.tabPage3.Text = "PwrNotifications";
             // 
             // txtLog
@@ -152,9 +154,14 @@ namespace NotificationsList
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(232, 242);
+            this.txtLog.Size = new System.Drawing.Size(240, 245);
             this.txtLog.TabIndex = 0;
             this.txtLog.WordWrap = false;
+            // 
+            // mnuLogPowerChanges
+            // 
+            this.mnuLogPowerChanges.Text = "Log Power Changes";
+            this.mnuLogPowerChanges.Click += new System.EventHandler(this.mnuLogPowerChanges_Click);
             // 
             // NotificationsList
             // 
@@ -190,6 +197,7 @@ namespace NotificationsList
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.MenuItem mnuRemove;
+        private System.Windows.Forms.MenuItem mnuLogPowerChanges;
     }
 }
 
