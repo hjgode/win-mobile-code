@@ -4,6 +4,7 @@
 #include "stdafx.h"
 
 INT32 hScan=NULL;
+DWORD iTimeOut=1000;
 
 int doScanBarcode(){
 	int iRet=0;
@@ -17,7 +18,7 @@ int doScanBarcode(){
 
 	READ_DATA_STRUCT ReadDataBlock;
 	BYTE* pDataBytes = (BYTE*)malloc(2048);
-	ReadDataBlock.dwTimeout=1000;
+	ReadDataBlock.dwTimeout=iTimeOut;
 	ReadDataBlock.rgbDataBuffer = pDataBytes; 
 	ReadDataBlock.dwDataBufferSize = 2048;
 	ReadDataBlock.dwBytesReturned = 0;
@@ -35,6 +36,7 @@ int doScanBarcode(){
 
 	if(hRes==E_ITCADC_OPERATION_TIMED_OUT)
 	{
+		DEBUGMSG(1, (L"Barcode read timed out with no barcode read\n"));
 		iRet=0;
 		goto scanexit;
 	}
@@ -48,6 +50,9 @@ int doScanBarcode(){
 	mbstowcs(tStr, (char*)ReadDataBlock.rgbDataBuffer, ReadDataBlock.dwBytesReturned);
 
 	DEBUGMSG(1, (L"Barcode read= '%s'\n", tStr));
+	delete(tStr);
+	delete(ReadDataBlock.rgbDataBuffer);
+
 	iRet=1;
 
 scanexit:
@@ -64,7 +69,15 @@ scanexit:
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	return doScanBarcode();
+	if(argc==2){
+		int i = _wtoi(argv[1]);
+		if(i>0 && i<10)
+			iTimeOut=i * 1000;
+	}
+
+	int iResult = doScanBarcode();
+	DEBUGMSG(1, (L"doScanBarcode() = %i\n", iResult));
+	return iResult;
 
 	return 0;
 }

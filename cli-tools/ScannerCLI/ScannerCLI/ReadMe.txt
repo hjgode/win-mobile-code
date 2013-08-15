@@ -2,32 +2,15 @@
     CONSOLE APPLICATION : ScannerCLI Project Overview
 ========================================================================
 
-AppWizard has created this ScannerCLI application for you.  
+Just issue the scanner for a max time of supplied arg
 
-This file contains a summary of what you will find in each of the files that
-make up your ScannerCLI application.
+default timeout is 1 second
 
+"ScannerCLI.exe x" will issue a barcode scan with a timeout of x seconds. 
 
-ScannerCLI.vcproj
-    This is the main project file for VC++ projects generated using an Application Wizard. 
-    It contains information about the version of Visual C++ that generated the file, and 
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
+x must be > 0 and < 10.
 
-ScannerCLI.cpp
-    This is the main application source file.
-
-/////////////////////////////////////////////////////////////////////////////
-Other standard files:
-
-StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named ScannerCLI.pch and a precompiled types file named StdAfx.obj.
-
-/////////////////////////////////////////////////////////////////////////////
-Other notes:
-
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
+"ScannerCLI.exe" will issue a barcode scan for max 1 second. The scan will
+be stopped immediately if a barcode is read.
 
 /////////////////////////////////////////////////////////////////////////////s
