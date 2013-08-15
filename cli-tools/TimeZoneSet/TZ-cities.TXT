@@ -1,0 +1,450 @@
+index: 0
+	short name: GMT-12 Kwajalein
+	name: Dateline Standard Time
+	GMT offset: 720
+	dst name: Dateline Daylight Time
+	DST offset: 0
+index: 1
+	short name: GMT-11 Samoa,Midway
+	name: Samoa Standard Time
+	GMT offset: 660
+	dst name: Samoa Daylight Time
+	DST offset: 0
+index: 2
+	short name: GMT-10 Hawaii
+	name: Hawaiian Standard Time
+	GMT offset: 600
+	dst name: Hawaiian Daylight Time
+	DST offset: 0
+index: 3
+	short name: GMT-9 Alaska
+	name: Alaskan Standard Time
+	GMT offset: 540
+	dst name: Alaskan Daylight Time
+	DST offset: 0
+index: 4
+	short name: GMT-8 Pacific US
+	name: Pacific Standard Time
+	GMT offset: 480
+	dst name: Pacific Daylight Time
+	DST offset: 0
+index: 10
+	short name: GMT-7 Mountain US
+	name: Mountain Standard Time
+	GMT offset: 420
+	dst name: Mountain Daylight Time
+	DST offset: 0
+index: 13
+	short name: GMT-7 Chihuahua, La Paz
+	name: Mexico Standard Time
+	GMT offset: 420
+	dst name: Mexico Daylight Time
+	DST offset: 0
+index: 15
+	short name: GMT-7 Arizona
+	name: US Mountain Standard Time
+	GMT offset: 420
+	dst name: US Mountain Daylight Time
+	DST offset: 0
+index: 20
+	short name: GMT-6 Central US
+	name: Central Standard Time
+	GMT offset: 360
+	dst name: Central Daylight Time
+	DST offset: 0
+index: 25
+	short name: GMT-6 Saskatchewan
+	name: Canada Central Standard Time
+	GMT offset: 360
+	dst name: Canada Central Daylight Time
+	DST offset: 0
+index: 30
+	short name: GMT-6 Mexico City, Monterrey
+	name: Mexico Standard Time
+	GMT offset: 360
+	dst name: Mexico Daylight Time
+	DST offset: 0
+index: 33
+	short name: GMT-6 Cent. America
+	name: Central America Standard Time
+	GMT offset: 360
+	dst name: Central America Daylight Time
+	DST offset: 0
+index: 35
+	short name: GMT-5 Eastern US
+	name: Eastern Standard Time
+	GMT offset: 300
+	dst name: Eastern Daylight Time
+	DST offset: 0
+index: 40
+	short name: GMT-5 Indiana (USA)
+	name: US Eastern Standard Time
+	GMT offset: 300
+	dst name: US Eastern Daylight Time
+	DST offset: 0
+index: 45
+	short name: GMT-5 Bogota,Lima
+	name: SA Pacific Standard Time
+	GMT offset: 300
+	dst name: SA Pacific Daylight Time
+	DST offset: 0
+index: 50
+	short name: GMT-4 Atlantic
+	name: Atlantic Standard Time
+	GMT offset: 240
+	dst name: Atlantic Daylight Time
+	DST offset: 0
+index: 55
+	short name: GMT-4 Caracas,La Paz
+	name: SA Western Standard Time
+	GMT offset: 240
+	dst name: SA Western Daylight Time
+	DST offset: 0
+index: 56
+	short name: GMT-4 Santiago
+	name: Pacific SA Standard Time
+	GMT offset: 240
+	dst name: Pacific SA Daylight Time
+	DST offset: 0
+index: 60
+	short name: GMT-3:30 Newfoundland
+	name: Newfoundland Standard Time
+	GMT offset: 210
+	dst name: Newfoundland Daylight Time
+	DST offset: 0
+index: 65
+	short name: GMT-3 Brasilia
+	name: E. South America Standard Time
+	GMT offset: 180
+	dst name: E. South America Daylight Time
+	DST offset: 0
+index: 70
+	short name: GMT-3 Buenos Aires
+	name: SA Eastern Standard Time
+	GMT offset: 180
+	dst name: SA Eastern Daylight Time
+	DST offset: 0
+index: 73
+	short name: GMT-3 Greenland
+	name: Greenland Standard Time
+	GMT offset: 180
+	dst name: Greenland Daylight Time
+	DST offset: 0
+index: 75
+	short name: GMT-2 Mid-Atlantic
+	name: Mid-Atlantic Standard Time
+	GMT offset: 120
+	dst name: Mid-Atlantic Daylight Time
+	DST offset: 0
+index: 80
+	short name: GMT-1 Azores
+	name: Azores Standard Time
+	GMT offset: 60
+	dst name: Azores Daylight Time
+	DST offset: 0
+index: 83
+	short name: GMT-1 Cape Verde
+	name: Cape Verde Standard Time
+	GMT offset: 60
+	dst name: Cape Verde Daylight Time
+	DST offset: 0
+index: 85
+	short name: GMT London,Dublin
+	name: GMT
+	GMT offset: 0
+	dst name: British Summer Time
+	DST offset: 0
+index: 90
+	short name: GMT Casablanca
+	name: GMT Standard Time
+	GMT offset: 0
+	dst name: GMT DST
+	DST offset: 0
+index: 95
+	short name: GMT+1 Prague,Budapest
+	name: Central Europe Standard Time
+	GMT offset: -60
+	dst name: Central Europe Daylight Time
+	DST offset: 0
+index: 100
+	short name: GMT+1 Warsaw,Sofija
+	name: Central European Standard Time
+	GMT offset: -60
+	dst name: Central European Daylight Time
+	DST offset: 0
+index: 105
+	short name: GMT+1 Paris,Madrid
+	name: Romance Standard Time
+	GMT offset: -60
+	dst name: Romance Daylight Time
+	DST offset: 0
+index: 110
+	short name: GMT+1 Berlin,Rome
+	name: W. Europe Standard Time
+	GMT offset: -60
+	dst name: W. Europe Daylight Time
+	DST offset: 0
+index: 113
+	short name: GMT+1 W Cent Africa
+	name: West Central Africa Standard Time
+	GMT offset: -60
+	dst name: West Central Africa Daylight Time
+	DST offset: 0
+index: 115
+	short name: GMT+2 Bucharest
+	name: E. Europe Standard Time
+	GMT offset: -120
+	dst name: E. Europe Daylight Time
+	DST offset: 0
+index: 120
+	short name: GMT+2 Cairo
+	name: Egypt Standard Time
+	GMT offset: -120
+	dst name: Egypt Daylight Time
+	DST offset: 0
+index: 125
+	short name: GMT+2 Helsinki,Riga
+	name: FLE Standard Time
+	GMT offset: -120
+	dst name: FLE Daylight Time
+	DST offset: 0
+index: 130
+	short name: GMT+2 Athens,Istanbul
+	name: GTB Standard Time
+	GMT offset: -120
+	dst name: GTB Daylight Time
+	DST offset: 0
+index: 135
+	short name: GMT+2 Jerusalem
+	name: Israel Standard Time
+	GMT offset: -120
+	dst name: Israel Daylight Time
+	DST offset: 0
+index: 140
+	short name: GMT+2 Pretoria
+	name: South Africa Standard Time
+	GMT offset: -120
+	dst name: South Africa Daylight Time
+	DST offset: 0
+index: 145
+	short name: GMT+3 Moscow
+	name: Russian Standard Time
+	GMT offset: -180
+	dst name: Russian Daylight Time
+	DST offset: 0
+index: 150
+	short name: GMT+3 Riyadh, Kuwait
+	name: Arab Standard Time
+	GMT offset: -180
+	dst name: Arab Daylight Time
+	DST offset: 0
+index: 155
+	short name: GMT+3 Nairobi
+	name: East Africa Standard Time
+	GMT offset: -180
+	dst name: East Africa Daylight Time
+	DST offset: 0
+index: 158
+	short name: GMT+3 Baghdad
+	name: Arabic Standard Time
+	GMT offset: -180
+	dst name: Arabic Daylight Time
+	DST offset: 0
+index: 160
+	short name: GMT+3:30 Tehran
+	name: Iran Standard Time
+	GMT offset: -210
+	dst name: Iran Daylight Time
+	DST offset: 0
+index: 165
+	short name: GMT+4 Abu Dhabi
+	name: Arabian Standard Time
+	GMT offset: -240
+	dst name: Arabian Daylight Time
+	DST offset: 0
+index: 170
+	short name: GMT+4 Baku,Tbilisi
+	name: Caucasus Standard Time
+	GMT offset: -240
+	dst name: Caucasus Daylight Time
+	DST offset: 0
+index: 175
+	short name: GMT+4:30 Kabul
+	name: Afghanistan Standard Time
+	GMT offset: -270
+	dst name: Afghanistan Daylight Time
+	DST offset: 0
+index: 180
+	short name: GMT+5 Yekaterinburg
+	name: Yekaterinburg Standard Time
+	GMT offset: -300
+	dst name: Yekaterinburg Daylight Time
+	DST offset: 0
+index: 185
+	short name: GMT+5 Islamabad
+	name: West Asia Standard Time
+	GMT offset: -300
+	dst name: West Asia Daylight Time
+	DST offset: 0
+index: 190
+	short name: GMT+5:30 New Delhi
+	name: India Standard Time
+	GMT offset: -330
+	dst name: India Daylight Time
+	DST offset: 0
+index: 193
+	short name: GMT+5:45 Kathmandu
+	name: Nepal Standard Time
+	GMT offset: -345
+	dst name: Nepal Daylight Time
+	DST offset: 0
+index: 195
+	short name: GMT+6 Astana,Dhaka
+	name: Central Asia Standard Time
+	GMT offset: -360
+	dst name: Central Asia Daylight Time
+	DST offset: 0
+index: 200
+	short name: GMT+6 Sri Lanka
+	name: Sri Lanka Standard Time
+	GMT offset: -360
+	dst name: Sri Lanka Daylight Time
+	DST offset: 0
+index: 201
+	short name: GMT+6 Almaty
+	name: N. Central Asia Standard Time
+	GMT offset: -360
+	dst name: N. Central Asia Daylight Time
+	DST offset: 0
+index: 203
+	short name: GMT+6:30 Yangoon
+	name: Myanmar Standard Time
+	GMT offset: -390
+	dst name: Myanmar Asia Daylight Time
+	DST offset: 0
+index: 205
+	short name: GMT+7 Bangkok,Hanoi
+	name: SE Asia Standard Time
+	GMT offset: -420
+	dst name: SE Asia Daylight Time
+	DST offset: 0
+index: 207
+	short name: GMT+7 Krasnoyarsk
+	name: North Asia Standard Time
+	GMT offset: -420
+	dst name: North Asia Daylight Time
+	DST offset: 0
+index: 210
+	short name: GMT+8 Beijing, HK
+	name: China Standard Time
+	GMT offset: -480
+	dst name: China Daylight Time
+	DST offset: 0
+index: 215
+	short name: GMT+8 Malaysia,Singapore
+	name: Malay Standard Time
+	GMT offset: -480
+	dst name: Malay Daylight Time
+	DST offset: 0
+index: 220
+	short name: GMT+8 Taipei
+	name: Taipei Standard Time
+	GMT offset: -480
+	dst name: Taipei Daylight Time
+	DST offset: 0
+index: 225
+	short name: GMT+8 Perth
+	name: West Australia Standard Time
+	GMT offset: -480
+	dst name: West Australia Daylight Time
+	DST offset: 0
+index: 227
+	short name: GMT+8 Ulaanbataar
+	name: North Asia East Standard Time
+	GMT offset: -480
+	dst name: North Asia East Daylight Time
+	DST offset: 0
+index: 230
+	short name: GMT+9 Seoul
+	name: Korea Standard Time
+	GMT offset: -540
+	dst name: Korea Daylight Time
+	DST offset: 0
+index: 235
+	short name: GMT+9 Tokyo,Osaka
+	name: Tokyo Standard Time
+	GMT offset: -540
+	dst name: Tokyo Daylight Time
+	DST offset: 0
+index: 240
+	short name: GMT+9 Yakutsk
+	name: Yakutsk Standard Time
+	GMT offset: -540
+	dst name: Yakutsk Daylight Time
+	DST offset: 0
+index: 245
+	short name: GMT+9:30 Darwin
+	name: AUS Central Standard Time
+	GMT offset: -570
+	dst name: AUS Central Daylight Time
+	DST offset: 0
+index: 250
+	short name: GMT+9:30 Adelaide
+	name: Cen. Australia Standard Time
+	GMT offset: -570
+	dst name: Cen. Australia Daylight Time
+	DST offset: 0
+index: 255
+	short name: GMT+10 Sydney
+	name: Sydney Standard Time
+	GMT offset: -600
+	dst name: Sydney Daylight Time
+	DST offset: 0
+index: 260
+	short name: GMT+10 Brisbane
+	name: E Australia Standard Time
+	GMT offset: -600
+	dst name: E Australia Daylight Time
+	DST offset: 0
+index: 265
+	short name: GMT+10 Hobart
+	name: Tasmania Standard Time
+	GMT offset: -600
+	dst name: Tasmania Daylight Time
+	DST offset: 0
+index: 270
+	short name: GMT+10 Vladivostok
+	name: Vladivostok Standard Time
+	GMT offset: -600
+	dst name: Vladivostok Daylight Time
+	DST offset: 0
+index: 275
+	short name: GMT+10 Guam
+	name: West Pacific Standard Time
+	GMT offset: -600
+	dst name: West Pacific Daylight Time
+	DST offset: 0
+index: 280
+	short name: GMT+11 Magadan
+	name: Central Pacific Standard Time
+	GMT offset: -660
+	dst name: Central Pacific Daylight Time
+	DST offset: 0
+index: 285
+	short name: GMT+12 Fiji Islands
+	name: Fiji Standard Time
+	GMT offset: -720
+	dst name: Fiji Daylight Time
+	DST offset: 0
+index: 290
+	short name: GMT+12 New Zealand
+	name: New Zealand Standard Time
+	GMT offset: -720
+	dst name: New Zealand Daylight Time
+	DST offset: 0
+index: 300
+	short name: GMT+13 Tonga
+	name: Tonga Standard Time
+	GMT offset: -780
+	dst name: Tonga Daylight Time
+	DST offset: 0
