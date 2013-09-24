@@ -81,6 +81,7 @@ namespace CommAppCF
             btnSend.Enabled = bEnable;
             btnSendFile.Enabled = bEnable;
             btnSendLine.Enabled = bEnable;
+            btnSendFileTXT.Enabled = bEnable;
         }
         delegate void SetTextCallback(string text);
         private void updateTxtRcv(string text)
@@ -196,6 +197,44 @@ namespace CommAppCF
             catch (Exception x)
             {
                 updateTxtRcv(x.Message);
+            }
+        }
+        private void sendFileTXT(string filename)
+        {
+            try
+            {
+                updateTxtRcv("Starting sendFileTxt(" + filename + ")");
+
+                System.IO.StreamReader sr = new System.IO.StreamReader(filename);
+                byte[] bFile = Encoding.UTF8.GetBytes(sr.ReadToEnd());
+
+                int r;
+                int offset = 0;
+                int blockSize = 4096;
+                //how many blocks to send?
+                long lBlocks = (long)(bFile.Length / blockSize);
+                if (lBlocks == 0)
+                    lBlocks = 1;
+                updateTxtRcv("Need to send " + lBlocks.ToString() + " blocks...");
+                long lBlockNr = 1;
+                //any full blocks to send?
+                while (offset + blockSize < bFile.Length)
+                {
+                    updateTxtRcv("Sending block " + lBlockNr.ToString() + " ...");
+                    comport.Write(bFile, offset, blockSize);
+                    offset += blockSize;
+                }
+                
+                //send remaining
+                comport.Write(bFile, offset, bFile.Length - offset);
+
+                sr.Close();
+                updateTxtRcv("Finished sendFile(" + filename + ")");
+            }
+            catch (Exception x)
+            {
+                updateTxtRcv("sendFile exception:" + x.Message);
+                System.Diagnostics.Debug.WriteLine(x.Message);
             }
         }
         private void sendFile(string filename)
@@ -324,6 +363,35 @@ namespace CommAppCF
                 }
             }
             
+        }
+
+        private void btnSendFileTXT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comport.IsOpen)
+                {
+                    OpenFileDialog ofd = new OpenFileDialog();
+                    ofd.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                    ofd.FilterIndex = 0;
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        string filename = ofd.FileName;
+                        if (System.IO.File.Exists(filename))
+                        {
+                            Cursor.Current = Cursors.WaitCursor;
+                            sendFileTXT(filename);
+                            Cursor.Current = Cursors.Default;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception x)
+            {
+                updateTxtRcv(x.Message);
+            }
+
         }
         //private void btSearch_Click(object sender, EventArgs e)
         //{
