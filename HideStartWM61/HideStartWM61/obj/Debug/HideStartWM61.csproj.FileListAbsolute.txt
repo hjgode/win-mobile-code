@@ -1,0 +1,8 @@
+D:\c-source\Active\HideStartWM61\HideStartWM61\bin\Debug\HideStartWM61.exe
+D:\c-source\Active\HideStartWM61\HideStartWM61\bin\Debug\HideStartWM61.pdb
+D:\c-source\Active\HideStartWM61\HideStartWM61\obj\Debug\ResolveAssemblyReference.cache
+D:\c-source\Active\HideStartWM61\HideStartWM61\obj\Debug\HideStartWM61.Form1.resources
+D:\c-source\Active\HideStartWM61\HideStartWM61\obj\Debug\HideStartWM61.Properties.Resources.resources
+D:\c-source\Active\HideStartWM61\HideStartWM61\obj\Debug\HideStartWM61.csproj.GenerateResource.Cache
+D:\c-source\Active\HideStartWM61\HideStartWM61\obj\Debug\HideStartWM61.exe
+D:\c-source\Active\HideStartWM61\HideStartWM61\obj\Debug\HideStartWM61.pdb
