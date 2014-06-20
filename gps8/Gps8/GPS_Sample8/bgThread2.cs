@@ -8,6 +8,8 @@ using System.ComponentModel;
 using System.Threading;
 using System.Runtime.InteropServices;
 
+using gps.parser;
+
     public class bgThread2 : Component
     {
         /// <summary>
@@ -121,12 +123,14 @@ using System.Runtime.InteropServices;
             myThread.Start();
         }
         #region TheTHREAD
+        public gps.parser.Nmea parser = new gps.parser.Nmea();
         private void myThreadStart()
         {
             System.Diagnostics.Debug.WriteLine("Entering thread proc");
             int _i=0;
             try
             {
+                parser.NewMessage += new Nmea.NewMessageEventHandler(parser_NewMessage);
                 do
                 {
                     //The blocking function...
@@ -139,7 +143,15 @@ using System.Runtime.InteropServices;
                         string[] sAll = sRes.Split(cSep);
                         foreach (string s1 in sAll)
                         {
-                            SendData(bgWnd.Hwnd, iRes, s1); 
+                            if (s1.Length > 0)
+                            {
+                                SendData(bgWnd.Hwnd, iRes, s1);
+                                if (s1.StartsWith("$GPGSV"))
+                                {
+                                    parser.parseString(s1);
+                                    System.Diagnostics.Debug.WriteLine("### GPS sat data: '" + s1 + "'");
+                                }
+                            }
                         }
                         //Application.DoEvents();
                         Thread.Sleep(100);
@@ -160,6 +172,12 @@ using System.Runtime.InteropServices;
                 System.Diagnostics.Debug.WriteLine("Exception in ThreadStart: " + ex.Message);
             }
             System.Diagnostics.Debug.WriteLine("ThreadProc ended");
+        }
+
+        void parser_NewMessage(NmeaMsg msg)
+        {
+            SendData(bgWnd.Hwnd, 0, msg.ToString());
+            System.Diagnostics.Debug.WriteLine("### GPS sat data: '" + msg.ToString() + "'");
         }
         #endregion
         private void SendData(IntPtr hWnd, int id, string sMsg)

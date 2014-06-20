@@ -96,6 +96,7 @@
     <Compile Include="GPSForm1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="nmea.cs" />
     <Compile Include="Port.cs" />
     <Compile Include="PortCapabilities.cs" />
     <Compile Include="PortSettings.cs" />
@@ -104,6 +105,10 @@
     <Compile Include="SystemTime.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\C-Source\test\GPSparser\nmeaparser\gps.parser.csproj">
+      <Project>{E575252D-45C4-4BA8-A9A4-FA1579045E2F}</Project>
+      <Name>gps.parser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gps\Microsoft.WindowsMobile.Samples.Location.csproj">
       <Project>{DB77C1EE-A383-4CD5-A107-1C7C26A9E6B8}</Project>
       <Name>Microsoft.WindowsMobile.Samples.Location</Name>
