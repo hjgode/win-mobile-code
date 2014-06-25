@@ -3,6 +3,26 @@
 
 #include "stdafx.h"
 
+/*
+START screen is Herausgebeauftrag
+screen title "HTML5 Browser"
+button: ulds_scannen = 230,210
+input: 1st input box = 230,180 (double click + backspace to mark and delete all existing text?)
+type: barcode_text = AKE00006LH
+button: uebernehmen = 240, 350
+button: abbrechen = 240, 440
+delete: uld_delete1 = 436, 242
+delete2: uld_delete2 = 404, 242
+button: abbrechen 
+--back at START
+*/
+TCHAR* sz_winTitle = L"HTML5 Browser";
+//TCHAR* sz_winTitle = L"IntermecBrowser";
+TCHAR* sz_winClass = NULL;
+bool activateWindow(TCHAR* sz_Class, TCHAR* sz_Title);
+
+TCHAR* sz_ScanData = L"AKE00006LH";
+
 int x=430;
 int y=590;
 
@@ -45,19 +65,36 @@ void DoClickAt(int x, int y){
 	}
 }
 
-void DoClickAt(clickPoint* cp){
+int screenW, screenH;
 
-	int dx = (int)((65535 / 480) * cp->x); //Screen.PrimaryScreen.Bounds.Width
-	int dy = (int)((65535 / 640) * cp->y); //Screen.PrimaryScreen.Bounds.Height
+void GetMetrics(int* width, int* height){
+	int screenX = GetSystemMetrics(SM_CXFULLSCREEN);
+	int screenY = GetSystemMetrics(SM_CYFULLSCREEN);
+	*width=screenX;
+	*height=screenY;
+}
+
+BOOL DoClickAt(clickPoint* cp){
+
+	if(!activateWindow(sz_winClass, sz_winTitle)){
+		return FALSE;
+	}
+
+	int dx = (int)((65535 / screenW) * cp->x); //Screen.PrimaryScreen.Bounds.Width
+	int dy = (int)((65535 / screenH) * cp->y); //Screen.PrimaryScreen.Bounds.Height
 
 	DEBUGMSG(1, (L"Action: %s at %i/%i\n", cp->name, cp->x, cp->y));
 
 	mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_ABSOLUTE , dx, dy, 0, 0);
 	Sleep(5);
-	mouse_event(MOUSEEVENTF_LEFTUP , 0, 0, 0, 0);
+	mouse_event(MOUSEEVENTF_LEFTUP | MOUSEEVENTF_ABSOLUTE , dx, dy, 0, 0);
+	return TRUE;
 }
 
-void DoEnterText(TCHAR* text){
+BOOL DoEnterText(TCHAR* text){
+	if(!activateWindow(sz_winClass, sz_winTitle)){
+		return FALSE;
+	}
 	char* textA;
 	textA = (char*)malloc((wcslen(text)+1)*sizeof(TCHAR));
 	int num = wcstombs(textA, text, wcslen(text)+1);
@@ -72,6 +109,7 @@ void DoEnterText(TCHAR* text){
 		cnt++;
 	}
 	free (textA);
+	return TRUE;
 }
 
 void DoSendTab(){
@@ -101,23 +139,7 @@ clickPoint *clickPoints[] = {
 	new clickPoint(404,240, L"Confirm Delete icon")  //confirm delete symbol
 };
 
-/*
-START screen is Herausgebeauftrag
-screen title "HTML5 Browser"
-button: ulds_scannen = 230,210
-input: 1st input box = 230,180 (double click + backspace to mark and delete all existing text?)
-type: barcode_text = AKE00006LH
-button: uebernehmen = 240, 350
-button: abbrechen = 240, 440
-delete: uld_delete1 = 436, 242
-delete2: uld_delete2 = 404, 242
-button: abbrechen 
---back at START
-*/
-//TCHAR* sz_winTitle = L"HTML5 Browser";
-TCHAR* sz_winTitle = L"IntermecBrowser";
 
-TCHAR* sz_ScanData = L"AKE00006LH";
 
 const WORD WM_UPDATESIGNAL = WM_USER + 1704;
 static LRESULT CALLBACK TaskWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam); //CallBAck for TaskBar Hook
@@ -228,8 +250,36 @@ ULONG getStatus(){
 	return uTestCount;
 }
 
+void logTime(){
+	SYSTEMTIME st;
+	GetLocalTime(&st);
+	DEBUGMSG(1, (L"%04i%02i%02i %02i:%02i:%02i.%02i ", st.wYear, st.wMonth, st.wDay,
+		st.wHour, st.wMinute, st.wSecond, st.wMilliseconds));
+}
+
+bool activateWindow(TCHAR* sz_Class, TCHAR* sz_Title){
+	HWND hWnd = FindWindow(sz_Class, sz_Title);
+	if(hWnd==NULL)
+		if(sz_Class!=NULL && sz_winTitle==NULL)
+			DEBUGMSG(1, (L"Window '%s' NOT FOUND\n", sz_Class));
+		else if(sz_Class==NULL && sz_winTitle!=NULL)
+			DEBUGMSG(1, (L"Window '%s' NOT FOUND\n", sz_Title));
+		else if(sz_Class!=NULL && sz_winTitle!=NULL)
+			DEBUGMSG(1, (L"Window '%s'/'%s' NOT FOUND\n", sz_Class, sz_Title));
+		else{
+			DEBUGMSG(1, (L"Window NULL NOT FOUND\n"));
+			return false;
+		}
+	else{
+		SetForegroundWindow(hWnd);
+		return true;
+	}
+	return false;
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {	
+	GetMetrics(&screenW, &screenH);
 	HWND hWnd = FindWindow(NULL, sz_winTitle);
 	hWnd = FindWindow(sz_winTitle, NULL); //Intermec Browser CLASS
 	if (hWnd==NULL){
@@ -249,31 +299,42 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//START
 	SetForegroundWindow(hWnd);
-	BOOL useMouse=false;
+	BOOL useMouse=true;
 
 	int maxTestCount = 100;
 
 	for(int iX=0; iX<maxTestCount; iX++){
+		logTime();
+		if(!activateWindow(sz_winClass, sz_winTitle)){
+			return -2;
+		}
 		DEBUGMSG(1, (L"test round %i\n", iX));
 		if(useMouse){
 			//DoClickAt(clickPoints[0]->x, clickPoints[0]->y);	//click ULDs scannen
-			DoClickAt(clickPoints[0]);
+			if(!DoClickAt(clickPoints[0]))
+				return -3;
 			//DEBUGMSG(1, (L"Action: %s\n", clickPoints[0]->name));
 			visualDelay(4);
-			DoClickAt(clickPoints[1]);	//click inside first edit box
+			if(!DoClickAt(clickPoints[1]))	//click inside first edit box
+				return -3;
 			DEBUGMSG(1, (L"Action: %s\n", clickPoints[1]->name));
 			visualDelay(1);
 			DEBUGMSG(1, (L"Action: enter data %s\n", sz_ScanData));
-			DoEnterText(sz_ScanData);							//enter data in edit box
+			if(!DoEnterText(sz_ScanData))							//enter data in edit box
+				return -3;
 			visualDelay(1);
 			//DEBUGMSG(1, (L"Action: %s\n", clickPoints[2]->name));
-			DoClickAt(clickPoints[2]);	//click Übernehmen
-			DoSendSpace();	//to ensure Übernehmen is clicked
+			if(!DoClickAt(clickPoints[2]))	//click Übernehmen
+				return -3;
+			
+			//DoSendSpace();	//to ensure Übernehmen is clicked
 			visualDelay(4);
-			DoClickAt(clickPoints[4]);	//click delete icon
+			if(!DoClickAt(clickPoints[4]))	//click delete icon
+				return -3;
 			visualDelay(3);
 			//DEBUGMSG(1, (L"Action: %s\n", clickPoints[5]->name));
-			DoClickAt(clickPoints[5]);	//click delete confirm
+			if(!DoClickAt(clickPoints[5]))	//click delete confirm
+				return -3;
 			visualDelay(6);
 			//Back at START
 		}else{
