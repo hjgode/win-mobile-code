@@ -112,10 +112,40 @@ BOOL DoEnterText(TCHAR* text){
 	return TRUE;
 }
 
-void DoSendTab(){
+BOOL DoSendTextMsg(TCHAR* text){
+	if(!activateWindow(sz_winClass, sz_winTitle)){
+		return FALSE;
+	}
+	HWND hWnd=FindWindow(sz_winClass, sz_winTitle);
+	if(hWnd==NULL)
+		return FALSE;
+
+	char* textA;
+	textA = (char*)malloc((wcslen(text)+1)*sizeof(TCHAR));
+	int num = wcstombs(textA, text, wcslen(text)+1);
+	byte* pByte=(byte*) textA; //set pointer to first char
+	int cnt=0;
+	//while (pByte!=NULL && pByte!=0){
+	while(cnt<num){
+//		SendMessage(hWnd, WM_CHAR, *pByte, 0x40000000);	//with bit 30 set, key pressed
+		Sleep(1);
+		SendMessage(hWnd, WM_CHAR, *pByte, 0x80000000);	//with bit 31 set, key released
+		Sleep(1);
+		pByte++;
+		cnt++;
+	}
+	free (textA);
+	return TRUE;
+}
+
+BOOL DoSendTab(){
+	if(!activateWindow(sz_winClass, sz_winTitle)){
+		return FALSE;
+	}
 	keybd_event(0x09, 0x00, 0x00, 0);
 	Sleep(1);
 	keybd_event(0x09, 0x00, KEYEVENTF_KEYUP, 0x00);
+	return TRUE;
 }
 
 void DoSendSpace(){
@@ -124,19 +154,36 @@ void DoSendSpace(){
 	keybd_event(0x20, 0x00, KEYEVENTF_KEYUP, 0x00);
 }
 
-void DoSendEnter(){
+BOOL DoSendEnter(){
+	if(!activateWindow(sz_winClass, sz_winTitle)){
+		return FALSE;
+	}
 	keybd_event(VK_RETURN, 0x00, 0x00, 0);
 	Sleep(1);
 	keybd_event(VK_RETURN, 0x00, KEYEVENTF_KEYUP, 0x00);
+	return TRUE;
+}
+
+BOOL DoSendKeyEvent(BYTE vkKey){
+	if(!activateWindow(sz_winClass, sz_winTitle)){
+		return FALSE;
+	}
+	keybd_event(vkKey, 0x00, 0x00, 0);
+	Sleep(1);
+	keybd_event(vkKey, 0x00, KEYEVENTF_KEYUP, 0x00);
+	return TRUE;
 }
 
 clickPoint *clickPoints[] = { 
-	new clickPoint(230,210, L"ULDs scannen"), 
-	new clickPoint(230,180, L"Edit Box"), 
-	new clickPoint(240,350, L"Übernehmen"), //Übernehmen
-	new clickPoint(240,440, L"Abbrechen"), //Abbrechen
-	new clickPoint(436,242, L"Delete icon"), //delete symbol
-	new clickPoint(404,240, L"Confirm Delete icon")  //confirm delete symbol
+	//new clickPoint(240,460, L"ULDs scannen"), 
+	new clickPoint(240,340, L"Einzel-ULD scannen"), 
+	//new clickPoint(230,180, L"Edit Box"), 
+	new clickPoint(100,220, L"ULD Edit Box"), 
+	//new clickPoint(240,350, L"Übernehmen"), //Übernehmen
+	//three times cursor down
+	new clickPoint(240,440, L"Zur Übersicht"), //Abbrechen
+	new clickPoint(430,380, L"Delete icon"), //delete symbol
+	new clickPoint(395,405, L"Confirm Delete icon")  //confirm delete symbol
 };
 
 
@@ -277,32 +324,73 @@ bool activateWindow(TCHAR* sz_Class, TCHAR* sz_Title){
 	return false;
 }
 
-int _tmain(int argc, _TCHAR* argv[])
-{	
-	GetMetrics(&screenW, &screenH);
-	HWND hWnd = FindWindow(NULL, sz_winTitle);
-	hWnd = FindWindow(sz_winTitle, NULL); //Intermec Browser CLASS
-	if (hWnd==NULL){
-		DEBUGMSG(1, (L"'%s' running?\n", sz_winTitle));
-		return -1;	
-	}
-
-	//if(HookWindow(L"ImagerCapture")){
-	//	DEBUGMSG(1, (L"hook OK\n"));
-	//	if(PostMessage(hWnd, WM_UPDATESIGNAL, (LPARAM)10, 0))
-	//		DEBUGMSG(1, (L"post OK\n"));
-	//	else
-	//		DEBUGMSG(1, (L"post failed\n"));
-	//}
-	//else
-	//	DEBUGMSG(1, (L"hook failed\n"));
-
-	//START
-	SetForegroundWindow(hWnd);
-	BOOL useMouse=true;
-
+int test2(){
+		BOOL useMouse=true;
 	int maxTestCount = 100;
+	for(int iX=0; iX<maxTestCount; iX++){
+		logTime();
+		if(!activateWindow(sz_winClass, sz_winTitle)){
+			return -2;
+		}
+		DEBUGMSG(1, (L"test round %i\n", iX));
+	
+		//click EinzelULD scannen
+		if(!DoClickAt(clickPoints[0]))
+			return -3;
+		if(!DoSendEnter())
+			return -3;
+		visualDelay(4);
+		
+		DEBUGMSG(1, (L"Action: enter data %s\n", sz_ScanData));
+		//if(!DoEnterText(sz_ScanData))							//enter data in edit box
+		//	return -3;
+		if(!DoSendTextMsg(sz_ScanData))
+			return -3;
 
+		visualDelay(1);
+		//press enter submits
+		if(!DoSendEnter())
+			return -3;
+
+		visualDelay(3);
+		
+		//return 0;
+		//############################
+
+		//move cursor down three times Zur Übersicht
+		for(int j=0;j<3;j++){
+			if(!DoSendKeyEvent(VK_DOWN))
+				return -3;
+			visualDelay(1);
+		}
+		if(!DoSendEnter())	//execute Zur Übersicht
+			return -3;
+		visualDelay(3);
+
+		//execute click on delete symbol
+		if(!DoSendEnter())
+			return -3;
+		visualDelay(2);
+
+		//send two tabs to get Confirm focus
+		for (int c=0;c<2;c++){
+			if(!DoSendTab())
+				return -3;
+			visualDelay(2);
+		}
+
+		//press enter to execute Delete
+		if(!DoSendEnter())	//execute Zur Übersicht
+			return -3;
+		visualDelay(3);
+		//Back at START		
+	}
+	return 0;
+}
+
+int test1(){
+	BOOL useMouse=true;
+	int maxTestCount = 100;
 	for(int iX=0; iX<maxTestCount; iX++){
 		logTime();
 		if(!activateWindow(sz_winClass, sz_winTitle)){
@@ -310,32 +398,44 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		DEBUGMSG(1, (L"test round %i\n", iX));
 		if(useMouse){
-			//DoClickAt(clickPoints[0]->x, clickPoints[0]->y);	//click ULDs scannen
 			if(!DoClickAt(clickPoints[0]))
 				return -3;
-			//DEBUGMSG(1, (L"Action: %s\n", clickPoints[0]->name));
-			visualDelay(4);
-			if(!DoClickAt(clickPoints[1]))	//click inside first edit box
+			if(!DoSendEnter())
 				return -3;
-			DEBUGMSG(1, (L"Action: %s\n", clickPoints[1]->name));
+			visualDelay(4);
+			
+			//if(!DoClickAt(clickPoints[1]))	//click inside first edit box
+			//	return -3;
+			//edit box is active input
 			visualDelay(1);
 			DEBUGMSG(1, (L"Action: enter data %s\n", sz_ScanData));
-			if(!DoEnterText(sz_ScanData))							//enter data in edit box
+			//if(!DoEnterText(sz_ScanData))							//enter data in edit box
+			//	return -3;
+			if(!DoSendTextMsg(sz_ScanData))
 				return -3;
 			visualDelay(1);
+
+			//move cursor down three times
+			for(int j=0;j<3;j++){
+				if(!DoSendKeyEvent(VK_DOWN))
+					return -3;
+				visualDelay(1);
+			}
+
+			if(!DoSendEnter())	//execute Zur Übersicht
+				return -3;
+
 			//DEBUGMSG(1, (L"Action: %s\n", clickPoints[2]->name));
-			if(!DoClickAt(clickPoints[2]))	//click Übernehmen
-				return -3;
+			//if(!DoClickAt(clickPoints[2]))	//click zur Übersicht
+			//	return -3;
 			
+			//if(!DoClickAt(clickPoints[3]))	//click Delete symbol
+			//	return -3;
 			//DoSendSpace();	//to ensure Übernehmen is clicked
-			visualDelay(4);
-			if(!DoClickAt(clickPoints[4]))	//click delete icon
-				return -3;
+			//visualDelay(4);
+			//if(!DoClickAt(clickPoints[4]))	//click confirm delete icon
+			//	return -3;
 			visualDelay(3);
-			//DEBUGMSG(1, (L"Action: %s\n", clickPoints[5]->name));
-			if(!DoClickAt(clickPoints[5]))	//click delete confirm
-				return -3;
-			visualDelay(6);
 			//Back at START
 		}else{
 			//START, we are on Herausgabeauftrag
@@ -367,26 +467,25 @@ int _tmain(int argc, _TCHAR* argv[])
 			DoSendSpace();	//exec confirm
 			//back at Herausgabeauftrag
 			visualDelay(6);
-		}
-	}
-
-	return 2;
-
-	for(int i=0; i<130; i++){
-		//we start in LiveView and Click brings us to PreView
-		DEBUGMSG(1, (L"ClickCount = %i: LiveView:", i+1));
-		visualDelay(1);
-		clickOK1();
-		DEBUGMSG(1, (L"PreView:"));
-		visualDelay(3);
-		clickOK1();
-		DEBUGMSG(1, (L"\n"));
-		
-		//PostMessage(hWnd, WM_UPDATESIGNAL, (LPARAM)i, 0);
-	}
-
-	UnhookWindow();
+		}//if else
+	}//for
 	return 0;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{	
+	GetMetrics(&screenW, &screenH);
+	HWND hWnd = FindWindow(NULL, sz_winTitle);
+	hWnd = FindWindow(sz_winTitle, NULL); //Intermec Browser CLASS
+	if (hWnd==NULL){
+		DEBUGMSG(1, (L"'%s' running?\n", sz_winTitle));
+		return -1;	
+	}
+
+	//START
+	SetForegroundWindow(hWnd);
+
+	return test2();
 
 }
 
