@@ -472,9 +472,12 @@ int test1(){
 	return 0;
 }
 
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {	
 	GetMetrics(&screenW, &screenH);
+	goto TEST;
 	HWND hWnd = FindWindow(NULL, sz_winTitle);
 	hWnd = FindWindow(sz_winTitle, NULL); //Intermec Browser CLASS
 	if (hWnd==NULL){
@@ -482,10 +485,38 @@ int _tmain(int argc, _TCHAR* argv[])
 		return -1;	
 	}
 
+TEST:
+	//##########################
+	RECT rect;
+	GetWindowRect(GetDesktopWindow(), &rect);
+	rect.bottom=rect.top;
+	rect.top=0;
+	startWin(&rect);
+	DWORD dwWait;
+	
+	do{
+		dwWait=WaitForSingleObject(stopHandle, 1000);
+		switch(dwWait){
+			case WAIT_OBJECT_0:
+				stopApp=TRUE;
+				break;
+			case WAIT_TIMEOUT:
+				PostMessage(hWndMain, WM_UPDATEWIN, (WPARAM)L'#', 0);
+				DEBUGMSG(1, (L"+"));
+				break;
+			default:
+				break;
+		}
+	}while(!stopApp);
+		
+
+	return 22;
+	//##########################
+
 	//START
 	SetForegroundWindow(hWnd);
-
-	return test2();
+	int iRes = test2();
+	return iRes;
 
 }
 
