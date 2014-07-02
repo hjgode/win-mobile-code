@@ -20,6 +20,8 @@ TCHAR* sz_winTitle = L"HTML5 Browser";
 //TCHAR* sz_winTitle = L"IntermecBrowser";
 TCHAR* sz_winClass = NULL;
 bool activateWindow(TCHAR* sz_Class, TCHAR* sz_Title);
+DWORD backgroundThreadID;
+HANDLE backgroundThreadH;
 
 TCHAR* sz_ScanData = L"AKE00006LH";
 
@@ -75,15 +77,26 @@ void GetMetrics(int* width, int* height){
 }
 
 BOOL DoClickAt(clickPoint* cp){
-
+	TCHAR szTxt[64];
 	if(!activateWindow(sz_winClass, sz_winTitle)){
 		return FALSE;
 	}
+	HWND hwndMsg=FindWindow(myclass, NULL);
 
 	int dx = (int)((65535 / screenW) * cp->x); //Screen.PrimaryScreen.Bounds.Width
 	int dy = (int)((65535 / screenH) * cp->y); //Screen.PrimaryScreen.Bounds.Height
 
-	DEBUGMSG(1, (L"Action: %s at %i/%i\n", cp->name, cp->x, cp->y));
+	wsprintf(szTxt,L"Action: %s at %i/%i\n", cp->name, cp->x, cp->y);
+	DEBUGMSG(1, (szTxt));
+	if(hwndMsg!=NULL){
+		MYREC mRec;
+		wcsncpy(mRec.s1, szTxt, 80);
+		MyCDS.cbData=sizeof(MYREC);
+		MyCDS.lpData=&mRec;
+		MyCDS.dwData=1;
+		
+		SendMessage(hwndMsg, WM_COPYDATA, 0, (LPARAM) (LPVOID) &MyCDS);
+	}
 
 	mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_ABSOLUTE , dx, dy, 0, 0);
 	Sleep(5);
@@ -324,8 +337,8 @@ bool activateWindow(TCHAR* sz_Class, TCHAR* sz_Title){
 	return false;
 }
 
-int test2(){
-		BOOL useMouse=true;
+DWORD test2(LPVOID lp){
+	BOOL useMouse=true;
 	int maxTestCount = 100;
 	for(int iX=0; iX<maxTestCount; iX++){
 		logTime();
@@ -494,6 +507,7 @@ TEST:
 	startWin(&rect);
 	DWORD dwWait;
 	
+	CreateThread(0, 0, test2, NULL, 0, &backgroundThreadID);
 	do{
 		dwWait=WaitForSingleObject(stopHandle, 1000);
 		switch(dwWait){
@@ -515,7 +529,7 @@ TEST:
 
 	//START
 	SetForegroundWindow(hWnd);
-	int iRes = test2();
+	int iRes = test2(NULL);
 	return iRes;
 
 }

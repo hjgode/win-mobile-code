@@ -2,12 +2,34 @@
 
 #include "stdafx.h"
 
+const TCHAR* const myclass = L"mymsgwin" ;
+COPYDATASTRUCT MyCDS;
+PCOPYDATASTRUCT pMyCDS;
+
 DWORD _threadWndProcID;
 HANDLE _threadWndProcH;
 BOOL stopApp;
 HANDLE stopHandle=NULL;
 TCHAR* stopEventName=L"_stop_event_";
 HWND hWndMain=NULL;
+
+void SetWindowTop(HWND hWnd,bool Value)
+{
+	if(Value)
+	{
+         SetWindowPos(hWnd, 
+            HWND_TOPMOST, 
+            0, 0, 0, 0,
+            SWP_NOSIZE|SWP_NOMOVE|SWP_SHOWWINDOW);
+	}
+	else
+	{
+         SetWindowPos(hWnd, 
+            HWND_NOTOPMOST, 
+            0, 0, 0, 0,
+            SWP_NOSIZE|SWP_NOMOVE|SWP_SHOWWINDOW); 
+	}
+}
 
 long __stdcall WindowProcedure( HWND window, unsigned int msg, WPARAM wp, LPARAM lp )
 {
@@ -16,6 +38,7 @@ long __stdcall WindowProcedure( HWND window, unsigned int msg, WPARAM wp, LPARAM
 	PAINTSTRUCT pps;
 	RECT rect;
 	static TCHAR tch1[1]={L'-'};
+	static TCHAR szTxt[64];
 	static BOOL bToggle=FALSE;
 	HGDIOBJ original = NULL;
 
@@ -41,13 +64,26 @@ long __stdcall WindowProcedure( HWND window, unsigned int msg, WPARAM wp, LPARAM
 			wsprintf(tch1, bToggle? L"/" : L"\\");
 			InvalidateRect(window,NULL, false);
 			break;
+		case WM_NEWTEXT:
+			wsprintf(szTxt, L"%s", (TCHAR*)wp);
+			UpdateWindow(window);
+			break;
+		case WM_COPYDATA:
+			pMyCDS = (PCOPYDATASTRUCT) lp;
+			wsprintf(szTxt, L"%s", (LPSTR) ((MYREC *)(pMyCDS->lpData))->s1);
+			InvalidateRect(window,NULL, false);
+			break;
 		case WM_PAINT:
+			SetForegroundWindow(window);
 			hDC=BeginPaint(window, &pps);
 			//original=SelectObject(hDC,GetStockObject(DC_BRUSH));
 			SetBkColor(hDC,RGB(0xef,0x00,0x00)); 
 
 			GetClientRect(window, &rect);
-			DrawText(hDC, tch1, -1, &rect, DT_LEFT);
+			if(wcslen(szTxt)>0)
+				DrawText(hDC, szTxt, -1, &rect, DT_LEFT);
+			else
+				DrawText(hDC, tch1, -1, &rect, DT_LEFT);
 			
 			//Restore original object.
 			//SelectObject(hDC,original);
@@ -64,7 +100,6 @@ DWORD myWndProcThread(LPVOID lpParam){
 	RECT rectWin;
 	memcpy(&rectWin, lpParam, sizeof(RECT));// (RECT)lpParam;
 
-	const TCHAR* const myclass = L"myclass" ;
 	HBRUSH redBrush = CreateSolidBrush(RGB(0xef,0x00,0x70));
     WNDCLASS wndclass = { 
 		CS_DBLCLKS, 
@@ -93,6 +128,7 @@ DWORD myWndProcThread(LPVOID lpParam){
 			hWndMain=window;
             ShowWindow( window, SW_SHOWNORMAL ) ;
 			UpdateWindow(window);
+			SetWindowTop(window, TRUE);
             MSG msg ;
 			while( GetMessage( &msg, 0, 0, 0 ) ) {
 				TranslateMessage(&msg);
