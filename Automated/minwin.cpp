@@ -53,7 +53,7 @@ long __stdcall WindowProcedure( HWND window, unsigned int msg, WPARAM wp, LPARAM
 			return FALSE;
         case WM_LBUTTONDOWN:
             DEBUGMSG(1, (L"\nmouse left button down at (%u, %u)\n",  LOWORD(lp), HIWORD(lp)));
-            // fall thru
+            break;
 		case WM_CHAR:
 			//tch=(TCHAR)wp;
 			if(wp==VK_ESCAPE)

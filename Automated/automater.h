@@ -30,15 +30,17 @@ class automater{
 		BOOL testWindow();
 		int mScreenW;
 		int mScreenH;
-		TCHAR* mszClass;
-		TCHAR* mszTitle;
+		TCHAR mszClass[MAX_PATH];
+		TCHAR mszTitle[MAX_PATH];
 		void getMetrics(int* width, int* height);
+		void initMsgWin();
 	public:
 		automater(HWND hWnd);
-		automater(TCHAR* szClass, TCHAR* szTitle);
+		automater(TCHAR *szClass, TCHAR *szTitle);
 		~automater();
 		automater();
 
+		void updateMessage(TCHAR* text);
 		void visualDelay(int d);
 		BOOL DoClickAt(clickPoint* cp);
 		BOOL DoEnterText(TCHAR* text);

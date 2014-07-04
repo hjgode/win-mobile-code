@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "automater.h"
 
 /*
 START screen is Herausgebeauftrag
@@ -31,6 +32,7 @@ int y=590;
 int dx = (int)((65535 / 480) * x); //Screen.PrimaryScreen.Bounds.Width
 int dy = (int)((65535 / 640) * y); //Screen.PrimaryScreen.Bounds.Height
 
+/*
 class clickPoint{
 public:
 	int x;
@@ -50,6 +52,7 @@ public:
 		free(name);
 	}
 };
+*/
 
 void DoClickAt(int x, int y){
 	BOOL bUseTouch=false;
@@ -490,7 +493,9 @@ int test1(){
 int _tmain(int argc, _TCHAR* argv[])
 {	
 	GetMetrics(&screenW, &screenH);
-	goto TEST;
+	
+	//goto TEST;
+
 	HWND hWnd = FindWindow(NULL, sz_winTitle);
 	hWnd = FindWindow(sz_winTitle, NULL); //Intermec Browser CLASS
 	if (hWnd==NULL){
@@ -500,14 +505,21 @@ int _tmain(int argc, _TCHAR* argv[])
 
 TEST:
 	//##########################
-	RECT rect;
-	GetWindowRect(GetDesktopWindow(), &rect);
-	rect.bottom=rect.top;
-	rect.top=0;
-	startWin(&rect);
+	//RECT rect;
+	//GetWindowRect(GetDesktopWindow(), &rect);
+	//rect.bottom=rect.top;
+	//rect.top=0;
+	//startWin(&rect);
+	//CreateThread(0, 0, test2, NULL, 0, &backgroundThreadID);
 	DWORD dwWait;
-	
-	CreateThread(0, 0, test2, NULL, 0, &backgroundThreadID);
+	//##########################
+
+	automater _automater=automater(hWnd);// (NULL, sz_winTitle);// (hWnd);	//start automater class with hwnd of window to control
+	_automater.DoClickAt(clickPoints[0]);
+	Sleep(3000);
+	_automater.DoSendTextMsg(sz_ScanData);
+	Sleep(3000);
+
 	do{
 		dwWait=WaitForSingleObject(stopHandle, 1000);
 		switch(dwWait){

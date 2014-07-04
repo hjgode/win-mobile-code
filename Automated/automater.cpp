@@ -1,28 +1,53 @@
 //autometer.cpp
 #include "stdafx.h"
 #include "automater.h"
+#include "minwin.h"
+
+HWND hWndMsgWin=NULL;
+
+
+void automater::initMsgWin(){
+	RECT rect;
+	GetWindowRect(GetDesktopWindow(), &rect);
+	rect.bottom=rect.top;
+	rect.top=0;
+	startWin(&rect);
+	Sleep(1000);
+	hWndMsgWin=FindWindow(myclass,NULL);
+	if(hWndMsgWin)
+		PostMessage(hWndMsgWin, WM_UPDATEWIN, (WPARAM)L'*', 0);
+}
 
 automater::automater(){
-	mszTitle=NULL;
-	mszClass=NULL;
+	wsprintf(mszTitle,L"");
+	wsprintf(mszClass, L"");
 	getMetrics(&mScreenW, &mScreenH);
 }
 
 automater::automater(HWND hWnd){
 	mhWnd=hWnd;
+	TCHAR szTxt[MAX_PATH];
+	wsprintf(szTxt, L"hallo");
+	int len=0;
+	len = GetWindowText(mhWnd, mszTitle, MAX_PATH);
+	len = GetClassName(mhWnd, mszClass, MAX_PATH);
+
 	getMetrics(&mScreenW, &mScreenH);
+	initMsgWin();
 }
 
 automater::automater(TCHAR *szClass, TCHAR *szTitle){
-	mszClass=(TCHAR*)malloc(wcslen(szClass)*sizeof(TCHAR)+2);
-	mszTitle=(TCHAR*)malloc(wcslen(szClass)*sizeof(TCHAR)+2);
+	wsprintf(mszClass, L"%s", szClass);
+	wsprintf(mszTitle, L"%s", szTitle);
+
 	mhWnd=FindWindow(mszClass,mszTitle);
 	getMetrics(&mScreenW, &mScreenH);
+	initMsgWin();
 }
 
 automater::~automater(){
-	free (mszClass);
-	free (mszTitle);
+	stopApp=TRUE;
+	SetEvent(stopHandle);
 }
 
 BOOL automater::testWindow(){
@@ -47,20 +72,50 @@ void automater::getMetrics(int* width, int* height){
 	*height=screenY;
 }
 
-BOOL automater::DoClickAt(clickPoint* cp){
+void automater::updateMessage(TCHAR* szTxt){
+	HWND hwndMsg=FindWindow(myclass, NULL);
+	if(hwndMsg!=NULL){
+		MYREC mRec;
+		wcsncpy(mRec.s1, szTxt, 80);
+		MyCDS.cbData=sizeof(MYREC);
+		MyCDS.lpData=&mRec;
+		MyCDS.dwData=1;
+		
+		SendMessage(hwndMsg, WM_COPYDATA, 0, (LPARAM) (LPVOID) &MyCDS);
+	}
+}
 
+BOOL automater::DoClickAt(clickPoint* cp){
 	if(!testWindow()){
 		return FALSE;
 	}
 
+	TCHAR* szTxt=(TCHAR*)malloc(sizeof(TCHAR)*80);
+	memset(szTxt,0,sizeof(TCHAR)*80);
+
 	int dx = (int)((65535 / mScreenW) * cp->x); //Screen.PrimaryScreen.Bounds.Width
 	int dy = (int)((65535 / mScreenH) * cp->y); //Screen.PrimaryScreen.Bounds.Height
 
-	DEBUGMSG(1, (L"Action: %s at %i/%i\n", cp->name, cp->x, cp->y));
-
+	wsprintf(szTxt,L"Action: %s at %i/%i\n", cp->name, cp->x, cp->y);
+	DEBUGMSG(1, (szTxt));
+	updateMessage(szTxt);
+	/*
+	HWND hwndMsg=FindWindow(myclass, NULL);
+	if(hwndMsg!=NULL){
+		MYREC mRec;
+		wcsncpy(mRec.s1, szTxt, 80);
+		MyCDS.cbData=sizeof(MYREC);
+		MyCDS.lpData=&mRec;
+		MyCDS.dwData=1;
+		
+		SendMessage(hwndMsg, WM_COPYDATA, 0, (LPARAM) (LPVOID) &MyCDS);
+	}
+	*/
 	mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_ABSOLUTE , dx, dy, 0, 0);
 	Sleep(5);
 	mouse_event(MOUSEEVENTF_LEFTUP | MOUSEEVENTF_ABSOLUTE , dx, dy, 0, 0);
+	
+	free(szTxt);
 	return TRUE;
 }
 
@@ -68,6 +123,10 @@ BOOL automater::DoEnterText(TCHAR* text){
 	if(!testWindow()){
 		return FALSE;
 	}
+	TCHAR sMsg[128];
+	wsprintf(sMsg, L"entering data: %s", text);
+	updateMessage(sMsg);
+
 	char* textA;
 	textA = (char*)malloc((wcslen(text)+1)*sizeof(TCHAR));
 	int num = wcstombs(textA, text, wcslen(text)+1);
@@ -89,9 +148,10 @@ BOOL automater::DoSendTextMsg(TCHAR* text){
 	if(!testWindow()){
 		return FALSE;
 	}
-	HWND hWnd=FindWindow(mszClass, mszTitle);
-	if(hWnd==NULL)
-		return FALSE;
+
+	TCHAR sMsg[128];
+	wsprintf(sMsg, L"entering data: %s", text);
+	updateMessage(sMsg);
 
 	char* textA;
 	textA = (char*)malloc((wcslen(text)+1)*sizeof(TCHAR));
@@ -102,7 +162,7 @@ BOOL automater::DoSendTextMsg(TCHAR* text){
 	while(cnt<num){
 //		SendMessage(hWnd, WM_CHAR, *pByte, 0x40000000);	//with bit 30 set, key pressed
 		Sleep(1);
-		SendMessage(hWnd, WM_CHAR, *pByte, 0x80000000);	//with bit 31 set, key released
+		SendMessage(mhWnd, WM_CHAR, *pByte, 0x80000000);	//with bit 31 set, key released
 		Sleep(1);
 		pByte++;
 		cnt++;
