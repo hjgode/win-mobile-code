@@ -2,26 +2,34 @@
 
 #include "stdafx.h"
 
-		//nested class
-		class clickPoint{
-			public:
-				int x;
-				int y;
-				TCHAR* name;
-				clickPoint(int i1, int i2){
-					x=i1;
-					y=i2;
-				}
-				clickPoint(int i1, int i2, TCHAR* n){
-					x=i1;
-					y=i2;
-					name=(TCHAR*) malloc((32+1)+sizeof(TCHAR));
-					wcsncpy(name, n, 32);
-				}
-				~clickPoint(void){
-					free(name);
-				}
-		};
+enum actions{
+		click,
+		type,
+		keybd,
+		delay
+	};
+
+//nested class
+class clickPoint{
+	public:
+		actions action;
+		int x;
+		int y;
+		TCHAR* name;
+		clickPoint(int i1, int i2){
+			x=i1;
+			y=i2;
+		}
+		clickPoint(int i1, int i2, TCHAR* n){
+			x=i1;
+			y=i2;
+			name=(TCHAR*) malloc((32+1)+sizeof(TCHAR));
+			wcsncpy(name, n, 32);
+		}
+		~clickPoint(void){
+			free(name);
+		}
+};
 
 
 class automater{
@@ -49,4 +57,7 @@ class automater{
 		BOOL DoSendEnter();
 		BOOL DoSendSpace();
 		BOOL DoSendTab();
+		BOOL exec (actions act, clickPoint* cP, TCHAR* msg, BYTE bVKey, int iDelay);
+		BOOL exec (actions act, VOID* param);
 };
+

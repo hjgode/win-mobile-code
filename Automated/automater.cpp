@@ -224,3 +224,49 @@ BOOL automater::DoSendKeyEvent(BYTE vkKey){
 		new clickPoint(395,405, L"Confirm Delete icon")  //confirm delete symbol
 	};
 */
+
+BOOL automater::exec(actions act, clickPoint* cP, TCHAR *msg, BYTE bVKey, int iDelay){
+	BOOL bRet=TRUE;
+	switch (act){
+		case click:
+			bRet = DoClickAt(cP);
+			break;
+		case type:
+			bRet = DoSendTextMsg(msg);
+			break;
+		case keybd:
+			bRet = DoSendKeyEvent(bVKey);
+			break;
+		case delay:
+			visualDelay(iDelay);
+			break;
+		default:
+			bRet=FALSE;
+			break;
+	}
+	return bRet;
+}
+
+BOOL automater::exec(actions act, VOID* param){
+	BOOL bRet=TRUE;
+	if(act == click){
+		clickPoint* cP=(clickPoint*)param;
+		bRet = DoClickAt(cP);
+	}
+	else if(act == type){
+		TCHAR* msg=(TCHAR*)param;
+		bRet = DoSendTextMsg(msg);
+	}
+	else if(act == keybd){
+		BYTE bVKey=(BYTE)param;
+		bRet = DoSendKeyEvent(bVKey);
+	}
+	else if(act == delay){
+		int iDelay=(int)param;
+		visualDelay(iDelay);
+	}
+	else{
+		bRet=FALSE;
+	}
+	return bRet;
+}
