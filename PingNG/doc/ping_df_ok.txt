@@ -1,0 +1,12 @@
+ping started...
+ttl=128, DF=True, buf=1472, #p=4, timeout=1000
+Reply from 192.168.128.5: bytes=1472 time=8ms TTL=128
+Reply from 192.168.128.5: bytes=1472 time=5ms TTL=128
+Reply from 192.168.128.5: bytes=1472 time=4ms TTL=128
+Reply from 192.168.128.5: bytes=1472 time=6ms TTL=128
+Ping statistics for 192.168.128.5:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 4ms, Maximum = 8ms, Average = 5ms
+
+done

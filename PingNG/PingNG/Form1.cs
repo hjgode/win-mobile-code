@@ -15,7 +15,6 @@ namespace PingNG
     public partial class Form1 : Form
     {
         //global
-        Form1 _frm = null;
         myPing _myPing;
         public Form1()
         {
@@ -23,8 +22,7 @@ namespace PingNG
             lblPingOptions.Text = myPingOptions.ToString();
             _myPing = new myPing();
             myPing.onReplyEvent += new myPing.ReplyEventHandler(_myPing_onReplyEvent);
-            _frm = this;
-            _myPing.doPing("192.168.128.5", myPingOptions);
+            //sample usage: _myPing.doPing("192.168.128.5", myPingOptions);
         }
 
         void _myPing_onReplyEvent(object sender, myPing.PingReplyEventArgs args)

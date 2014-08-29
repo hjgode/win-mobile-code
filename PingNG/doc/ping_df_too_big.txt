@@ -1,0 +1,12 @@
+ping started...
+ttl=128, DF=True, buf=1480, #p=4, timeout=1000
+IPStatus.PacketTooBig
+IPStatus.PacketTooBig
+IPStatus.PacketTooBig
+IPStatus.PacketTooBig
+Ping statistics for 192.168.128.5:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+done
