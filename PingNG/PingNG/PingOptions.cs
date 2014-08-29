@@ -10,6 +10,16 @@ namespace OpenNETCF.Net.NetworkInformation
 		int ttl = 128;
 		bool dontFragment;
 
+        public int numOfPings = 4;
+        public int bufferSize = 32;
+
+        int timeout = 1000;
+        public int TimeOut
+        {
+            get { return timeout; }
+            set { timeout = value; }
+        }
+
 		/// <summary>
 		/// Gets or sets the number of routing nodes that can forward the Ping data before it is discarded.
 		/// </summary>
@@ -68,5 +78,23 @@ namespace OpenNETCF.Net.NetworkInformation
 			this.ttl = ttl;
 			this.dontFragment = dontFragment;
 		}
-	}
+
+        public PingOptions(int ttl, bool dontFragment, int timeOut)
+        {
+            if (ttl <= 0)
+            {
+                throw new ArgumentOutOfRangeException("ttl");
+            }
+
+            this.ttl = ttl;
+            this.dontFragment = dontFragment;
+            this.timeout = timeOut;
+        }
+
+        public override string  ToString()
+        {
+            string s = string.Format("ttl={0}, DF={1}, buf={3}, #p={2}, timeout={4}", ttl, dontFragment, numOfPings, bufferSize, timeout);
+            return s;
+        }
+    }
 }

@@ -15,17 +15,16 @@ namespace PingNG
     public partial class Form1 : Form
     {
         //global
-        static string _ipAddress = "";
-        static int _NumberOfPings = 4;
-        static Form1 _frm = null;
+        Form1 _frm = null;
         myPing _myPing;
         public Form1()
         {
             InitializeComponent();
+            lblPingOptions.Text = myPingOptions.ToString();
             _myPing = new myPing();
             myPing.onReplyEvent += new myPing.ReplyEventHandler(_myPing_onReplyEvent);
             _frm = this;
-            _myPing.doPing("192.168.128.5", new PingOptions());
+            _myPing.doPing("192.168.128.5", myPingOptions);
         }
 
         void _myPing_onReplyEvent(object sender, myPing.PingReplyEventArgs args)
@@ -71,7 +70,15 @@ namespace PingNG
         private void btnPing_Click(object sender, EventArgs e)
         {
             btnPing.Enabled = false;
-            _myPing.doPing(textBox1.Text);
+            _myPing.doPing(textBox1.Text, myPingOptions);
+        }
+
+        PingOptions myPingOptions = new PingOptions();
+        private void btnOptions_Click(object sender, EventArgs e)
+        {
+            frmOptions dlg = new frmOptions(ref myPingOptions);
+            if (dlg.ShowDialog() == DialogResult.OK)
+                lblPingOptions.Text= myPingOptions.ToString();
         }
     }
 }

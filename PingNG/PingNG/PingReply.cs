@@ -67,6 +67,10 @@ namespace OpenNETCF.Net.NetworkInformation
 			{
 				return this.ipStatus;
 			}
+            set
+            {
+                this.ipStatus = value;
+            }
 		}
 
         public int DataSize

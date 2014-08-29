@@ -42,8 +42,13 @@ namespace PingNG
                 case IPStatus.BadOption:
                     s=string.Format(BadOption, getPingOptions(_pingReply.Options));
                     break;
-                case IPStatus.BadRoute:
+                case IPStatus.TimedOut:
+                    s = string.Format("ping timedout for {0}.", ipAddress);
+                    break;
                 case IPStatus.DestinationHostUnreachable:
+                    s = string.Format("Destination host {0} unreachable.", ipAddress);
+                    break;
+                case IPStatus.BadRoute:
                 case IPStatus.DestinationNetworkUnreachable:
                 case IPStatus.DestinationPortUnreachable:
                 case IPStatus.DestinationProhibited:
@@ -55,14 +60,13 @@ namespace PingNG
                 case IPStatus.PacketTooBig:
                 case IPStatus.ParameterProblem:
                 case IPStatus.SourceQuench:
-                case IPStatus.TimedOut:
                 case IPStatus.TimeExceeded:
                 case IPStatus.TtlExpired:
                 case IPStatus.TtlReassemblyTimeExceeded:
                 case IPStatus.Unknown:
                 case IPStatus.UnrecognizedNextHeader:
                 default:
-                    s = _pingReply.Status.ToString();
+                    s = "IPStatus." + _pingReply.Status.ToString();
                     break;
             }
             return s;
@@ -87,7 +91,10 @@ namespace PingNG
         {
             get
             {
-                return ((lost * 100) / sent);
+                if (sent != 0)
+                    return ((lost * 100) / sent);
+                else
+                    return 100;
             }
         }
         public long minTrip=0;
@@ -95,6 +102,8 @@ namespace PingNG
         public long avgTrip{
             get
             {
+                if (sent == 0)
+                    return 0;
                 if (tripValues.Count == 0)
                     return 0;
                 int sum = 0;
