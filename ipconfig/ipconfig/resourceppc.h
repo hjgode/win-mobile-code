@@ -24,6 +24,7 @@
 #define ID_COMMANDS_CLEARDNS            32775
 #define ID_COMMANDS_FLUSHDNS            32776
 #define ID_COMMANDS_                    32777
+#define ID_COMMANDS_SAVETEXT            32778
 #define IDM_OK                          40000
 #define IDM_HELP                        40001
 #define IDM_HELP_ABOUT                  40002
@@ -35,7 +36,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        130
-#define _APS_NEXT_COMMAND_VALUE         32778
+#define _APS_NEXT_COMMAND_VALUE         32779
 #define _APS_NEXT_CONTROL_VALUE         1002
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

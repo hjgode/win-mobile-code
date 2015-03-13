@@ -16,6 +16,7 @@
 
 // Global Variables:
 HINSTANCE			g_hInst;			// current instance
+HWND				g_hWndMain;
 HWND				g_hWndMenuBar;		// menu bar handle
 HWND				g_hWndEdit;			// Edit window handle
 DWORD				g_selectedAdapter=0;	// for release and renew
@@ -243,11 +244,61 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
         MoveWindow(hWnd, rc.left, rc.top, rc.right-rc.left, rc.bottom-rc.top, FALSE);
     }
 
+	g_hWndMain=hWnd;
+
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
 
 
     return TRUE;
+}
+
+void saveText(){
+	TCHAR fileName[MAX_PATH];
+	wsprintf(fileName,L"ipconfig.txt");
+	OPENFILENAME ofn;
+	memset(&ofn, 0, sizeof(OPENFILENAME));
+	ofn.lStructSize=sizeof(OPENFILENAME);
+	ofn.hwndOwner=g_hWndMain;
+	ofn.lpstrFile=fileName;
+	ofn.nMaxFile=MAX_PATH;
+	ofn.lpstrInitialDir=L"\\MyDocuments";
+	ofn.lpstrTitle =L"Save text to file";
+	ofn.Flags=OFN_OVERWRITEPROMPT | OFN_PATHMUSTEXIST;
+
+	if (GetSaveFileName(&ofn)){
+		HANDLE hFile;
+		BOOL bSuccess = FALSE;
+
+		hFile = CreateFile(ofn.lpstrFile, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+		if(hFile != INVALID_HANDLE_VALUE)
+		{
+			DWORD dwTextLength;
+
+			dwTextLength = GetWindowTextLength(g_hWndEdit);
+			// No need to bother if there's no text.
+			if(dwTextLength > 0)
+			{
+				LPTSTR pszText;
+				DWORD dwBufferSize = (dwTextLength + 1)*sizeof(TCHAR);
+
+				pszText = (LPTSTR)GlobalAlloc(GPTR, dwBufferSize);
+				if(pszText != NULL)
+				{
+					if(GetWindowText(g_hWndEdit, pszText, dwBufferSize))
+					{
+						DWORD dwWritten;
+
+						if(WriteFile(hFile, pszText, dwTextLength*sizeof(TCHAR), &dwWritten, NULL))
+							bSuccess = TRUE;
+					}
+					GlobalFree(pszText);
+				}
+			}
+			CloseHandle(hFile);
+		}
+	}
+	
 }
 
 //
@@ -301,6 +352,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 					if(DialogBox(g_hInst, (LPCTSTR)IDD_GetInput, hWnd, InputDialog)==IDOK)
 						RenewAddress(g_selectedAdapter);
                     break;
+				case ID_COMMANDS_SAVETEXT:
+					saveText();
+					break;
                 case IDM_OK:
                     SendMessage (hWnd, WM_CLOSE, 0, 0);				
                     break;

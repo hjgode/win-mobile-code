@@ -74,46 +74,6 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDI_IPCONFIG            ICON                    "ipconfig.ico"
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Menu
-//
-
-IDR_MENU MENU 
-BEGIN
-    POPUP "Commands"
-    BEGIN
-        MENUITEM "IP Info",                     IDM_COMMANDS_IPINFO
-        MENUITEM "Release ...",                 ID_COMMANDS_RELEASE
-        MENUITEM "Renew ...",                   ID_COMMANDS_RENEW
-        MENUITEM "Flush DNS",                   ID_COMMANDS_FLUSHDNS
-        MENUITEM SEPARATOR
-        MENUITEM "About",                       IDM_HELP_ABOUT
-    END
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Accelerator
-//
-
-IDC_IPCONFIG ACCELERATORS 
-BEGIN
-    "A",            IDM_HELP_ABOUT,         VIRTKEY, CONTROL, NOINVERT
-    "Q",            IDM_OK,                 VIRTKEY, CONTROL, NOINVERT
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Dialog
 //
 
@@ -165,6 +125,47 @@ BEGIN
     END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_IPCONFIG            ICON                    "ipconfig.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU 
+BEGIN
+    POPUP "Commands"
+    BEGIN
+        MENUITEM "IP Info",                     IDM_COMMANDS_IPINFO
+        MENUITEM "Release ...",                 ID_COMMANDS_RELEASE
+        MENUITEM "Renew ...",                   ID_COMMANDS_RENEW
+        MENUITEM "Flush DNS",                   ID_COMMANDS_FLUSHDNS
+        MENUITEM "Save Text",                   ID_COMMANDS_SAVETEXT
+        MENUITEM SEPARATOR
+        MENUITEM "About",                       IDM_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_IPCONFIG ACCELERATORS 
+BEGIN
+    "A",            IDM_HELP_ABOUT,         VIRTKEY, CONTROL, NOINVERT
+    "Q",            IDM_OK,                 VIRTKEY, CONTROL, NOINVERT
+END
 
 
 #ifdef APSTUDIO_INVOKED

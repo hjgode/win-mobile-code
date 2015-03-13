@@ -31,15 +31,16 @@
         {
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.mnuExit = new System.Windows.Forms.MenuItem();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.mnuZoomIn = new System.Windows.Forms.MenuItem();
+            this.mnuZoomOut = new System.Windows.Forms.MenuItem();
             this.cboUnicodePlane = new System.Windows.Forms.ComboBox();
             this.cboFont = new System.Windows.Forms.ComboBox();
             this.lblFont = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUniChar = new System.Windows.Forms.TextBox();
             this.btnCopy = new System.Windows.Forms.Button();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.mnuZoomIn = new System.Windows.Forms.MenuItem();
-            this.mnuZoomOut = new System.Windows.Forms.MenuItem();
+            this.mnuBold = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -51,6 +52,23 @@
             // 
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.MenuItems.Add(this.mnuZoomIn);
+            this.menuItem1.MenuItems.Add(this.mnuZoomOut);
+            this.menuItem1.MenuItems.Add(this.mnuBold);
+            this.menuItem1.Text = "Options";
+            // 
+            // mnuZoomIn
+            // 
+            this.mnuZoomIn.Text = "Zoom In";
+            this.mnuZoomIn.Click += new System.EventHandler(this.mnuZoomIn_Click);
+            // 
+            // mnuZoomOut
+            // 
+            this.mnuZoomOut.Text = "Zoom Out";
+            this.mnuZoomOut.Click += new System.EventHandler(this.mnuZoomOut_Click);
             // 
             // cboUnicodePlane
             // 
@@ -99,21 +117,10 @@
             this.btnCopy.Text = "C";
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // menuItem1
+            // mnuBold
             // 
-            this.menuItem1.MenuItems.Add(this.mnuZoomIn);
-            this.menuItem1.MenuItems.Add(this.mnuZoomOut);
-            this.menuItem1.Text = "Options";
-            // 
-            // mnuZoomIn
-            // 
-            this.mnuZoomIn.Text = "Zoom In";
-            this.mnuZoomIn.Click += new System.EventHandler(this.mnuZoomIn_Click);
-            // 
-            // mnuZoomOut
-            // 
-            this.mnuZoomOut.Text = "Zoom Out";
-            this.mnuZoomOut.Click += new System.EventHandler(this.mnuZoomOut_Click);
+            this.mnuBold.Text = "Bold";
+            this.mnuBold.Click += new System.EventHandler(this.mnuBold_Click);
             // 
             // Form1
             // 
@@ -150,6 +157,7 @@
         private System.Windows.Forms.MenuItem menuItem1;
         private System.Windows.Forms.MenuItem mnuZoomIn;
         private System.Windows.Forms.MenuItem mnuZoomOut;
+        private System.Windows.Forms.MenuItem mnuBold;
     }
 }
 

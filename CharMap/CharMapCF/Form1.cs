@@ -75,7 +75,11 @@ namespace CharMapCF
         {
             if (drawUniPanel == null)
                 return;
-            drawUniPanel._mapFont = new Font(cboFont.SelectedItem.ToString(), 30, FontStyle.Regular);
+            if(mnuBold.Checked)
+                drawUniPanel._mapFont = new Font(cboFont.SelectedItem.ToString(), 30, FontStyle.Bold);
+            else
+                drawUniPanel._mapFont = new Font(cboFont.SelectedItem.ToString(), 30, FontStyle.Regular);
+
             lblFont.Text = drawUniPanel._mapFont.Name;
         }
 
@@ -113,6 +117,19 @@ namespace CharMapCF
         private void mnuZoomOut_Click(object sender, EventArgs e)
         {
             drawUniPanel.zoomInOut(0.8);
+        }
+
+        private void mnuBold_Click(object sender, EventArgs e)
+        {
+            mnuBold.Checked = !mnuBold.Checked;
+            if (drawUniPanel == null)
+                return;
+            if(mnuBold.Checked)
+                drawUniPanel._mapFont = new Font(cboFont.SelectedItem.ToString(), 30, FontStyle.Bold);
+            else
+                drawUniPanel._mapFont = new Font(cboFont.SelectedItem.ToString(), 30, FontStyle.Regular);
+
+            lblFont.Text = drawUniPanel._mapFont.Name;        
         }
 
     }

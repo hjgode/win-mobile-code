@@ -97,6 +97,18 @@ namespace CharMapTool
 			set {mapFont=value;
 				this.Refresh();}
 		}
+        public FontStyle _fontStyle
+        {
+            get
+            {
+                return mapFont.Style;
+            }
+            set
+            {
+                mapFont = new Font(mapFont.Name, 30, value);
+            }
+        }
+
         /// <summary>
         /// initialize the control
         /// </summary>
@@ -301,7 +313,7 @@ namespace CharMapTool
             String uStr = new string(uChr);
 
             //Font drawFont = new Font("Arial Unicode MS", uniFontSize, FontStyle.Regular);
-			mapFont = new Font(mapFont.Name, uniFontSizeMap, FontStyle.Regular);
+			mapFont = new Font(mapFont.Name, uniFontSizeMap, mapFont.Style);// FontStyle.Regular);
 			
             SolidBrush drawBrush = new SolidBrush(Color.Black);
 
