@@ -1,0 +1,1 @@
+This googlecode is used for some of my windows mobile projects
