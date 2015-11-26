@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<DevInfo Action="Set" Persist="true">
+  <Subsystem Name="Intermec Launcher">
+    <Group Name="Application Launch Buttons">
+      <Group Name="Application Button 3">
+        <Field Name="Executable Path:">\Flash File Store\touchLockWEH.exe</Field> 
+        <Field Name="Caption:">LOCK screen</Field> 
+      </Group>
+    </Group>
+    <Group Name="Keypad Options">
+      <Group Name="Application Shortcut Keys">
+        <Field Name="Application Key 1 Path:">\Flash File Store\touchLockWEH.exe</Field> 
+      </Group>
+    </Group>
+  </Subsystem>
+</DevInfo>

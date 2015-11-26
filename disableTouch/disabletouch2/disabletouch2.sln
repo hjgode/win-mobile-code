@@ -16,10 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "disableTouchCS", "disableTouchCS\disableTouchCS.csproj", "{42BB9AFB-89F4-4A62-9DBF-8347207989ED}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -109,20 +105,24 @@ Global
 		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
 		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Mixed Platforms.Build.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
 		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Mixed Platforms.Deploy.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 6 Standard SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 6 Standard SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 6 Standard SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 6 Standard SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 6 Standard SDK (ARMV4I).Build.0 = Debug|Windows Mobile 6 Standard SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 6 Standard SDK (ARMV4I).Deploy.0 = Debug|Windows Mobile 6 Standard SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).ActiveCfg = Debug|Pocket PC 2003 (ARMV4)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Build.0 = Debug|Pocket PC 2003 (ARMV4)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Deploy.0 = Debug|Pocket PC 2003 (ARMV4)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Debug|Windows Mobile 6 Standard SDK (ARMV4I).ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
 		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Any CPU.ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
 		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Mixed Platforms.ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
 		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Mixed Platforms.Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
 		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Mixed Platforms.Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Standard SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Standard SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 6 Standard SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Standard SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 6 Standard SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Standard SDK (ARMV4I)
-		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 6 Standard SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Standard SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Build.0 = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 5.0 Pocket PC SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 6 Professional SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Build.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 6 Professional SDK (ARMV4I).Deploy.0 = Release|Windows Mobile 6 Professional SDK (ARMV4I)
+		{9282EC8E-CAD8-48FB-B41B-F0A6C44AE257}.Release|Windows Mobile 6 Standard SDK (ARMV4I).ActiveCfg = Release|Windows Mobile 6 Professional SDK (ARMV4I)
 		{D0F31D5A-FA10-4983-BDCC-CF167F22DC83}.Debug|Any CPU.ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
 		{D0F31D5A-FA10-4983-BDCC-CF167F22DC83}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
 		{D0F31D5A-FA10-4983-BDCC-CF167F22DC83}.Debug|Mixed Platforms.Build.0 = Debug|Windows Mobile 6 Professional SDK (ARMV4I)
@@ -162,5 +162,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
