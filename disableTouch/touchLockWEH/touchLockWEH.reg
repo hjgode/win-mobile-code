@@ -1,0 +1,6 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Intermec\touchLockWEH]
+"bkcolor"=dword:001FAB0F
+"code"="00000"
+

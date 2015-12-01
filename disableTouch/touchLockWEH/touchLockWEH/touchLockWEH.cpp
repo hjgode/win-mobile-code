@@ -3,12 +3,16 @@
 
 #include "stdafx.h"
 #include "touchLockWEH.h"
+#include <pm.h>
 
 #include "hooks.h"
+
+#include "reg.h"
 
 #include <string>
 std::wstring keyPresses;
 std::wstring passkey = L"52401";
+DWORD bkColor;
 
 #define MAX_LOADSTRING 100
 
@@ -19,7 +23,9 @@ HWND				g_hWndMain;
 
 DWORD g_dwThreadID;
 HANDLE g_hThread;
+BOOL g_bRunThread=TRUE;
 DWORD g_timerID=401;
+DWORD g_PowerDownTimerID=402;
 
 // Forward declarations of functions included in this code module:
 ATOM			MyRegisterClass(HINSTANCE, LPTSTR);
@@ -27,12 +33,53 @@ BOOL			InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 
+void disableSIP(HWND hWnd){
+	HWND hSipWindow = FindWindow(L"MS_SIPBUTTON", L"MS_SIPBUTTON");
+	ShowWindow(hSipWindow, SW_HIDE);
+	return;
+	if(SHSipPreference(hWnd, SIP_FORCEDOWN))
+		DEBUGMSG(1, (L"SHSipPreference SIP_FORCEDOWN OK\n"));
+	else
+		DEBUGMSG(1, (L"SHSipPreference SIP_FORCEDOWN Failed: %i\n", GetLastError()));
+}
+void enableSIP(HWND hWnd){
+	HWND hSipWindow = FindWindow(L"MS_SIPBUTTON", L"MS_SIPBUTTON");
+	ShowWindow(hSipWindow, SW_SHOWNORMAL);
+	return;
+	if(SHSipPreference(hWnd, SIP_UNCHANGED))
+		DEBUGMSG(1, (L"SHSipPreference for SIP_UNCHANGED OK\n"));
+	else
+		DEBUGMSG(1, (L"SHSipPreference SIP_UNCHANGED Failed: %i\n", GetLastError()));
+}
+
+DWORD WINAPI myThread(LPVOID lParam){
+	HWND hWnd=(HWND) lParam;
+	do{
+		SetForegroundWindow(hWnd);
+		Sleep(2000);
+	}while(g_bRunThread);
+	return 0;
+}
+
+void startPowerTimeOut(HWND hWnd){
+	//start power timeout timer
+	SetTimer(hWnd, g_PowerDownTimerID, 10000, NULL);
+	DEBUGMSG(1, (L"power timeout started\n"));
+}
+void stopPowerTimeOut(HWND hWnd){
+	KillTimer(hWnd, g_PowerDownTimerID);
+	DEBUGMSG(1, (L"power timeout stopped\n"));
+}
+
 int WINAPI WinMain(HINSTANCE hInstance,
                    HINSTANCE hPrevInstance,
                    LPTSTR    lpCmdLine,
                    int       nCmdShow)
 {
 	MSG msg;
+
+	passkey=regGetCode();
+	bkColor=regGetBKColor();
 
 	// Perform application initialization:
 	if (!InitInstance(hInstance, nCmdShow)) 
@@ -74,7 +121,8 @@ ATOM MyRegisterClass(HINSTANCE hInstance, LPTSTR szWindowClass)
 	wc.hInstance     = hInstance;
 	wc.hIcon         = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_TOUCHLOCKWEH));
 	wc.hCursor       = 0;
-	wc.hbrBackground = (HBRUSH) GetStockObject(WHITE_BRUSH);
+	HBRUSH hBkColor = CreateSolidBrush(RGB(HIWORD(bkColor), HIBYTE(LOWORD(bkColor)), LOBYTE(LOWORD(bkColor))));
+	wc.hbrBackground = hBkColor;// (HBRUSH) GetStockObject(WHITE_BRUSH);
 	wc.lpszMenuName  = 0;
 	wc.lpszClassName = szWindowClass;
 
@@ -148,7 +196,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     ShowWindow(hWnd, SW_MAXIMIZE);// nCmdShow);
     UpdateWindow(hWnd);
 
-
     return TRUE;
 }
 
@@ -174,7 +221,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static RECT rect;
 	static BOOL firstChar=TRUE;
 	static TCHAR szStatus[MAX_PATH];
+	static HANDLE hPowerState=NULL;
+	int vOffset=0;
 
+    GetClientRect(hWnd, &rect);
     switch (message) 
     {
 		case WM_TIMER:
@@ -188,9 +238,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				InvalidateRect(hWnd, &rect, TRUE);
 				UpdateWindow(hWnd);
 				MessageBeep(MB_ICONERROR);
+
+				startPowerTimeOut(hWnd);
+			}
+			if(wParam==g_PowerDownTimerID){
+				DEBUGMSG(1, (L"Timer g_PowerDownTimerID...\n"));
+				if(hPowerState==NULL){
+					hPowerState = SetPowerRequirement(L"BKL1:", D3, POWER_NAME | POWER_FORCE, NULL, 0);
+					if(hPowerState==NULL)
+						DEBUGMSG(1, (L"SetPowerRequirement failed %i", GetLastError()));
+					else{
+						if(SetSystemPowerState(NULL, POWER_STATE_SUSPEND, POWER_FORCE)!=ERROR_SUCCESS)
+							DEBUGMSG(1, (L"SetSystemPowerState failed %i", GetLastError()));
+					}
+				}
 			}
 			break;
 		case WM_CHAR:
+			stopPowerTimeOut(hWnd);
 			switch (wParam) 
 			{ 
 				// First, handle non-displayable characters by beeping.
@@ -258,30 +323,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
         case WM_CREATE:
 			wsprintf(szStatus, L"no key");
-            GetClientRect(hWnd, &rect);
-
+//            GetClientRect(hWnd, &rect);
+			
 			InitializeTouchDll();
 			m_fpTouchRegisterWindow(GetDesktopWindow());
-			
-            //SHMENUBARINFO mbi;
-            //memset(&mbi, 0, sizeof(SHMENUBARINFO));
-            //mbi.cbSize     = sizeof(SHMENUBARINFO);
-            //mbi.hwndParent = hWnd;
-            //mbi.nToolBarId = IDR_MENU;
-            //mbi.hInstRes   = g_hInst;
 
-            //if (!SHCreateMenuBar(&mbi)) 
-            //{
-            //    g_hWndMenuBar = NULL;
-            //}
-            //else
-            //{
-            //    g_hWndMenuBar = mbi.hwndMB;
-            //}
+			startPowerTimeOut(hWnd);
+
+			g_hThread = CreateThread(NULL, 0, myThread, &hWnd, CREATE_ALWAYS, &g_dwThreadID);
 
             // Initialize the shell activate info structure
             memset(&s_sai, 0, sizeof (s_sai));
             s_sai.cbSize = sizeof (s_sai);
+
             break;
         case WM_PAINT:
 			LOGFONT lf;
@@ -289,23 +343,32 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			memset(&lf, 0, sizeof(LOGFONT));		// zero out structure
 			lf.lfHeight = 36; //-MulDiv(36, GetDeviceCaps(hdc, LOGPIXELSY), 72); //12;						// request a 12-pixel-height font
 			lf.lfWeight=FW_BOLD;
-			wcscpy(lf.lfFaceName, L"Tahoma");        // request a face name "Arial"
+			wcscpy(lf.lfFaceName, L"Tahoma");        // request a face name
 
             hdc = BeginPaint(hWnd, &ps);
             
             // TODO: Add any drawing code here...
 			font = CreateFontIndirect(&lf);
 			hFontOld = (HFONT)SelectObject( hdc, font );
-
-			DrawText(hdc, L"Screen locked.", -1, &rect, DT_CENTER | DT_TOP);
-			DrawText(hdc, L"Press 52401 to unlock.", -1, &rect, DT_CENTER | DT_BOTTOM);
-			DrawText(hdc, szStatus, -1, &rect, DT_CENTER | DT_VCENTER);
+			
+			rect.top+=100;
+			vOffset+=DrawText(hdc, L"Screen locked.", -1, &rect, DT_CENTER | DT_TOP);
+			rect.top+=2*vOffset;
+			DrawText(hdc, szStatus, -1, &rect, DT_CENTER | DT_TOP); //| DT_VCENTER);
+			rect.top+=2*vOffset;
+			DrawText(hdc, L"Enter code to unlock.", -1, &rect, DT_CENTER | DT_TOP);//DT_BOTTOM);
 
 			SelectObject(hdc, hFontOld);
             EndPaint(hWnd, &ps);
             break;
         case WM_DESTROY:
             CommandBar_Destroy(g_hWndMenuBar);
+			if(hPowerState!=NULL)
+				ReleasePowerRequirement(hPowerState);
+			if(g_hThread!=NULL){
+				g_bRunThread=false;
+				Sleep(3000);
+			}
             PostQuitMessage(0);
             break;
 

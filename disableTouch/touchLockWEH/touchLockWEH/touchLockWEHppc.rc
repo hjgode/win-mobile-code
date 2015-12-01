@@ -1,4 +1,4 @@
-//Microsoft Visual C++ generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resourceppc.h"
 
@@ -11,12 +11,18 @@
 #include "windows.h"
 #include "resdefce.h"
 #undef APSTUDIO_HIDDEN_SYMBOLS
+
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-LANGUAGE 9, 1
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
+#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -25,31 +31,31 @@ LANGUAGE 9, 1
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-
-IDI_TOUCHLOCKWEH       ICON         "touchLockWEH.ico"
+IDI_TOUCHLOCKWEH        ICON                    "touchLockWEH.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-IDR_MENU MENU DISCARDABLE 
+IDR_MENU MENU 
 BEGIN
     POPUP "Help"
     BEGIN
-        MENUITEM "About",		IDM_HELP_ABOUT
+        MENUITEM "About",                       IDM_HELP_ABOUT
     END
 END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
 //
 
-IDC_TOUCHLOCKWEH ACCELERATORS
+IDC_TOUCHLOCKWEH ACCELERATORS 
 BEGIN
     "A",            IDM_HELP_ABOUT,         VIRTKEY, CONTROL, NOINVERT
-    "Q",            IDM_OK,          VIRTKEY, CONTROL, NOINVERT
+    "Q",            IDM_OK,                 VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -58,27 +64,28 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG 0, 0, 156, 129
+IDD_ABOUTBOX DIALOG  0, 0, 156, 129
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-EXSTYLE WS_EX_CAPTIONOKBTN
+EXSTYLE 0x80000000L
 CAPTION "About touchLockWEH"
 FONT 8, "MS Sans Serif"
 BEGIN
-    ICON         IDI_TOUCHLOCKWEH,IDC_STATIC_1,12,12,21,20,SS_REALSIZEIMAGE
-    LTEXT        "touchLockWEH Version 1.0",IDC_STATIC_2,12,36,70,8,SS_NOPREFIX
-    LTEXT        "Copyright (C) 2015",IDC_STATIC_3,12,48,66,8
+    ICON            IDI_TOUCHLOCKWEH,IDC_STATIC_1,12,12,21,20,SS_REALSIZEIMAGE
+    LTEXT           "touchLockWEH Version 1.0",IDC_STATIC_2,12,36,70,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2015",IDC_STATIC_3,12,48,66,8
 END
 
-IDD_ABOUTBOX_WIDE DIALOG 0, 0, 210, 129
-STYLE WS_POPUP | WS_CAPTION 
-EXSTYLE WS_EX_CAPTIONOKBTN
+IDD_ABOUTBOX_WIDE DIALOG  0, 0, 210, 129
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
+EXSTYLE 0x80000000L
 CAPTION "About touchLockWEH"
 FONT 8, "MS Sans Serif"
 BEGIN
-    ICON         IDI_TOUCHLOCKWEH,IDC_STATIC_1,12,12,21,20,SS_REALSIZEIMAGE
-    LTEXT        "touchLockWEH Version 1.0",IDC_STATIC_2,48,12,66,8,SS_NOPREFIX
-    LTEXT        "Copyright (C) 2015",IDC_STATIC_3,48,24,66,8
+    ICON            IDI_TOUCHLOCKWEH,IDC_STATIC_1,12,12,21,20,SS_REALSIZEIMAGE
+    LTEXT           "touchLockWEH Version 1.0",IDC_STATIC_2,48,12,66,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2015",IDC_STATIC_3,48,24,66,8
 END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -86,7 +93,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO 
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -106,17 +113,19 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
+
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
 // TEXTINCLUDE
 //
-1 TEXTINCLUDE  
+
+1 TEXTINCLUDE 
 BEGIN
     "resourceppc.h\0"
 END
 
-2 TEXTINCLUDE  
+2 TEXTINCLUDE 
 BEGIN
     "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
     "#include ""windows.h""\r\n"
@@ -125,7 +134,7 @@ BEGIN
     "\0"
 END
 
-3 TEXTINCLUDE  
+3 TEXTINCLUDE 
 BEGIN
     "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
@@ -138,20 +147,28 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
-STRINGTABLE  
+
+STRINGTABLE 
 BEGIN
-   IDC_TOUCHLOCKWEH   "TOUCHLOCKWEH"
-   IDS_APP_TITLE    "touchLockWEH"
-   IDS_OK	"OK"
-   IDS_HELP	"HELP"
+    IDS_APP_TITLE           "touchLockWEH"
+    IDC_TOUCHLOCKWEH        "TOUCHLOCKWEH"
+    IDS_VERSION             "v0.2"
 END
 
-#endif
+STRINGTABLE 
+BEGIN
+    IDS_OK                  "OK"
+    IDS_HELP                "HELP"
+END
+
+#endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
+
 
 
 #ifndef APSTUDIO_INVOKED
@@ -168,3 +185,4 @@ LANGUAGE 9, 1
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
