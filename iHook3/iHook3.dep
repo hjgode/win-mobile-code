@@ -1,0 +1,80 @@
+# eMbedded Visual C++ Dependency File, included by iHook3.vcn
+
+!IF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4I) Release"
+
+.\iHook3.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4I) Debug"
+
+.\iHook3.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4) Release"
+
+.\iHook3.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4) Debug"
+
+.\iHook3.cpp : \
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4I) Release"
+
+.\iHook3.rc : \
+	".\newres.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4I) Debug"
+
+.\iHook3.rc : \
+	".\newres.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4) Release"
+
+.\iHook3.rc : \
+	".\newres.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4) Debug"
+
+.\iHook3.rc : \
+	".\newres.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4I) Release"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4I) Debug"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4) Release"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iHook3 - Win32 (WCE ARMV4) Debug"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+

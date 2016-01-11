@@ -1,0 +1,18 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Intermec\iHook3]
+"arg2"="-toggle"
+"exe2"="\\windows\\locktaskbar.exe"
+"key2"=hex:\
+      43
+"arg1"=""
+"exe1"="\\windows\\fexplore.exe"
+"key1"=hex:\
+      42
+"arg0"=""
+"exe0"="\\SDMMC Disk\\TE2000\\fwp700h0.exe"
+"key0"=hex:\
+      41
+"ForwardKey"=hex:\
+      0
+
