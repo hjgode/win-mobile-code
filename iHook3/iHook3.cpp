@@ -39,6 +39,9 @@
 	3.1.1	changed bForward handling: did not forward any key if false
 			now only processed keys are not forwarded if bForward=false
 	3.1.2	changed isIntermec to look for itcscan.dll only
+	3.1.3	changed isIntermec check
+			old: if (bDoCheckIntermec && IsIntermec() != 0)
+			new: if (bDoCheckIntermec && (IsIntermec() != 0))
 */
 //	ReportEvent
 
@@ -49,7 +52,7 @@
 
 #include "log2file.h"
 
-TCHAR szAppName[] = L"iHook3v3.1.2";
+TCHAR szAppName[] = L"iHook3v3.1.3";
 
 LONG FAR PASCAL WndProc (HWND , UINT , UINT , LONG) ;
 int ReadReg();
@@ -276,7 +279,7 @@ int WINAPI WinMain(	HINSTANCE hInstance,
 		bDoCheckIntermec=FALSE;
 	}
 
-	if (bDoCheckIntermec && IsIntermec() != 0)
+	if (bDoCheckIntermec && (IsIntermec() != 0))
 	{
 		Add2Log(L"This is not an Intermec! Program execution stopped!\r\n", FALSE);
 		MessageBox(NULL, L"This is not an Intermec! Program execution stopped!", L"Fatal Error", MB_OK | MB_TOPMOST | MB_SETFOREGROUND);

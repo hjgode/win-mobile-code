@@ -37,6 +37,9 @@
 			now only processed keys are not forwarded if bForward=false
 	3.1.2	changed isIntermec to look for itcscan.dll only
 			added bDoCheckIntermec and cmd argument to enable to run on non-intermec devices
+	3.1.3	changed isIntermec check
+			old: if (bDoCheckIntermec && IsIntermec() != 0)
+			new: if (bDoCheckIntermec && (IsIntermec() != 0))
 */
 
 optional arg:
