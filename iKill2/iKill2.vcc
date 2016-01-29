@@ -1,0 +1,34 @@
+; CLW file contains information for the MFC ClassWizard
+
+[General Info]
+Version=1
+LastClass=PassWordDlg
+LastTemplate=CDialog
+NewFileInclude1=#include "stdafx.h"
+NewFileInclude2=#include "ikill2.h"
+LastPage=0
+
+ClassCount=1
+
+ResourceCount=1
+Class1=PassWordDlg
+Resource1=IDD_PWBOX
+
+[DLG:IDD_PWBOX]
+Type=1
+Class=PassWordDlg
+ControlCount=4
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_PWTEXT,edit,1350631584
+Control4=IDC_STATIC,static,1342308352
+
+[CLS:PassWordDlg]
+Type=0
+HeaderFile=PassWordDlg.h
+ImplementationFile=PassWordDlg.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=IDOK
+VirtualFilter=dWC
+

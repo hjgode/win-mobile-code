@@ -52,7 +52,7 @@
 
 #include "log2file.h"
 
-TCHAR szAppName[] = L"iHook3v3.1.3";
+TCHAR szAppName[] = L"iHook3v3.1.4";
 
 LONG FAR PASCAL WndProc (HWND , UINT , UINT , LONG) ;
 int ReadReg();
@@ -86,6 +86,26 @@ BOOL g_HookActivate(HINSTANCE hInstance);
 //
 void ShowIcon(HWND hWnd, HINSTANCE hInst);
 void RemoveIcon(HWND hWnd);
+
+struct runStruct{
+	TCHAR* szCmd;
+	TCHAR* szArg;
+};
+DWORD dwThreadID=0;
+HANDLE hThread=NULL; 
+DWORD runExe(LPVOID lParam){
+	runStruct* run = (runStruct*)lParam;
+	DEBUGMSG(1, (L"runCmd started with %s %s\n", run->szCmd, run->szArg));
+	PROCESS_INFORMATION pi;
+	if(CreateProcess(run->szCmd, run->szArg, NULL, NULL, NULL, 0, NULL, NULL, NULL, &pi)){
+		Add2Log(L"# hook runExe:CreateProcess OK\r\n", FALSE);
+		CloseHandle(pi.hThread);
+		CloseHandle(pi.hProcess);
+	}else{
+		Add2Log(L"# hook runExe:CreateProcess FAILED\r\n", FALSE);
+	}
+	return 0;
+}
 
 #pragma data_seg(".HOOKDATA")									//	Shared data (memory) among all instances.
 	HHOOK g_hInstalledLLKBDhook = NULL;						// Handle to low-level keyboard hook
@@ -130,15 +150,19 @@ __declspec(dllexport) LRESULT CALLBACK g_LLKeyboardHookCallback(
 					bMatchFound=TRUE;
 					DEBUGMSG(1, (L"# hook Catched key 0x%0x, launching '%s'\n", kMap[i].keyCode, kMap[i].keyCmd));
 					Add2Log(L"# hook Matched key 0x%0x, launching '%s'\n", kMap[i].keyCode, kMap[i].keyCmd);
-					if (CreateProcess(kMap[i].keyCmd, kMap[i].keyArg, NULL, NULL, NULL, 0, NULL, NULL, NULL, &pi))
-					{
-						Add2Log(L"# hook CreateProcess OK\r\n", FALSE);
-						CloseHandle(pi.hProcess);
-						CloseHandle(pi.hThread);
-					}
-					else{
-						Add2Log(L"# hook CreateProcess FAILED. LastError=%i (0x%x)\r\n", GetLastError(), GetLastError());
-					}
+					runStruct run;
+					run.szCmd=kMap[i].keyCmd;
+					run.szArg=kMap[i].keyArg;
+					hThread = CreateThread(NULL, 0, runExe, &run, 0, &dwThreadID);
+					//if (CreateProcess(kMap[i].keyCmd, kMap[i].keyArg, NULL, NULL, NULL, 0, NULL, NULL, NULL, &pi))
+					//{
+					//	Add2Log(L"# hook CreateProcess OK\r\n", FALSE);
+					//	CloseHandle(pi.hProcess);
+					//	CloseHandle(pi.hThread);
+					//}
+					//else{
+					//	Add2Log(L"# hook CreateProcess FAILED. LastError=%i (0x%x)\r\n", GetLastError(), GetLastError());
+					//}
 					processed_key=true;
 					Add2Log(L"# hook processed_key is TRUE\r\n", FALSE);
 
@@ -478,6 +502,7 @@ void WriteReg()
 		RegWriteStr(name, kMap[i].keyArg );
 	}
 	RegWriteByte(L"ForwardKey", 0);
+	RegWriteByte(L"UseLogging", 0);
 	CloseKey();
 	Add2Log(L"Out WriteReg()...\r\n", FALSE);
 	//return 0;
@@ -494,6 +519,28 @@ int ReadReg()
 	LONG rc;
 	int iRes = OpenKey(L"Software\\Intermec\\iHook3");
 	Add2Log(L"\tOpenKey 'Software\\Intermec\\iHook3' returned %i (0x%x)\r\n", iRes, iRes);
+	// use logging to file?
+	rc=RegReadByte(L"UseLogging", &dw);
+	if(rc==0)
+	{
+		Add2Log(L"\tlooking for 'ForwardKey' OK\r\n",lastKey,lastKey);
+		if (dw>0){
+			Add2Log(L"\tUseLogging is TRUE \r\n", FALSE);
+			bUseLogging=true;
+		}
+		else{
+			Add2Log(L"\tUseLogging is FALSE \r\n", FALSE);
+			bUseLogging=false;
+		}
+	}
+	else
+	{
+		#ifdef DEBUG
+			ShowError(rc);
+		#endif
+		Add2Log(L"\tlooking for 'UseLogging' FAILED. Using default=FALSE.\r\n", FALSE);
+		bUseLogging=false;
+	}
 	for (i=0; i<10; i++)
 	{
 		kMap[i].keyCode=0;
@@ -564,6 +611,7 @@ int ReadReg()
 		Add2Log(L"\tlooking for 'ForwardKey' FAILED. Using default=TRUE.\r\n", FALSE);
 		bForwardKey=true;
 	}
+
 	CloseKey();
 	Add2Log(L"OUT ReadReg()...\r\n", FALSE);
 	return 0;

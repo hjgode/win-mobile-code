@@ -1,0 +1,80 @@
+# eMbedded Visual C++ Dependency File, included by iKill2.vcn
+
+!IF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4I) Release"
+
+.\iKill2.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4I) Debug"
+
+.\iKill2.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4) Release"
+
+.\iKill2.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4) Debug"
+
+.\iKill2.cpp : \
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4I) Release"
+
+.\iKill2.rc : \
+	".\newres.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4I) Debug"
+
+.\iKill2.rc : \
+	".\newres.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4) Release"
+
+.\iKill2.rc : \
+	".\newres.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4) Debug"
+
+.\iKill2.rc : \
+	".\newres.h"\
+	
+
+!ENDIF 
+
+!IF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4I) Release"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4I) Debug"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4) Release"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ELSEIF  "$(CFG)" == "iKill2 - Win32 (WCE ARMV4) Debug"
+
+.\StdAfx.cpp : \
+	".\StdAfx.h"\
+	
+
+!ENDIF 
+

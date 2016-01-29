@@ -40,6 +40,7 @@
 	3.1.3	changed isIntermec check
 			old: if (bDoCheckIntermec && IsIntermec() != 0)
 			new: if (bDoCheckIntermec && (IsIntermec() != 0))
+	3.1.4	added UseLogging and bUseLogging to enable/disable logging to file
 */
 
 optional arg:

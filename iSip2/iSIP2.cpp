@@ -5,6 +5,8 @@
 #include "locktaskbar.h"
 #include "registry.h"
 
+TCHAR* mutexString=L"iSIP2 running";
+
 int WINAPI WinMain(	HINSTANCE hInstance,
 					HINSTANCE hPrevInstance,
 					LPTSTR    lpCmdLine,
@@ -15,10 +17,24 @@ int WINAPI WinMain(	HINSTANCE hInstance,
 		MessageBox(NULL, L"This is not an Intermec! Program execution stopped!", L"Fatal Error", MB_OK | MB_TOPMOST | MB_SETFOREGROUND);
 		return -1;
 	}
+	//check if running
+	HANDLE hMutex=CreateMutex(NULL, TRUE, mutexString);
+	if(hMutex){
+		if(GetLastError()==ERROR_ALREADY_EXISTS){
+			CloseHandle(hMutex);
+			return -2;
+		}
+	}
  	// TODO: Place code here.
 	bool show=true;
 	SIPINFO sip;
 	int OK;
+	
+	HWND hSipWnd=FindWindow(L"MicrosoftIMWndClass", NULL);
+	if(IsWindowVisible(hSipWnd))
+		ShowWindow(hSipWnd, SW_HIDE);
+	else
+		ShowWindow(hSipWnd, SW_SHOWNORMAL|SW_SHOWNOACTIVATE);
 
 	if (wcslen(lpCmdLine) == 0)
 	{
@@ -68,5 +84,7 @@ int WINAPI WinMain(	HINSTANCE hInstance,
 		ShowSIP(false);
 		MessageBeep(MB_ICONHAND);
 	}
+	if(hMutex)
+		CloseHandle(hMutex);
 	return 0;
 }

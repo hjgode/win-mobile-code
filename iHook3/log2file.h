@@ -6,6 +6,7 @@
 //global
 char	logFileName[MAX_PATH];
 TCHAR	logFileNameW[MAX_PATH];
+BOOL	bUseLogging=FALSE;
 //bool	FirstStart = FALSE;
 
 void Add2Log(TCHAR);
