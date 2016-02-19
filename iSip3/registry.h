@@ -470,7 +470,14 @@ void ShowError(LONG er)
 int IsIntermec(void)
 {
 	FILE *stream;
+	//testing for intermec
 	stream = fopen ("\\Windows\\itc50.dll", "r");
+	if(stream != NULL){
+		fclose(stream);
+		return 0;
+	}
+	//testing for HHP (Dolphin 70e etc.)
+	stream = fopen ("\\windows\\HHPScanDriver.dll", "r");
 	if(stream != NULL){
 		fclose(stream);
 		return 0;
