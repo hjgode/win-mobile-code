@@ -76,14 +76,6 @@ void hookInit(HINSTANCE hInstance) {
 			MessageBox(NULL, _T("Could not create TouchPanel Hook"), _T("Information"), MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
 		}
 	}
-
-	//if (!ActivateKBHook()) {
-	//	LOGERROR(L"Could not create Keyboard Hook");
-	//	MessageBox(NULL, _T("Could not create Keyboard Hook"), _T("Information"), MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
-	//}
-
-	//CSettings settingsClass;
- //   pHooksSettingsClass = &settingsClass;
 }
 
 bool InitializeTouchDll() {

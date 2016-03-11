@@ -224,6 +224,7 @@ BOOL g_HookActivate(HINSTANCE hInstance)
 			//TRACE(_T("OK\nCalling SetWindowsHookEx..."));
 			g_hInstalledLLKBDhook = SetWindowsHookEx(WH_KEYBOARD_LL, g_LLKeyboardHookCallback, hInstance, 0);
 			if(g_hInstalledLLKBDhook == NULL) {
+				DEBUGMSG(1, (L"g_HookActivate: SetWindowsHookEx FAILED, error=%i\n", GetLastError()));
 				Add2Log(L"g_HookActivate: SetWindowsHookEx FAILED...\r\n", FALSE);
 				return false;
 			}

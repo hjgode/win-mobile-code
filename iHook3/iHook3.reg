@@ -2,8 +2,8 @@ REGEDIT4
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Intermec\iHook3]
 "key0"=hex:\
-      87
-"exe0"="\\Windows\\fexplore.exe"
+      73
+"exe0"="\\Windows\\iSip3.exe"
 "arg0"=""
 "ForwardKey"=hex:\
       00

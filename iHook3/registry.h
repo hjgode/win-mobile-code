@@ -279,9 +279,14 @@ int IsIntermec(void)
 		fclose(f);
 		return 0;
 	}
+	else if( (f=fopen("\\windows\\HHPScanDriver.dll", "r"))!=NULL ){
+		fclose(f);
+		return 0;
+	}
 	else{
 		return -2;
 	}
+
 	/*
 	TCHAR val[MAX_PATH+1];
 	OpenKey(L"Platform");
