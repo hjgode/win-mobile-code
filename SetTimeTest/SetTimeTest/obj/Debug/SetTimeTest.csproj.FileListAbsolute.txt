@@ -1,0 +1,11 @@
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\ResolveAssemblyReference.cache
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\SetTimeTest.Properties.Resources.resources
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\SetTimeTest.csproj.GenerateResource.Cache
+D:\C-Source\test\SetTimeTest\SetTimeTest\bin\Debug\SetTimeTest.exe
+D:\C-Source\test\SetTimeTest\SetTimeTest\bin\Debug\SetTimeTest.pdb
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\SetTimeTest.exe
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\SetTimeTest.pdb
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\SetTimeTest.Form1.resources
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\SetTimeTest.SystemTimeUC.resources
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\SetTimeTest.TimeInfo.resources
+D:\C-Source\test\SetTimeTest\SetTimeTest\obj\Debug\SetTimeTest.TimeZoneBiasUC.resources
