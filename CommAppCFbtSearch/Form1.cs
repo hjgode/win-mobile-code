@@ -34,23 +34,34 @@ namespace CommAppCFbtSearch
 
             // Determain which mode (string or binary) the user is in
             // Read all the data waiting in the buffer
+            string data = "";
             try
             {
-                string data = "";
-                data = comport.ReadLine();//.ReadExisting();
-                string s = "";
-                // Display the text to the user in the terminal
-                if (bUseHexDecode)
-                    s = Utility.HexEncoding.ToMixedString(data);
-                else
-                    s = data;
-                txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += "<" + s + "\r\n"; })); //added < to mark incoming data
+                int size = comport.BytesToRead;
+//                List<byte> bufferList = new List<byte>(size);
+                byte[] buffer = new byte[size];
+                comport.Read(buffer, 0, size);
+                data = System.Text.ASCIIEncoding.ASCII.GetString(buffer, 0, size);
+
+                //data = comport.ReadLine();//.ReadExisting();
+
+            }
+            catch (TimeoutException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("comport_DataReceived timedout exception");
             }
             catch (Exception ex)
             {
                 txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += ex.Message + "\r\n"; }));
                 //MessageBox.Show(ex.Message);
             }
+            string s = "";
+            // Display the text to the user in the terminal
+            if (bUseHexDecode)
+                s = Utility.HexEncoding.ToMixedString(data);
+            else
+                s = data;
+            txtReceive.Invoke(new EventHandler(delegate { txtReceive.Text += "<" + s + "\r\n"; })); //added < to mark incoming data
             //label2.Invoke(new EventHandler(delegate{label2.Text  = data;}));
 
             //Log(LogMsgType.Incoming, data);
