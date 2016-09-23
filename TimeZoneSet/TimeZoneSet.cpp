@@ -291,16 +291,43 @@ int WINAPI WinMain(	HINSTANCE hInstance,
 			break;
 	}
 
+	int iOldOffset=tzi.Bias; //minutes
+
 	//The bias is the difference, in minutes, between UTC and local time
 	//so to get GMT+1 you have to specify -1 atoi
 	int hourOffset = 0;
 	int i=0;
 
+	SYSTEMTIME systemTime;
+	//backup local time
+	BOOL bKeepTime=TRUE;
+	GetLocalTime(&systemTime);
+	DEBUGMSG(1, (L"local time before: %02i:%02i\n", systemTime.wHour, systemTime.wMinute));
+
+	TCHAR seps[]={L" "};
+	TCHAR* token;
+	TCHAR* tokens[2];
+	int count=0;
 	if (wcslen(lpCmdLine)>0)
 	{
-		i = _ttoi(lpCmdLine);
-		if (i!=0)
+		token=wcstok(lpCmdLine, seps);
+		while(token!=NULL){
+			tokens[count]=(TCHAR*)malloc(wcslen(token));
+			wsprintf(tokens[count], token);
+			count++;
+			token=wcstok(NULL, seps);
+		}
+		
+		i = _ttoi(tokens[0]);
+		if (i!=0){
 			hourOffset=i;
+			DEBUGMSG(1, (L"TZ offset requested %02i\n", i));
+		}
+		if(count>1){
+			if(wcsicmp(L"nokeeptime", tokens[1])==0){
+				bKeepTime=FALSE;
+			}
+		}
 	}
 
 	TCHAR s[32];
@@ -312,10 +339,29 @@ int WINAPI WinMain(	HINSTANCE hInstance,
 	wsprintf(s, L"GMT");
 	wcscpy(tzi.StandardName, L"GMT");
 
-	ret=SetTimeZoneInformation(&tzi);
-	if (ret==0)
+	ret=SetTimeZoneInformation(&tzi); //BOOL return, 0 is error
+	if (ret==0){
+		DEBUGMSG(1, (L"SetTimeZoneInformation FAILED 0x%08x\n", GetLastError()));
 		return ret; //error
-
+	}
+	else{
+		DEBUGMSG(1, (L"SetTimeZoneInformation OK\n"));
+		if(bKeepTime){
+			//restore local time
+			ret = SetLocalTime(&systemTime);
+			Sleep(1000);
+			ret = SetLocalTime(&systemTime);//avoid DST disaster
+			if (ret==0){
+				DEBUGMSG(1, (L"SetLocalTime FAILED 0x%08x\n", GetLastError()));
+				return ret; //error
+			}else{
+				GetLocalTime(&systemTime);
+				DEBUGMSG(1, (L"local time after: %02i:%02i\n", systemTime.wHour, systemTime.wMinute));
+			}
+		}else{
+			DEBUGMSG(1, (L"local time keeping not requested\n"));
+		}
+	}
 	//TZREG
 	return 0;
 }

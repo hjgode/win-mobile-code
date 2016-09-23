@@ -8,6 +8,10 @@ If you want to set GMT+1 you need to run
 
 TimeZoneSet -1
 
+TimeZoneSet -1 nokeeptime
+
+nokeeptime will not save and restore local time after setting the TZ
+
 You cannot specify a city or other informations like DST on/off. This would 
 require another tool.
 
