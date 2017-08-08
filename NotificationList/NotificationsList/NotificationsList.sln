@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsList", "NotificationsList.csproj", "{09A016A6-F262-46BA-A6CD-C4410180B164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenNetCF_LargeTimer", "..\..\..\Temp\OpenNetCF_LargeTimer\OpenNetCF_LargeTimer.csproj", "{3390D4A0-5ABC-482E-B924-0AF40E92F39C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenNetCF_LargeTimer", "..\..\OpenNetCF_LargeTimer\OpenNetCF_LargeTimer.csproj", "{3390D4A0-5ABC-482E-B924-0AF40E92F39C}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
