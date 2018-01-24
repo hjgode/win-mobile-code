@@ -12,12 +12,12 @@ int OpenKey(TCHAR *subkey);
 int OpenCreateKey(TCHAR *subkey);
 int CloseKey();
 int CreateSubKey(TCHAR *subkey);
-int RegReadDword(TCHAR *valuename, DWORD value);
+int RegReadDword(TCHAR *valuename, DWORD *value);
 int RegReadStr(TCHAR *valuename, TCHAR *value);
 
 int RegWriteDword(TCHAR *valuename, DWORD value);
 int RegWriteStr(TCHAR *valuename, TCHAR *str);
-int RegWriteByte(TCHAR *valuename, byte value);
+int RegWriteDword(TCHAR *valuename, byte value);
 
 void ShowError(LONG er);
 
@@ -38,7 +38,7 @@ int RegWriteDword(TCHAR *valuename, DWORD value)
 	return rc;
 }
 
-int RegWriteByte(TCHAR *valuename, byte value)
+int RegWriteDword(TCHAR *valuename, byte value)
 {
 	LONG rc=0;
 	byte b = value;
@@ -70,11 +70,12 @@ int RegWriteStr(TCHAR *valuename, TCHAR *str)
  	return rc;
 }
 
+
 int RegReadByte(TCHAR *valuename, byte *value)
 {
 	static byte dwResult;
 	LONG rc;
-	DWORD dwType=REG_BINARY;
+	DWORD dwType=REG_DWORD;
 	DWORD dwSize=sizeof(byte);
 	if (g_hkey==NULL)
 		rc = OpenKey();
@@ -94,9 +95,9 @@ int RegReadByte(TCHAR *valuename, byte *value)
 
 
 //RegReadDword
-int RegReadDword(TCHAR *valuename, DWORD value)
+int RegReadDword(TCHAR *valuename, DWORD* value)
 {
-	static DWORD dwResult;
+	DWORD dwResult;
 	LONG rc;
 	DWORD dwType=REG_DWORD;
 	DWORD dwSize=sizeof(DWORD);
@@ -104,11 +105,12 @@ int RegReadDword(TCHAR *valuename, DWORD value)
 		rc = OpenKey();
 	if (g_hkey != NULL)
 	{
-		rc = RegQueryValueEx(g_hkey, valuename, NULL, &dwType, (LPBYTE) dwResult, &dwSize);
+		rc = RegQueryValueEx(g_hkey, valuename, NULL, &dwType, (LPBYTE) &dwResult, &dwSize);
 		if (rc == ERROR_SUCCESS)
 		{
 			CloseKey();
-			value = dwResult;
+			//memcpy(value, &dwResult, sizeof(DWORD));
+			*value = dwResult;
 			return rc;
 		}
 	}

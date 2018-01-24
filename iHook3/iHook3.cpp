@@ -2,48 +2,7 @@
 //
 
 //history
-//version	change
-// 1.0		initial release
-// 1.1		added registry functions, now the keys are configured by the registry
-/*
-			[HKEY_LOCAL_MACHINE\SOFTWARE\Intermec\iHook3]
-			"ForwardKey"=hex:0
-			"arg0"=""
-			"exe0"="\\windows\\iRotateCN2.exe"
-			"key0"=hex:\
-				  72
-			"arg1"="-toggle"
-			"exe1"="\\windows\\LockTaskBar.exe"
-			"key1"=hex:\
-				  73
-			"arg2"=""
-			"exe2"="\\windows\\iSIP2.exe"
-			"key2"=hex:\
-				  74
-			"arg3"=""
-			"exe3"="explorer.exe"
-			"key3"=hex:\
-				  71
-			"arg4"="iRun2.exe"
-			"exe4"="\\windows\\iKill2.exe"
-			"key4"=hex:\
-				  1b
-*/
-/*			would only load once
-			added arg -writereg to write default registry
-	1.2		added CloseHandle on CreateProcess(...pi)
-	1.3		20.6.2005
-			added function IsIntermec to registry.h and now checks, if this is an intermec
-	2.0		changed isIntermec in registry.h for CK60, which does not support platform/name
-			added notification code (needs WS_OVERLAPPED as WinStyle for Main Window!!!!)
-	3.1.1	changed bForward handling: did not forward any key if false
-			now only processed keys are not forwarded if bForward=false
-	3.1.2	changed isIntermec to look for itcscan.dll only
-	3.1.3	changed isIntermec check
-			old: if (bDoCheckIntermec && IsIntermec() != 0)
-			new: if (bDoCheckIntermec && (IsIntermec() != 0))
-*/
-//	ReportEvent
+//        see README.txt
 
 #include "stdafx.h"
 #include "hooks.h"
@@ -52,7 +11,7 @@
 
 #include "log2file.h"
 
-TCHAR szAppName[] = L"iHook3v3.1.4";
+TCHAR szAppName[] = L"iHook3v3.1.5";
 
 LONG FAR PASCAL WndProc (HWND , UINT , UINT , LONG) ;
 int ReadReg();
@@ -496,14 +455,14 @@ void WriteReg()
 	for (i=0; i<5; i++)
 	{
 		wsprintf(name, L"key%i", i);
-		RegWriteByte(name, kMap[i].keyCode );
+		RegWriteDword(name, kMap[i].keyCode );
 		wsprintf(name, L"exe%i", i);
 		RegWriteStr(name, kMap[i].keyCmd );
 		wsprintf(name, L"arg%i", i);
 		RegWriteStr(name, kMap[i].keyArg );
 	}
-	RegWriteByte(L"ForwardKey", 0);
-	RegWriteByte(L"UseLogging", 0);
+	RegWriteDword(L"ForwardKey", (DWORD)0);
+	RegWriteDword(L"UseLogging", (DWORD)0);
 	CloseKey();
 	Add2Log(L"Out WriteReg()...\r\n", FALSE);
 	//return 0;
@@ -514,14 +473,14 @@ int ReadReg()
 	Add2Log(L"IN ReadReg()...\r\n", FALSE);
 	int i;
 	TCHAR str[MAX_PATH+1];
-	byte dw=0;
+	DWORD dw=0;
 	TCHAR name[MAX_PATH+1];
 	lastKey=-1;
 	LONG rc;
 	int iRes = OpenKey(L"Software\\Intermec\\iHook3");
 	Add2Log(L"\tOpenKey 'Software\\Intermec\\iHook3' returned %i (0x%x)\r\n", iRes, iRes);
 	// use logging to file?
-	rc=RegReadByte(L"UseLogging", &dw);
+	rc=RegReadDword(L"UseLogging", &dw);
 	if(rc==0)
 	{
 		Add2Log(L"\tlooking for 'ForwardKey' OK\r\n",lastKey,lastKey);
@@ -549,12 +508,12 @@ int ReadReg()
 		wcscpy(kMap[i].keyArg, L"");
 		wsprintf(name, L"key%i", i);
 		//look for keyX
-		rc = RegReadByte(name, &dw);
+		rc = RegReadDword(name, &dw);
 		if (rc==0)
 		{
 			//look for exeX
 			Add2Log(L"\tlooking for entry 'key%i' (name='%s') return code=%i read value=(0x%x)...OK\r\n", i, name, rc, dw);
-			kMap[i].keyCode=dw;
+			kMap[i].keyCode=(BYTE)dw;
 			wsprintf(name, L"exe%i", i);
 			iRes=RegReadStr(name, str);
 			Add2Log(L"\t\tlooking for exe%i (name='%s'), result=%i, value='%s'\r\n", i, name, iRes, str);
@@ -591,7 +550,7 @@ int ReadReg()
 	}
 	Add2Log(L"\tread a total of %i (0x%x) valid entries\r\n", lastKey+1, lastKey+1);
 	//Read if we have to forward the keys
-	rc=RegReadByte(L"ForwardKey", &dw);
+	rc=RegReadDword(L"ForwardKey", &dw);
 	if(rc==0)
 	{
 		Add2Log(L"\tlooking for 'ForwardKey' OK\r\n",lastKey,lastKey);

@@ -41,6 +41,15 @@
 			old: if (bDoCheckIntermec && IsIntermec() != 0)
 			new: if (bDoCheckIntermec && (IsIntermec() != 0))
 	3.1.4	added UseLogging and bUseLogging to enable/disable logging to file
+	3.1.5	changed RegBinary to RegDword values
+				REGEDIT4
+				[HKEY_LOCAL_MACHINE\Software\Intermec\iHook3]
+				"key0"=dword:00000087
+				"ForwardKey"=dword:00000001
+				"UseLogging"=dword:00000001
+				"arg0"=""
+				"exe0"="\\Windows\\iSip3.exe"
+
 */
 
 optional arg:

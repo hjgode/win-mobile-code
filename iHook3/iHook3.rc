@@ -63,8 +63,8 @@ IHOOK_STARTED           ICON                    "ihook_st.ico"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,1,2,0
- PRODUCTVERSION 3,1,2,0
+ FILEVERSION 3,1,5,0
+ PRODUCTVERSION 3,1,5,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -82,12 +82,12 @@ BEGIN
             VALUE "Comments", "on 700 use ckeybmap too"
             VALUE "CompanyName", "Intermec Technologies GmbH"
             VALUE "FileDescription", "iHook3"
-            VALUE "FileVersion", "3, 1, 2, 0"
+            VALUE "FileVersion", "3, 1, 5, 0"
             VALUE "InternalName", "iHook3"
             VALUE "LegalCopyright", "Copyright © 2005"
             VALUE "OriginalFilename", "iHook3.exe"
             VALUE "ProductName", "Intermec Technologies GmbH iHook3"
-            VALUE "ProductVersion", "3, 1, 2, 0"
+            VALUE "ProductVersion", "3, 1, 5, 0"
         END
     END
     BLOCK "VarFileInfo"
